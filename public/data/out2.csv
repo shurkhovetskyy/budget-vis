@@ -1,0 +1,1556 @@
+;Profitcenter;Kostenart;Executed-Ist;Sign;Planentwurf;Plan;Produktbereich;Bezeichnung;Year
+0;100000000;1039836915;101270.46875;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+1;100000000;98367345;-101270.46875;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+2;100000100;94000023;14400.3896484;plus;0.0;15414.2402344;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+3;100000100;94000023;-14400.3896484;minus;0.0;-15414.2402344;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+4;101000102;112626847;-1834102.125;minus;0.0;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2013
+5;101000102;3897540;0.0;minus;-33340.6796875;-19438.4394531;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2013
+6;101000102;1616488623;0.0;plus;0.0;1465558.25;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2013
+7;101000102;1617031743;0.0;plus;1825342.625;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2013
+8;101000102;-2147483648;2988030.75;plus;0.0;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2013
+9;102000103;1895240414;0.0;plus;0.0;6279991.0;01 Innere Verwaltung;Verwaltungsführung;2013
+10;102000103;1890486983;0.0;plus;6075871.5;0.0;01 Innere Verwaltung;Verwaltungsführung;2013
+11;102000103;-2147483648;-1558607.5;minus;0.0;0.0;01 Innere Verwaltung;Verwaltungsführung;2013
+12;102000103;-2147483648;6602463.5;plus;0.0;0.0;01 Innere Verwaltung;Verwaltungsführung;2013
+13;102000103;847781660;0.0;minus;-1247595.375;-1407636.125;01 Innere Verwaltung;Verwaltungsführung;2013
+14;102000118;1043200;-11333.4404297;minus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2013
+15;102000118;1043200;11333.4404297;plus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2013
+16;103001500;-2147483648;-133734.875;minus;0.0;0.0;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2013
+17;103001500;1222000443;0.0;plus;222821.625;223051.9375;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2013
+18;103001500;-2147483648;133734.875;plus;0.0;0.0;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2013
+19;103001500;1222000443;0.0;minus;-222821.625;-223051.9375;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2013
+20;103001501;306024057;-1017147.375;minus;0.0;0.0;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2013
+21;103001501;2610140;0.0;minus;-209483.125;-209737.40625;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2013
+22;103001501;1613957276;0.0;plus;2482882.0;2445469.75;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2013
+23;103001501;-2147483648;3152927.5;plus;0.0;0.0;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2013
+24;103001502;3059620;0.0;minus;-189553.0625;-189606.3125;15 Wirtschaft und Tourismus;Tourismus;2013
+25;103001502;1521963860;0.0;plus;1856006.75;1830756.5;15 Wirtschaft und Tourismus;Tourismus;2013
+26;103001502;-2147483648;2062970.0;plus;0.0;0.0;15 Wirtschaft und Tourismus;Tourismus;2013
+27;103001502;405127110;-351839.75;minus;0.0;0.0;15 Wirtschaft und Tourismus;Tourismus;2013
+28;104000105;189358543;0.0;minus;-268740.78125;-266753.875;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2013
+29;104000105;-2147483648;-316545.5;minus;0.0;0.0;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2013
+30;104000105;-2147483648;392192.625;plus;0.0;0.0;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2013
+31;104000105;1327010226;0.0;plus;338470.96875;335917.96875;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2013
+32;110000100;1034000291;0.0;minus;-76496.359375;-78075.2890625;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+33;110000100;-2147483648;60990.3984375;plus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+34;110000100;-2147483648;-60990.3984375;minus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+35;110000100;1034000291;0.0;plus;76496.359375;78075.2890625;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+36;110000101;-2147483648;7524271.5;plus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2013
+37;110000101;1365130;0.0;minus;-15291.8408203;-15438.0;01 Innere Verwaltung;Politische Gremien;2013
+38;110000101;1135210354;0.0;plus;7573316.5;7684029.0;01 Innere Verwaltung;Politische Gremien;2013
+39;110000101;102331542;-12164.5400391;minus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2013
+40;110000109;1435000973;0.0;plus;5881775.0;0.0;01 Innere Verwaltung;Zentrale Dienste;2013
+41;110000109;1435506173;0.0;plus;0.0;5921228.5;01 Innere Verwaltung;Zentrale Dienste;2013
+42;110000109;-2147483648;-3186864.25;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Dienste;2013
+43;110000109;757763878;0.0;minus;0.0;-2853999.0;01 Innere Verwaltung;Zentrale Dienste;2013
+44;110000109;-2147483648;5883240.0;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Dienste;2013
+45;110000109;663763855;0.0;minus;-2818575.75;0.0;01 Innere Verwaltung;Zentrale Dienste;2013
+46;110000123;1047106296;0.0;plus;0.0;3084223.5;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+47;110000123;-2147483648;3263828.5;plus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+48;110000123;1045477904;0.0;plus;3171376.25;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+49;110000123;379125901;0.0;minus;0.0;-2721575.25;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+50;110000123;-2147483648;-3052119.25;minus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+51;110000123;378684001;0.0;minus;-2584556.5;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2013
+52;110000124;1617997653;-512418.625;minus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2013
+53;110000124;-2147483648;5682524.5;plus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2013
+54;110000124;1516672071;0.0;plus;5736834.5;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2013
+55;110000124;1517177271;0.0;plus;0.0;5669939.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2013
+56;110000124;192021360;0.0;minus;-5128659.5;-5130650.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2013
+57;110200126;312497707;-1188651.875;minus;0.0;0.0;01 Innere Verwaltung;IT-Betrieb;2013
+58;110200126;1332450117;0.0;plus;6433116.0;0.0;01 Innere Verwaltung;IT-Betrieb;2013
+59;110200126;1332955317;0.0;plus;0.0;6462283.0;01 Innere Verwaltung;IT-Betrieb;2013
+60;110200126;97126455;0.0;minus;-6694238.5;-6694941.5;01 Innere Verwaltung;IT-Betrieb;2013
+61;110200126;-2147483648;6686894.0;plus;0.0;0.0;01 Innere Verwaltung;IT-Betrieb;2013
+62;110660130;-2147483648;735920.1875;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2013
+63;110660130;1515138612;-285985.96875;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2013
+64;110660130;97931045;0.0;minus;-249630.765625;-248714.21875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2013
+65;110660130;1704077000;0.0;plus;743247.5625;751231.875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2013
+66;110770131;97974045;0.0;minus;-260620.8125;-258765.4375;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2013
+67;110770131;-2147483648;763165.1875;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2013
+68;110770131;1524439567;-305668.84375;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2013
+69;110770131;1708923447;0.0;plus;836685.75;835282.6875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2013
+70;110880132;-2147483648;793434.0;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2013
+71;110880132;97974345;0.0;minus;-274318.28125;-266624.1875;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2013
+72;110880132;1718615543;-284433.65625;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2013
+73;110880132;1707829136;0.0;plus;914412.125;897281.6875;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2013
+74;110990133;1523390807;-280725.8125;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2013
+75;110990133;97940045;0.0;minus;-278997.625;-273445.3125;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2013
+76;110990133;-2147483648;656754.6875;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2013
+77;110990133;1702475667;0.0;plus;785747.375;770764.375;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2013
+78;111000115;189365143;0.0;minus;-914327.8125;-907394.625;01 Innere Verwaltung;Beschäftigtenvertretung;2013
+79;111000115;1137897663;0.0;plus;1033811.375;1025927.125;01 Innere Verwaltung;Beschäftigtenvertretung;2013
+80;111000115;-2147483648;1098542.0;plus;0.0;0.0;01 Innere Verwaltung;Beschäftigtenvertretung;2013
+81;111000115;-2147483648;-981252.75;minus;0.0;0.0;01 Innere Verwaltung;Beschäftigtenvertretung;2013
+82;111000116;477180693;0.0;minus;-22041294.0;-22625704.0;01 Innere Verwaltung;Personalmanagement;2013
+83;111000116;1520738449;0.0;plus;34890020.0;30697304.0;01 Innere Verwaltung;Personalmanagement;2013
+84;111000116;-2147483648;60237004.0;plus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2013
+85;111000116;-2147483648;-57839536.0;minus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2013
+86;113000114;1709043600;0.0;plus;2370398.5;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2013
+87;113000114;1803548805;0.0;plus;0.0;2343051.5;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2013
+88;113000114;96212503;0.0;minus;-122353.242188;-118339.71875;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2013
+89;113000114;-2147483648;2126093.75;plus;0.0;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2013
+90;113000114;672259558;-215013.453125;minus;0.0;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2013
+91;114000107;-2147483648;2620601.0;plus;0.0;0.0;01 Innere Verwaltung;Rechnungsprüfung;2013
+92;114000107;-2147483648;-2677091.25;minus;0.0;0.0;01 Innere Verwaltung;Rechnungsprüfung;2013
+93;114000107;189781246;0.0;minus;-2566585.5;-2728915.75;01 Innere Verwaltung;Rechnungsprüfung;2013
+94;114000107;1701412577;0.0;plus;2566585.25;0.0;01 Innere Verwaltung;Rechnungsprüfung;2013
+95;114000107;1701917777;0.0;plus;0.0;2728915.75;01 Innere Verwaltung;Rechnungsprüfung;2013
+96;120000120;378687960;0.0;minus;-4996059.0;0.0;01 Innere Verwaltung;Finanzmanagement;2013
+97;120000120;1517731621;0.0;plus;4996935.5;0.0;01 Innere Verwaltung;Finanzmanagement;2013
+98;120000120;-2147483648;3648251.75;plus;0.0;0.0;01 Innere Verwaltung;Finanzmanagement;2013
+99;120000120;1517202521;0.0;plus;0.0;4357182.5;01 Innere Verwaltung;Finanzmanagement;2013
+100;120000120;379145060;0.0;minus;0.0;-10554234.0;01 Innere Verwaltung;Finanzmanagement;2013
+101;120000120;-2147483648;-2776343.75;minus;0.0;0.0;01 Innere Verwaltung;Finanzmanagement;2013
+102;120001605;9543400;-132573088.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2013
+103;120001605;1068300;0.0;plus;80800480.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2013
+104;120001605;479128939;80452968.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2013
+105;120001605;95068304;0.0;plus;0.0;79734632.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2013
+106;120001605;1276300;0.0;minus;-132387568.0;-121871088.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2013
+107;120100129;8376963;-107014824.0;minus;0.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2013
+108;120100129;95627903;0.0;plus;30743294.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2013
+109;120100129;1231627083;144851968.0;plus;0.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2013
+110;120100129;545101;0.0;minus;-0.0399999991059;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2013
+111;120100129;96173004;0.0;plus;0.0;30586414.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2013
+112;120101601;17512520;24839536.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2013
+113;120101601;1231120429;-24922330.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2013
+114;120101601;2734510;0.0;plus;28129600.0;27878600.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2013
+115;120101601;95379733;0.0;minus;-29472876.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2013
+116;120101601;95841233;0.0;minus;0.0;-27250722.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2013
+117;120101602;461600;0.0;minus;-375800.0;-375800.0;16 Allgemeine Finanzwirtschaft;Anlage von Finanzmitteln;2013
+118;120101602;5540300;-375800.90625;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Anlage von Finanzmitteln;2013
+119;120101603;94923433;0.0;minus;-9081948.0;-6283407.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2013
+120;120101603;1654800;0.0;plus;9378125.0;6728125.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2013
+121;120101603;9378300;3435859.5;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2013
+122;120101603;1228465429;-3197730.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2013
+123;120101604;559900;0.0;plus;400000.0;400000.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2013
+124;120101604;2689500;432290.625;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2013
+125;120101604;5078000;-363482.59375;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2013
+126;120101604;923300;0.0;minus;-34200.0;-34200.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2013
+127;120201006;94000133;0.0;plus;1283483.375;1124139.125;10 Bauen und Wohnen;Wohnraumversorgung durch Unternehmen;2013
+128;120201006;465100;-419694.4375;minus;-419600.0;-419600.0;10 Bauen und Wohnen;Wohnraumversorgung durch Unternehmen;2013
+129;120201510;926600;0.0;minus;-221118.0;-281118.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2013
+130;120201510;94531633;0.0;plus;4707830.5;4134899.5;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2013
+131;120201510;1594500;93345.3828125;plus;0.0;0.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2013
+132;120201510;2776200;-549052.1875;minus;0.0;0.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2013
+133;121000100;-2147483648;72987.0390625;plus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+134;121000100;1316000716;0.0;plus;75444.453125;74758.1328125;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+135;121000100;1316000716;0.0;minus;-75444.453125;-74758.1328125;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+136;121000100;-2147483648;-72987.0390625;minus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2013
+137;121000121;191134752;0.0;minus;-6886890.5;-6752444.5;01 Innere Verwaltung;Finanzbuchhaltung;2013
+138;121000121;1701979136;0.0;plus;6949255.5;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2013
+139;121000121;-2147483648;-6981431.0;minus;0.0;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2013
+140;121000121;-2147483648;6538339.0;plus;0.0;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2013
+141;121000121;1702484336;0.0;plus;0.0;6811239.0;01 Innere Verwaltung;Finanzbuchhaltung;2013
+142;121000122;-2147483648;-1830431.125;minus;0.0;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+143;121000122;-2147483648;3903541.0;plus;0.0;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+144;121000122;191117352;0.0;minus;0.0;-1663399.125;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+145;121000122;191565852;0.0;minus;-1244357.625;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+146;121000122;1516022626;0.0;plus;0.0;3827509.5;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+147;121000122;1515517426;0.0;plus;3646532.25;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2013
+148;121201606;37822521;-466557984.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2013
+149;121201606;22159685;45431532.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2013
+150;121201606;4896900;0.0;minus;-484335360.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2013
+151;121201606;4493000;0.0;minus;0.0;-483222240.0;16 Allgemeine Finanzwirtschaft;Steuern;2013
+152;121201606;2715765;0.0;plus;30918664.0;30918664.0;16 Allgemeine Finanzwirtschaft;Steuern;2013
+153;123000110;188000206;516.070007324;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+154;123000110;94000103;-516.070007324;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+155;123000128;-2147483648;9880012.0;plus;0.0;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2013
+156;123000128;1617631763;0.0;plus;0.0;7965112.0;01 Innere Verwaltung;Liegenschaftsmanagement;2013
+157;123000128;1617126563;0.0;plus;8264865.5;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2013
+158;123000128;996869740;-11298821.0;minus;0.0;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2013
+159;123000128;192884978;0.0;minus;-9207170.0;-9207797.0;01 Innere Verwaltung;Liegenschaftsmanagement;2013
+160;123001718;2724665;0.0;plus;63010.0;62510.0;17 Stiftungen;Stiftung Julius Barthels;2013
+161;123001718;2737300;-66553.0703125;minus;0.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2013
+162;123001718;2183610;66553.0703125;plus;0.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2013
+163;123001718;1827010;0.0;minus;-63010.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2013
+164;123001718;1371910;0.0;minus;0.0;-62510.0;17 Stiftungen;Stiftung Julius Barthels;2013
+165;125000000;1128000400;0.0;plus;32162.5898438;31376.7695312;00;Produktbereichsübergreifend;2013
+166;125000000;1128000400;0.0;minus;-32162.5898438;-31376.7695312;00;Produktbereichsübergreifend;2013
+167;125000000;-2147483648;34833.03125;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+168;125000000;-2147483648;-93087.6015625;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+169;125000108;1327587664;-995779.75;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+170;125000108;-2147483648;1004773.0;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+171;125000108;95813695;0.0;minus;-589322.0625;-589605.25;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+172;125000108;1606833881;0.0;plus;841090.0;839220.3125;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2013
+173;125000910;194051396;-15774.1796875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2013
+174;125000910;1365130;0.0;minus;-8573.16015625;-8655.0;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2013
+175;125000910;1512819136;0.0;plus;222231.578125;221084.90625;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2013
+176;125000910;-2147483648;133359.203125;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2013
+177;130000000;-2147483648;-47263.1601562;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+178;130000000;1222000528;0.0;plus;60943.9609375;58363.171875;00;Produktbereichsübergreifend;2013
+179;130000000;1222000528;0.0;minus;-60943.9609375;-58363.171875;00;Produktbereichsübergreifend;2013
+180;130000000;-2147483648;47263.1601562;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+181;130000127;1421542455;0.0;plus;4445970.0;0.0;01 Innere Verwaltung;Recht;2013
+182;130000127;1422047655;0.0;plus;0.0;4322234.0;01 Innere Verwaltung;Recht;2013
+183;130000127;-2147483648;3991225.25;plus;0.0;0.0;01 Innere Verwaltung;Recht;2013
+184;130000127;-2147483648;-3976966.75;minus;0.0;0.0;01 Innere Verwaltung;Recht;2013
+185;130000127;472262470;0.0;minus;-3654821.75;-3851342.0;01 Innere Verwaltung;Recht;2013
+186;130000512;1417167587;0.0;plus;0.0;90598.53125;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2013
+187;130000512;1416662387;0.0;plus;91674.7265625;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2013
+188;130000512;479381379;-8838.00976562;minus;0.0;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2013
+189;130000512;-2147483648;86581.1171875;plus;0.0;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2013
+190;130000512;1365130;0.0;minus;-248.199996948;-250.350006104;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2013
+191;133000200;1598000827;0.0;minus;-740633.0625;-737387.875;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+192;133000200;-2147483648;-962616.875;minus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+193;133000200;1598000827;0.0;plus;740633.0625;737387.875;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+194;133000200;-2147483648;629559.75;plus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+195;133000201;1801365003;0.0;plus;0.0;5408856.5;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2013
+196;133000201;-2147483648;5816088.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2013
+197;133000201;1800859803;0.0;plus;5405087.0;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2013
+198;133000201;4007740;0.0;minus;-564563.3125;-566224.25;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2013
+199;133000201;223836301;-819680.6875;minus;0.0;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2013
+200;133000202;2252330;0.0;minus;-301554.75;-301903.6875;02 Sicherheit und Ordnung;Gewerbewesen;2013
+201;133000202;1042844590;0.0;plus;966045.6875;966775.0;02 Sicherheit und Ordnung;Gewerbewesen;2013
+202;133000202;21772552;-419118.5625;minus;0.0;0.0;02 Sicherheit und Ordnung;Gewerbewesen;2013
+203;133000202;-2147483648;858064.0625;plus;0.0;0.0;02 Sicherheit und Ordnung;Gewerbewesen;2013
+204;133000203;3094530;0.0;minus;-1107060.0;-1107124.75;02 Sicherheit und Ordnung;Märkte (BgA);2013
+205;133000203;-2147483648;1199090.75;plus;0.0;0.0;02 Sicherheit und Ordnung;Märkte (BgA);2013
+206;133000203;1432876439;0.0;plus;1136311.75;1132465.25;02 Sicherheit und Ordnung;Märkte (BgA);2013
+207;133000203;125395431;-1286944.5;minus;0.0;0.0;02 Sicherheit und Ordnung;Märkte (BgA);2013
+208;133000204;1800793930;0.0;plus;0.0;11702496.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2013
+209;133000204;4008440;0.0;minus;-11536516.0;-11538912.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2013
+210;133000204;-2147483648;10988427.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2013
+211;133000204;229985105;-12567342.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2013
+212;133000204;1800288730;0.0;plus;11738230.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2013
+213;133000205;-2147483648;10307924.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2013
+214;133000205;1701895763;0.0;plus;12085587.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2013
+215;133000205;3117240;0.0;minus;-4056484.5;-4059987.5;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2013
+216;133000205;1702400963;0.0;plus;0.0;12074783.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2013
+217;133000205;221905032;-3785349.5;minus;0.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2013
+218;133000206;1702995225;0.0;plus;2888883.5;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2013
+219;133000206;-2147483648;2531214.5;plus;0.0;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2013
+220;133000206;208345112;-793272.4375;minus;0.0;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2013
+221;133000206;2242330;0.0;minus;-703578.3125;-704425.125;02 Sicherheit und Ordnung;Personenstandswesen;2013
+222;133000206;1703500425;0.0;plus;0.0;2892167.25;02 Sicherheit und Ordnung;Personenstandswesen;2013
+223;133000207;1045541573;0.0;plus;0.0;745709.6875;02 Sicherheit und Ordnung;Wahlen;2013
+224;133000207;12610232;-265034.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Wahlen;2013
+225;133000207;1813230;0.0;minus;-279948.3125;-280138.875;02 Sicherheit und Ordnung;Wahlen;2013
+226;133000207;1045036373;0.0;plus;721001.375;0.0;02 Sicherheit und Ordnung;Wahlen;2013
+227;133000207;-2147483648;821157.625;plus;0.0;0.0;02 Sicherheit und Ordnung;Wahlen;2013
+228;137000200;-2147483648;939603.8125;plus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+229;137000200;1410000769;0.0;plus;1435293.125;1386481.625;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+230;137000200;1410000769;0.0;minus;-1435293.125;-1386481.625;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+231;137000200;-2147483648;-939603.8125;minus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2013
+232;137000219;1812163516;0.0;plus;24810926.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2013
+233;137000219;1812668716;0.0;plus;0.0;25068168.0;02 Sicherheit und Ordnung;Brandschutz;2013
+234;137000219;1841120098;-3925954.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2013
+235;137000219;-2147483648;24352922.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2013
+236;137000219;99229230;0.0;minus;0.0;-3358465.5;02 Sicherheit und Ordnung;Brandschutz;2013
+237;137000219;100097531;0.0;minus;-3581547.25;0.0;02 Sicherheit und Ordnung;Brandschutz;2013
+238;137000220;1624611056;-387398.21875;minus;0.0;0.0;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2013
+239;137000220;1617652404;0.0;plus;3550166.0;0.0;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2013
+240;137000220;1617632504;0.0;plus;0.0;3612842.5;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2013
+241;137000220;97511645;0.0;minus;-236730.671875;-238015.515625;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2013
+242;137000220;-2147483648;3397992.5;plus;0.0;0.0;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2013
+243;137000221;1623826411;-17108718.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2013
+244;137000221;-2147483648;12878907.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2013
+245;137000221;96655445;0.0;minus;-11103082.0;-10911665.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2013
+246;137000221;1619766214;0.0;plus;0.0;12017880.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2013
+247;137000221;1619261014;0.0;plus;12671203.0;0.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2013
+248;137001720;1345510;0.0;minus;-481.0;-481.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2013
+249;137001720;547400;0.0;plus;481.0;481.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2013
+250;137001720;7566900;-13128.8896484;minus;0.0;0.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2013
+251;137001720;1540300;13128.8896484;plus;0.0;0.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2013
+252;140000300;1880000932;0.0;plus;1348611.125;1328558.125;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2013
+253;140000300;-2147483648;-1440690.125;minus;0.0;0.0;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2013
+254;140000300;-2147483648;1154079.75;plus;0.0;0.0;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2013
+255;140000300;1880000932;0.0;minus;-1348611.125;-1328558.125;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2013
+256;140000301;195028847;0.0;minus;-12858214.0;0.0;03 Schulträgeraufgaben;Grundschulen;2013
+257;140000301;1992007471;0.0;plus;33256900.0;0.0;03 Schulträgeraufgaben;Grundschulen;2013
+258;140000301;1992512570;0.0;plus;0.0;31538932.0;03 Schulträgeraufgaben;Grundschulen;2013
+259;140000301;823698732;-13857533.0;minus;0.0;0.0;03 Schulträgeraufgaben;Grundschulen;2013
+260;140000301;195443647;0.0;minus;0.0;-12750782.0;03 Schulträgeraufgaben;Grundschulen;2013
+261;140000301;-2147483648;32303786.0;plus;0.0;0.0;03 Schulträgeraufgaben;Grundschulen;2013
+262;140000302;99735894;0.0;minus;0.0;-127937.6875;03 Schulträgeraufgaben;Hauptschulen;2013
+263;140000302;1991422474;0.0;plus;0.0;3724465.5;03 Schulträgeraufgaben;Hauptschulen;2013
+264;140000302;99321094;0.0;minus;-127852.125;0.0;03 Schulträgeraufgaben;Hauptschulen;2013
+265;140000302;-2147483648;3488745.25;plus;0.0;0.0;03 Schulträgeraufgaben;Hauptschulen;2013
+266;140000302;512328082;-277221.1875;minus;0.0;0.0;03 Schulträgeraufgaben;Hauptschulen;2013
+267;140000302;1990917274;0.0;plus;4152176.0;0.0;03 Schulträgeraufgaben;Hauptschulen;2013
+268;140000303;99321094;0.0;minus;-189775.953125;0.0;03 Schulträgeraufgaben;Realschulen;2013
+269;140000303;-2147483648;5045616.5;plus;0.0;0.0;03 Schulträgeraufgaben;Realschulen;2013
+270;140000303;99735894;0.0;minus;0.0;-189876.15625;03 Schulträgeraufgaben;Realschulen;2013
+271;140000303;1990881314;0.0;plus;0.0;4543640.0;03 Schulträgeraufgaben;Realschulen;2013
+272;140000303;414189539;-420977.9375;minus;0.0;0.0;03 Schulträgeraufgaben;Realschulen;2013
+273;140000303;1990376114;0.0;plus;5110756.0;0.0;03 Schulträgeraufgaben;Realschulen;2013
+274;140000304;-2147483648;10707193.0;plus;0.0;0.0;03 Schulträgeraufgaben;Gymnasien;2013
+275;140000304;100568244;0.0;minus;0.0;-363707.71875;03 Schulträgeraufgaben;Gymnasien;2013
+276;140000304;622812202;-766837.9375;minus;0.0;0.0;03 Schulträgeraufgaben;Gymnasien;2013
+277;140000304;1991953554;0.0;plus;0.0;10139333.0;03 Schulträgeraufgaben;Gymnasien;2013
+278;140000304;1991448354;0.0;plus;11428475.0;0.0;03 Schulträgeraufgaben;Gymnasien;2013
+279;140000304;100153444;0.0;minus;-363579.34375;0.0;03 Schulträgeraufgaben;Gymnasien;2013
+280;140000305;1990376114;0.0;plus;5891258.5;0.0;03 Schulträgeraufgaben;Gesamtschulen;2013
+281;140000305;5266641;0.0;minus;0.0;-210112.09375;03 Schulträgeraufgaben;Gesamtschulen;2013
+282;140000305;4851841;0.0;minus;-210004.09375;0.0;03 Schulträgeraufgaben;Gesamtschulen;2013
+283;140000305;-2147483648;5833627.0;plus;0.0;0.0;03 Schulträgeraufgaben;Gesamtschulen;2013
+284;140000305;1990881314;0.0;plus;0.0;5234304.0;03 Schulträgeraufgaben;Gesamtschulen;2013
+285;140000305;595256702;-543317.9375;minus;0.0;0.0;03 Schulträgeraufgaben;Gesamtschulen;2013
+286;140000306;1991379275;0.0;plus;0.0;3319400.0;03 Schulträgeraufgaben;Förderschulen;2013
+287;140000306;429607861;-361987.25;minus;0.0;0.0;03 Schulträgeraufgaben;Förderschulen;2013
+288;140000306;6561921;0.0;minus;0.0;-230262.625;03 Schulträgeraufgaben;Förderschulen;2013
+289;140000306;1990874075;0.0;plus;3707163.75;0.0;03 Schulträgeraufgaben;Förderschulen;2013
+290;140000306;-2147483648;2907002.75;plus;0.0;0.0;03 Schulträgeraufgaben;Förderschulen;2013
+291;140000306;5699121;0.0;minus;-209544.890625;0.0;03 Schulträgeraufgaben;Förderschulen;2013
+292;140000307;99308073;0.0;minus;-403668.59375;0.0;03 Schulträgeraufgaben;Berufskollegs;2013
+293;140000307;525781990;-631153.9375;minus;0.0;0.0;03 Schulträgeraufgaben;Berufskollegs;2013
+294;140000307;1991993554;0.0;plus;0.0;6030751.5;03 Schulträgeraufgaben;Berufskollegs;2013
+295;140000307;99290673;0.0;minus;0.0;-378804.0625;03 Schulträgeraufgaben;Berufskollegs;2013
+296;140000307;1991488354;0.0;plus;6783514.5;0.0;03 Schulträgeraufgaben;Berufskollegs;2013
+297;140000307;-2147483648;5934145.0;plus;0.0;0.0;03 Schulträgeraufgaben;Berufskollegs;2013
+298;140000308;-2147483648;6270410.5;plus;0.0;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2013
+299;140000308;1793677290;0.0;plus;0.0;6797851.5;03 Schulträgeraufgaben;Schülerbeförderung;2013
+300;140000308;207713307;-192890.03125;minus;0.0;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2013
+301;140000308;2658430;0.0;minus;-152699.234375;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2013
+302;140000308;3073230;0.0;minus;0.0;-152858.484375;03 Schulträgeraufgaben;Schülerbeförderung;2013
+303;140000308;1793172090;0.0;plus;6941716.0;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2013
+304;140000309;580841185;-583538.75;minus;0.0;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+305;140000309;1779230;0.0;minus;-567928.9375;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+306;140000309;-2147483648;1333412.75;plus;0.0;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+307;140000309;1794207770;0.0;plus;1503968.625;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+308;140000309;1794712970;0.0;plus;0.0;1490106.625;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+309;140000309;2194030;0.0;minus;0.0;-553310.625;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2013
+310;140000310;1801925153;0.0;plus;1715828.625;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+311;140000310;1802430353;0.0;plus;0.0;1691980.875;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+312;140000310;99319444;0.0;minus;-376192.53125;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+313;140000310;1450888816;-399818.46875;minus;0.0;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+314;140000310;-2147483648;1546677.0;plus;0.0;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+315;140000310;100165344;0.0;minus;0.0;-381397.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2013
+316;140001702;5547890;-1568.25;minus;0.0;0.0;17 Stiftungen;Stiftung Thomas Hansen;2013
+317;140001702;1009100;1568.25;plus;0.0;0.0;17 Stiftungen;Stiftung Thomas Hansen;2013
+318;140001702;531800;0.0;plus;1600.0;1600.0;17 Stiftungen;Stiftung Thomas Hansen;2013
+319;140001702;1387920;0.0;minus;-1600.0;-1600.0;17 Stiftungen;Stiftung Thomas Hansen;2013
+320;140001703;1650310;0.0;plus;7237.25;7237.25;17 Stiftungen;Stiftung Peter Kemper;2013
+321;140001703;13938920;-42571.8203125;minus;0.0;0.0;17 Stiftungen;Stiftung Peter Kemper;2013
+322;140001703;1857100;0.0;minus;-7237.25;-7237.25;17 Stiftungen;Stiftung Peter Kemper;2013
+323;140001703;32602546;42571.8203125;plus;0.0;0.0;17 Stiftungen;Stiftung Peter Kemper;2013
+324;141000400;1410000599;0.0;minus;-121860.242188;-119809.375;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2013
+325;141000400;-2147483648;-81870.2421875;minus;0.0;0.0;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2013
+326;141000400;-2147483648;51532.2695312;plus;0.0;0.0;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2013
+327;141000400;1410000599;0.0;plus;121860.242188;119809.375;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2013
+328;141000401;97900445;0.0;minus;0.0;-108879.46875;04 Kultur und Wissenschaft;Kulturelle Projekte;2013
+329;141000401;1433042482;-471981.15625;minus;0.0;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2013
+330;141000401;-2147483648;1325494.5;plus;0.0;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2013
+331;141000401;1615976143;0.0;plus;1045439.75;1037825.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2013
+332;141000401;97468245;0.0;minus;-108696.25;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2013
+333;141000402;1516077688;0.0;plus;3259276.75;0.0;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2013
+334;141000402;-2147483648;3617486.25;plus;0.0;0.0;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2013
+335;141000402;1516609388;0.0;plus;0.0;3610836.5;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2013
+336;141000402;109683927;-197667.375;minus;0.0;0.0;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2013
+337;141000402;2194030;0.0;minus;-1280653.75;-1314076.25;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2013
+338;141000403;758678751;0.0;plus;2063129.0;2100858.25;04 Kultur und Wissenschaft;Beethovenpflege;2013
+339;141000403;1365130;0.0;minus;-1419.59997559;-1433.04003906;04 Kultur und Wissenschaft;Beethovenpflege;2013
+340;141000403;10371702;-2440.65991211;minus;0.0;0.0;04 Kultur und Wissenschaft;Beethovenpflege;2013
+341;141000403;-2147483648;2041583.125;plus;0.0;0.0;04 Kultur und Wissenschaft;Beethovenpflege;2013
+342;141001704;1387920;0.0;minus;-180.0;-180.0;17 Stiftungen;Stiftung Konrad Adenauer;2013
+343;141001704;5547890;-110.079994202;minus;0.0;0.0;17 Stiftungen;Stiftung Konrad Adenauer;2013
+344;141001704;531800;0.0;plus;180.0;180.0;17 Stiftungen;Stiftung Konrad Adenauer;2013
+345;141001704;1009100;110.080001831;plus;0.0;0.0;17 Stiftungen;Stiftung Konrad Adenauer;2013
+346;141001705;547400;0.0;plus;4353.0;4353.0;17 Stiftungen;Stiftung August Kaiser;2013
+347;141001705;1400000;0.0;minus;-4353.0;-4353.0;17 Stiftungen;Stiftung August Kaiser;2013
+348;141001705;5547890;-3375.94018555;minus;0.0;0.0;17 Stiftungen;Stiftung August Kaiser;2013
+349;141001705;1009100;3375.93994141;plus;0.0;0.0;17 Stiftungen;Stiftung August Kaiser;2013
+350;141001706;930890;0.0;minus;-2069.0;-2069.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2013
+351;141001706;547400;1611.34997559;plus;2069.0;2069.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2013
+352;141001706;6009590;-1611.35009766;minus;0.0;0.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2013
+353;141001707;992900;3002.16992188;plus;0.0;0.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2013
+354;141001707;5535810;-3002.16992188;minus;0.0;0.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2013
+355;141001707;547400;0.0;plus;2157.0;2157.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2013
+356;141001707;930810;0.0;minus;-2157.0;-2157.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2013
+357;141200410;-2147483648;11444961.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Beethoven Orchester;2013
+358;141200410;1062427100;-4549178.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Beethoven Orchester;2013
+359;141200410;1618682956;0.0;plus;12374875.0;0.0;04 Kultur und Wissenschaft;Beethoven Orchester;2013
+360;141200410;97991563;0.0;minus;-4747952.5;-4748069.0;04 Kultur und Wissenschaft;Beethoven Orchester;2013
+361;141200410;1618159256;0.0;plus;0.0;12291517.0;04 Kultur und Wissenschaft;Beethoven Orchester;2013
+362;141300409;-2147483648;7058962.5;plus;0.0;0.0;04 Kultur und Wissenschaft;Kunstmuseum;2013
+363;141300409;1713365211;0.0;plus;6859734.5;0.0;04 Kultur und Wissenschaft;Kunstmuseum;2013
+364;141300409;193304266;0.0;minus;-408165.90625;-418389.9375;04 Kultur und Wissenschaft;Kunstmuseum;2013
+365;141300409;1713870411;0.0;plus;0.0;6832594.5;04 Kultur und Wissenschaft;Kunstmuseum;2013
+366;141300409;418563783;-761132.4375;minus;0.0;0.0;04 Kultur und Wissenschaft;Kunstmuseum;2013
+367;141400407;-2147483648;1963832.625;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2013
+368;141400407;192417043;0.0;minus;-70276.515625;-74684.4296875;04 Kultur und Wissenschaft;Stadtarchiv;2013
+369;141400407;1615499316;0.0;plus;0.0;2421558.5;04 Kultur und Wissenschaft;Stadtarchiv;2013
+370;141400407;218733642;-140489.09375;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2013
+371;141400407;1614994116;0.0;plus;2429249.5;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2013
+372;141500408;4806640;0.0;minus;-40638.03125;-40678.46875;04 Kultur und Wissenschaft;Stadtmuseum;2013
+373;141500408;1804043214;0.0;plus;913688.125;883467.75;04 Kultur und Wissenschaft;Stadtmuseum;2013
+374;141500408;-2147483648;892256.8125;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtmuseum;2013
+375;141500408;217682831;-134746.125;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtmuseum;2013
+376;141600406;1615552781;0.0;plus;0.0;4897163.0;04 Kultur und Wissenschaft;Stadtbibliothek;2013
+377;141600406;128459977;-407809.75;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtbibliothek;2013
+378;141600406;1615047581;0.0;plus;4954613.5;0.0;04 Kultur und Wissenschaft;Stadtbibliothek;2013
+379;141600406;97545273;0.0;minus;-780339.1875;-740447.3125;04 Kultur und Wissenschaft;Stadtbibliothek;2013
+380;141600406;-2147483648;4442745.5;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtbibliothek;2013
+381;141700405;799334475;-2266680.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Musikschule;2013
+382;141700405;1897441557;0.0;plus;0.0;5915683.5;04 Kultur und Wissenschaft;Musikschule;2013
+383;141700405;1896936357;0.0;plus;5814986.5;0.0;04 Kultur und Wissenschaft;Musikschule;2013
+384;141700405;99637163;0.0;minus;-2276084.5;-2276244.0;04 Kultur und Wissenschaft;Musikschule;2013
+385;141700405;-2147483648;5617055.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Musikschule;2013
+386;141800404;-2147483648;3574046.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Volkshochschule;2013
+387;141800404;1715389579;0.0;plus;0.0;3724815.75;04 Kultur und Wissenschaft;Volkshochschule;2013
+388;141800404;192367663;0.0;minus;-2205695.0;-2231212.75;04 Kultur und Wissenschaft;Volkshochschule;2013
+389;141800404;1714884379;0.0;plus;3744334.5;0.0;04 Kultur und Wissenschaft;Volkshochschule;2013
+390;141800404;868689180;-2393440.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Volkshochschule;2013
+391;141900411;448800;0.0;minus;-16000.0;-16000.0;04 Kultur und Wissenschaft;Theater;2013
+392;141900411;95625833;0.0;plus;31011734.0;30563168.0;04 Kultur und Wissenschaft;Theater;2013
+393;141900411;1552400;-8741769.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Theater;2013
+394;141900411;1230518129;37451644.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Theater;2013
+395;150000000;1692000764;0.0;plus;972971.625;952633.75;00;Produktbereichsübergreifend;2013
+396;150000000;-2147483648;-1137218.0;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+397;150000000;1692000764;0.0;minus;-972971.625;-952633.75;00;Produktbereichsübergreifend;2013
+398;150000000;-2147483648;585595.5;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+399;150000501;-2147483648;89001856.0;plus;0.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2013
+400;150000501;97512364;0.0;minus;-31513764.0;-35065036.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2013
+401;150000501;1452955789;-31349132.0;minus;0.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2013
+402;150000501;1804064178;0.0;plus;0.0;86171664.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2013
+403;150000501;1803558978;0.0;plus;86500384.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2013
+404;150000502;6920560;0.0;minus;-27085338.0;-28088470.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2013
+405;150000502;1104493336;-30172090.0;minus;0.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2013
+406;150000502;-2147483648;83422120.0;plus;0.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2013
+407;150000502;1807238349;0.0;plus;82556616.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2013
+408;150000502;1807743549;0.0;plus;0.0;82020176.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2013
+409;150000503;397769854;-1502055.75;minus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2013
+410;150000503;1803005528;0.0;plus;4920909.0;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2013
+411;150000503;3485700;0.0;minus;-704394.5;-704740.4375;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2013
+412;150000503;1803510728;0.0;plus;0.0;4936611.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2013
+413;150000503;-2147483648;6943320.5;plus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2013
+414;150000504;-2147483648;1823265.25;plus;0.0;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2013
+415;150000504;1804013960;0.0;plus;2049478.5;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2013
+416;150000504;3472390;0.0;minus;-303041.40625;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2013
+417;150000504;1804519160;0.0;plus;0.0;2057830.875;05 Soziale Leistungen;Soziale Einrichtungen;2013
+418;150000504;307536971;-192563.71875;minus;0.0;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2013
+419;150000504;3920390;0.0;minus;0.0;-309210.84375;05 Soziale Leistungen;Soziale Einrichtungen;2013
+420;150000505;376000024;2.71000003815;plus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem BVG;2013
+421;150000505;188000012;-2.70999979973;minus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem BVG;2013
+422;150000506;-2147483648;5788565.0;plus;0.0;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2013
+423;150000506;1706883743;0.0;plus;5926934.5;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2013
+424;150000506;573892402;-367139.375;minus;0.0;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2013
+425;150000506;1707388943;0.0;plus;0.0;6041973.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2013
+426;150000506;2616480;0.0;minus;-849422.9375;-849680.25;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2013
+427;150000507;1802424388;0.0;plus;0.0;5084479.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2013
+428;150000507;3519790;0.0;minus;-2465090.75;-2545472.25;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2013
+429;150000507;1801919188;0.0;plus;5058607.0;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2013
+430;150000507;-2147483648;5526027.0;plus;0.0;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2013
+431;150000507;603576624;-2882050.5;minus;0.0;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2013
+432;150000508;1802982138;0.0;plus;799720.875;0.0;05 Soziale Leistungen;Betreuungsleistungen;2013
+433;150000508;-2147483648;826870.5625;plus;0.0;0.0;05 Soziale Leistungen;Betreuungsleistungen;2013
+434;150000508;3079540;0.0;minus;-13448.8798828;-13569.5996094;05 Soziale Leistungen;Betreuungsleistungen;2013
+435;150000508;293952681;-29557.3710938;minus;0.0;0.0;05 Soziale Leistungen;Betreuungsleistungen;2013
+436;150000508;1802440038;0.0;plus;0.0;790066.875;05 Soziale Leistungen;Betreuungsleistungen;2013
+437;150000509;-2147483648;17307.5410156;plus;0.0;0.0;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2013
+438;150000509;1365130;0.0;minus;-930.119995117;-939.239990234;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2013
+439;150000509;3589600;-2.44000005722;minus;0.0;0.0;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2013
+440;150000509;757585589;0.0;plus;37115.4414062;36669.3320312;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2013
+441;150000510;1618801189;-693998.75;minus;0.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2013
+442;150000510;97944982;0.0;minus;-222849.5;-308480.03125;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2013
+443;150000510;1898627692;0.0;plus;5167332.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2013
+444;150000510;-2147483648;5801478.5;plus;0.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2013
+445;150000510;1899132892;0.0;plus;0.0;5413293.5;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2013
+446;150000511;97064784;0.0;minus;-1891852.625;-1892045.5;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2013
+447;150000511;1705783294;0.0;plus;2421457.5;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2013
+448;150000511;-2147483648;2489829.0;plus;0.0;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2013
+449;150000511;769987460;-1943629.875;minus;0.0;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2013
+450;150000511;1706288494;0.0;plus;0.0;2414250.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2013
+451;150001005;5273480;0.0;minus;-739391.375;-745898.6875;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2013
+452;150001005;690773132;-1178151.625;minus;0.0;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2013
+453;150001005;1809275989;0.0;plus;0.0;6591156.5;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2013
+454;150001005;-2147483648;6123820.5;plus;0.0;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2013
+455;150001005;1808770789;0.0;plus;6786035.5;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2013
+456;150001708;9491310;-242024.03125;minus;0.0;0.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2013
+457;150001708;13775302;242024.03125;plus;0.0;0.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2013
+458;150001708;1597030;0.0;plus;188660.0;188660.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2013
+459;150001708;2298210;0.0;minus;-188660.0;-188660.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2013
+460;150001709;26302806;19288.3007812;plus;0.0;0.0;17 Stiftungen;Stiftung Paula Flerus;2013
+461;150001709;7514370;-19288.3007812;minus;0.0;0.0;17 Stiftungen;Stiftung Paula Flerus;2013
+462;150001709;5901325;0.0;plus;18516.609375;18516.609375;17 Stiftungen;Stiftung Paula Flerus;2013
+463;150001709;1829010;0.0;minus;-18516.609375;-18516.609375;17 Stiftungen;Stiftung Paula Flerus;2013
+464;150001710;1387920;0.0;minus;-516.0;-516.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2013
+465;150001710;993500;620.83001709;plus;0.0;0.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2013
+466;150001710;5535810;-620.829956055;minus;0.0;0.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2013
+467;150001710;531800;0.0;plus;516.0;516.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2013
+468;150001711;993500;4101.10986328;plus;0.0;0.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2013
+469;150001711;1857110;0.0;minus;-3700.0;-3700.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2013
+470;150001711;531800;0.0;plus;3700.0;3700.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2013
+471;150001711;5535810;-4101.10986328;minus;0.0;0.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2013
+472;150001712;531800;0.0;plus;120000.0;120000.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2013
+473;150001712;6446100;-123937.820312;minus;0.0;0.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2013
+474;150001712;2298210;0.0;minus;-120000.0;-120000.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2013
+475;150001712;3120700;123937.820312;plus;0.0;0.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2013
+476;150001713;5333015;0.0;plus;320344.6875;320344.6875;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2013
+477;150001713;20484490;-322614.75;minus;0.0;0.0;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2013
+478;150001713;41561846;322614.75;plus;0.0;0.0;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2013
+479;150001713;3220410;0.0;minus;-320344.6875;-320344.6875;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2013
+480;150001714;5493500;-2694.56005859;minus;0.0;0.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2013
+481;150001714;531800;0.0;plus;2100.0;2100.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2013
+482;150001714;1540900;2694.56005859;plus;0.0;0.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2013
+483;150001714;1857110;0.0;minus;-2100.0;-2100.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2013
+484;150001715;993500;197.809997559;plus;0.0;0.0;17 Stiftungen;Stiftung Max Becker;2013
+485;150001715;5535810;-197.809997559;minus;0.0;0.0;17 Stiftungen;Stiftung Max Becker;2013
+486;150001715;1387920;0.0;minus;-165.0;-165.0;17 Stiftungen;Stiftung Max Becker;2013
+487;150001715;531800;0.0;plus;165.0;165.0;17 Stiftungen;Stiftung Max Becker;2013
+488;150001716;5333015;0.0;plus;247606.4375;247606.4375;17 Stiftungen;Stiftung Arme im Allgemeinen;2013
+489;150001716;15449300;-118260.890625;minus;0.0;0.0;17 Stiftungen;Stiftung Arme im Allgemeinen;2013
+490;150001716;3220410;0.0;minus;-247606.4375;-247606.4375;17 Stiftungen;Stiftung Arme im Allgemeinen;2013
+491;150001716;42653026;118260.890625;plus;0.0;0.0;17 Stiftungen;Stiftung Arme im Allgemeinen;2013
+492;150001717;2755310;0.0;minus;-61746.6601562;-61746.6601562;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2013
+493;150001717;12961610;-95877.9296875;minus;0.0;0.0;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2013
+494;150001717;5878115;0.0;plus;61746.6601562;61746.6601562;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2013
+495;150001717;30933796;95877.9296875;plus;0.0;0.0;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2013
+496;151000600;-2147483648;548460.875;plus;0.0;0.0;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2013
+497;151000600;-2147483648;-1289350.0;minus;0.0;0.0;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2013
+498;151000600;1880000932;0.0;plus;1350467.875;1341387.75;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2013
+499;151000600;1880000932;0.0;minus;-1350467.75;-1341387.75;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2013
+500;151000601;1894244637;0.0;plus;0.0;5472337.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+501;151000601;1893739437;0.0;plus;4291013.5;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+502;151000601;3957940;0.0;minus;0.0;-1846043.25;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+503;151000601;-2147483648;5611006.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+504;151000601;229834422;-2316945.75;minus;0.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+505;151000601;4379080;0.0;minus;-1851894.25;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2013
+506;151000602;-2147483648;96426232.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+507;151000602;7005310;0.0;minus;-57282444.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+508;151000602;6997110;0.0;minus;0.0;-57703192.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+509;151000602;260121572;-64407860.0;minus;0.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+510;151000602;1901787025;0.0;plus;93823448.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+511;151000602;1902292225;0.0;plus;0.0;94017912.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2013
+512;151000603;1896402700;0.0;plus;0.0;1337620.125;06 Kinder, Jugend und Familie;Jugendarbeit;2013
+513;151000603;3557740;0.0;minus;-15041.1494141;-15132.9501953;06 Kinder, Jugend und Familie;Jugendarbeit;2013
+514;151000603;-2147483648;1151321.875;plus;0.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2013
+515;151000603;222187802;-126886.359375;minus;0.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2013
+516;151000603;1895897500;0.0;plus;1306058.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2013
+517;151000604;1900254362;0.0;plus;6346806.0;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+518;151000604;-2147483648;6157375.5;plus;0.0;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+519;151000604;5659290;0.0;minus;-743087.0625;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+520;151000604;6107290;0.0;minus;0.0;-752040.5625;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+521;151000604;1900759562;0.0;plus;0.0;6289954.5;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+522;151000604;247918133;-1079296.125;minus;0.0;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2013
+523;151000605;1897451269;0.0;plus;0.0;51910452.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2013
+524;151000605;451249628;-5760345.5;minus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2013
+525;151000605;8614250;0.0;minus;-3538527.0;-3590422.5;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2013
+526;151000605;1896946069;0.0;plus;52030476.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2013
+527;151000605;-2147483648;59027564.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2013
+528;151000606;1896951467;0.0;plus;1711912.125;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2013
+529;151000606;224942102;-150080.84375;minus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2013
+530;151000606;4433540;0.0;minus;-104876.890625;-105047.289062;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2013
+531;151000606;1897456667;0.0;plus;0.0;1745143.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2013
+532;151000606;-2147483648;1908073.375;plus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2013
+533;151000608;-2147483648;349668.78125;plus;0.0;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2013
+534;151000608;97111644;0.0;minus;-110405.882812;-110418.601562;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2013
+535;151000608;589371138;-133113.765625;minus;0.0;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2013
+536;151000608;1893179717;0.0;plus;0.0;148828.875;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2013
+537;151000608;1892674517;0.0;plus;131228.96875;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2013
+538;152000800;-2147483648;174838.796875;plus;0.0;0.0;08 Sportförderung;PB08 Sportförderung;2013
+539;152000800;-2147483648;-174838.796875;minus;0.0;0.0;08 Sportförderung;PB08 Sportförderung;2013
+540;152000800;1504000674;0.0;plus;194959.953125;188016.640625;08 Sportförderung;PB08 Sportförderung;2013
+541;152000800;1504000674;0.0;minus;-194959.953125;-188016.640625;08 Sportförderung;PB08 Sportförderung;2013
+542;152000801;191551743;0.0;minus;-376766.71875;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2013
+543;152000801;1806295706;0.0;plus;7543486.5;6841573.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2013
+544;152000801;1064499023;-1463991.125;minus;0.0;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2013
+545;152000801;-2147483648;7585027.5;plus;0.0;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2013
+546;152000801;285097547;0.0;minus;0.0;-1255495.375;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2013
+547;152000802;-2147483648;1584308.875;plus;0.0;0.0;08 Sportförderung;Sportförderung;2013
+548;152000802;1519464041;0.0;plus;1793863.25;1786616.75;08 Sportförderung;Sportförderung;2013
+549;152000802;189781243;0.0;minus;-40921.2695312;-41188.2695312;08 Sportförderung;Sportförderung;2013
+550;152000802;109267928;-58029.1992188;minus;0.0;0.0;08 Sportförderung;Sportförderung;2013
+551;152000803;-2147483648;10210196.0;plus;0.0;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2013
+552;152000803;6562190;0.0;minus;0.0;-3788008.5;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2013
+553;152000803;1712719229;0.0;plus;9229292.0;9869158.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2013
+554;152000803;6147390;0.0;minus;-3687813.5;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2013
+555;152000803;254567191;-3892528.25;minus;0.0;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2013
+556;153000700;-2147483648;-295762.90625;minus;0.0;0.0;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2013
+557;153000700;-2147483648;295762.90625;plus;0.0;0.0;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2013
+558;153000700;1692000882;0.0;plus;306080.03125;289405.625;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2013
+559;153000700;1692000882;0.0;minus;-306080.03125;-289405.625;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2013
+560;153000701;2636440;0.0;minus;-133866.171875;-134215.796875;07 Gesundheitsdienste;Gesundheitsförderung;2013
+561;153000701;1805509193;0.0;plus;0.0;2275559.0;07 Gesundheitsdienste;Gesundheitsförderung;2013
+562;153000701;303589945;-149087.234375;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsförderung;2013
+563;153000701;1805003993;0.0;plus;2257266.25;0.0;07 Gesundheitsdienste;Gesundheitsförderung;2013
+564;153000701;-2147483648;2125391.0;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsförderung;2013
+565;153000702;97112540;0.0;minus;-346834.6875;-347090.65625;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2013
+566;153000702;1804957081;0.0;plus;0.0;1425119.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2013
+567;153000702;682829385;-354915.0;minus;0.0;0.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2013
+568;153000702;1804451881;0.0;plus;1426179.125;0.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2013
+569;153000702;-2147483648;1360603.75;plus;0.0;0.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2013
+570;153000703;1803427481;0.0;plus;0.0;913081.25;07 Gesundheitsdienste;Gesundheitshilfe;2013
+571;153000703;2222340;0.0;minus;-14025.9902344;-14138.1904297;07 Gesundheitsdienste;Gesundheitshilfe;2013
+572;153000703;-2147483648;885154.3125;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitshilfe;2013
+573;153000703;1802922281;0.0;plus;912410.0;0.0;07 Gesundheitsdienste;Gesundheitshilfe;2013
+574;153000703;395057148;-25411.4296875;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitshilfe;2013
+575;153000704;1804451881;0.0;plus;2105960.5;0.0;07 Gesundheitsdienste;Gesundheitsschutz;2013
+576;153000704;-2147483648;2031386.625;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsschutz;2013
+577;153000704;1804957081;0.0;plus;0.0;2143000.75;07 Gesundheitsdienste;Gesundheitsschutz;2013
+578;153000704;97101540;0.0;minus;-255824.046875;-256045.078125;07 Gesundheitsdienste;Gesundheitsschutz;2013
+579;153000704;779372048;-318702.4375;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsschutz;2013
+580;153001701;1540800;432.880004883;plus;0.0;0.0;17 Stiftungen;Stiftung Bernhard Oebeke;2013
+581;153001701;531700;0.0;plus;423.0;423.0;17 Stiftungen;Stiftung Bernhard Oebeke;2013
+582;153001701;1395910;0.0;minus;-423.0;-423.0;17 Stiftungen;Stiftung Bernhard Oebeke;2013
+583;153001701;5543800;-432.880004883;minus;0.0;0.0;17 Stiftungen;Stiftung Bernhard Oebeke;2013
+584;156000000;1504000724;0.0;minus;-81430.6484375;-80833.46875;00;Produktbereichsübergreifend;2013
+585;156000000;-2147483648;-61405.9882812;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+586;156000000;1504000724;0.0;plus;81430.6484375;80833.46875;00;Produktbereichsübergreifend;2013
+587;156000000;-2147483648;61405.9882812;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+588;156000208;1708911635;0.0;plus;2333997.75;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2013
+589;156000208;2668440;0.0;minus;-78092.03125;-78359.03125;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2013
+590;156000208;304563090;-113779.273438;minus;0.0;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2013
+591;156000208;-2147483648;2179890.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2013
+592;156000208;1709416835;0.0;plus;0.0;2263110.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2013
+593;156001307;1704649143;0.0;plus;839992.625;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2013
+594;156001307;4407540;0.0;minus;-194750.203125;-194897.3125;13 Natur- und Landschaftspflege;Natur und Landschaft;2013
+595;156001307;313628600;-145759.046875;minus;0.0;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2013
+596;156001307;-2147483648;718193.25;plus;0.0;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2013
+597;156001307;1705154343;0.0;plus;0.0;867473.8125;13 Natur- und Landschaftspflege;Natur und Landschaft;2013
+598;156001401;4362140;0.0;minus;-227200.53125;-230782.59375;14 Umweltschutz;Umweltschutz;2013
+599;156001401;1902871530;0.0;plus;0.0;3525514.0;14 Umweltschutz;Umweltschutz;2013
+600;156001401;-2147483648;3293014.5;plus;0.0;0.0;14 Umweltschutz;Umweltschutz;2013
+601;156001401;305157162;-291538.78125;minus;0.0;0.0;14 Umweltschutz;Umweltschutz;2013
+602;156001401;1901834529;0.0;plus;3361860.5;0.0;14 Umweltschutz;Umweltschutz;2013
+603;156001402;578935943;-274720.78125;minus;0.0;0.0;14 Umweltschutz;Immissionsschutzverfahren;2013
+604;156001402;1608988138;0.0;plus;0.0;314650.125;14 Umweltschutz;Immissionsschutzverfahren;2013
+605;156001402;1608482938;0.0;plus;311860.375;0.0;14 Umweltschutz;Immissionsschutzverfahren;2013
+606;156001402;-2147483648;432539.40625;plus;0.0;0.0;14 Umweltschutz;Immissionsschutzverfahren;2013
+607;156001402;96626444;0.0;minus;-296777.125;-296815.78125;14 Umweltschutz;Immissionsschutzverfahren;2013
+608;161000000;-2147483648;171438.34375;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+609;161000000;1598000711;0.0;minus;-306763.0625;-302588.625;00;Produktbereichsübergreifend;2013
+610;161000000;1598000711;0.0;plus;306763.0625;302588.625;00;Produktbereichsübergreifend;2013
+611;161000000;-2147483648;-313249.28125;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+612;161000215;1702488565;0.0;plus;366761.25;0.0;02 Sicherheit und Ordnung;Statistik;2013
+613;161000215;110141137;-15933.4101562;minus;0.0;0.0;02 Sicherheit und Ordnung;Statistik;2013
+614;161000215;-2147483648;292039.65625;plus;0.0;0.0;02 Sicherheit und Ordnung;Statistik;2013
+615;161000215;1702993765;0.0;plus;0.0;366183.59375;02 Sicherheit und Ordnung;Statistik;2013
+616;161000215;2212340;0.0;minus;-10713.4804688;-10804.4394531;02 Sicherheit und Ordnung;Statistik;2013
+617;161000901;1706309618;0.0;plus;2401996.25;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2013
+618;161000901;-2147483648;2023445.625;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2013
+619;161000901;1706814818;0.0;plus;0.0;2624321.25;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2013
+620;161000901;2637440;0.0;minus;-104161.398438;-104582.882812;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2013
+621;161000901;111566337;-184796.203125;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2013
+622;161000902;1700866646;0.0;plus;5700365.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2013
+623;161000902;-2147483648;2171741.5;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2013
+624;161000902;3972840;0.0;minus;-4084858.5;-4084989.75;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2013
+625;161000902;1701371846;0.0;plus;0.0;5681873.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2013
+626;161000902;111267587;-1482557.5;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2013
+627;161001003;2212340;0.0;minus;-154693.078125;-154910.15625;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2013
+628;161001003;1701389247;0.0;plus;700667.1875;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2013
+629;161001003;-2147483648;769494.625;plus;0.0;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2013
+630;161001003;112121607;-152708.015625;minus;0.0;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2013
+631;161001003;1701894447;0.0;plus;0.0;737965.4375;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2013
+632;161001207;2195340;0.0;minus;-8925936.0;-8926030.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2013
+633;161001207;1704171587;0.0;plus;10088996.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2013
+634;161001207;1705208587;0.0;plus;0.0;10374111.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2013
+635;161001207;113995667;-8763090.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2013
+636;161001207;-2147483648;10894104.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2013
+637;162000900;-2147483648;152284.234375;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2013
+638;162000900;1786000769;0.0;plus;346193.84375;345369.5625;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2013
+639;162000900;1786000769;0.0;minus;-346193.84375;-345369.5625;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2013
+640;162000900;-2147483648;-468011.34375;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2013
+641;162000906;483589723;-107567.132812;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2013
+642;162000906;-2147483648;1827256.0;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2013
+643;162000906;1891010557;0.0;plus;0.0;1786653.375;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2013
+644;162000906;1890505357;0.0;plus;1782723.625;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2013
+645;162000906;2212340;0.0;minus;-95046.0;-95362.3203125;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2013
+646;162000907;1894270317;0.0;plus;0.0;6195164.5;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2013
+647;162000907;-2147483648;5649542.0;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2013
+648;162000907;191555795;0.0;minus;-1383833.875;-1395526.75;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2013
+649;162000907;-2147483648;-1438784.5;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2013
+650;162000907;1893765117;0.0;plus;6039821.5;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2013
+651;162000908;-2147483648;3992719.25;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2013
+652;162000908;2668840;0.0;minus;-1450061.125;-1450216.875;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2013
+653;162000908;390502680;-7379058.5;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2013
+654;162000908;1891047747;0.0;plus;1764340.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2013
+655;162000908;1891552947;0.0;plus;0.0;1768776.75;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2013
+656;162000909;1892106397;0.0;plus;0.0;1249657.125;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2013
+657;162000909;2660840;0.0;minus;-151744.796875;-152061.953125;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2013
+658;162000909;484903863;-127067.882812;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2013
+659;162000909;1891601197;0.0;plus;1220127.625;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2013
+660;162000909;-2147483648;1179677.0;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2013
+661;163000000;1410000465;0.0;plus;234140.875;232548.625;00;Produktbereichsübergreifend;2013
+662;163000000;-2147483648;-264978.0625;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+663;163000000;-2147483648;99092.0859375;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+664;163000000;1410000465;0.0;minus;-234140.875;-232548.625;00;Produktbereichsübergreifend;2013
+665;163000904;-2147483648;2149430.5;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2013
+666;163000904;1608433013;0.0;plus;0.0;1943858.375;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2013
+667;163000904;3104640;0.0;minus;-93194.7578125;-93948.1796875;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2013
+668;163000904;1607396013;0.0;plus;1788616.875;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2013
+669;163000904;302246972;-363564.59375;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2013
+670;163001001;1513378009;0.0;plus;0.0;4294369.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2013
+671;163001001;208285062;-4185096.5;minus;0.0;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2013
+672;163001001;-2147483648;4116996.25;plus;0.0;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2013
+673;163001001;3124640;0.0;minus;-2863475.5;-2864330.5;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2013
+674;163001001;1512872809;0.0;plus;4207040.5;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2013
+675;166000000;1880000902;0.0;plus;1802911.125;1718833.625;00;Produktbereichsübergreifend;2013
+676;166000000;1880000902;0.0;minus;-1802911.125;-1718833.625;00;Produktbereichsübergreifend;2013
+677;166000000;-2147483648;-1644360.5;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+678;166000000;-2147483648;1336736.875;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+679;166000112;1902889418;0.0;plus;1809956.125;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2013
+680;166000112;285109698;0.0;minus;-618541.3125;-543380.5625;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2013
+681;166000112;-2147483648;1736513.5;plus;0.0;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2013
+682;166000112;1903394618;0.0;plus;0.0;1703460.875;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2013
+683;166000112;1915887229;-489246.5625;minus;0.0;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2013
+684;166001103;2004412339;0.0;plus;57544264.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2013
+685;166001103;544484595;-95060672.0;minus;0.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2013
+686;166001103;-2147483648;63861984.0;plus;0.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2013
+687;166001103;196342183;0.0;minus;-88124488.0;-88124640.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2013
+688;166001103;2004917539;0.0;plus;0.0;57016200.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2013
+689;166001201;-2147483648;54709308.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2013
+690;166001201;257508323;-12353664.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2013
+691;166001201;-2147483648;0.0;plus;0.0;52213968.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2013
+692;166001201;6592620;0.0;minus;-9136532.0;-9136816.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2013
+693;166001201;-2147483648;0.0;plus;52905484.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2013
+694;166001202;2089407753;0.0;plus;0.0;2012313.25;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2013
+695;166001202;252031372;-348393.875;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2013
+696;166001202;-2147483648;2092241.5;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2013
+697;166001202;2088902553;0.0;plus;2069035.375;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2013
+698;166001202;6176450;0.0;minus;-312746.59375;-312758.71875;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2013
+699;166001203;1994902498;0.0;plus;2667092.5;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2013
+700;166001203;250936108;-623515.4375;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2013
+701;166001203;-2147483648;2760464.75;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2013
+702;166001203;6592620;0.0;minus;-615376.5625;-625388.6875;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2013
+703;166001203;1995407698;0.0;plus;0.0;2623604.75;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2013
+704;166001204;253084708;-6724371.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2013
+705;166001204;6176450;0.0;minus;-3271050.25;-3271062.5;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2013
+706;166001204;-2147483648;11757829.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2013
+707;166001204;2089950863;0.0;plus;8169858.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2013
+708;166001204;2090456063;0.0;plus;0.0;7834636.5;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2013
+709;166001205;3541740;0.0;minus;-3210201.25;-3210209.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2013
+710;166001205;1804148216;0.0;plus;124567.796875;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2013
+711;166001205;-2147483648;111754.117188;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2013
+712;166001205;122738097;-2848964.5;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2013
+713;166001205;1804653416;0.0;plus;0.0;123668.679688;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2013
+714;166001206;114285747;-15067.4296875;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2013
+715;166001206;3109640;0.0;minus;-13908.1601562;-13920.1601562;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2013
+716;166001206;-2147483648;1409082.375;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2013
+717;166001206;1895338456;0.0;plus;1370340.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2013
+718;166001206;1895843656;0.0;plus;0.0;1363531.375;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2013
+719;166001308;1804069688;0.0;plus;3530874.25;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2013
+720;166001308;-2147483648;3067874.5;plus;0.0;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2013
+721;166001308;1804574888;0.0;plus;0.0;3448201.75;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2013
+722;166001308;3116940;0.0;minus;-121300.109375;-121309.710938;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2013
+723;166001308;118628206;-203038.03125;minus;0.0;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2013
+724;168001300;-2147483648;944906.8125;plus;0.0;0.0;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2013
+725;168001300;-2147483648;-1247844.125;minus;0.0;0.0;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2013
+726;168001300;1504000618;0.0;plus;1142358.25;1123831.75;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2013
+727;168001300;1504000618;0.0;minus;-1142358.25;-1123831.75;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2013
+728;168001301;-2147483648;25198350.0;plus;0.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2013
+729;168001301;-2147483648;-11388152.0;minus;0.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2013
+730;168001301;1908275651;0.0;plus;0.0;18405144.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2013
+731;168001301;1907770451;0.0;plus;18335492.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2013
+732;168001301;194144545;0.0;minus;-5192048.0;-5192271.5;13 Natur- und Landschaftspflege;Öffentliches Grün;2013
+733;168001302;1807325350;0.0;plus;1382597.5;0.0;13 Natur- und Landschaftspflege;Forstwirtschaft;2013
+734;168001302;1807830550;0.0;plus;0.0;1349298.5;13 Natur- und Landschaftspflege;Forstwirtschaft;2013
+735;168001302;5221830;0.0;minus;-118337.1875;-121318.15625;13 Natur- und Landschaftspflege;Forstwirtschaft;2013
+736;168001302;524981566;-138851.984375;minus;0.0;0.0;13 Natur- und Landschaftspflege;Forstwirtschaft;2013
+737;168001302;-2147483648;1648873.25;plus;0.0;0.0;13 Natur- und Landschaftspflege;Forstwirtschaft;2013
+738;168001303;99344276;0.0;minus;-7110007.0;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2013
+739;168001303;536583561;-6431347.5;minus;0.0;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2013
+740;168001303;-2147483648;8984350.0;plus;0.0;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2013
+741;168001303;1906530063;0.0;plus;0.0;8364705.0;13 Natur- und Landschaftspflege;Friedhöfe;2013
+742;168001303;98890075;0.0;minus;0.0;-7109256.5;13 Natur- und Landschaftspflege;Friedhöfe;2013
+743;168001303;1906024863;0.0;plus;8282539.5;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2013
+744;168001719;1387920;0.0;minus;-3700.0;-3700.0;17 Stiftungen;Stiftung Fritz Kirstein;2013
+745;168001719;1540300;2769.91992188;plus;0.0;0.0;17 Stiftungen;Stiftung Fritz Kirstein;2013
+746;168001719;5078700;-2769.91992188;minus;0.0;0.0;17 Stiftungen;Stiftung Fritz Kirstein;2013
+747;168001719;531200;0.0;plus;3700.0;3700.0;17 Stiftungen;Stiftung Fritz Kirstein;2013
+748;170000000;5125730;121061.757812;plus;0.0;0.0;00;Produktbereichsübergreifend;2013
+749;170000000;4143270;-121061.765625;minus;0.0;0.0;00;Produktbereichsübergreifend;2013
+750;170000111;2469840;3569.82006836;plus;0.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2013
+751;170000111;448500;0.0;minus;-2437900.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2013
+752;170000111;3128101;-23928.0292969;minus;0.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2013
+753;170000111;523500;0.0;plus;1012131.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2013
+754;170001102;-2147483648;44491504.0;plus;0.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2013
+755;170001102;1312360;0.0;minus;0.0;-42158672.0;11 Ver- und Entsorgung;Abfallwirtschaft;2013
+756;170001102;448500;0.0;minus;-1365500.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2013
+757;170001102;402927983;-42554652.0;minus;0.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2013
+758;170001102;191184244;0.0;plus;0.0;42267964.0;11 Ver- und Entsorgung;Abfallwirtschaft;2013
+759;170001104;2461700;-25662.1601562;minus;0.0;0.0;11 Ver- und Entsorgung;Dienstleistungen für DSD;2013
+760;170001104;2099120;6164.58007812;plus;0.0;0.0;11 Ver- und Entsorgung;Dienstleistungen für DSD;2013
+761;170001208;432100;0.0;minus;0.0;-6109064.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2013
+762;170001208;189074702;0.0;plus;0.0;8150413.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2013
+763;170001208;297908519;-6270101.5;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2013
+764;170001208;-2147483648;8508151.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2013
+765;170001208;448500;0.0;minus;-1995700.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2013
+766;190000104;95781244;0.0;minus;-72371.15625;-182679.515625;01 Innere Verwaltung;Koordination Integration;2013
+767;190000104;1424756829;0.0;plus;1171762.875;1177068.5;01 Innere Verwaltung;Koordination Integration;2013
+768;190000104;201816341;-68296.328125;minus;0.0;0.0;01 Innere Verwaltung;Koordination Integration;2013
+769;190000104;-2147483648;1143193.0;plus;0.0;0.0;01 Innere Verwaltung;Koordination Integration;2013
+770;190000113;-2147483648;370432.34375;plus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2013
+771;190000113;758807095;0.0;plus;261851.25;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2013
+772;190000113;188000013;0.0;minus;-231188.359375;-230363.078125;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2013
+773;190000113;-2147483648;-339954.0625;minus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2013
+774;190000113;852807100;0.0;plus;0.0;282010.125;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2013
+775;190001507;964405201;0.0;plus;0.0;14675960.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2013
+776;190001507;-2147483648;13756898.0;plus;0.0;0.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2013
+777;190001507;963900001;0.0;plus;14745747.0;0.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2013
+778;190001507;140329537;-8464671.0;minus;0.0;0.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2013
+779;190001507;4497540;0.0;minus;-6829624.5;-6829840.5;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2013
+780;190400412;1424729496;0.0;plus;1087857.25;1099039.375;04 Kultur und Wissenschaft;Wissenschaft;2013
+781;190400412;1781240;0.0;minus;-1805.68005371;-1813.23999023;04 Kultur und Wissenschaft;Wissenschaft;2013
+782;190400412;102619336;-5143.62011719;minus;0.0;0.0;04 Kultur und Wissenschaft;Wissenschaft;2013
+783;190400412;-2147483648;1087867.25;plus;0.0;0.0;04 Kultur und Wissenschaft;Wissenschaft;2013
+784;190600903;1423284607;-310798.96875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2013
+785;190600903;1234616157;0.0;plus;333102.125;331040.9375;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2013
+786;190600903;-2147483648;287186.03125;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2013
+787;190600903;95781245;0.0;minus;-333102.09375;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2013
+788;190600903;96197345;0.0;minus;0.0;-331040.9375;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2013
+789;100000000;1419120011;36578.6601562;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+790;100000000;663480446;-36578.6601562;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+791;100000100;94000023;14826.0;plus;0.0;15414.2402344;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+792;100000100;94000023;-14826.0;minus;0.0;-15414.2402344;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+793;101000102;210201645;-264817.09375;minus;0.0;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2014
+794;101000102;3897540;0.0;minus;-18331.4492188;-11065.3994141;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2014
+795;101000102;1616488623;0.0;plus;0.0;1527563.875;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2014
+796;101000102;1617031743;0.0;plus;1893626.375;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2014
+797;101000102;-2147483648;1657841.5;plus;0.0;0.0;01 Innere Verwaltung;Int. Profil und Zielgruppenservice;2014
+798;102000103;1895811546;0.0;plus;0.0;6295475.5;01 Innere Verwaltung;Verwaltungsführung;2014
+799;102000103;1891058115;0.0;plus;6017269.5;0.0;01 Innere Verwaltung;Verwaltungsführung;2014
+800;102000103;-2147483648;7650378.0;plus;0.0;0.0;01 Innere Verwaltung;Verwaltungsführung;2014
+801;102000103;-2147483648;-1822192.0;minus;0.0;0.0;01 Innere Verwaltung;Verwaltungsführung;2014
+802;102000103;847781660;0.0;minus;-1160631.625;-1320541.0;01 Innere Verwaltung;Verwaltungsführung;2014
+803;102000118;200360926;-85323.96875;minus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2014
+804;102000118;-2147483648;8258369.5;plus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2014
+805;103001500;1222000443;0.0;minus;-226292.203125;-226457.84375;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2014
+806;103001500;1222000443;0.0;plus;226292.203125;226457.84375;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2014
+807;103001500;-2147483648;179880.375;plus;0.0;0.0;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2014
+808;103001500;-2147483648;-179880.375;minus;0.0;0.0;15 Wirtschaft und Tourismus;PB15 Wirtschaft und Tourismus;2014
+809;103001501;123216361;-711394.75;minus;0.0;0.0;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2014
+810;103001501;2610140;0.0;minus;-196547.0625;-196579.9375;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2014
+811;103001501;-2147483648;3193525.75;plus;0.0;0.0;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2014
+812;103001501;1613957276;0.0;plus;2500506.5;2468874.75;15 Wirtschaft und Tourismus;Wirtschaftsförderung;2014
+813;103001502;130091131;-403942.03125;minus;0.0;0.0;15 Wirtschaft und Tourismus;Tourismus;2014
+814;103001502;3059620;0.0;minus;-186867.203125;-186874.171875;15 Wirtschaft und Tourismus;Tourismus;2014
+815;103001502;-2147483648;2135106.75;plus;0.0;0.0;15 Wirtschaft und Tourismus;Tourismus;2014
+816;103001502;1521963860;0.0;plus;1881851.5;1857808.125;15 Wirtschaft und Tourismus;Tourismus;2014
+817;104000105;189358543;0.0;minus;-271289.375;-269220.03125;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2014
+818;104000105;-2147483648;351378.75;plus;0.0;0.0;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2014
+819;104000105;1327010226;0.0;plus;342253.375;339604.3125;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2014
+820;104000105;-2147483648;-258587.125;minus;0.0;0.0;01 Innere Verwaltung;Gleichstellung von Frau und Mann;2014
+821;110000100;1034000291;0.0;plus;76401.6484375;77938.4921875;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+822;110000100;-2147483648;-30296.9804688;minus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+823;110000100;1034000291;0.0;minus;-76401.6484375;-77938.4921875;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+824;110000100;-2147483648;30296.9804688;plus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+825;110000101;94000015;-0.0500000007451;minus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2014
+826;110000101;1365130;0.0;minus;-7934.64013672;-7953.47998047;01 Innere Verwaltung;Politische Gremien;2014
+827;110000101;94000015;0.0500000007451;plus;0.0;0.0;01 Innere Verwaltung;Politische Gremien;2014
+828;110000101;1135210354;0.0;plus;7654092.0;7771493.0;01 Innere Verwaltung;Politische Gremien;2014
+829;110000109;1435000973;0.0;plus;5835083.5;0.0;01 Innere Verwaltung;Zentrale Dienste;2014
+830;110000109;1435506173;0.0;plus;0.0;5862406.0;01 Innere Verwaltung;Zentrale Dienste;2014
+831;110000109;-2147483648;-3216540.0;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Dienste;2014
+832;110000109;757763878;0.0;minus;0.0;-2805575.25;01 Innere Verwaltung;Zentrale Dienste;2014
+833;110000109;663763855;0.0;minus;-2770420.5;0.0;01 Innere Verwaltung;Zentrale Dienste;2014
+834;110000109;-2147483648;5460063.5;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Dienste;2014
+835;110000117;448800;-1020.0;minus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2014
+836;110000117;448800;1020.0;plus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2014
+837;110000123;1047106296;0.0;plus;0.0;3106088.75;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+838;110000123;-2147483648;3752655.5;plus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+839;110000123;379125901;0.0;minus;0.0;-2738659.5;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+840;110000123;1045477904;0.0;plus;3193556.25;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+841;110000123;-2147483648;-3269838.5;minus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+842;110000123;378684001;0.0;minus;-2601674.5;0.0;01 Innere Verwaltung;Stabsstelle Fuhrparkmanagement;2014
+843;110000124;-2147483648;6572169.0;plus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2014
+844;110000124;192021360;0.0;minus;-5097734.0;-5098050.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2014
+845;110000124;1423177108;0.0;plus;0.0;5551812.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2014
+846;110000124;-2147483648;-6280785.5;minus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2014
+847;110000124;1422671908;0.0;plus;5749369.5;0.0;01 Innere Verwaltung;Verwaltungsorganisation u IT-Anwendungen;2014
+848;110000125;448500;363.320007324;plus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation;2014
+849;110000125;448500;-363.320007324;minus;0.0;0.0;01 Innere Verwaltung;Verwaltungsorganisation;2014
+850;110200126;97126455;0.0;minus;-6852930.5;-6853022.0;01 Innere Verwaltung;IT-Betrieb;2014
+851;110200126;-2147483648;7539434.0;plus;0.0;0.0;01 Innere Verwaltung;IT-Betrieb;2014
+852;110200126;1332450117;0.0;plus;6802962.5;0.0;01 Innere Verwaltung;IT-Betrieb;2014
+853;110200126;1446783298;-6322966.0;minus;0.0;0.0;01 Innere Verwaltung;IT-Betrieb;2014
+854;110200126;1332955317;0.0;plus;0.0;6847013.0;01 Innere Verwaltung;IT-Betrieb;2014
+855;110660130;1798077045;0.0;plus;736319.1875;747614.375;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2014
+856;110660130;-2147483648;801116.5625;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2014
+857;110660130;97931045;0.0;minus;-244561.375;-243411.46875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2014
+858;110660130;1519170196;-310636.0;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bonn;2014
+859;110770131;-2147483648;758653.5;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2014
+860;110770131;97974045;0.0;minus;-259518.9375;-260068.46875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2014
+861;110770131;1438108543;-306948.53125;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2014
+862;110770131;1708923447;0.0;plus;863572.0625;865727.875;01 Innere Verwaltung;Bezirksverwaltungsstelle Bad Godesberg;2014
+863;110880132;-2147483648;888831.5;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2014
+864;110880132;97974345;0.0;minus;-267086.84375;-259051.375;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2014
+865;110880132;1439155811;-315269.125;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2014
+866;110880132;1707829136;0.0;plus;911173.75;895443.0625;01 Innere Verwaltung;Bezirksverwaltungsstelle Beuel;2014
+867;110990133;97940045;0.0;minus;-272875.75;-266998.53125;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2014
+868;110990133;1436097449;-276900.9375;minus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2014
+869;110990133;-2147483648;678331.0;plus;0.0;0.0;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2014
+870;110990133;1702475667;0.0;plus;781691.375;767114.5;01 Innere Verwaltung;Bezirksverwaltungsstelle Hardtberg;2014
+871;111000115;-2147483648;-1068438.625;minus;0.0;0.0;01 Innere Verwaltung;Beschäftigtenvertretung;2014
+872;111000115;189365143;0.0;minus;-919017.5625;-911516.125;01 Innere Verwaltung;Beschäftigtenvertretung;2014
+873;111000115;1137897663;0.0;plus;1040385.3125;1031878.875;01 Innere Verwaltung;Beschäftigtenvertretung;2014
+874;111000115;-2147483648;1212444.25;plus;0.0;0.0;01 Innere Verwaltung;Beschäftigtenvertretung;2014
+875;111000116;-2147483648;-59145836.0;minus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2014
+876;111000116;476722493;0.0;minus;-21865482.0;-21328566.0;01 Innere Verwaltung;Personalmanagement;2014
+877;111000116;1520738449;0.0;plus;33205084.0;29608602.0;01 Innere Verwaltung;Personalmanagement;2014
+878;111000116;-2147483648;64901656.0;plus;0.0;0.0;01 Innere Verwaltung;Personalmanagement;2014
+879;113000114;581781849;-112788.3125;minus;0.0;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2014
+880;113000114;1709043600;0.0;plus;2633636.25;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2014
+881;113000114;-2147483648;2147382.25;plus;0.0;0.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2014
+882;113000114;96212503;0.0;minus;-105810.539062;-103615.742188;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2014
+883;113000114;1803548805;0.0;plus;0.0;2595267.0;01 Innere Verwaltung;Presse- und Öffentlichkeitsarbeit;2014
+884;114000107;1701412577;0.0;plus;2536127.5;0.0;01 Innere Verwaltung;Rechnungsprüfung;2014
+885;114000107;-2147483648;3025083.0;plus;0.0;0.0;01 Innere Verwaltung;Rechnungsprüfung;2014
+886;114000107;189781246;0.0;minus;-2536127.25;-2701170.75;01 Innere Verwaltung;Rechnungsprüfung;2014
+887;114000107;1701917777;0.0;plus;0.0;2701170.75;01 Innere Verwaltung;Rechnungsprüfung;2014
+888;114000107;-2147483648;-3025083.0;minus;0.0;0.0;01 Innere Verwaltung;Rechnungsprüfung;2014
+889;120000120;378687960;0.0;minus;-4756115.0;0.0;01 Innere Verwaltung;Finanzmanagement;2014
+890;120000120;379145060;0.0;minus;0.0;-10459899.0;01 Innere Verwaltung;Finanzmanagement;2014
+891;120000120;1517202521;0.0;plus;4395165.5;4336906.0;01 Innere Verwaltung;Finanzmanagement;2014
+892;120000120;-2147483648;-2985630.0;minus;0.0;0.0;01 Innere Verwaltung;Finanzmanagement;2014
+893;120000120;-2147483648;4627055.5;plus;0.0;0.0;01 Innere Verwaltung;Finanzmanagement;2014
+894;120001605;1276300;0.0;minus;-131333192.0;-132865176.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2014
+895;120001605;1068300;0.0;plus;86705776.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2014
+896;120001605;95068304;0.0;plus;0.0;83199400.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2014
+897;120001605;9957500;-126429784.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2014
+898;120001605;668625336;83314264.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Allgemeine Zuweisungen/Umlagen/Abgaben;2014
+899;120100129;545101;0.0;minus;-0.0399999991059;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2014
+900;120100129;95627903;0.0;plus;31167194.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2014
+901;120100129;1232631284;115829520.0;plus;0.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2014
+902;120100129;7852792;-83137456.0;minus;0.0;0.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2014
+903;120100129;96173004;0.0;plus;0.0;31038170.0;01 Innere Verwaltung;Gebäudemanagement (SGB);2014
+904;120101601;95379733;0.0;minus;-28515322.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2014
+905;120101601;12630710;25557786.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2014
+906;120101601;95841233;0.0;minus;0.0;-27040234.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2014
+907;120101601;1229095229;-25557786.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2014
+908;120101601;2734510;0.0;plus;27864500.0;27663500.0;16 Allgemeine Finanzwirtschaft;Kreditwirtschaft;2014
+909;120101602;5540400;-356136.6875;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Anlage von Finanzmitteln;2014
+910;120101602;461600;0.0;minus;-356200.0;-356200.0;16 Allgemeine Finanzwirtschaft;Anlage von Finanzmitteln;2014
+911;120101603;9378100;3671095.5;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2014
+912;120101603;1227080429;-3388739.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2014
+913;120101603;94923433;0.0;minus;-12017355.0;-9744868.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2014
+914;120101603;1654800;0.0;plus;14031575.0;10531575.0;16 Allgemeine Finanzwirtschaft;Liquiditätsmanagement;2014
+915;120101604;559900;0.0;plus;350000.0;350000.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2014
+916;120101604;923300;0.0;minus;-33000.0;-33000.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2014
+917;120101604;5998600;-297304.59375;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2014
+918;120101604;1119800;304063.5625;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Forderungsverwaltung;2014
+919;120201006;94000133;0.0;plus;1204062.125;1115881.875;10 Bauen und Wohnen;Wohnraumversorgung durch Unternehmen;2014
+920;120201006;465100;-419694.4375;minus;-419600.0;-419600.0;10 Bauen und Wohnen;Wohnraumversorgung durch Unternehmen;2014
+921;120201510;94531633;0.0;plus;4422267.0;4105211.25;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2014
+922;120201510;1635100;2102549.5;plus;0.0;0.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2014
+923;120201510;926600;0.0;minus;-229318.0;-238718.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2014
+924;120201510;2886800;-2641716.5;minus;0.0;0.0;15 Wirtschaft und Tourismus;Anteile an Unternehmen;2014
+925;121000100;-2147483648;91388.203125;plus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+926;121000100;1316000716;0.0;minus;-78594.34375;-78014.3125;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+927;121000100;-2147483648;-91388.203125;minus;0.0;0.0;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+928;121000100;1316000716;0.0;plus;78594.34375;78014.3125;01 Innere Verwaltung;PB01 Innere Verwaltung;2014
+929;121000121;-2147483648;-7226449.0;minus;0.0;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2014
+930;121000121;1701941176;0.0;plus;0.0;6810293.5;01 Innere Verwaltung;Finanzbuchhaltung;2014
+931;121000121;-2147483648;7227441.0;plus;0.0;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2014
+932;121000121;191134752;0.0;minus;-6805107.0;-6748988.0;01 Innere Verwaltung;Finanzbuchhaltung;2014
+933;121000121;1701435976;0.0;plus;6868074.0;0.0;01 Innere Verwaltung;Finanzbuchhaltung;2014
+934;121000122;191117352;0.0;minus;0.0;-1643739.25;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+935;121000122;-2147483648;-1944410.75;minus;0.0;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+936;121000122;1515517426;0.0;plus;3606065.25;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+937;121000122;1516022626;0.0;plus;0.0;3877617.5;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+938;121000122;-2147483648;4493390.5;plus;0.0;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+939;121000122;191565852;0.0;minus;-1188568.875;0.0;01 Innere Verwaltung;Verw. von Steuern und Benutzungsgebühren;2014
+940;121201606;26928821;39321764.0;plus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2014
+941;121201606;2715765;0.0;plus;32093072.0;32093072.0;16 Allgemeine Finanzwirtschaft;Steuern;2014
+942;121201606;4493000;0.0;minus;0.0;-501251488.0;16 Allgemeine Finanzwirtschaft;Steuern;2014
+943;121201606;43419423;-469623680.0;minus;0.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2014
+944;121201606;4896900;0.0;minus;-502273344.0;0.0;16 Allgemeine Finanzwirtschaft;Steuern;2014
+945;123000110;94000103;-640.0;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+946;123000110;94000103;640.0;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+947;123000128;1617126563;0.0;plus;8118299.0;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2014
+948;123000128;532547357;-10994360.0;minus;0.0;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2014
+949;123000128;192884978;0.0;minus;-9180842.0;-9180924.0;01 Innere Verwaltung;Liegenschaftsmanagement;2014
+950;123000128;1617631763;0.0;plus;0.0;7949691.0;01 Innere Verwaltung;Liegenschaftsmanagement;2014
+951;123000128;-2147483648;10244459.0;plus;0.0;0.0;01 Innere Verwaltung;Liegenschaftsmanagement;2014
+952;123001718;2715110;101333.84375;plus;0.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2014
+953;123001718;2724665;0.0;plus;63010.0;62510.0;17 Stiftungen;Stiftung Julius Barthels;2014
+954;123001718;1827010;0.0;minus;-63010.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2014
+955;123001718;3166320;-101333.835938;minus;0.0;0.0;17 Stiftungen;Stiftung Julius Barthels;2014
+956;123001718;1371910;0.0;minus;0.0;-62510.0;17 Stiftungen;Stiftung Julius Barthels;2014
+957;125000000;1128000400;0.0;minus;-33903.3984375;-33161.21875;00;Produktbereichsübergreifend;2014
+958;125000000;1128000400;0.0;plus;33903.3984375;33161.21875;00;Produktbereichsübergreifend;2014
+959;125000108;1333665566;-780731.875;minus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+960;125000108;1606833881;0.0;plus;832712.0;829565.625;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+961;125000108;95813695;0.0;minus;-575077.625;-575114.4375;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+962;125000108;-2147483648;771452.375;plus;0.0;0.0;01 Innere Verwaltung;Zentrale Vergabedienstleistungen;2014
+963;125000910;1512819136;0.0;plus;217242.375;215890.34375;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2014
+964;125000910;1365130;0.0;minus;-4444.80029297;-4455.47998047;09 Räumliche Planung und Entwicklung, Geoinfo;Straßenrecht und Wettbewerb;2014
+965;130000000;1222000528;0.0;plus;65474.3515625;63227.6523438;00;Produktbereichsübergreifend;2014
+966;130000000;-2147483648;-44229.96875;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+967;130000000;1222000528;0.0;minus;-65474.3515625;-63227.6523438;00;Produktbereichsübergreifend;2014
+968;130000000;-2147483648;44229.96875;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+969;130000127;1516047655;0.0;plus;0.0;4446699.5;01 Innere Verwaltung;Recht;2014
+970;130000127;-2147483648;4765764.5;plus;0.0;0.0;01 Innere Verwaltung;Recht;2014
+971;130000127;1515542455;0.0;plus;4706698.0;0.0;01 Innere Verwaltung;Recht;2014
+972;130000127;472262470;0.0;minus;-3808787.75;-3991345.5;01 Innere Verwaltung;Recht;2014
+973;130000127;-2147483648;-3426528.5;minus;0.0;0.0;01 Innere Verwaltung;Recht;2014
+974;130000512;1417167587;0.0;plus;0.0;90593.4140625;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2014
+975;130000512;202374423;-7512.04980469;minus;0.0;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2014
+976;130000512;1416662387;0.0;plus;91591.3046875;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2014
+977;130000512;1365130;0.0;minus;-135.36000061;-136.679992676;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2014
+978;130000512;-2147483648;62781.96875;plus;0.0;0.0;05 Soziale Leistungen;Sozialversicherungsangelegenheiten;2014
+979;133000200;-2147483648;915795.5625;plus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+980;133000200;1598000827;0.0;minus;-755753.9375;-752813.4375;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+981;133000200;1598000827;0.0;plus;755753.9375;752813.4375;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+982;133000200;-2147483648;-915795.5625;minus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+983;133000201;1801365003;0.0;plus;0.0;5361295.5;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2014
+984;133000201;227331773;-750195.25;minus;0.0;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2014
+985;133000201;-2147483648;6657133.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2014
+986;133000201;4007740;0.0;minus;-486695.9375;-486911.6875;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2014
+987;133000201;1800859803;0.0;plus;5376636.5;0.0;02 Sicherheit und Ordnung;Allgemeine Sicherheit und Ordnung;2014
+988;133000202;122536371;-486145.5;minus;0.0;0.0;02 Sicherheit und Ordnung;Gewerbewesen;2014
+989;133000202;1042844590;0.0;plus;948778.125;947503.125;02 Sicherheit und Ordnung;Gewerbewesen;2014
+990;133000202;-2147483648;1024859.5;plus;0.0;0.0;02 Sicherheit und Ordnung;Gewerbewesen;2014
+991;133000202;2252330;0.0;minus;-283973.6875;-284019.03125;02 Sicherheit und Ordnung;Gewerbewesen;2014
+992;133000203;124882938;-1327927.125;minus;0.0;0.0;02 Sicherheit und Ordnung;Märkte (BgA);2014
+993;133000203;1432876439;0.0;plus;1143183.25;1140444.25;02 Sicherheit und Ordnung;Märkte (BgA);2014
+994;133000203;-2147483648;1357941.125;plus;0.0;0.0;02 Sicherheit und Ordnung;Märkte (BgA);2014
+995;133000203;3094530;0.0;minus;-1105050.0;-1105061.5;02 Sicherheit und Ordnung;Märkte (BgA);2014
+996;133000204;-2147483648;22380534.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2014
+997;133000204;4008440;0.0;minus;-11408923.0;-11409234.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2014
+998;133000204;1800288730;0.0;plus;11681109.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2014
+999;133000204;1800793930;0.0;plus;0.0;11637508.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2014
+1000;133000204;234971908;-22672252.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Verkehrsang. Fahr-u.Beförd-erl. Kfz-Ang.;2014
+1001;133000205;320465467;-4029834.5;minus;0.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2014
+1002;133000205;1701895763;0.0;plus;12006328.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2014
+1003;133000205;1702400963;0.0;plus;0.0;11968802.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2014
+1004;133000205;-2147483648;11938442.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2014
+1005;133000205;3117240;0.0;minus;-3880071.5;-3880525.5;02 Sicherheit und Ordnung;Einwohnerangelegenheiten;2014
+1006;133000206;2242330;0.0;minus;-660963.9375;-661073.25;02 Sicherheit und Ordnung;Personenstandswesen;2014
+1007;133000206;1703500425;0.0;plus;0.0;2875258.25;02 Sicherheit und Ordnung;Personenstandswesen;2014
+1008;133000206;1702995225;0.0;plus;2874841.0;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2014
+1009;133000206;213708146;-799765.5;minus;0.0;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2014
+1010;133000206;-2147483648;2888592.5;plus;0.0;0.0;02 Sicherheit und Ordnung;Personenstandswesen;2014
+1011;133000207;206598256;-380225.6875;minus;0.0;0.0;02 Sicherheit und Ordnung;Wahlen;2014
+1012;133000207;1813230;0.0;minus;-270345.1875;-270370.03125;02 Sicherheit und Ordnung;Wahlen;2014
+1013;133000207;1139541573;0.0;plus;0.0;803709.1875;02 Sicherheit und Ordnung;Wahlen;2014
+1014;133000207;1139036373;0.0;plus;778657.0;0.0;02 Sicherheit und Ordnung;Wahlen;2014
+1015;133000207;-2147483648;1123658.25;plus;0.0;0.0;02 Sicherheit und Ordnung;Wahlen;2014
+1016;137000200;1410000769;0.0;plus;1551229.125;1497951.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+1017;137000200;1410000769;0.0;minus;-1551229.125;-1497951.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+1018;137000200;-2147483648;-1121100.0;minus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+1019;137000200;-2147483648;1121100.0;plus;0.0;0.0;02 Sicherheit und Ordnung;PB02 Sicherheit und Ordnung;2014
+1020;137000219;99677430;0.0;minus;0.0;-2812441.0;02 Sicherheit und Ordnung;Brandschutz;2014
+1021;137000219;-2147483648;27422522.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2014
+1022;137000219;100103631;0.0;minus;-2944589.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2014
+1023;137000219;1812163516;0.0;plus;24210406.0;24426502.0;02 Sicherheit und Ordnung;Brandschutz;2014
+1024;137000219;1562966469;-3632036.25;minus;0.0;0.0;02 Sicherheit und Ordnung;Brandschutz;2014
+1025;137000220;97511645;0.0;minus;-158203.296875;-158370.234375;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2014
+1026;137000220;-2147483648;3630610.75;plus;0.0;0.0;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2014
+1027;137000220;1725601582;-444193.96875;minus;0.0;0.0;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2014
+1028;137000220;1616602194;0.0;plus;3492227.0;3542236.75;02 Sicherheit und Ordnung;Abwehr von Großschadensereignissen;2014
+1029;137000221;1539216675;-17523474.0;minus;0.0;0.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2014
+1030;137000221;-2147483648;17779020.0;plus;0.0;0.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2014
+1031;137000221;1618739904;0.0;plus;12523880.0;11859556.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2014
+1032;137000221;96655445;0.0;minus;-11060798.0;-10868339.0;02 Sicherheit und Ordnung;Rettungsdienst (KRE);2014
+1033;137001720;1345510;0.0;minus;-505.0;-505.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2014
+1034;137001720;547400;0.0;plus;505.0;505.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2014
+1035;137001720;1540300;7149.04980469;plus;0.0;0.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2014
+1036;137001720;8078500;-7149.04980469;minus;0.0;0.0;17 Stiftungen;Stiftung zur Förderung der Feuerwehr;2014
+1037;140000300;1880000932;0.0;plus;1386727.625;1365803.625;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2014
+1038;140000300;1880000932;0.0;minus;-1386727.625;-1365803.625;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2014
+1039;140000300;-2147483648;-2038953.75;minus;0.0;0.0;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2014
+1040;140000300;-2147483648;2038953.75;plus;0.0;0.0;03 Schulträgeraufgaben;PB03 Schulträgeraufgaben;2014
+1041;140000301;1014773082;-14147801.0;minus;0.0;0.0;03 Schulträgeraufgaben;Grundschulen;2014
+1042;140000301;1992007471;0.0;plus;33151260.0;0.0;03 Schulträgeraufgaben;Grundschulen;2014
+1043;140000301;195443647;0.0;minus;0.0;-13178302.0;03 Schulträgeraufgaben;Grundschulen;2014
+1044;140000301;195028847;0.0;minus;-13290007.0;0.0;03 Schulträgeraufgaben;Grundschulen;2014
+1045;140000301;-2147483648;32437278.0;plus;0.0;0.0;03 Schulträgeraufgaben;Grundschulen;2014
+1046;140000301;1992512570;0.0;plus;0.0;31810774.0;03 Schulträgeraufgaben;Grundschulen;2014
+1047;140000302;99321094;0.0;minus;-119803.046875;0.0;03 Schulträgeraufgaben;Hauptschulen;2014
+1048;140000302;99735894;0.0;minus;0.0;-119861.007812;03 Schulträgeraufgaben;Hauptschulen;2014
+1049;140000302;699719771;-238434.3125;minus;0.0;0.0;03 Schulträgeraufgaben;Hauptschulen;2014
+1050;140000302;-2147483648;3605576.75;plus;0.0;0.0;03 Schulträgeraufgaben;Hauptschulen;2014
+1051;140000302;1990917274;0.0;plus;4037911.25;0.0;03 Schulträgeraufgaben;Hauptschulen;2014
+1052;140000302;1991422474;0.0;plus;0.0;3623102.5;03 Schulträgeraufgaben;Hauptschulen;2014
+1053;140000303;1990881314;0.0;plus;0.0;4380080.0;03 Schulträgeraufgaben;Realschulen;2014
+1054;140000303;795681514;-410334.5;minus;0.0;0.0;03 Schulträgeraufgaben;Realschulen;2014
+1055;140000303;99321094;0.0;minus;-186158.796875;0.0;03 Schulträgeraufgaben;Realschulen;2014
+1056;140000303;1990376114;0.0;plus;4948461.0;0.0;03 Schulträgeraufgaben;Realschulen;2014
+1057;140000303;99735894;0.0;minus;0.0;-186219.765625;03 Schulträgeraufgaben;Realschulen;2014
+1058;140000303;-2147483648;4249657.0;plus;0.0;0.0;03 Schulträgeraufgaben;Realschulen;2014
+1059;140000304;1991448354;0.0;plus;11255413.0;0.0;03 Schulträgeraufgaben;Gymnasien;2014
+1060;140000304;100568244;0.0;minus;0.0;-358336.375;03 Schulträgeraufgaben;Gymnasien;2014
+1061;140000304;100153444;0.0;minus;-358265.34375;0.0;03 Schulträgeraufgaben;Gymnasien;2014
+1062;140000304;-2147483648;10094964.0;plus;0.0;0.0;03 Schulträgeraufgaben;Gymnasien;2014
+1063;140000304;813907670;-809501.625;minus;0.0;0.0;03 Schulträgeraufgaben;Gymnasien;2014
+1064;140000304;1991953554;0.0;plus;0.0;9948680.0;03 Schulträgeraufgaben;Gymnasien;2014
+1065;140000305;1990376114;0.0;plus;5845740.5;0.0;03 Schulträgeraufgaben;Gesamtschulen;2014
+1066;140000305;791268354;-456949.9375;minus;0.0;0.0;03 Schulträgeraufgaben;Gesamtschulen;2014
+1067;140000305;5266641;0.0;minus;0.0;-214930.1875;03 Schulträgeraufgaben;Gesamtschulen;2014
+1068;140000305;4851841;0.0;minus;-214867.546875;0.0;03 Schulträgeraufgaben;Gesamtschulen;2014
+1069;140000305;-2147483648;6040606.0;plus;0.0;0.0;03 Schulträgeraufgaben;Gesamtschulen;2014
+1070;140000305;1990881314;0.0;plus;0.0;5180097.0;03 Schulträgeraufgaben;Gesamtschulen;2014
+1071;140000306;-2147483648;3135360.25;plus;0.0;0.0;03 Schulträgeraufgaben;Förderschulen;2014
+1072;140000306;6561921;0.0;minus;0.0;-226491.421875;03 Schulträgeraufgaben;Förderschulen;2014
+1073;140000306;1990874075;0.0;plus;3636656.75;0.0;03 Schulträgeraufgaben;Förderschulen;2014
+1074;140000306;1991379275;0.0;plus;0.0;3239249.25;03 Schulträgeraufgaben;Förderschulen;2014
+1075;140000306;5699121;0.0;minus;-205803.09375;0.0;03 Schulträgeraufgaben;Förderschulen;2014
+1076;140000306;720622341;-420307.3125;minus;0.0;0.0;03 Schulträgeraufgaben;Förderschulen;2014
+1077;140000307;99290673;0.0;minus;0.0;-362052.09375;03 Schulträgeraufgaben;Berufskollegs;2014
+1078;140000307;1991488354;0.0;plus;6826315.5;0.0;03 Schulträgeraufgaben;Berufskollegs;2014
+1079;140000307;-2147483648;6202569.5;plus;0.0;0.0;03 Schulträgeraufgaben;Berufskollegs;2014
+1080;140000307;1991993554;0.0;plus;0.0;6090209.5;03 Schulträgeraufgaben;Berufskollegs;2014
+1081;140000307;710503949;-741651.0625;minus;0.0;0.0;03 Schulträgeraufgaben;Berufskollegs;2014
+1082;140000307;99308073;0.0;minus;-386984.3125;0.0;03 Schulträgeraufgaben;Berufskollegs;2014
+1083;140000308;1793172090;0.0;plus;7181814.5;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1084;140000308;3073230;0.0;minus;0.0;-146209.390625;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1085;140000308;495540073;-179953.234375;minus;0.0;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1086;140000308;2658430;0.0;minus;-146134.390625;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1087;140000308;-2147483648;6118850.5;plus;0.0;0.0;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1088;140000308;1793677290;0.0;plus;0.0;6883367.5;03 Schulträgeraufgaben;Schülerbeförderung;2014
+1089;140000309;-2147483648;1478937.625;plus;0.0;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1090;140000309;2194030;0.0;minus;0.0;-535540.0625;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1091;140000309;681642003;-563468.8125;minus;0.0;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1092;140000309;1794207770;0.0;plus;1489079.75;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1093;140000309;1794712970;0.0;plus;0.0;1473785.25;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1094;140000309;1779230;0.0;minus;-550426.5625;0.0;03 Schulträgeraufgaben;Fördermaßnahmen für Schüler;2014
+1095;140000310;1076725569;-272268.96875;minus;0.0;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1096;140000310;-2147483648;1586945.125;plus;0.0;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1097;140000310;1802430353;0.0;plus;0.0;1702763.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1098;140000310;100165344;0.0;minus;0.0;-373071.53125;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1099;140000310;99319444;0.0;minus;-367968.21875;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1100;140000310;1801925153;0.0;plus;1725847.5;0.0;03 Schulträgeraufgaben;Sonstige schulische Aufgaben;2014
+1101;140001702;531800;0.0;plus;1600.0;1600.0;17 Stiftungen;Stiftung Thomas Hansen;2014
+1102;140001702;993500;1431.23999023;plus;0.0;0.0;17 Stiftungen;Stiftung Thomas Hansen;2014
+1103;140001702;1387920;0.0;minus;-1600.0;-1600.0;17 Stiftungen;Stiftung Thomas Hansen;2014
+1104;140001702;6005000;-1431.23999023;minus;0.0;0.0;17 Stiftungen;Stiftung Thomas Hansen;2014
+1105;140001703;41597867;44570.75;plus;0.0;0.0;17 Stiftungen;Stiftung Peter Kemper;2014
+1106;140001703;1650310;0.0;plus;7705.25;7705.25;17 Stiftungen;Stiftung Peter Kemper;2014
+1107;140001703;14452961;-44570.75;minus;0.0;0.0;17 Stiftungen;Stiftung Peter Kemper;2014
+1108;140001703;1857100;0.0;minus;-7705.25;-7705.25;17 Stiftungen;Stiftung Peter Kemper;2014
+1109;141000400;1410000599;0.0;minus;-125816.5;-124003.601562;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2014
+1110;141000400;-2147483648;71341.53125;plus;0.0;0.0;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2014
+1111;141000400;1410000599;0.0;plus;125816.5;124003.601562;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2014
+1112;141000400;-2147483648;-71341.53125;minus;0.0;0.0;04 Kultur und Wissenschaft;PB04 Kultur und Wissenschaft;2014
+1113;141000401;1615976143;0.0;plus;1041910.8125;1034246.9375;04 Kultur und Wissenschaft;Kulturelle Projekte;2014
+1114;141000401;1526318294;-438344.15625;minus;0.0;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2014
+1115;141000401;-2147483648;1152212.625;plus;0.0;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2014
+1116;141000401;97468245;0.0;minus;-101462.703125;0.0;04 Kultur und Wissenschaft;Kulturelle Projekte;2014
+1117;141000401;97900445;0.0;minus;0.0;-101458.929688;04 Kultur und Wissenschaft;Kulturelle Projekte;2014
+1118;141000402;-2147483648;3294693.75;plus;0.0;0.0;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2014
+1119;141000402;1516077688;0.0;plus;3251094.5;3381646.25;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2014
+1120;141000402;395789782;-91410.4609375;minus;0.0;0.0;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2014
+1121;141000402;2194030;0.0;minus;-2966830.75;-2966844.75;04 Kultur und Wissenschaft;Kulturförderung freie Träger;2014
+1122;141000403;758678751;0.0;plus;2069626.5;2059144.5;04 Kultur und Wissenschaft;Beethovenpflege;2014
+1123;141000403;111354231;-3915.56005859;minus;0.0;0.0;04 Kultur und Wissenschaft;Beethovenpflege;2014
+1124;141000403;1365130;0.0;minus;-734.520019531;-735.960021973;04 Kultur und Wissenschaft;Beethovenpflege;2014
+1125;141000403;-2147483648;2034425.125;plus;0.0;0.0;04 Kultur und Wissenschaft;Beethovenpflege;2014
+1126;141001704;5547890;-73.5400009155;minus;0.0;0.0;17 Stiftungen;Stiftung Konrad Adenauer;2014
+1127;141001704;1009100;73.5400009155;plus;0.0;0.0;17 Stiftungen;Stiftung Konrad Adenauer;2014
+1128;141001704;531800;0.0;plus;180.0;180.0;17 Stiftungen;Stiftung Konrad Adenauer;2014
+1129;141001704;1387920;0.0;minus;-180.0;-180.0;17 Stiftungen;Stiftung Konrad Adenauer;2014
+1130;141001705;547400;0.0;plus;4908.0;4908.0;17 Stiftungen;Stiftung August Kaiser;2014
+1131;141001705;1400000;0.0;minus;-4908.0;-4908.0;17 Stiftungen;Stiftung August Kaiser;2014
+1132;141001705;5547890;-2246.67016602;minus;0.0;0.0;17 Stiftungen;Stiftung August Kaiser;2014
+1133;141001705;1009100;2246.66992188;plus;0.0;0.0;17 Stiftungen;Stiftung August Kaiser;2014
+1134;141001706;1388000;0.0;minus;-10000.0;-10000.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2014
+1135;141001706;531800;10000.0;plus;10000.0;10000.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2014
+1136;141001706;6466700;-10000.0;minus;0.0;0.0;17 Stiftungen;Dorothea-von-Stetten-Stiftung;2014
+1137;141001707;6005000;-1733.80004883;minus;0.0;0.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2014
+1138;141001707;547400;0.0;plus;2198.0;2198.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2014
+1139;141001707;930810;0.0;minus;-2198.0;-2198.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2014
+1140;141001707;992900;1733.80004883;plus;0.0;0.0;17 Stiftungen;Stiftung Dr. Werner Borchert;2014
+1141;141200410;1165148499;-4491318.5;minus;0.0;0.0;04 Kultur und Wissenschaft;Beethoven Orchester;2014
+1142;141200410;1618682956;0.0;plus;12451683.0;12392208.0;04 Kultur und Wissenschaft;Beethoven Orchester;2014
+1143;141200410;97991563;0.0;minus;-4731728.0;-4731743.5;04 Kultur und Wissenschaft;Beethoven Orchester;2014
+1144;141200410;-2147483648;12662546.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Beethoven Orchester;2014
+1145;141300409;-2147483648;7883578.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Kunstmuseum;2014
+1146;141300409;1713365211;0.0;plus;7447978.0;7402505.0;04 Kultur und Wissenschaft;Kunstmuseum;2014
+1147;141300409;193718366;0.0;minus;-826502.875;-826532.375;04 Kultur und Wissenschaft;Kunstmuseum;2014
+1148;141300409;334889597;-1678431.125;minus;0.0;0.0;04 Kultur und Wissenschaft;Kunstmuseum;2014
+1149;141400407;192417043;0.0;minus;-50764.4804688;-53817.8789062;04 Kultur und Wissenschaft;Stadtarchiv;2014
+1150;141400407;1615499316;0.0;plus;0.0;2419432.5;04 Kultur und Wissenschaft;Stadtarchiv;2014
+1151;141400407;-2147483648;2250952.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2014
+1152;141400407;602374611;-173149.296875;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2014
+1153;141400407;1614994116;0.0;plus;2412379.25;0.0;04 Kultur und Wissenschaft;Stadtarchiv;2014
+1154;141500408;4390540;0.0;minus;-38053.4882812;-38058.7695312;04 Kultur und Wissenschaft;Stadtmuseum;2014
+1155;141500408;-2147483648;857927.1875;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtmuseum;2014
+1156;141500408;311158609;-87306.1328125;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtmuseum;2014
+1157;141500408;1804043214;0.0;plus;915529.5;886106.125;04 Kultur und Wissenschaft;Stadtmuseum;2014
+1158;141600406;97545273;0.0;minus;-854832.875;-814847.125;04 Kultur und Wissenschaft;Stadtbibliothek;2014
+1159;141600406;-2147483648;4931785.5;plus;0.0;0.0;04 Kultur und Wissenschaft;Stadtbibliothek;2014
+1160;141600406;226539709;-382793.46875;minus;0.0;0.0;04 Kultur und Wissenschaft;Stadtbibliothek;2014
+1161;141600406;1615618681;0.0;plus;5100467.0;4998923.5;04 Kultur und Wissenschaft;Stadtbibliothek;2014
+1162;141700405;-2147483648;5627055.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Musikschule;2014
+1163;141700405;1896936357;0.0;plus;5945574.0;0.0;04 Kultur und Wissenschaft;Musikschule;2014
+1164;141700405;99637163;0.0;minus;-2268063.25;-2268084.0;04 Kultur und Wissenschaft;Musikschule;2014
+1165;141700405;1897441557;0.0;plus;0.0;5939393.0;04 Kultur und Wissenschaft;Musikschule;2014
+1166;141700405;614691956;-2225809.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Musikschule;2014
+1167;141800404;1714884379;0.0;plus;3766452.25;0.0;04 Kultur und Wissenschaft;Volkshochschule;2014
+1168;141800404;1060616488;-2382585.0;minus;0.0;0.0;04 Kultur und Wissenschaft;Volkshochschule;2014
+1169;141800404;192367663;0.0;minus;-2179522.25;-2204589.5;04 Kultur und Wissenschaft;Volkshochschule;2014
+1170;141800404;1715389579;0.0;plus;0.0;3746047.25;04 Kultur und Wissenschaft;Volkshochschule;2014
+1171;141800404;-2147483648;3862535.5;plus;0.0;0.0;04 Kultur und Wissenschaft;Volkshochschule;2014
+1172;141900411;95625833;0.0;plus;30160888.0;29945502.0;04 Kultur und Wissenschaft;Theater;2014
+1173;141900411;1233586729;33487164.0;plus;0.0;0.0;04 Kultur und Wissenschaft;Theater;2014
+1174;141900411;2010500;-4648468.5;minus;0.0;0.0;04 Kultur und Wissenschaft;Theater;2014
+1175;141900411;448800;0.0;minus;-16000.0;-16000.0;04 Kultur und Wissenschaft;Theater;2014
+1176;150000000;-2147483648;1089432.5;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1177;150000000;-2147483648;-1089432.5;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1178;150000000;1692000764;0.0;minus;-1023440.0625;-1002815.6875;00;Produktbereichsübergreifend;2014
+1179;150000000;1692000764;0.0;plus;1023440.0625;1002815.6875;00;Produktbereichsübergreifend;2014
+1180;150000501;-2147483648;94480048.0;plus;0.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2014
+1181;150000501;1804064178;0.0;plus;0.0;87664456.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2014
+1182;150000501;1803558978;0.0;plus;87964704.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2014
+1183;150000501;97512364;0.0;minus;-30091150.0;-30091410.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2014
+1184;150000501;1835989540;-30422456.0;minus;0.0;0.0;05 Soziale Leistungen;Grundsicherungsleistungen nach d. SGB II;2014
+1185;150000502;921220540;-38584312.0;minus;0.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2014
+1186;150000502;1807743549;0.0;plus;0.0;82742832.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2014
+1187;150000502;1807238349;0.0;plus;83912304.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2014
+1188;150000502;6920560;0.0;minus;-32981448.0;-34081852.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2014
+1189;150000502;-2147483648;88604264.0;plus;0.0;0.0;05 Soziale Leistungen;Grundversorgung u.Leistungen n.d.SGB XII;2014
+1190;150000503;3485700;0.0;minus;-687013.1875;-687057.5625;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2014
+1191;150000503;1803005528;0.0;plus;4988057.5;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2014
+1192;150000503;406462907;-2331851.75;minus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2014
+1193;150000503;1803510728;0.0;plus;0.0;5005937.5;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2014
+1194;150000503;-2147483648;9981530.0;plus;0.0;0.0;05 Soziale Leistungen;Leistungen nach dem AsylbLG;2014
+1195;150000504;-2147483648;1785093.25;plus;0.0;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1196;150000504;1804013960;0.0;plus;2068911.125;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1197;150000504;3920390;0.0;minus;0.0;-297179.84375;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1198;150000504;410520757;-169110.375;minus;0.0;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1199;150000504;3472390;0.0;minus;-291249.59375;0.0;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1200;150000504;1804519160;0.0;plus;0.0;2078300.125;05 Soziale Leistungen;Soziale Einrichtungen;2014
+1201;150000506;2616480;0.0;minus;-836477.4375;-836510.375;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2014
+1202;150000506;1706883743;0.0;plus;6027077.5;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2014
+1203;150000506;1707388943;0.0;plus;0.0;6121823.5;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2014
+1204;150000506;391059537;-385222.75;minus;0.0;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2014
+1205;150000506;-2147483648;5559371.0;plus;0.0;0.0;05 Soziale Leistungen;Förd.Träg.Wohlf.pfl.,Vereine,sonst.Träg.;2014
+1206;150000507;3519790;0.0;minus;-2445951.5;-2526000.5;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2014
+1207;150000507;704061422;-3254416.0;minus;0.0;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2014
+1208;150000507;-2147483648;5735430.0;plus;0.0;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2014
+1209;150000507;1802424388;0.0;plus;0.0;5079368.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2014
+1210;150000507;1801919188;0.0;plus;5055220.5;0.0;05 Soziale Leistungen;Unterhaltsvorschussleistungen;2014
+1211;150000508;1802982138;0.0;plus;806398.375;0.0;05 Soziale Leistungen;Betreuungsleistungen;2014
+1212;150000508;3079540;0.0;minus;-7427.28027344;-7443.0;05 Soziale Leistungen;Betreuungsleistungen;2014
+1213;150000508;1802440038;0.0;plus;0.0;796596.8125;05 Soziale Leistungen;Betreuungsleistungen;2014
+1214;150000508;209167551;-27657.0097656;minus;0.0;0.0;05 Soziale Leistungen;Betreuungsleistungen;2014
+1215;150000508;-2147483648;899336.6875;plus;0.0;0.0;05 Soziale Leistungen;Betreuungsleistungen;2014
+1216;150000509;757585589;0.0;plus;34912.5703125;34601.4921875;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2014
+1217;150000509;188000012;-1126.72009277;minus;0.0;0.0;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2014
+1218;150000509;1365130;0.0;minus;-482.160003662;-483.599975586;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2014
+1219;150000509;376534014;1249.7199707;plus;0.0;0.0;05 Soziale Leistungen;Leist. f. Heimk., pol.Häftl., Spätauss.;2014
+1220;150000510;1898627692;0.0;plus;5193502.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2014
+1221;150000510;1913145145;-528929.625;minus;0.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2014
+1222;150000510;-2147483648;6441526.0;plus;0.0;0.0;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2014
+1223;150000510;1899132892;0.0;plus;0.0;5446604.5;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2014
+1224;150000510;97944982;0.0;minus;-193109.140625;-278190.65625;05 Soziale Leistungen;Sonstige soziale Hilfen und Leistungen;2014
+1225;150000511;1706288494;0.0;plus;0.0;2410453.75;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2014
+1226;150000511;779033753;-2563250.75;minus;0.0;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2014
+1227;150000511;-2147483648;2898839.75;plus;0.0;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2014
+1228;150000511;1705783294;0.0;plus;2416881.0;0.0;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2014
+1229;150000511;97064784;0.0;minus;-1884156.875;-1884181.5;05 Soziale Leistungen;Schwerbehindertenrecht nach SGB IX;2014
+1230;150001005;1808770789;0.0;plus;7056316.0;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2014
+1231;150001005;-2147483648;7533408.5;plus;0.0;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2014
+1232;150001005;700598515;-1452338.5;minus;0.0;0.0;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2014
+1233;150001005;1809275989;0.0;plus;0.0;6856022.5;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2014
+1234;150001005;5273480;0.0;minus;-664483.3125;-669681.375;10 Bauen und Wohnen;Wohnr.sich.,-vers./Hilfe Wohn.losigkeit;2014
+1235;150001708;10564181;204678.25;plus;0.0;0.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2014
+1236;150001708;11980110;-204678.25;minus;0.0;0.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2014
+1237;150001708;2298210;0.0;minus;-188660.0;-188660.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2014
+1238;150001708;1597030;0.0;plus;188660.0;188660.0;17 Stiftungen;Stiftung Bonner Altenhilfe;2014
+1239;150001709;8095471;-20299.8710938;minus;0.0;0.0;17 Stiftungen;Stiftung Paula Flerus;2014
+1240;150001709;1829010;0.0;minus;-18741.609375;-18741.609375;17 Stiftungen;Stiftung Paula Flerus;2014
+1241;150001709;5901325;0.0;plus;18741.609375;18741.609375;17 Stiftungen;Stiftung Paula Flerus;2014
+1242;150001709;24727326;20299.8691406;plus;0.0;0.0;17 Stiftungen;Stiftung Paula Flerus;2014
+1243;150001710;6005000;-585.659973145;minus;0.0;0.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2014
+1244;150001710;1387920;0.0;minus;-516.0;-516.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2014
+1245;150001710;993500;585.66003418;plus;0.0;0.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2014
+1246;150001710;531800;0.0;plus;516.0;516.0;17 Stiftungen;Stiftung St.-Albertus-Magnus-Heim;2014
+1247;150001711;531800;0.0;plus;3700.0;3700.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2014
+1248;150001711;6005000;-3767.91992188;minus;0.0;0.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2014
+1249;150001711;1857110;0.0;minus;-3700.0;-3700.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2014
+1250;150001711;993500;3767.91992188;plus;0.0;0.0;17 Stiftungen;Stiftung Wilhelmine-Lübke-Heim;2014
+1251;150001712;3668100;109043.257812;plus;0.0;0.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2014
+1252;150001712;531800;0.0;plus;120000.0;120000.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2014
+1253;150001712;6887200;-109043.257812;minus;0.0;0.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2014
+1254;150001712;2298210;0.0;minus;-120000.0;-120000.0;17 Stiftungen;Stiftung Wilhelm-Augusta-Stift;2014
+1255;150001713;5880415;0.0;plus;338647.6875;338647.6875;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2014
+1256;150001713;2763300;0.0;minus;-338647.6875;-338647.6875;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2014
+1257;150001713;16112030;-385076.5;minus;0.0;0.0;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2014
+1258;150001713;49573728;385076.5;plus;0.0;0.0;17 Stiftungen;Stiftung Konvente St. Aegidius/St. Jakob;2014
+1259;150001714;531800;0.0;plus;2100.0;2100.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2014
+1260;150001714;6419800;-2763.55004883;minus;0.0;0.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2014
+1261;150001714;1857110;0.0;minus;-2100.0;-2100.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2014
+1262;150001714;1540900;2763.55004883;plus;0.0;0.0;17 Stiftungen;Stiftung Johann Gabriel Adrian;2014
+1263;150001715;1387920;0.0;minus;-165.0;-165.0;17 Stiftungen;Stiftung Max Becker;2014
+1264;150001715;531800;0.0;plus;165.0;165.0;17 Stiftungen;Stiftung Max Becker;2014
+1265;150001715;993500;186.809997559;plus;0.0;0.0;17 Stiftungen;Stiftung Max Becker;2014
+1266;150001715;6552400;-186.809997559;minus;0.0;0.0;17 Stiftungen;Stiftung Max Becker;2014
+1267;150001716;15573892;-116746.78125;minus;0.0;0.0;17 Stiftungen;Stiftung Arme im Allgemeinen;2014
+1268;150001716;3220410;0.0;minus;-112606.4375;-112606.4375;17 Stiftungen;Stiftung Arme im Allgemeinen;2014
+1269;150001716;5333015;0.0;plus;112606.4375;112606.4375;17 Stiftungen;Stiftung Arme im Allgemeinen;2014
+1270;150001716;40494246;116746.78125;plus;0.0;0.0;17 Stiftungen;Stiftung Arme im Allgemeinen;2014
+1271;150001717;13487731;-60207.2890625;minus;0.0;0.0;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2014
+1272;150001717;2755310;0.0;minus;-61746.6601562;-61746.6601562;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2014
+1273;150001717;5878115;0.0;plus;61746.6601562;61746.6601562;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2014
+1274;150001717;22069897;60207.2890625;plus;0.0;0.0;17 Stiftungen;Stiftung Franz Xaver Joseph Lohé;2014
+1275;151000600;-2147483648;1237243.375;plus;0.0;0.0;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2014
+1276;151000600;1880000932;0.0;minus;-1381199.0;-1372051.5;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2014
+1277;151000600;-2147483648;-1237243.375;minus;0.0;0.0;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2014
+1278;151000600;1880000932;0.0;plus;1381199.0;1372051.5;06 Kinder, Jugend und Familie;PB06 Kinder-, Jugend- und Familienhilfe;2014
+1279;151000601;4379080;0.0;minus;-1947112.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1280;151000601;139527416;-2850521.5;minus;0.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1281;151000601;3957940;0.0;minus;0.0;-1941131.375;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1282;151000601;-2147483648;9127957.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1283;151000601;1894244637;0.0;plus;0.0;8945783.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1284;151000601;1893739437;0.0;plus;6864418.0;0.0;06 Kinder, Jugend und Familie;Förd. v. Kindern in Tagespflege;2014
+1285;151000602;-2147483648;103196680.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1286;151000602;1901787025;0.0;plus;98769688.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1287;151000602;6997110;0.0;minus;0.0;-61805956.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1288;151000602;265911199;-69026712.0;minus;0.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1289;151000602;1902292225;0.0;plus;0.0;99148568.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1290;151000602;7005310;0.0;minus;-61123016.0;0.0;06 Kinder, Jugend und Familie;Tageseinrichtungen für Kinder;2014
+1291;151000603;228190496;-69902.9921875;minus;0.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2014
+1292;151000603;3557740;0.0;minus;-10498.0498047;-10509.3300781;06 Kinder, Jugend und Familie;Jugendarbeit;2014
+1293;151000603;-2147483648;1106600.625;plus;0.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2014
+1294;151000603;1896402700;0.0;plus;0.0;1310664.875;06 Kinder, Jugend und Familie;Jugendarbeit;2014
+1295;151000603;1895897500;0.0;plus;1316563.0;0.0;06 Kinder, Jugend und Familie;Jugendarbeit;2014
+1296;151000604;-2147483648;6310041.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1297;151000604;343066787;-863651.0;minus;0.0;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1298;151000604;6107290;0.0;minus;0.0;-745387.0625;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1299;151000604;1900254362;0.0;plus;6442843.5;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1300;151000604;1900759562;0.0;plus;0.0;6399408.5;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1301;151000604;5659290;0.0;minus;-736533.8125;0.0;06 Kinder, Jugend und Familie;Einrichtung der Jugendarbeit;2014
+1302;151000605;8614250;0.0;minus;-3492633.0;-3542877.5;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2014
+1303;151000605;360231624;-5122419.5;minus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2014
+1304;151000605;1896946069;0.0;plus;53418932.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2014
+1305;151000605;1897451269;0.0;plus;0.0;53410920.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2014
+1306;151000605;-2147483648;60116736.0;plus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Leist. z. Förd. j. Menschen u.Fam;2014
+1307;151000606;1897522599;0.0;plus;1772017.125;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2014
+1308;151000606;1898027799;0.0;plus;0.0;1755886.125;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2014
+1309;151000606;229972565;-108355.867188;minus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2014
+1310;151000606;4433540;0.0;minus;-96194.4296875;-96222.5078125;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2014
+1311;151000606;-2147483648;1890128.625;plus;0.0;0.0;06 Kinder, Jugend und Familie;Sonst. Einr. f. j. Menschen u. Familien;2014
+1312;151000608;97111644;0.0;minus;-110767.117188;-110768.921875;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2014
+1313;151000608;594405602;-165086.34375;minus;0.0;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2014
+1314;151000608;-2147483648;497168.6875;plus;0.0;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2014
+1315;151000608;1892674517;0.0;plus;131200.421875;0.0;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2014
+1316;151000608;1893179717;0.0;plus;0.0;149838.984375;06 Kinder, Jugend und Familie;Bundeselterng/ElternzeitG/Betreuungsg.;2014
+1317;152000800;-2147483648;-182847.046875;minus;0.0;0.0;08 Sportförderung;PB08 Sportförderung;2014
+1318;152000800;1504000674;0.0;plus;208521.390625;201525.25;08 Sportförderung;PB08 Sportförderung;2014
+1319;152000800;-2147483648;182847.046875;plus;0.0;0.0;08 Sportförderung;PB08 Sportförderung;2014
+1320;152000800;1504000674;0.0;minus;-208521.390625;-201525.25;08 Sportförderung;PB08 Sportförderung;2014
+1321;152000801;1257417372;-1450252.875;minus;0.0;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2014
+1322;152000801;1806295706;0.0;plus;7654995.0;6975170.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2014
+1323;152000801;285097547;0.0;minus;0.0;-1249368.375;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2014
+1324;152000801;-2147483648;8365641.0;plus;0.0;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2014
+1325;152000801;191551743;0.0;minus;-370843.6875;0.0;08 Sportförderung;Bereitstellung u. Betrieb v.Sportanlagen;2014
+1326;152000802;209301327;-62832.1210938;minus;0.0;0.0;08 Sportförderung;Sportförderung;2014
+1327;152000802;1519464041;0.0;plus;1791477.625;1783583.75;08 Sportförderung;Sportförderung;2014
+1328;152000802;189781243;0.0;minus;-27468.1796875;-27502.6289062;08 Sportförderung;Sportförderung;2014
+1329;152000802;-2147483648;2044855.5;plus;0.0;0.0;08 Sportförderung;Sportförderung;2014
+1330;152000803;6147390;0.0;minus;-3518314.5;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2014
+1331;152000803;-2147483648;10417740.0;plus;0.0;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2014
+1332;152000803;536099261;-3440716.0;minus;0.0;0.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2014
+1333;152000803;1712719229;0.0;plus;8731313.0;9390729.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2014
+1334;152000803;6562190;0.0;minus;0.0;-3618340.0;08 Sportförderung;Bereitstellung und Betrieb von Bädern;2014
+1335;153000700;1692000882;0.0;minus;-340425.15625;-321779.3125;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2014
+1336;153000700;1692000882;0.0;plus;340425.15625;321779.3125;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2014
+1337;153000700;-2147483648;305281.4375;plus;0.0;0.0;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2014
+1338;153000700;-2147483648;-305281.4375;minus;0.0;0.0;07 Gesundheitsdienste;PB07 Gesundheitsdienste;2014
+1339;153000701;-2147483648;2179006.5;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsförderung;2014
+1340;153000701;1805003993;0.0;plus;2270877.25;2264223.0;07 Gesundheitsdienste;Gesundheitsförderung;2014
+1341;153000701;2636440;0.0;minus;-116310.710938;-116356.070312;07 Gesundheitsdienste;Gesundheitsförderung;2014
+1342;153000701;119200641;-150754.0625;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsförderung;2014
+1343;153000702;497230341;-377447.78125;minus;0.0;0.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2014
+1344;153000702;-2147483648;1476313.375;plus;0.0;0.0;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2014
+1345;153000702;1804451881;0.0;plus;1436883.0;1419649.375;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2014
+1346;153000702;97112540;0.0;minus;-334056.09375;-334089.34375;07 Gesundheitsdienste;Gutachten und Stellungnahmen;2014
+1347;153000703;-2147483648;970594.625;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitshilfe;2014
+1348;153000703;115570041;-31348.5898438;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitshilfe;2014
+1349;153000703;2222340;0.0;minus;-8758.14941406;-8772.54980469;07 Gesundheitsdienste;Gesundheitshilfe;2014
+1350;153000703;1802922281;0.0;plus;924866.5;914176.875;07 Gesundheitsdienste;Gesundheitshilfe;2014
+1351;153000704;1804451881;0.0;plus;2139744.25;2113207.0;07 Gesundheitsdienste;Gesundheitsschutz;2014
+1352;153000704;500036241;-298905.65625;minus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsschutz;2014
+1353;153000704;-2147483648;2176047.5;plus;0.0;0.0;07 Gesundheitsdienste;Gesundheitsschutz;2014
+1354;153000704;97101540;0.0;minus;-245299.5;-245327.84375;07 Gesundheitsdienste;Gesundheitsschutz;2014
+1355;153001701;1540800;303.029998779;plus;0.0;0.0;17 Stiftungen;Stiftung Bernhard Oebeke;2014
+1356;153001701;6012990;-303.029998779;minus;0.0;0.0;17 Stiftungen;Stiftung Bernhard Oebeke;2014
+1357;153001701;531700;0.0;plus;427.0;427.0;17 Stiftungen;Stiftung Bernhard Oebeke;2014
+1358;153001701;1395910;0.0;minus;-427.0;-427.0;17 Stiftungen;Stiftung Bernhard Oebeke;2014
+1359;156000000;-2147483648;-61089.1289062;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1360;156000000;-2147483648;61089.1289062;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1361;156000000;1504000724;0.0;plus;83650.03125;83130.203125;00;Produktbereichsübergreifend;2014
+1362;156000000;1504000724;0.0;minus;-83650.03125;-83130.203125;00;Produktbereichsübergreifend;2014
+1363;156000208;1708911635;0.0;plus;2352304.75;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2014
+1364;156000208;1709416835;0.0;plus;0.0;2281288.25;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2014
+1365;156000208;2668440;0.0;minus;-68284.1796875;-68317.8984375;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2014
+1366;156000208;212295684;-89201.8984375;minus;0.0;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2014
+1367;156000208;-2147483648;2214816.75;plus;0.0;0.0;02 Sicherheit und Ordnung;Lebensmittelüberw./Veterinärd.;2014
+1368;156001307;4407540;0.0;minus;-187640.203125;-187659.515625;13 Natur- und Landschaftspflege;Natur und Landschaft;2014
+1369;156001307;-2147483648;1133642.875;plus;0.0;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2014
+1370;156001307;1705725475;0.0;plus;0.0;849426.5625;13 Natur- und Landschaftspflege;Natur und Landschaft;2014
+1371;156001307;319431169;-153759.15625;minus;0.0;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2014
+1372;156001307;1705220275;0.0;plus;847151.0;0.0;13 Natur- und Landschaftspflege;Natur und Landschaft;2014
+1373;156001401;1901834529;0.0;plus;3366708.0;0.0;14 Umweltschutz;Umweltschutz;2014
+1374;156001401;-2147483648;3041902.5;plus;0.0;0.0;14 Umweltschutz;Umweltschutz;2014
+1375;156001401;4362140;0.0;minus;-195103.1875;-198133.484375;14 Umweltschutz;Umweltschutz;2014
+1376;156001401;1902871530;0.0;plus;0.0;3487576.75;14 Umweltschutz;Umweltschutz;2014
+1377;156001401;310151139;-269864.40625;minus;0.0;0.0;14 Umweltschutz;Umweltschutz;2014
+1378;156001402;679650425;-304111.03125;minus;0.0;0.0;14 Umweltschutz;Immissionsschutzverfahren;2014
+1379;156001402;1609054070;0.0;plus;314669.0;0.0;14 Umweltschutz;Immissionsschutzverfahren;2014
+1380;156001402;96626444;0.0;minus;-295006.28125;-295011.4375;14 Umweltschutz;Immissionsschutzverfahren;2014
+1381;156001402;1609559270;0.0;plus;0.0;317822.25;14 Umweltschutz;Immissionsschutzverfahren;2014
+1382;156001402;-2147483648;515280.53125;plus;0.0;0.0;14 Umweltschutz;Immissionsschutzverfahren;2014
+1383;161000000;1598000711;0.0;minus;-317733.21875;-313221.0;00;Produktbereichsübergreifend;2014
+1384;161000000;-2147483648;-271322.0;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1385;161000000;-2147483648;271322.0;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1386;161000000;1598000711;0.0;plus;317733.21875;313221.0;00;Produktbereichsübergreifend;2014
+1387;161000215;-2147483648;253903.015625;plus;0.0;0.0;02 Sicherheit und Ordnung;Statistik;2014
+1388;161000215;114499861;-9238.31933594;minus;0.0;0.0;02 Sicherheit und Ordnung;Statistik;2014
+1389;161000215;1702993765;0.0;plus;0.0;364089.65625;02 Sicherheit und Ordnung;Statistik;2014
+1390;161000215;2212340;0.0;minus;-6179.24023438;-6191.24023438;02 Sicherheit und Ordnung;Statistik;2014
+1391;161000215;1702488565;0.0;plus;364927.65625;0.0;02 Sicherheit und Ordnung;Statistik;2014
+1392;161000901;1705738518;0.0;plus;2413078.25;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2014
+1393;161000901;2223340;0.0;minus;-27601.9101562;-27656.6289062;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2014
+1394;161000901;-2147483648;2060772.625;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2014
+1395;161000901;114645151;-69886.40625;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2014
+1396;161000901;1706243718;0.0;plus;0.0;2597650.0;09 Räumliche Planung und Entwicklung, Geoinfo;Stadt- und Raumplanung;2014
+1397;161000902;-2147483648;3512795.25;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2014
+1398;161000902;115095131;-3122980.5;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2014
+1399;161000902;2643540;0.0;minus;-3430097.0;-3430114.25;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2014
+1400;161000902;1700334987;0.0;plus;5558852.5;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2014
+1401;161000902;1700840187;0.0;plus;0.0;5550461.5;09 Räumliche Planung und Entwicklung, Geoinfo;Maßnahmen des bes. Städtebaurechts;2014
+1402;161001003;116637461;-189632.453125;minus;0.0;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2014
+1403;161001003;1701389247;0.0;plus;694080.9375;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2014
+1404;161001003;2212340;0.0;minus;-143857.359375;-143885.6875;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2014
+1405;161001003;-2147483648;675669.3125;plus;0.0;0.0;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2014
+1406;161001003;1701894447;0.0;plus;0.0;732312.0625;10 Bauen und Wohnen;Denkmalschutz und Denkmalpflege;2014
+1407;161001207;1704066347;0.0;plus;0.0;10424621.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2014
+1408;161001207;2195340;0.0;minus;-8921613.0;-8921625.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2014
+1409;161001207;115889661;-9241824.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2014
+1410;161001207;-2147483648;10244698.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2014
+1411;161001207;1703029347;0.0;plus;10108633.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Verkehrsplanung;2014
+1412;162000900;1786000769;0.0;plus;350639.34375;349832.53125;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2014
+1413;162000900;1786000769;0.0;minus;-350639.34375;-349832.53125;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2014
+1414;162000900;-2147483648;-409878.59375;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2014
+1415;162000900;-2147483648;409878.59375;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;PB09 Räuml.Planung,Entw.,Geoinformation;2014
+1416;162000906;2212340;0.0;minus;-86516.6015625;-86557.5625;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2014
+1417;162000906;-2147483648;2000196.5;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2014
+1418;162000906;1890505357;0.0;plus;1797024.875;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2014
+1419;162000906;863076369;-117338.960938;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2014
+1420;162000906;1891010557;0.0;plus;0.0;1800690.25;09 Räumliche Planung und Entwicklung, Geoinfo;Ortsbaurecht;2014
+1421;162000907;-2147483648;5749151.0;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2014
+1422;162000907;1893699217;0.0;plus;0.0;6172170.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2014
+1423;162000907;2104507201;-2179329.0;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2014
+1424;162000907;1893194017;0.0;plus;6139222.5;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2014
+1425;162000907;191555795;0.0;minus;-1349809.875;-1360968.625;09 Räumliche Planung und Entwicklung, Geoinfo;Liegenschaftskataster, Geodaten;2014
+1426;162000908;864445869;-135581.21875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2014
+1427;162000908;-2147483648;995738.25;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2014
+1428;162000908;2668840;0.0;minus;-1442357.875;-1442378.25;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2014
+1429;162000908;1891552947;0.0;plus;0.0;1768892.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2014
+1430;162000908;1891047747;0.0;plus;1764905.125;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstücksneuordnung;2014
+1431;162000909;-2147483648;1226041.125;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2014
+1432;162000909;1891535257;0.0;plus;0.0;1224595.625;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2014
+1433;162000909;867181269;-151331.96875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2014
+1434;162000909;1891030057;0.0;plus;1219221.25;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2014
+1435;162000909;2660840;0.0;minus;-136026.640625;-136067.71875;09 Räumliche Planung und Entwicklung, Geoinfo;Grundstückswertermittlung;2014
+1436;163000000;1410000465;0.0;minus;-237611.515625;-236072.84375;00;Produktbereichsübergreifend;2014
+1437;163000000;-2147483648;-380777.1875;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1438;163000000;1410000465;0.0;plus;237611.515625;236072.84375;00;Produktbereichsübergreifend;2014
+1439;163000000;-2147483648;380777.1875;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1440;163000904;1608433013;0.0;plus;0.0;1886472.5;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2014
+1441;163000904;1607396013;0.0;plus;1759155.5;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2014
+1442;163000904;214345126;-371462.875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2014
+1443;163000904;-2147483648;2100494.5;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2014
+1444;163000904;3104640;0.0;minus;-55246.0820312;-55343.7617188;09 Räumliche Planung und Entwicklung, Geoinfo;Finanzierung von Erschließungsmaßnahmen;2014
+1445;163001001;1513378009;0.0;plus;0.0;4209213.5;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2014
+1446;163001001;-2147483648;4523346.0;plus;0.0;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2014
+1447;163001001;122059691;-3054250.5;minus;0.0;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2014
+1448;163001001;3124640;0.0;minus;-2820396.25;-2820507.25;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2014
+1449;163001001;1512872809;0.0;plus;4211435.5;0.0;10 Bauen und Wohnen;Maßnahmen der Bauaufsicht;2014
+1450;166000000;-2147483648;-1885517.5;minus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1451;166000000;-2147483648;1885517.5;plus;0.0;0.0;00;Produktbereichsübergreifend;2014
+1452;166000000;1880000902;0.0;plus;1834078.625;1774487.25;00;Produktbereichsübergreifend;2014
+1453;166000000;1880000902;0.0;minus;-1834078.625;-1774487.25;00;Produktbereichsübergreifend;2014
+1454;166000112;1901297008;0.0;plus;1607334.25;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2014
+1455;166000112;1825509527;-387144.6875;minus;0.0;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2014
+1456;166000112;1901802208;0.0;plus;0.0;1520587.125;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2014
+1457;166000112;-2147483648;2171610.5;plus;0.0;0.0;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2014
+1458;166000112;285109698;0.0;minus;-405078.25;-405087.25;01 Innere Verwaltung;Bauhof, Servicebereich und Brunnen;2014
+1459;166001103;639351901;-96825704.0;minus;0.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2014
+1460;166001103;2004412339;0.0;plus;58010428.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2014
+1461;166001103;-2147483648;66224128.0;plus;0.0;0.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2014
+1462;166001103;2004917539;0.0;plus;0.0;57677692.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2014
+1463;166001103;195928083;0.0;minus;-89611920.0;-89611944.0;11 Ver- und Entsorgung;Entwässerung und Abwasserbeseitigung;2014
+1464;166001201;6592620;0.0;minus;-9304559.0;-9304596.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2014
+1465;166001201;737813878;-11222197.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2014
+1466;166001201;-2147483648;57283696.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2014
+1467;166001201;-2147483648;0.0;plus;0.0;52829532.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2014
+1468;166001201;-2147483648;0.0;plus;53436660.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Gemeindestraßen;2014
+1469;166001202;-2147483648;1994337.25;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2014
+1470;166001202;2089407753;0.0;plus;0.0;2015402.25;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2014
+1471;166001202;2088902553;0.0;plus;2071098.75;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2014
+1472;166001202;6176450;0.0;minus;-311696.3125;-311697.875;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2014
+1473;166001202;258026264;-366686.59375;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Kreisstraßen;2014
+1474;166001203;1995407698;0.0;plus;0.0;2633811.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2014
+1475;166001203;-2147483648;2782055.25;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2014
+1476;166001203;540026275;-627372.1875;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2014
+1477;166001203;6592620;0.0;minus;-614882.125;-624883.6875;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2014
+1478;166001203;1994902498;0.0;plus;2675943.25;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Landesstraßen;2014
+1479;166001204;-2147483648;8942815.0;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2014
+1480;166001204;2090456063;0.0;plus;0.0;7855371.5;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2014
+1481;166001204;6176450;0.0;minus;-3283283.0;-3283284.75;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2014
+1482;166001204;2089950863;0.0;plus;8148064.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2014
+1483;166001204;543077174;-3779066.5;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Bundesstraßen;2014
+1484;166001205;1804148216;0.0;plus;125265.609375;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2014
+1485;166001205;219641803;-2959950.0;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2014
+1486;166001205;-2147483648;102441.21875;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2014
+1487;166001205;3541740;0.0;minus;-3213070.5;-3213071.25;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2014
+1488;166001205;1804653416;0.0;plus;0.0;124489.023438;12 Verkehrsflächen und -anlagen, ÖPNV;Parkeinrichtungen;2014
+1489;166001206;3109640;0.0;minus;-13343.8398438;-13345.2802734;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2014
+1490;166001206;213263244;-14244.9101562;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2014
+1491;166001206;-2147483648;2728713.75;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2014
+1492;166001206;1895338456;0.0;plus;1382934.875;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2014
+1493;166001206;1895843656;0.0;plus;0.0;1376905.0;12 Verkehrsflächen und -anlagen, ÖPNV;ÖPNV;2014
+1494;166001308;1804069688;0.0;plus;3539008.25;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2014
+1495;166001308;-2147483648;3268535.0;plus;0.0;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2014
+1496;166001308;3116940;0.0;minus;-129245.234375;-129246.3125;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2014
+1497;166001308;1804574888;0.0;plus;0.0;3490153.25;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2014
+1498;166001308;122094611;-213267.0;minus;0.0;0.0;13 Natur- und Landschaftspflege;Hochwasserschutz und Gewässer;2014
+1499;168001300;-2147483648;-1175884.25;minus;0.0;0.0;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2014
+1500;168001300;-2147483648;1175884.25;plus;0.0;0.0;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2014
+1501;168001300;1504000618;0.0;plus;1231375.25;1216094.375;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2014
+1502;168001300;1504000618;0.0;minus;-1231375.25;-1216094.375;13 Natur- und Landschaftspflege;PB13 Natur- und Landschaftspflege;2014
+1503;168001301;1908275651;0.0;plus;0.0;18830636.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2014
+1504;168001301;194144545;0.0;minus;-5226217.5;-5171246.5;13 Natur- und Landschaftspflege;Öffentliches Grün;2014
+1505;168001301;-2147483648;17935002.0;plus;0.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2014
+1506;168001301;621286155;-4988981.5;minus;0.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2014
+1507;168001301;1907770451;0.0;plus;18841044.0;0.0;13 Natur- und Landschaftspflege;Öffentliches Grün;2014
+1508;168001302;339513807;-1201132.625;minus;0.0;0.0;13 Natur- und Landschaftspflege;Forstwirtschaft;2014
+1509;168001302;-2147483648;2668359.75;plus;0.0;0.0;13 Natur- und Landschaftspflege;Forstwirtschaft;2014
+1510;168001302;5221830;0.0;minus;-120098.257812;-123050.070312;13 Natur- und Landschaftspflege;Forstwirtschaft;2014
+1511;168001302;1807325350;0.0;plus;1418129.25;1389239.125;13 Natur- und Landschaftspflege;Forstwirtschaft;2014
+1512;168001303;99344276;0.0;minus;-7127397.5;-7126414.5;13 Natur- und Landschaftspflege;Friedhöfe;2014
+1513;168001303;257132997;-6225310.5;minus;0.0;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2014
+1514;168001303;1906024863;0.0;plus;8353527.5;8396748.0;13 Natur- und Landschaftspflege;Friedhöfe;2014
+1515;168001303;-2147483648;8789436.0;plus;0.0;0.0;13 Natur- und Landschaftspflege;Friedhöfe;2014
+1516;168001719;5547890;-1838.64001465;minus;0.0;0.0;17 Stiftungen;Stiftung Fritz Kirstein;2014
+1517;168001719;1387920;0.0;minus;-3700.0;-3700.0;17 Stiftungen;Stiftung Fritz Kirstein;2014
+1518;168001719;531200;0.0;plus;3700.0;3700.0;17 Stiftungen;Stiftung Fritz Kirstein;2014
+1519;168001719;1540300;1838.64001465;plus;0.0;0.0;17 Stiftungen;Stiftung Fritz Kirstein;2014
+1520;170000111;448500;0.0;minus;-2437900.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2014
+1521;170000111;523500;0.0;plus;802131.0;0.0;01 Innere Verwaltung;Kfz- und Gerätemanagement;2014
+1522;170001102;311880536;-47901604.0;minus;0.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2014
+1523;170001102;448500;0.0;minus;-1365500.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2014
+1524;170001102;191184244;0.0;plus;0.0;42274124.0;11 Ver- und Entsorgung;Abfallwirtschaft;2014
+1525;170001102;1312360;0.0;minus;0.0;-42158672.0;11 Ver- und Entsorgung;Abfallwirtschaft;2014
+1526;170001102;-2147483648;44669748.0;plus;0.0;0.0;11 Ver- und Entsorgung;Abfallwirtschaft;2014
+1527;170001104;452100;-24807.5996094;minus;0.0;0.0;11 Ver- und Entsorgung;Dienstleistungen für DSD;2014
+1528;170001104;2190461;123254.859375;plus;0.0;0.0;11 Ver- und Entsorgung;Dienstleistungen für DSD;2014
+1529;170001208;432100;0.0;minus;0.0;-6109064.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2014
+1530;170001208;189074702;0.0;plus;0.0;8159839.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2014
+1531;170001208;304457380;-6648890.5;minus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2014
+1532;170001208;-2147483648;8060008.5;plus;0.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2014
+1533;170001208;448500;0.0;minus;-2012700.0;0.0;12 Verkehrsflächen und -anlagen, ÖPNV;Straßenreinigung und Winterdienst;2014
+1534;190000104;207337645;-212867.84375;minus;0.0;0.0;01 Innere Verwaltung;Koordination Integration;2014
+1535;190000104;-2147483648;1393512.0;plus;0.0;0.0;01 Innere Verwaltung;Koordination Integration;2014
+1536;190000104;1424756829;0.0;plus;1193920.875;1201252.375;01 Innere Verwaltung;Koordination Integration;2014
+1537;190000104;95781244;0.0;minus;-66699.5625;-176913.59375;01 Innere Verwaltung;Koordination Integration;2014
+1538;190000113;-2147483648;-370782.625;minus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2014
+1539;190000113;-2147483648;421323.875;plus;0.0;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2014
+1540;190000113;852807100;0.0;plus;0.0;287208.9375;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2014
+1541;190000113;188000013;0.0;minus;-235563.46875;-234849.9375;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2014
+1542;190000113;758807095;0.0;plus;266807.0625;0.0;01 Innere Verwaltung;Stabsstelle Arbeitssicherheit;2014
+1543;190001507;964986291;0.0;plus;17995996.0;17916088.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2014
+1544;190001507;-2147483648;67230944.0;plus;0.0;0.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2014
+1545;190001507;338620661;-13563067.0;minus;0.0;0.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2014
+1546;190001507;4497540;0.0;minus;-8433693.0;-8433721.0;15 Wirtschaft und Tourismus;Konferenzzentrum/Beethovenhalle;2014
+1547;190400412;1425798746;0.0;plus;1170672.375;1182800.75;04 Kultur und Wissenschaft;Wissenschaft;2014
+1548;190400412;112295030;-28376.9902344;minus;0.0;0.0;04 Kultur und Wissenschaft;Wissenschaft;2014
+1549;190400412;2610140;0.0;minus;-27516.5195312;-27517.5800781;04 Kultur und Wissenschaft;Wissenschaft;2014
+1550;190400412;-2147483648;1195888.125;plus;0.0;0.0;04 Kultur und Wissenschaft;Wissenschaft;2014
+1551;190600903;-2147483648;307130.875;plus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2014
+1552;190600903;1428780711;-307130.875;minus;0.0;0.0;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2014
+1553;190600903;1235187298;0.0;plus;329691.1875;327258.875;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2014
+1554;190600903;95781245;0.0;minus;-329691.15625;-327258.90625;09 Räumliche Planung und Entwicklung, Geoinfo;Koordination Stadtentwicklung;2014
