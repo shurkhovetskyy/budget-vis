@@ -6,9 +6,9 @@
     "node": "6.11.1"
   },
   "author": "Georgiy Shurkhovetskyy",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "ejs": "2.5.6",
