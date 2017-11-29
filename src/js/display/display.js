@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
 
-import { Styles } from './ui/styling';
-import { reveal, hide, MoneyNum, MoneySign } from './utils';
-import { Mode, View, Action, Sort } from './ui/ui-state';
-import { Sign } from './ui/text';
+import { Styles } from '../ui/styling';
+import { reveal, hide, MoneyNum, MoneySign } from '../utils';
+import { Mode, View, Action, Sort } from '../ui/ui-state';
+import { Sign } from '../ui/text';
 
 export default function Display (chart) {
 	this.c = chart;

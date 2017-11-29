@@ -65,15 +65,6 @@ export function MoneySign(labelValue) {
 	   : "";
 }
 
-// function sortUtil (display, a, b) {
-// 	const c = display.c;
-// 	if (display.sortMode == Sort.NUM)
-// 		return d3.descending(	c.val(a, display.sortDim),
-// 								c.val(b, display.sortDim));
-// 	else if (display.sortMode == Sort.ABC)
-// 		return d3.ascending(a.category, b.category);
-// }
-
 export const adjustFontSize = function (element) {
     if(!element.innerHTML) return;
     const dummy = document.createElement('div');

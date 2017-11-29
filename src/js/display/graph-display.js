@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 
 import Display from './display';
-import { Action, View } from './ui/ui-state';
-import { Styles } from './ui/styling';
+import { Action, View } from '../ui/ui-state';
+import { Styles } from '../ui/styling';
 
 export default function GraphDisplay (chart) {
 	Display.call(this, chart);

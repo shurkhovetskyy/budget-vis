@@ -1,10 +1,10 @@
 /*jshint esversion: 6 */
 
 import Display from './display';
-import { buildChart } from './script';
-import { Styles } from './ui/styling';
-import { Mode, Action, Sort } from './ui/ui-state';
-import { Tooltip } from './tooltip';
+import { buildChart } from '../script';
+import { Styles } from '../ui/styling';
+import { Mode, Action, Sort } from '../ui/ui-state';
+import { Tooltip } from '../tooltip';
 
 export default function BarDisplay (chart) {
 	Display.call(this, chart);

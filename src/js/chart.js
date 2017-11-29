@@ -9,8 +9,8 @@ import { Tooltip } from './tooltip';
 import { Help } from './ui/text';
 import { getFontSize, adjustFontSize, scrollTo } from './utils';
 
-import BarDisplay from './bar-display';
-import GraphDisplay from './graph-display';
+import BarDisplay from './display/bar-display';
+import GraphDisplay from './display/graph-display';
 import ListPanel from './list-panel';
 
 export default function Chart (level) {
@@ -247,27 +247,25 @@ export default function Chart (level) {
 	// Sets title on the top left of the chart.
 	this.setTitle = function () {
 
-	//	console.log(fs);
-	//	fs = "32px";
-		this.selectionText
-			.transition("hide")
-			.duration(500)
-			.style("opacity", 0)
-			.transition("text")
-			.text(this.selectionName);
-
-		let fs = getFontSize(	this.selectionText.node(),
-								this.selectionName);
-		console.log()
-
-		this.selectionText
-			.style("font-size", fs)
-			.transition("reveal")
-			.duration(500)
-			.style("opacity", 1);
+		// this.selectionText
+		// 	.transition("hide")
+		// 	.duration(500)
+		// 	.style("opacity", 0)
+		// 	.transition("text")
+		// 	.text(this.selectionName);
+		//
+		// let fs = getFontSize(	this.selectionText.node(),
+		// 						this.selectionName);
+		//
+		// this.selectionText
+		// 	.style("font-size", fs)
+		// 	.transition("reveal")
+		// 	.duration(500)
+		// 	.style("opacity", 1);
 
 		this.levelText.text(this.levelName);
-	//	adjustFontSize(this.selectionText.node());
+		this.selectionText.text(this.selectionName);
+		adjustFontSize(this.selectionText.node());
 	};
 
 	function getDatum (data, mode, dimension) {

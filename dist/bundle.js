@@ -257,15 +257,6 @@ function MoneySign(labelValue) {
 	   : "";
 }
 
-// function sortUtil (display, a, b) {
-// 	const c = display.c;
-// 	if (display.sortMode == Sort.NUM)
-// 		return d3.descending(	c.val(a, display.sortDim),
-// 								c.val(b, display.sortDim));
-// 	else if (display.sortMode == Sort.ABC)
-// 		return d3.ascending(a.category, b.category);
-// }
-
 const adjustFontSize = function (element) {
     if(!element.innerHTML) return;
     const dummy = document.createElement('div');
@@ -311,7 +302,7 @@ const getFontSize = function (element, text) {
     document.body.removeChild(dummy);
 	return font;
 };
-/* harmony export (immutable) */ __webpack_exports__["d"] = getFontSize;
+/* unused harmony export getFontSize */
 
 
 const hide = function (el, duration = 500) {
@@ -321,7 +312,7 @@ const hide = function (el, duration = 500) {
 		.style("visibility", "hidden")
 		;
 };
-/* harmony export (immutable) */ __webpack_exports__["e"] = hide;
+/* harmony export (immutable) */ __webpack_exports__["d"] = hide;
 
 
 const reveal = function (el, duration = 500) {
@@ -330,7 +321,7 @@ const reveal = function (el, duration = 500) {
 	//	.transition().duration(duration)
 		.style("opacity", 1);
 };
-/* harmony export (immutable) */ __webpack_exports__["f"] = reveal;
+/* harmony export (immutable) */ __webpack_exports__["e"] = reveal;
 
 
 
@@ -788,14 +779,14 @@ Display.prototype.setNoDataMessage = function () {
 */
 Display.prototype.noDataMessage = function (noData = true) {
 	if (noData) {
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.c.axisCon);
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.container);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.c.axisCon);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.container);
 		this.setNoDataMessage();
 		this.minimizeItems();
 		this.chartSet = false;
 	} else {
 		this.c.axisCon.style("visibility", "visible");
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["f" /* reveal */])(this.container);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* reveal */])(this.container);
 	}
 	this.labelsCon.classed("hidden", noData);
 	this.c.no.classed("reveal", noData);
@@ -921,7 +912,7 @@ Display.prototype.deactivate = function () {
 	this.active = false;
 	this.chartSet = false;
 
-	Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.container);
+	Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.container);
 	this.labelsCon.classed("hidden", true);
 
 	this.c.shownDimensions.forEach(
@@ -961,8 +952,8 @@ module.exports = {"levels":["Produktbereich","Bezeichnung","Profitcenter","Koste
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_text__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__bar_display__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__graph_display__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__display_bar_display__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__display_graph_display__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__list_panel__ = __webpack_require__(11);
 /*jshint esversion: 6 */
 /*jshint loopfunc: true */
@@ -1035,8 +1026,8 @@ function Chart (level) {
 
 	this.initialBuild();
 
-	this.barDisplay = new __WEBPACK_IMPORTED_MODULE_5__bar_display__["a" /* default */](this);
-	this.graphDisplay = new __WEBPACK_IMPORTED_MODULE_6__graph_display__["a" /* default */](this);
+	this.barDisplay = new __WEBPACK_IMPORTED_MODULE_5__display_bar_display__["a" /* default */](this);
+	this.graphDisplay = new __WEBPACK_IMPORTED_MODULE_6__display_graph_display__["a" /* default */](this);
 	this.listPanel = new __WEBPACK_IMPORTED_MODULE_7__list_panel__["a" /* default */](this);
 
 	this.setParser = function (value) {
@@ -1213,27 +1204,25 @@ function Chart (level) {
 	// Sets title on the top left of the chart.
 	this.setTitle = function () {
 
-	//	console.log(fs);
-	//	fs = "32px";
-		this.selectionText
-			.transition("hide")
-			.duration(500)
-			.style("opacity", 0)
-			.transition("text")
-			.text(this.selectionName);
-
-		let fs = Object(__WEBPACK_IMPORTED_MODULE_4__utils__["d" /* getFontSize */])(	this.selectionText.node(),
-								this.selectionName);
-		console.log()
-
-		this.selectionText
-			.style("font-size", fs)
-			.transition("reveal")
-			.duration(500)
-			.style("opacity", 1);
+		// this.selectionText
+		// 	.transition("hide")
+		// 	.duration(500)
+		// 	.style("opacity", 0)
+		// 	.transition("text")
+		// 	.text(this.selectionName);
+		//
+		// let fs = getFontSize(	this.selectionText.node(),
+		// 						this.selectionName);
+		//
+		// this.selectionText
+		// 	.style("font-size", fs)
+		// 	.transition("reveal")
+		// 	.duration(500)
+		// 	.style("opacity", 1);
 
 		this.levelText.text(this.levelName);
-	//	adjustFontSize(this.selectionText.node());
+		this.selectionText.text(this.selectionName);
+		Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* adjustFontSize */])(this.selectionText.node());
 	};
 
 	function getDatum (data, mode, dimension) {
