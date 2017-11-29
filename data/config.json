@@ -1,0 +1,4 @@
+{
+	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
+	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"]
+}

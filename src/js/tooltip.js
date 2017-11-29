@@ -1,6 +1,9 @@
 /*jshint esversion: 6 */
 
-const Tooltip = (function () {
+import { Styles } from './ui/styling';
+import { MoneyNum, MoneySign } from './utils';
+
+export const Tooltip = (function () {
 	const tooltip = {};
 
 	const DIRECTION_UP = "up";
@@ -156,4 +159,4 @@ const Tooltip = (function () {
 	tooltip.LEFT = DIRECTION_LEFT;
 
 	return tooltip;
-}());
+})();

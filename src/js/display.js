@@ -1,6 +1,11 @@
 /*jshint esversion: 6 */
 
-function Display (chart) {
+import { Styles } from './ui/styling';
+import { reveal, hide, MoneyNum, MoneySign } from './utils';
+import { Mode, View, Action, Sort } from './ui/ui-state';
+import { Sign } from './ui/text';
+
+export default function Display (chart) {
 	this.c = chart;
 	this.container = chart.mainContainer.append("g")
 					//	.style("visibility", "hidden")
@@ -96,7 +101,7 @@ Display.prototype.setAxis = function (x = false, y = false, fading = false) {
 };
 
 Display.prototype.updateLabels = function () {
-	if ([ACTION_MODE, ACTION_YEAR].includes(this.c.action))
+	if ([Action.MODE, Action.YEAR].includes(this.c.action))
 		return;
 
 	console.log("updateLabels");
@@ -190,9 +195,9 @@ Display.prototype.setupChart = function (dims = null) {
 
 Display.prototype.updateData = function () {
 	// if there is currently no data or year was changed...
-	if(this.noData || this.c.action == ACTION_YEAR) {
+	if(this.noData || this.c.action == Action.YEAR) {
 		// if data not available and year was not changed...
-		if(this.c.action != ACTION_YEAR)
+		if(this.c.action != Action.YEAR)
 			return;
 		// if year was changed and data is still not available...
 		if (!this.dataAvailable()) {
@@ -204,7 +209,7 @@ Display.prototype.updateData = function () {
 		else {
 			// if chart has not been even built even yet, build it.
 			if (!this.chartSet) {
-				this.c.action = ACTION_ADD;
+				this.c.action = Action.ADD;
 				Display.prototype.setupChart.call(this);
 				return;
 			}

@@ -3,32 +3,17 @@
 
 // Mode from displaying values.
 
-const Mode = {
-	SPENDING: "plus",
-	REVENUE: "minus",
-	COMB: "combined",
-	BAL: "balanced"
-};
+import { Styles, ColorSchemes, Colors, Blacks } from './ui/styling';
+import { Mode, View, Action, Sort } from './ui/ui-state';
+import { Tooltip } from './tooltip';
+import { Help } from './ui/text';
+import { getFontSize, adjustFontSize, scrollTo } from './utils';
 
-// Mode for visualization.
-const VIEW_TIME = "time";
-const VIEW_CATS = "cats";
+import BarDisplay from './bar-display';
+import GraphDisplay from './graph-display';
+import ListPanel from './list-panel';
 
-// Actions.
-const ACTION_MODE = "mode";
-const ACTION_RESIZE = "resize";
-const ACTION_YEAR = "year";
-const ACTION_UPDATE = "update";
-const ACTION_ADD = "add";
-
-// Sorting.
-const SORT_NUM = "num";
-const SORT_ABC = "abc";
-
-const DISPLAY_TIME = "overtime";
-const DISPLAY_CATS = "categories";
-
-function Chart (level) {
+export default function Chart (level) {
 
 	// Keeps track of visible dimensions.
 	this.shownDimensions = ["Executed-Ist"];
@@ -65,7 +50,7 @@ function Chart (level) {
 					"2010", "2009", "2008"];
 	this.year = "2015";
 
-	this.displayMode = DISPLAY_CATS;
+	this.viewMode = View.CATS;
 	this.stacksVisible = true;
 
 //	var svgDimCon = null;
@@ -169,7 +154,7 @@ function Chart (level) {
 
 	this.setLevel = function (value) {
 		this.level = value;
-		this.colorBand = colorSchemes[this.level%colorSchemes.length];
+		this.colorBand = ColorSchemes[this.level%ColorSchemes.length];
 		return this;
 	};
 
@@ -186,7 +171,7 @@ function Chart (level) {
 
 	this.build = function () {
 		if (!this.initialized) {
-			this.action = ACTION_ADD;
+			this.action = Action.ADD;
 			// this.initialBuild();
 			this.setTitle();
 			this.barDisplay.activate();
@@ -194,7 +179,7 @@ function Chart (level) {
 			this.listPanel.activate();
 			this.initialized = true;
 		} else {
-			this.action = ACTION_UPDATE;
+			this.action = Action.UPDATE;
 			this.setDefaults();
 			this.setTitle();
 			this.updateData();
@@ -209,7 +194,7 @@ function Chart (level) {
 	*/
 	this.addDimension = function (dim, push = true) {
 		var start = new Date().getTime();
-		this.action = ACTION_ADD;
+		this.action = Action.ADD;
 		if(push)
 			sd.push(dim);
 //		this.display.addDimension.call(this, dim);
@@ -229,7 +214,7 @@ function Chart (level) {
 	};
 
 	this.resize = function () {
-		this.action = ACTION_RESIZE;
+		this.action = Action.RESIZE;
 		this.calcWidth();
 		adjustFontSize(this.selectionText.node());
 		//console.log(width);
@@ -243,13 +228,13 @@ function Chart (level) {
 
 	this.getStackItemColor = function (index) {
 	//	const color = stackColors[sd.indexOf(dim)%colors.length][index%3];
-		const color = blacks[index%blacks.length];
+		const color = Blacks[index%Blacks.length];
 		return color;
 	};
 
 	this.getItemColor = function (dim) {
 	//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
-		const color = colors[dims.indexOf(dim)%colors.length];
+		const color = Colors[dims.indexOf(dim)%Colors.length];
 		return color;
 	};
 
@@ -345,11 +330,11 @@ function Chart (level) {
 		Tooltip.help(x, y, Tooltip.RIGHT, this, help);
 	};
 
-	this.setDisplay = function (displayMode) {
-		this.displayMode = displayMode;
-		this.action = ACTION_ADD;
+	this.setDisplay = function (viewMode) {
+		this.viewMode = viewMode;
+		this.action = Action.ADD;
 
-		if(this.displayMode==DISPLAY_TIME) {
+		if(this.viewMode==View.TIME) {
 			this.buttonPress(this.displayOverTime, this.displaySwitch);
 			this.graphDisplay.activate();
 			this.listPanel.setYear(null);
@@ -365,7 +350,7 @@ function Chart (level) {
 			this.sortControl.classed("hidden", false);
 			this.listPanel.setYear(this.year);
 			this.listPanel.figuresShow();
-			if (displayMode != Mode.BAL) {
+			if (viewMode != Mode.BAL) {
 				this.listPanel.stackedChartsVisible(true);
 				this.listPanel.updateStackedCharts();
 			}
@@ -374,23 +359,23 @@ function Chart (level) {
 	};
 
 	this.setYear = function () {
-		this.action = ACTION_YEAR;
+		this.action = Action.YEAR;
 		this.year = this.yearSelect.property("value");
 		this.listPanel.setYear(this.year);
 		this.updateData();
-	//	this.display.sortBars(0, SORT_NUM);
+	//	this.display.sortBars(0, Sort.NUM);
 		this.sortNumerical.classed("active-button", false);
 		// this.sortAlphabetical.classed("active-button", false);
 		this.action = null;
 	};
 
 	this.setMode = function (mode) {
-		this.action = ACTION_MODE;
+		this.action = Action.MODE;
 		this.mode = mode;
 		this.sortNumerical.classed("active-button", false);
 		this.updateData();
 
-		if (this.displayMode == DISPLAY_TIME ||
+		if (this.viewMode == View.TIME ||
 			mode == Mode.BAL)
 			this.listPanel.stackedChartsVisible(false);
 		else
@@ -522,7 +507,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("id", "displayhelp-" + this.level)
 		.on("click", () => {
 			const x = Styles.widthControlPanel, y = 16;
-			Tooltip.help(x, y, Tooltip.LEFT, this, help.EN.view);
+			Tooltip.help(x, y, Tooltip.LEFT, this, Help.EN.view);
 		});
 
 	this.displaySwitch = this.displayControl.append("div")
@@ -531,13 +516,13 @@ Chart.prototype.initialBuild = function () {
 	this.displayOverTime = this.displaySwitch.append("button")
 		.attr("id", "displayovertime-" + this.level)
 		.text("Over time")
-		.on("click", () => this.setDisplay(DISPLAY_TIME));
+		.on("click", () => this.setDisplay(View.TIME));
 
 	this.displayCategories = this.displaySwitch.append("button")
 		.attr("class", "last active-button")
 		.attr("id", "displaycats-" + this.level)
 		.text("Categories")
-		.on("click", () => this.setDisplay(DISPLAY_CATS));
+		.on("click", () => this.setDisplay(View.CATS));
 
 	/*
 	* Mode control.
@@ -561,7 +546,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("id", "modehelp-" + this.level)
 		.on("click", () => {
 			const x = Styles.widthControlPanel, y = 80;
-			Tooltip.help(x, y, Tooltip.LEFT, this, help.EN.mode);
+			Tooltip.help(x, y, Tooltip.LEFT, this, Help.EN.mode);
 		});
 
 	this.modeSwitch = this.modeControl.append("div")
@@ -624,7 +609,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("id", "yearhelp-" + this.level)
 		.on("click", () => {
 			const x = Styles.widthControlPanel, y = 144;
-			Tooltip.help(x, y, Tooltip.LEFT, this, help.EN.year);
+			Tooltip.help(x, y, Tooltip.LEFT, this, Help.EN.year);
 		});
 
 	this.yearSwitch = this.yearControl.append("div")
@@ -663,7 +648,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("id", "sorthelp-" + this.level)
 		.on("click", () => {
 			const x = Styles.widthControlPanel, y = 208;
-			Tooltip.help(x, y, Tooltip.LEFT, this, help.EN.sort);
+			Tooltip.help(x, y, Tooltip.LEFT, this, Help.EN.sort);
 		});
 
 	this.sortSwitch = this.sortControl.append("div")
@@ -674,7 +659,7 @@ Chart.prototype.initialBuild = function () {
 		.text("123")
 		.on("click", () => {
 			this.buttonPress(this.sortNumerical, this.sortSwitch);
-			this.sortBars(0, SORT_NUM);
+			this.sortBars(0, Sort.NUM);
 		});
 
 	this.sortAlphabetical = this.sortSwitch.append("button")
@@ -683,7 +668,7 @@ Chart.prototype.initialBuild = function () {
 		.text("ABC")
 		.on("click", () => {
 			this.buttonPress(this.sortAlphabetical, this.sortSwitch);
-			this.sortBars(0, SORT_ABC);
+			this.sortBars(0, Sort.ABC);
 		});
 
 	this.controlContainer.selectAll(".help").on("mouseout",

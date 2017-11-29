@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 /*jshint sub:true*/
 
-class BonnParser extends AbstractParser {
+export default class BonnParser {
 
 	constructor () {
 	//	super();

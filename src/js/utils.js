@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
-function scrollTo (element, to, duration) {
+import { Sign } from './ui/text';
+
+export function scrollTo (element, to, duration) {
     let start = element.scrollTop,
         change = to - start,
         currentTime = 0,
@@ -41,7 +43,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
 	return -c/2 * (t*(t-2) - 1) + b;
 };
 
-function MoneyNum(labelValue) {
+export function MoneyNum(labelValue) {
   // Nine Zeroes for Billions
   const v = Math.abs(Number(labelValue)) >= 1.0e+9 ? (d3.format(".2f")(Math.abs(Number(labelValue)) / 1.0e+9))
        // Six Zeroes for Millions
@@ -53,7 +55,7 @@ function MoneyNum(labelValue) {
 	   return (labelValue < 0) ? -v: v;
 }
 
-function MoneySign(labelValue) {
+export function MoneySign(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e+9 ? Sign.billion
        // Six Zeroes for Millions
@@ -65,14 +67,14 @@ function MoneySign(labelValue) {
 
 // function sortUtil (display, a, b) {
 // 	const c = display.c;
-// 	if (display.sortMode == SORT_NUM)
+// 	if (display.sortMode == Sort.NUM)
 // 		return d3.descending(	c.val(a, display.sortDim),
 // 								c.val(b, display.sortDim));
-// 	else if (display.sortMode == SORT_ABC)
+// 	else if (display.sortMode == Sort.ABC)
 // 		return d3.ascending(a.category, b.category);
 // }
 
-const adjustFontSize = function (element) {
+export const adjustFontSize = function (element) {
     if(!element.innerHTML) return;
     const dummy = document.createElement('div');
 		dummy.className = 'dummy';
@@ -93,7 +95,7 @@ const adjustFontSize = function (element) {
     document.body.removeChild(dummy);
 };
 
-const getFontSize = function (element, text) {
+export const getFontSize = function (element, text) {
   //  if(!element.innerHTML) return;
     const dummy = document.createElement('div');
 		dummy.className = 'dummy';
@@ -116,7 +118,7 @@ const getFontSize = function (element, text) {
 	return font;
 };
 
-const hide = function (el, duration = 500) {
+export const hide = function (el, duration = 500) {
 	el.transition().duration(duration)
 		.style("opacity", 0)
 		.transition().duration(duration)
@@ -124,17 +126,13 @@ const hide = function (el, duration = 500) {
 		;
 };
 
-const reveal = function (el, duration = 500) {
+export const reveal = function (el, duration = 500) {
 	el.transition().duration(duration)
 		.style("visibility", "visible")
 	//	.transition().duration(duration)
 		.style("opacity", 1);
 };
 
-const Sign = {
-	billion : "B",
-	million: "Mio",
-	thousand: "Tsd"
-};
+
 
 //console.log(MoneyFormat(14235345));

@@ -1,7 +1,10 @@
 /*jshint esversion: 6 */
 
+import Display from './display';
+import { Action, View } from './ui/ui-state';
+import { Styles } from './ui/styling';
 
-function GraphDisplay (chart) {
+export default function GraphDisplay (chart) {
 	Display.call(this, chart);
 
 	// this.years = this.getLabels();
@@ -57,7 +60,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 
 		points.transition().duration(1000)
 			.attr("cy", (d) => this.yScale(d.value));
-		if (this.c.action == ACTION_RESIZE)
+		if (this.c.action == Action.RESIZE)
 			points.transition("x").duration(1000)
 				.attr("cx", (d) => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
@@ -67,6 +70,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 		}
 	} else {
 		path = this.buildPath(dim, data);
+		const tl = path.node().getTotalLength();
 		path.transition("line")
 			// .delay(350)
 			.duration(1500)
@@ -110,7 +114,7 @@ GraphDisplay.prototype.removeDimension = function (dim) {
 *	necessary to draw the graph.
 */
 GraphDisplay.prototype.getPathData = function (dim) {
-	if (![ACTION_MODE, ACTION_YEAR, ACTION_UPDATE]
+	if (![Action.MODE, Action.YEAR, Action.UPDATE]
 			.includes(this.c.action)
 		&& this.pathData.hasOwnProperty(dim)) {
 			return this.pathData[dim];
@@ -134,7 +138,7 @@ GraphDisplay.prototype.buildPath = function (dim, data) {
 		.attr("stroke", this.c.getItemColor(dim))
 		.attr("class", "path dim-" + dim)
 		.attr("id", "path-" + this.c.level + "-" + dim);
-	tl = path.node().getTotalLength();
+	const tl = path.node().getTotalLength();
 	path.attr("stroke-dasharray", tl)
 		.attr("stroke-dashoffset", tl);
 	return path;
@@ -282,7 +286,7 @@ GraphDisplay.prototype.click = function (y) {
 	this.c.year = y;
 	this.c.yearSelect.node().value = y;
 //	this.c.updateStackedCharts();
-	this.c.setDisplay(DISPLAY_CATS);
+	this.c.setDisplay(View.CATS);
 };
 
 GraphDisplay.prototype.highlight = function () {

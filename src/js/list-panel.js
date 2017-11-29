@@ -1,6 +1,11 @@
 /*jshint esversion: 6 */
 
-function ListPanel (chart) {
+import { Styles } from './ui/styling';
+import { Mode } from './ui/ui-state';
+import { Tooltip } from './tooltip';
+import { MoneyNum, MoneySign } from './utils';
+
+export default function ListPanel (chart) {
 //	Display.call(this, chart);
 
 	this.c = chart;

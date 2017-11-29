@@ -1,6 +1,12 @@
 /*jshint esversion: 6 */
 
-function BarDisplay (chart) {
+import Display from './display';
+import { buildChart } from './script';
+import { Styles } from './ui/styling';
+import { Mode, Action, Sort } from './ui/ui-state';
+import { Tooltip } from './tooltip';
+
+export default function BarDisplay (chart) {
 	Display.call(this, chart);
 
 	this.xScale = d3.scale.ordinal();
@@ -18,7 +24,7 @@ function BarDisplay (chart) {
 
 	// this.labelsText = this.getLabels();
 	this.selected = -1;
-	this.sortMode = SORT_ABC;
+	this.sortMode = Sort.ABC;
 	this.bandLimit = 14;
 }
 
@@ -107,7 +113,7 @@ BarDisplay.prototype.buildBars = function (bars, dim) {
 		.call(function() {
 			_this.setListeners.call(this, _this); })
 		.style("opacity", (d) => {
-			if (this.c.action==ACTION_ADD && this.selected!=-1) {
+			if (this.c.action==Action.ADD && this.selected!=-1) {
 				if (d.id == this.selected)	return hi;
 				else 						return lo;
 			}
@@ -168,9 +174,9 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	const _this = this;
 	const hi = 1.0;
 	const lo = 0.4;
-	if ([ACTION_ADD, ACTION_UPDATE].includes(this.c.action)) {
+	if ([Action.ADD, Action.UPDATE].includes(this.c.action)) {
 		bars = this.buildBars(bars, dim);
-		if (this.c.action == ACTION_ADD) {
+		if (this.c.action == Action.ADD) {
 			bars.call(function () {
 					_this.setBarsWidth.call(this, _this); })
 				.attr("y", this.yScale(0))
@@ -181,19 +187,19 @@ BarDisplay.prototype.renderDimension = function (dim) {
 
 	const delay = 500;
 	const offDelay = (this.chartSet ? 500 : 0);
-	const dl = dataset.length;
+	const dl = this.dataset.length;
 
 	bars.transition()
 		.delay((d, i) => {
-			if (_this.c.action == ACTION_ADD)
+			if (_this.c.action == Action.ADD)
 				return (offDelay + (i / dl) * delay);
 			return 0;
 		})
 		.duration(duration)
 		.call(function () {
-			if(_this.c.action!=ACTION_RESIZE)
+			if(_this.c.action!=Action.RESIZE)
 				_this.setBarsHeight.call(this, _this);
-			if ([ACTION_UPDATE, ACTION_RESIZE].includes(_this.c.action))
+			if ([Action.UPDATE, Action.RESIZE].includes(_this.c.action))
 				_this.setBarsWidth.call(this, _this);
 		});
 };
@@ -258,17 +264,17 @@ BarDisplay.prototype.sortBars = function (dimension, sort = null) {
 
 	// let sortUtil = function (a, b) {
 	// 	const c = _this.c;
-	// 	if (_this.sortMode == SORT_NUM)
+	// 	if (_this.sortMode == Sort.NUM)
 	// 		return d3.descending(	c.val(a, _this.sortDim),
 	// 								c.val(b, _this.sortDim));
-	// 	else if (_this.sortMode == SORT_ABC)
+	// 	else if (_this.sortMode == Sort.ABC)
 	// 		return d3.ascending(a.category, b.category);
 	// };
 
-	if (this.sortMode == SORT_NUM) {
+	if (this.sortMode == Sort.NUM) {
 		c.sortNumerical.classed("active-button", true);
 		c.sortAlphabetical.classed("active-button", false);
-	} else if (this.sortMode == SORT_ABC) {
+	} else if (this.sortMode == Sort.ABC) {
 		c.sortNumerical.classed("active-button", false);
 		c.sortAlphabetical.classed("active-button", true);
 	}
@@ -372,7 +378,7 @@ BarDisplay.prototype.mouseOver = function (d, target) {
 		bar = target;
 
 	const box = bar.getBBox();
-	x = box.x + box.width / 2;
+	let x = box.x + box.width / 2;
 	x = x + Styles.leftMargin + Styles.widthControlPanel;
 
 	Tooltip.draw(d, x, Styles.tooltipY - 1, Tooltip.DOWN, this.c, false);
@@ -392,7 +398,7 @@ BarDisplay.prototype.mouseOut = function (d) {
 
 BarDisplay.prototype.click = function (d) {
 	const c = this.c;
-	const index = (dataset.map (r => r.id)).indexOf(d.id);
+	const index = (this.dataset.map (r => r.id)).indexOf(d.id);
 
 	// const y = Styles.height + Styles.labelLength + Styles.bottomPadding,
 	// 	  x = this.xScale(index) + this.xScale.rangeBand() / 2,
@@ -411,10 +417,10 @@ BarDisplay.prototype.click = function (d) {
 
 BarDisplay.prototype.sortUtil = function (a, b) {
 	const c = this.c;
-	if (this.sortMode == SORT_NUM)
+	if (this.sortMode == Sort.NUM)
 		return d3.descending(	c.val(a, this.sortDim),
 								c.val(b, this.sortDim));
-	else if (this.sortMode == SORT_ABC)
+	else if (this.sortMode == Sort.ABC)
 		return d3.ascending(a.category, b.category);
 };
 
