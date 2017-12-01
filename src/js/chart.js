@@ -1,13 +1,11 @@
 /*jshint esversion: 6 */
 /*jshint loopfunc: true */
 
-// Mode from displaying values.
-
 import { Styles, ColorSchemes, Colors, Blacks } from './ui/styling';
 import { Mode, View, Action, Sort } from './ui/ui-state';
 import { Tooltip } from './tooltip';
 import { Help } from './ui/text';
-import { getFontSize, adjustFontSize, scrollTo } from './utils';
+import { getFontSize, adjustFontSize } from './utils';
 
 import BarDisplay from './display/bar-display';
 import GraphDisplay from './display/graph-display';
@@ -103,9 +101,9 @@ export default function Chart (level) {
 			rolled = d3.nest()
 				.key(d => d.Year).key(d => d.Sign)
 				.rollup (v => ({
-					"Executed-Ist"	: d3.sum(v, d => parser.parse(d["Executed-Ist"])),
-					"Planentwurf"		: d3.sum(v, d => parser.parse(d["Planentwurf"])),
-					"Plan"		: d3.sum(v, d => parser.parse(d["Plan"])) }))
+					"Executed-Ist"	: d3.sum(v, d => parseFloat(d["Executed-Ist"])),
+					"Planentwurf"	: d3.sum(v, d => parseFloat(d["Planentwurf"])),
+					"Plan"		: d3.sum(v, d => parseFloat(d["Plan"])) }))
 				.entries(c.values.data);
 			item.data = rolled;
 			return item;

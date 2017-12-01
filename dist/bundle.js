@@ -186,7 +186,7 @@ const View = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export scrollTo */
+/* harmony export (immutable) */ __webpack_exports__["f"] = scrollTo;
 /* harmony export (immutable) */ __webpack_exports__["a"] = MoneyNum;
 /* harmony export (immutable) */ __webpack_exports__["b"] = MoneySign;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_text__ = __webpack_require__(4);
@@ -271,7 +271,7 @@ const adjustFontSize = function (element) {
 
     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
     let font = parseFloat(dummy.style.fontSize) / rw;
-//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
+	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
 	font = Math.min(font, 32) + 'px';
 
     element.style.fontSize = font;
@@ -281,24 +281,24 @@ const adjustFontSize = function (element) {
 
 
 const getFontSize = function (element, text) {
-  //  if(!element.innerHTML) return;
+  	//  if(!element.innerHTML) return;
     const dummy = document.createElement('div');
 		dummy.className = 'dummy';
     const elementStyle = getComputedStyle(element);
     dummy.style.font = elementStyle.font;
     dummy.style.padding = elementStyle.padding;
     dummy.style.boxSizing = elementStyle.boxSizing;
-//	dummy.innerHTML = element.innerHTML;
+	//	dummy.innerHTML = element.innerHTML;
 	dummy.innerText = text;
     document.body.appendChild(dummy);
     const dummyStyle = getComputedStyle(dummy);
 
     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
     let font = parseFloat(dummy.style.fontSize) / rw;
-//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
+	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
 	font = Math.min(font, 32) + 'px';
 
-//	element.style.fontSize = font;
+	//	element.style.fontSize = font;
     document.body.removeChild(dummy);
 	return font;
 };
@@ -323,10 +323,6 @@ const reveal = function (el, duration = 500) {
 };
 /* harmony export (immutable) */ __webpack_exports__["e"] = reveal;
 
-
-
-
-//console.log(MoneyFormat(14235345));
 
 
 /***/ }),
@@ -539,71 +535,77 @@ const Sign = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buildChart", function() { return buildChart; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_styling__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__chart__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bonn_parser__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chart__ = __webpack_require__(8);
 /*jshint esversion: 6 */
 
-var CONFIG = __webpack_require__(7);
 
 
 
 
+const DATA_CONFIG = __webpack_require__(7);
 
-var maxLength = 16;
-var maxValue = 42;
-
-
-console.log(CONFIG.dimensions);
-
-
-//stackColors = colors;
-var charts = [];
+let charts = [];
 
 function getChartAt (level) {
-	var c = charts[level];
+	let c = charts[level];
 	// If no chart yet at this level.
 	if (c==null) {
-		c = new __WEBPACK_IMPORTED_MODULE_1__chart__["a" /* default */](level);
+		c = new __WEBPACK_IMPORTED_MODULE_2__chart__["a" /* default */](level);
 		charts.push(c);
-		scrollTo(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * level, 500);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["f" /* scrollTo */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * level, 500);
 	} else {
-		scrollTo(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * (level-1), 250);
-		// If there is chart at this level, check if there
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["f" /* scrollTo */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * (level-1), 250);
+		// If there is already chart at this level, check if there
 		// are charts at deeper levels and destroy them.
-		var rest = charts.slice(level + 1, charts.length);
+		const rest = charts.slice(level + 1, charts.length);
 		rest.forEach (rc => rc.destroy());
 		charts = charts.slice(0, level + 1);
-
 	}
 	return c;
 }
 
-function buildChart(level, data, selectionName, parser) {
-	if (!parser.allowLevel(level))
+function roll (csv, level) {
+	const levels = DATA_CONFIG.levels;
+	const ready = d3.nest()
+		.key(function(d) {
+			return d[levels[level]];
+		})
+		.rollup(function(v) {
+			return {
+				data: v,
+				count: v.length
+			};
+		})
+		.entries(csv);
+	return ready;
+}
+
+function buildChart(level, data, selectionName) {
+	if (level >= DATA_CONFIG.levels.length)
 		return;
 
 	const chart = getChartAt(level)
-			.setParser (parser)
-			.setDataset(parser.getDataset(data, level))
-			.setStackedDataset(parser.getStackedDataset(data))
+			.setDataset(roll(data, level))
+			.setStackedDataset(roll(data, DATA_CONFIG.levels.length - 1))
 			.setLevel(level)
 			.setSelectionName(selectionName)
-			.setLevelName(parser.getLevelName(level));
+			.setLevelName(DATA_CONFIG.levels[level]);
 	chart.build();
 }
 
-function launchChart (filename, parser) {
-	var dsv = d3.dsv(";", "text/plain");
-	dsv(filename, csv => buildChart(0, csv, parser.getFirstLevelName(), parser));
-}
 
-launchChart("data/out1.csv", __WEBPACK_IMPORTED_MODULE_2__bonn_parser__["a" /* default */]);
 
-function redraw () {
-	charts.forEach (c => c.resize());
-}
+(function() {
+	const redraw = () => charts.forEach (c => c.resize());
+	const launchChart = (filename) =>
+		d3.dsv(";", "text/plain")(filename, csv =>
+			buildChart(0, csv, DATA_CONFIG.name));
 
-window.addEventListener("resize", redraw);
+	window.addEventListener("resize", redraw);
+
+	launchChart("data/out1.csv");
+})();
 
 
 
@@ -939,7 +941,7 @@ Display.prototype.activate = function () {
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = {"levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"]}
+module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"stacks":"Kostenart"}
 
 /***/ }),
 /* 8 */
@@ -957,8 +959,6 @@ module.exports = {"levels":["Produktbereich","Bezeichnung","Profitcenter","Koste
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__list_panel__ = __webpack_require__(11);
 /*jshint esversion: 6 */
 /*jshint loopfunc: true */
-
-// Mode from displaying values.
 
 
 
@@ -1060,9 +1060,9 @@ function Chart (level) {
 			rolled = d3.nest()
 				.key(d => d.Year).key(d => d.Sign)
 				.rollup (v => ({
-					"Executed-Ist"	: d3.sum(v, d => parser.parse(d["Executed-Ist"])),
-					"Planentwurf"		: d3.sum(v, d => parser.parse(d["Planentwurf"])),
-					"Plan"		: d3.sum(v, d => parser.parse(d["Plan"])) }))
+					"Executed-Ist"	: d3.sum(v, d => parseFloat(d["Executed-Ist"])),
+					"Planentwurf"	: d3.sum(v, d => parseFloat(d["Planentwurf"])),
+					"Plan"		: d3.sum(v, d => parseFloat(d["Plan"])) }))
 				.entries(c.values.data);
 			item.data = rolled;
 			return item;
@@ -2822,80 +2822,6 @@ ListPanel.prototype.mouseOut = function (d, target) {
 	const index = parseInt(stack.attr("index"));
 	stack.attr('fill', this.c.getStackItemColor(index));
 };
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/*jshint esversion: 6 */
-/*jshint sub:true*/
-
-class BonnParser {
-
-	constructor () {
-	//	super();
-	}
-
-	static levelNames () {
-		return ["Produktrahmen", "Produktbereich", "ProfitCenter", "Kostenart"];
-	}
-	static cats () {
-		return ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"];
-	}
-
-	static parse (str) {
-		if (str==""|| str==null) {
-			return 0.0;
-		} else {
-			// var r = str.replace('.', '');
-			// var r2 = r.replace(',','.');
-			var fl = parseFloat(str);
-			var a = fl;
-			return (a < 0) ? a : a;
-		}
-	}
-
-	static roll (csv, level) {
-		var cats = this.cats();
-		var ready = d3.nest()
-		//	.key( d => d.Year)
-			.key(function(d) {
-				return d[cats[level]];
-			})
-			.rollup(function(v) {
-				return {
-					data: v,
-					count: v.length
-				};
-			})
-			.entries(csv);
-		return ready;
-	}
-
-	static getDataset (data, level) {
-		return this.roll (data, level);
-	}
-
-	static getStackedDataset (data) {
-		return this.roll(data, this.cats().length-1);
-	}
-
-	static getLevelName (level) {
-		return this.levelNames()[level];
-	}
-
-	static getFirstLevelName () {
-		return "Bonn Budget";
-	}
-
-	static allowLevel (level) {
-		return level < this.cats().length;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = BonnParser;
-
 
 
 /***/ })

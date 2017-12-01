@@ -1,23 +1,15 @@
 /*jshint esversion: 6 */
 
-var CONFIG = require('../../data/config.json');
-
 import { Styles } from './ui/styling';
+import { scrollTo } from './utils';
 import Chart from './chart';
-import BonnParser from './bonn-parser';
 
-var maxLength = 16;
-var maxValue = 42;
+const DATA_CONFIG = require('../../data/config.json');
 
-
-console.log(CONFIG.dimensions);
-
-
-//stackColors = colors;
-var charts = [];
+let charts = [];
 
 function getChartAt (level) {
-	var c = charts[level];
+	let c = charts[level];
 	// If no chart yet at this level.
 	if (c==null) {
 		c = new Chart(level);
@@ -25,41 +17,55 @@ function getChartAt (level) {
 		scrollTo(document.body, Styles.height * level, 500);
 	} else {
 		scrollTo(document.body, Styles.height * (level-1), 250);
-		// If there is chart at this level, check if there
+		// If there is already chart at this level, check if there
 		// are charts at deeper levels and destroy them.
-		var rest = charts.slice(level + 1, charts.length);
+		const rest = charts.slice(level + 1, charts.length);
 		rest.forEach (rc => rc.destroy());
 		charts = charts.slice(0, level + 1);
-
 	}
 	return c;
 }
 
-function buildChart(level, data, selectionName, parser) {
-	if (!parser.allowLevel(level))
+function roll (csv, level) {
+	const levels = DATA_CONFIG.levels;
+	const ready = d3.nest()
+		.key(function(d) {
+			return d[levels[level]];
+		})
+		.rollup(function(v) {
+			return {
+				data: v,
+				count: v.length
+			};
+		})
+		.entries(csv);
+	return ready;
+}
+
+function buildChart(level, data, selectionName) {
+	if (level >= DATA_CONFIG.levels.length)
 		return;
 
 	const chart = getChartAt(level)
-			.setParser (parser)
-			.setDataset(parser.getDataset(data, level))
-			.setStackedDataset(parser.getStackedDataset(data))
+			.setDataset(roll(data, level))
+			.setStackedDataset(roll(data, DATA_CONFIG.levels.length - 1))
 			.setLevel(level)
 			.setSelectionName(selectionName)
-			.setLevelName(parser.getLevelName(level));
+			.setLevelName(DATA_CONFIG.levels[level]);
 	chart.build();
 }
 
-function launchChart (filename, parser) {
-	var dsv = d3.dsv(";", "text/plain");
-	dsv(filename, csv => buildChart(0, csv, parser.getFirstLevelName(), parser));
-}
 
-launchChart("data/out1.csv", BonnParser);
 
-function redraw () {
-	charts.forEach (c => c.resize());
-}
+(function() {
+	const redraw = () => charts.forEach (c => c.resize());
+	const launchChart = (filename) =>
+		d3.dsv(";", "text/plain")(filename, csv =>
+			buildChart(0, csv, DATA_CONFIG.name));
 
-window.addEventListener("resize", redraw);
+	window.addEventListener("resize", redraw);
 
-export {buildChart};
+	launchChart("data/out1.csv");
+})();
+
+export { buildChart };

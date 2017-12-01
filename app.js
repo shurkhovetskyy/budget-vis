@@ -1,6 +1,8 @@
-var express = require('express');
-var favicon = require('serve-favicon');
-var app = express();
+/*jshint esversion: 6 */
+
+const express = require('express');
+const favicon = require('serve-favicon');
+const app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -16,5 +18,6 @@ app.get('/', function(request, response) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log('OpenBudgets.EU Visualization is running on port', app.get('port'));
+  console.log('OpenBudgets.EU Visualization is running on port',
+  	app.get('port'));
 });

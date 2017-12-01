@@ -1,4 +1,6 @@
 {
+	"name" : "Bonn Budget",
 	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
-	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"]
+	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"],
+	"stacks" : "Kostenart"
 }

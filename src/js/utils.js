@@ -79,7 +79,7 @@ export const adjustFontSize = function (element) {
 
     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
     let font = parseFloat(dummy.style.fontSize) / rw;
-//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
+	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
 	font = Math.min(font, 32) + 'px';
 
     element.style.fontSize = font;
@@ -87,24 +87,24 @@ export const adjustFontSize = function (element) {
 };
 
 export const getFontSize = function (element, text) {
-  //  if(!element.innerHTML) return;
+  	//  if(!element.innerHTML) return;
     const dummy = document.createElement('div');
 		dummy.className = 'dummy';
     const elementStyle = getComputedStyle(element);
     dummy.style.font = elementStyle.font;
     dummy.style.padding = elementStyle.padding;
     dummy.style.boxSizing = elementStyle.boxSizing;
-//	dummy.innerHTML = element.innerHTML;
+	//	dummy.innerHTML = element.innerHTML;
 	dummy.innerText = text;
     document.body.appendChild(dummy);
     const dummyStyle = getComputedStyle(dummy);
 
     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
     let font = parseFloat(dummy.style.fontSize) / rw;
-//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
+	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
 	font = Math.min(font, 32) + 'px';
 
-//	element.style.fontSize = font;
+	//	element.style.fontSize = font;
     document.body.removeChild(dummy);
 	return font;
 };
@@ -123,7 +123,3 @@ export const reveal = function (el, duration = 500) {
 	//	.transition().duration(duration)
 		.style("opacity", 1);
 };
-
-
-
-//console.log(MoneyFormat(14235345));
