@@ -2,19 +2,19 @@
 
 This is a visualization concept designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built using [D3](https://github.com/d3) it allows creating interactive visualizations of budget data.
 
-Live version of this visualization using data from the city of Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
+Live version of this visualization using data from Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
 
-## Run locally
+## Running locally
 
-Have latest version of [Node.js](https://nodejs.org/en/) installed. Navigate to root of project directory and execute
+Have latest version of [Node.js](https://nodejs.org/en/) installed. Navigate to root of project directory and fetch project dependencies:
 ```bash
-npm install
+npm install --only=prod
 ```
-to fetch all dependencies. Then execute
+To run visualization of Bonn data:
 ```bash
 npm start
 ```
-to run visualization of Bonn data at
+Visualization will be available in your browser at:
 ```
 http://localhost:5000/
 ```
@@ -24,9 +24,15 @@ http://localhost:5000/
 Install [webpack](https://webpack.js.org/):
 
 ```bash
-npm install --save-dev webpack
+npm install webpack
 ```
 
+Build sources:
+
+```bash
+npm run build
+```
+Execute commands from previous section (Running locally) to see your build.
 
 
 ## Changing data/configuration
