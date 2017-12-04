@@ -4,7 +4,7 @@ This is a visualization concept designed as part of [OpenBudgets.eu](https://ope
 
 Live version visualizing budget of Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
 
-<img src="https://image.ibb.co/nq5qxw/screen1.png" align="center">
+<img src="https://image.ibb.co/ewx9qG/budget.png" align="center">
 
 
 GNU GENERAL PUBLIC LICENSE Version 3.
@@ -42,8 +42,31 @@ Execute commands from previous section (Running locally) to see your build.
 
 ## Changing data/configuration
 
+In order to use your own data, place the file in `data` directory and modify `config.json`.
+
 ```js
-d3.select("body")
-  .transition()
-    .style("background-color", "red");
+{
+	"name" : "Bonn Budget",
+	"datafile": "bonn-data.csv",
+	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
+	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"],
+	"startDimensions" : ["Executed-Ist"],
+	"stacks" : "Kostenart",
+	"yearsRange" : [2008, 2024],
+	"startYear": 2015,
+	"lang": "EN"
+}
 ```
+`levels` - short explanations/titles for each level of data.
+
+`dimensions` - these are variables for which data is available. In Bonn budget data there is Executed budget, Planned budget and budget of Planentwurf (Plan Design in German).
+
+`startDimensions` - list of dimensions which are open when visualization starts.
+
+`stacks` - based on which dimension stacked barcharts on the right will be built. Leaving the property empty will result in no stacked barchart displayed.
+
+`yearsRange` - specify all years for which data is available inclusively.
+
+`lang` - you can specify the language and provide translations for all text and labels of visualization in `src/js/ui/text.js`. Bonn example is in English, but since data is in German, they are left as is.
+
+Rest of parameters are self-explanatory.
