@@ -1206,7 +1206,7 @@ function Chart (level) {
 		if (this.initialized) {
 			this.newDimensions = value.filter(
 				v => !this.shownDimensions.includes(v));
-			this.shownDimensions = Array.from(value);
+			this.shownDimensions = [...this.shownDimensions, ...this.newDimensions]; //Array.from(value);
 		}
 		else
 			this.shownDimensions = Array.from(value);

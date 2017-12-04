@@ -14,7 +14,7 @@ Have latest version of [Node](https://nodejs.org/en/) installed. Navigate to roo
 ```bash
 npm install --only=prod
 ```
-To run visualization of Bonn data:
+Run the app with:
 ```bash
 npm start
 ```
