@@ -230,8 +230,8 @@ Display.prototype.updateData = function () {
 Display.prototype.updateDimensions = function () {
 	console.log("UpdateDimensions");
 	this.setAxis(true, true);
-	const sd = this.c.shownDimensions;
-	sd.forEach (dim => this.renderDimension(dim));
+	this.c.shownDimensions.forEach (
+		dim => this.renderDimension(dim));
 };
 
 Display.prototype.generateLabels = function () {

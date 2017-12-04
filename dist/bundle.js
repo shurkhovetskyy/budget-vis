@@ -997,8 +997,8 @@ Display.prototype.updateData = function () {
 Display.prototype.updateDimensions = function () {
 	console.log("UpdateDimensions");
 	this.setAxis(true, true);
-	const sd = this.c.shownDimensions;
-	sd.forEach (dim => this.renderDimension(dim));
+	this.c.shownDimensions.forEach (
+		dim => this.renderDimension(dim));
 };
 
 Display.prototype.generateLabels = function () {
@@ -1124,6 +1124,8 @@ const DATA_CONFIG = __webpack_require__(7);
 function Chart (level) {
 	// Keeps track of visible dimensions.
 	this.shownDimensions = [];
+	// Dimensions added at level above.
+	this.newDimensions = [];
 	// Actual dataset.
 	this.dataset = [];
 	// Actual dataset.
@@ -1181,7 +1183,13 @@ function Chart (level) {
 	};
 
 	this.setShownDimensions = function (value) {
-		this.shownDimensions = value;
+		if (this.initialized) {
+			this.newDimensions = value.filter(
+				v => !this.shownDimensions.includes(v));
+			this.shownDimensions = Array.from(value);
+		}
+		else
+			this.shownDimensions = Array.from(value);
 		return this;
 	};
 
@@ -1220,10 +1228,17 @@ function Chart (level) {
 			this.listPanel.activate();
 			this.initialized = true;
 		} else {
+
 			this.action = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].UPDATE;
 			this.setDefaults();
 			this.setTitle();
 			this.updateData();
+
+			console.log(this.newDimensions);
+			this.newDimensions.forEach(
+				dim => this.listPanel.addDimension(dim));
+			this.newDimensions.length = null;
+
 		}
 		this.action = null;
 	};
@@ -1294,12 +1309,6 @@ function Chart (level) {
 	this.buttonPress = function (button, con) {
 		con.selectAll("button").classed("active-button", false);
 		button.classed("active-button", true);
-	};
-
-	this.setHelp = function (item, help, visible = true) {
-		const x = 100,
-			  y = 140;
-		__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, this, help);
 	};
 
 	this.setDisplay = function (viewMode) {
@@ -1847,6 +1856,7 @@ BarDisplay.prototype.updateYScale = function () {
 };
 
 BarDisplay.prototype.renderDimension = function (dim) {
+	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
 	console.log("renderDimension - " + dim);
 	let bars = this.barsContainer
 				.selectAll(".bar-rect")
@@ -1855,9 +1865,10 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	const _this = this;
 	const hi = 1.0;
 	const lo = 0.4;
+	const newDim = this.c.newDimensions.includes(dim);
 	if ([__WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD, __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].UPDATE].includes(this.c.action)) {
 		bars = this.buildBars(bars, dim);
-		if (this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD) {
+		if (this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD || newDim) {
 			bars.call(function () {
 					_this.setBarsWidth.call(this, _this); })
 				.attr("y", this.yScale(0))
@@ -1867,12 +1878,12 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	}
 
 	const delay = 500;
-	const offDelay = (this.chartSet ? 500 : 0);
+	const offDelay = (this.chartSet ? (newDim ? 1000 : 500) : 0);
 	const dl = this.dataset.length;
 
 	bars.transition()
 		.delay((d, i) => {
-			if (_this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD)
+			if (_this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD || newDim)
 				return (offDelay + (i / dl) * delay);
 			return 0;
 		})
@@ -2482,7 +2493,9 @@ GraphDisplay.prototype.highlight = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_text__ = __webpack_require__(4);
 /*jshint esversion: 6 */
+
 
 
 
@@ -2513,17 +2526,15 @@ ListPanel.prototype.activate = function () {
 	this.updateStackedCharts();
 };
 
-ListPanel.prototype.addDimension = function (dim) {
-	const sd = this.c.shownDimensions,
-		  sds = this.c.stackedDataset,
-		  c = this.c;
-
-	// If max remains the same then
-	// fill only the new dim.
-	if (!this.updateMax())
-		this.renderDimension(dim);
-	else
-		this.updateStackedCharts(false);
+/**
+*	Expands tile of specified dimension in the list panel on the right.
+*/
+ListPanel.prototype.addDimension = function (dim, e = null) {
+	const entry = e || this.list.select(
+						"#dim-entry-" + this.c.level + "-" + dim);
+	entry.classed("active", true);
+	this.dimCon.selectAll(".dim-remove")
+		.classed("hidden", false);
 };
 
 /*
@@ -2563,8 +2574,8 @@ ListPanel.prototype.setYear = function (y) {
 };
 
 ListPanel.prototype._listDimension = function (dim, i) {
-	const entryHeight = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].dimListSpacing + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight,
-		  id = this.c.level + "-" + dim;
+	const entryHeight = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].dimListSpacing + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight;
+	const id = this.c.level + "-" + dim;
 
 	let last = false;
 	if (i==DATA_CONFIG.dimensions.length-1)
@@ -2585,20 +2596,14 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const figHelp = aux.append("span")
 		.attr("class", "fighelp listhelp help")
 		.attr("id", "fighelp-" + id)
-		.on("click", () => {
-			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight,
-				  y = 41;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, this.c, help.EN.fig);
-		});
+		.on("click", () => prepareHelp (
+			this.c, d3.event.target, 41, __WEBPACK_IMPORTED_MODULE_4__ui_text__["a" /* Help */].EN.fig));
 
 	const stackHelp = aux.append("span")
 		.attr("class", "stackhelp listhelp help")
 		.attr("id", "stackhelp-" + id)
-		.on("click", () => {
-			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight,
-				  y = 62;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, this.c, help.EN.stack);
-		});
+		.on("click", () => prepareHelp (
+			this.c, d3.event.target, 62, __WEBPACK_IMPORTED_MODULE_4__ui_text__["a" /* Help */].EN.stack));
 
 	aux.selectAll(".help").on("mouseout",
 			() => __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].hide(this.c, false));
@@ -2653,10 +2658,13 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		const remove = (d3.select(d3.event.target).classed("dim-remove"));
 		if (this.c.shownDimensions.indexOf(dim) < 0 && !remove) {
 			this.c.addDimension(dim);
-			entry.classed("active", true);
-			this.addDimension(dim);
-			this.dimCon.selectAll(".dim-remove")
-				.classed("hidden", false);
+			this.addDimension(dim, entry);
+			// If max remains the same then
+			// fill only the new dim.
+			if (!this.updateMax())
+				this.renderDimension(dim);
+			else
+				this.updateStackedCharts(false);
 		}
 	});
 
@@ -2842,6 +2850,13 @@ ListPanel.prototype.mouseOut = function (d, target) {
 	const index = parseInt(stack.attr("index"));
 	stack.attr('fill', Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* getStackItemColor */])(index));
 };
+
+function prepareHelp (c, target, offset, text) {
+	const entry = target.closest(".dim-entry");
+	const x = c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight;
+	const y = offset + entry.offsetTop;
+	__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, c, text);
+}
 
 
 /***/ })

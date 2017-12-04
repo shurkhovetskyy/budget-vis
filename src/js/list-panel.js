@@ -4,6 +4,7 @@ import { Styles, getStackItemColor, getItemColor } from './ui/styling';
 import { Mode } from './ui/ui-state';
 import { Tooltip } from './tooltip';
 import { MoneyNum, MoneySign, val } from './utils';
+import { Help } from './ui/text';
 
 const DATA_CONFIG = require('../../data/config.json');
 
@@ -29,17 +30,15 @@ ListPanel.prototype.activate = function () {
 	this.updateStackedCharts();
 };
 
-ListPanel.prototype.addDimension = function (dim) {
-	const sd = this.c.shownDimensions,
-		  sds = this.c.stackedDataset,
-		  c = this.c;
-
-	// If max remains the same then
-	// fill only the new dim.
-	if (!this.updateMax())
-		this.renderDimension(dim);
-	else
-		this.updateStackedCharts(false);
+/**
+*	Expands tile of specified dimension in the list panel on the right.
+*/
+ListPanel.prototype.addDimension = function (dim, e = null) {
+	const entry = e || this.list.select(
+						"#dim-entry-" + this.c.level + "-" + dim);
+	entry.classed("active", true);
+	this.dimCon.selectAll(".dim-remove")
+		.classed("hidden", false);
 };
 
 /*
@@ -79,8 +78,8 @@ ListPanel.prototype.setYear = function (y) {
 };
 
 ListPanel.prototype._listDimension = function (dim, i) {
-	const entryHeight = Styles.dimListSpacing + Styles.stackHeight,
-		  id = this.c.level + "-" + dim;
+	const entryHeight = Styles.dimListSpacing + Styles.stackHeight;
+	const id = this.c.level + "-" + dim;
 
 	let last = false;
 	if (i==DATA_CONFIG.dimensions.length-1)
@@ -101,20 +100,14 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const figHelp = aux.append("span")
 		.attr("class", "fighelp listhelp help")
 		.attr("id", "fighelp-" + id)
-		.on("click", () => {
-			const x = this.c.width - Styles.widthRight,
-				  y = 41;
-			Tooltip.help(x, y, Tooltip.RIGHT, this.c, help.EN.fig);
-		});
+		.on("click", () => prepareHelp (
+			this.c, d3.event.target, 41, Help.EN.fig));
 
 	const stackHelp = aux.append("span")
 		.attr("class", "stackhelp listhelp help")
 		.attr("id", "stackhelp-" + id)
-		.on("click", () => {
-			const x = this.c.width - Styles.widthRight,
-				  y = 62;
-			Tooltip.help(x, y, Tooltip.RIGHT, this.c, help.EN.stack);
-		});
+		.on("click", () => prepareHelp (
+			this.c, d3.event.target, 62, Help.EN.stack));
 
 	aux.selectAll(".help").on("mouseout",
 			() => Tooltip.hide(this.c, false));
@@ -169,10 +162,13 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		const remove = (d3.select(d3.event.target).classed("dim-remove"));
 		if (this.c.shownDimensions.indexOf(dim) < 0 && !remove) {
 			this.c.addDimension(dim);
-			entry.classed("active", true);
-			this.addDimension(dim);
-			this.dimCon.selectAll(".dim-remove")
-				.classed("hidden", false);
+			this.addDimension(dim, entry);
+			// If max remains the same then
+			// fill only the new dim.
+			if (!this.updateMax())
+				this.renderDimension(dim);
+			else
+				this.updateStackedCharts(false);
 		}
 	});
 
@@ -358,3 +354,10 @@ ListPanel.prototype.mouseOut = function (d, target) {
 	const index = parseInt(stack.attr("index"));
 	stack.attr('fill', getStackItemColor(index));
 };
+
+function prepareHelp (c, target, offset, text) {
+	const entry = target.closest(".dim-entry");
+	const x = c.width - Styles.widthRight;
+	const y = offset + entry.offsetTop;
+	Tooltip.help(x, y, Tooltip.RIGHT, c, text);
+}

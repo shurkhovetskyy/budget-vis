@@ -167,6 +167,7 @@ BarDisplay.prototype.updateYScale = function () {
 };
 
 BarDisplay.prototype.renderDimension = function (dim) {
+	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
 	console.log("renderDimension - " + dim);
 	let bars = this.barsContainer
 				.selectAll(".bar-rect")
@@ -175,9 +176,10 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	const _this = this;
 	const hi = 1.0;
 	const lo = 0.4;
+	const newDim = this.c.newDimensions.includes(dim);
 	if ([Action.ADD, Action.UPDATE].includes(this.c.action)) {
 		bars = this.buildBars(bars, dim);
-		if (this.c.action == Action.ADD) {
+		if (this.c.action == Action.ADD || newDim) {
 			bars.call(function () {
 					_this.setBarsWidth.call(this, _this); })
 				.attr("y", this.yScale(0))
@@ -187,12 +189,12 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	}
 
 	const delay = 500;
-	const offDelay = (this.chartSet ? 500 : 0);
+	const offDelay = (this.chartSet ? (newDim ? 1000 : 500) : 0);
 	const dl = this.dataset.length;
 
 	bars.transition()
 		.delay((d, i) => {
-			if (_this.c.action == Action.ADD)
+			if (_this.c.action == Action.ADD || newDim)
 				return (offDelay + (i / dl) * delay);
 			return 0;
 		})

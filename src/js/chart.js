@@ -17,6 +17,8 @@ const DATA_CONFIG = require('../../data/config.json');
 export default function Chart (level) {
 	// Keeps track of visible dimensions.
 	this.shownDimensions = [];
+	// Dimensions added at level above.
+	this.newDimensions = [];
 	// Actual dataset.
 	this.dataset = [];
 	// Actual dataset.
@@ -74,7 +76,13 @@ export default function Chart (level) {
 	};
 
 	this.setShownDimensions = function (value) {
-		this.shownDimensions = value;
+		if (this.initialized) {
+			this.newDimensions = value.filter(
+				v => !this.shownDimensions.includes(v));
+			this.shownDimensions = Array.from(value);
+		}
+		else
+			this.shownDimensions = Array.from(value);
 		return this;
 	};
 
@@ -113,10 +121,17 @@ export default function Chart (level) {
 			this.listPanel.activate();
 			this.initialized = true;
 		} else {
+
 			this.action = Action.UPDATE;
 			this.setDefaults();
 			this.setTitle();
 			this.updateData();
+
+			console.log(this.newDimensions);
+			this.newDimensions.forEach(
+				dim => this.listPanel.addDimension(dim));
+			this.newDimensions.length = null;
+
 		}
 		this.action = null;
 	};
@@ -187,12 +202,6 @@ export default function Chart (level) {
 	this.buttonPress = function (button, con) {
 		con.selectAll("button").classed("active-button", false);
 		button.classed("active-button", true);
-	};
-
-	this.setHelp = function (item, help, visible = true) {
-		const x = 100,
-			  y = 140;
-		Tooltip.help(x, y, Tooltip.RIGHT, this, help);
 	};
 
 	this.setDisplay = function (viewMode) {
