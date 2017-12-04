@@ -38,7 +38,6 @@ npm run build
 ```
 Execute commands from previous section (Running locally) to see your build.
 
-
 ## Changing data/configuration
 
 In order to use your own data, place the file in `data` directory and modify `config.json`.
