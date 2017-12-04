@@ -68,18 +68,28 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["d"] = getStackItemColor;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getItemColor;
+/* harmony export (immutable) */ __webpack_exports__["c"] = getLevelColor;
 /*jshint esversion: 6 */
 
+const DATA_CONFIG = __webpack_require__(7);
+
+// Non-used
 const colorBands = ["rgb(19, 52, 83)", "rgb(13, 78, 73)", "rgb(16, 94, 40)"];
-const Colors = ["rgb(39, 127, 150)",
+const highColors = ["rgb(39, 127, 150)",
 				"rgb(212, 124, 60)",
 				"rgb(224, 219, 86)",
 				"rgb(78, 194, 101)",
 			//	"rgb(121, 178, 194)"
 			];
-/* harmony export (immutable) */ __webpack_exports__["c"] = Colors;
+let stackColors = [["rgb(11, 107, 128)", "rgb(125, 173, 244)", "rgb(37, 131, 199)"],
+					["rgb(245, 165, 106)", "rgb(128, 64, 21)", "rgb(181, 93, 70)", "rgb(128, 40, 21)"],
+					["rgb(210, 166, 66)", "rgb(218, 154, 46)", "rgb(231, 226, 91)"],
+					[]];
 
-const highColors = ["rgb(39, 127, 150)",
+// Used
+const Colors = ["rgb(39, 127, 150)",
 				"rgb(212, 124, 60)",
 				"rgb(224, 219, 86)",
 				"rgb(78, 194, 101)",
@@ -88,19 +98,28 @@ const highColors = ["rgb(39, 127, 150)",
 
 			//"rgb(121, 178, 194)" - nice blue ---- rgb(121, 20, 34)
 const ColorSchemes = ["rgb(38, 47, 52)", "rgb(21, 28, 32)"];
-/* harmony export (immutable) */ __webpack_exports__["b"] = ColorSchemes;
-
 const Blacks = ["rgb(147, 147, 147)", "rgb(103, 102, 106)", "rgb(195, 195, 195)"];
-/* harmony export (immutable) */ __webpack_exports__["a"] = Blacks;
 
-let stackColors = [["rgb(11, 107, 128)", "rgb(125, 173, 244)", "rgb(37, 131, 199)"],
-					["rgb(245, 165, 106)", "rgb(128, 64, 21)", "rgb(181, 93, 70)", "rgb(128, 40, 21)"],
-					["rgb(210, 166, 66)", "rgb(218, 154, 46)", "rgb(231, 226, 91)"],
-					[]];
+
+function getStackItemColor (index) {
+	const color = Blacks[index % Blacks.length];
+	return color;
+}
+
+function getItemColor (dim) {
+//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
+	const color = Colors[DATA_CONFIG.dimensions
+		.indexOf(dim) % Colors.length];
+	return color;
+}
+
+function getLevelColor (level) {
+	return ColorSchemes[level % ColorSchemes.length];
+}
 
 const Styles = (function() {
 	function getStyleProperty(property) {
-		var styles = getComputedStyle(document.documentElement);
+		const styles = getComputedStyle(document.documentElement);
 		return String(styles.getPropertyValue(property)).trim();
 	}
 
@@ -136,7 +155,7 @@ const Styles = (function() {
 
 	return styles;
 }) ();
-/* harmony export (immutable) */ __webpack_exports__["d"] = Styles;
+/* harmony export (immutable) */ __webpack_exports__["a"] = Styles;
 
 
 
@@ -186,15 +205,148 @@ const View = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["f"] = scrollTo;
+/* harmony export (immutable) */ __webpack_exports__["d"] = firstDim;
+/* harmony export (immutable) */ __webpack_exports__["h"] = roll;
+/* harmony export (immutable) */ __webpack_exports__["i"] = rollLevelData;
+/* harmony export (immutable) */ __webpack_exports__["f"] = readYears;
+/* harmony export (immutable) */ __webpack_exports__["k"] = setDimYears;
+/* harmony export (immutable) */ __webpack_exports__["l"] = val;
+/* harmony export (immutable) */ __webpack_exports__["j"] = scroll;
 /* harmony export (immutable) */ __webpack_exports__["a"] = MoneyNum;
 /* harmony export (immutable) */ __webpack_exports__["b"] = MoneySign;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_text__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
 /*jshint esversion: 6 */
 
 
 
-function scrollTo (element, to, duration) {
+
+const DATA_CONFIG = __webpack_require__(7);
+
+/**
+*	Returns first available dimension among those shown.
+*/
+function firstDim (shown, year) {
+	const availableDimensions = shown.filter(
+		dim => DATA_CONFIG.dimYears[dim].includes(year));
+	return availableDimensions.shift();
+}
+
+function roll (value) {
+	var cats = [];
+	var item = null;
+	var rolled = null;
+	// Retrieve names of all categories.
+	return value.map ((c, i) => {
+		item = {category: c.key,
+				id: i };
+		rolled = d3.nest()
+			.key(d => d.Year).key(d => d.Sign)
+			.rollup (v => (generateEntry(v)))
+			.entries(c.values.data);
+		item.data = rolled;
+		return item;
+	});
+}
+
+function rollLevelData (csv, level) {
+	const levels = DATA_CONFIG.levels;
+	const ready = d3.nest()
+		.key(function(d) {
+			return d[levels[level]];
+		})
+		.rollup(function(v) {
+			return {
+				data: v,
+				count: v.length
+			};
+		})
+		.entries(csv);
+	return ready;
+}
+
+function generateEntry (v) {
+	const entry = {};
+	DATA_CONFIG.dimensions.forEach (dim =>
+		entry[dim] = d3.sum(v, d => parseFloat(d[dim])));
+	return entry;
+}
+
+/**
+*	Returns list of years for which data is available
+*	for specified dimension.
+*/
+function getAvailableYears (dim, data) {
+	const years = Array.from(DATA_CONFIG.years);
+	const res = years.map(y => ({
+		value: d3.sum(data.map(
+			item => val(item, dim, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].COMB, y))),
+		year: y
+	}));
+	return res.filter(d => d.value!=0).map(d => d.year);
+}
+
+/**
+*	Calculates the list of years from the range specified.
+*/
+function readYears () {
+	const range = DATA_CONFIG.yearsRange;
+	const years = Array.from({ length: range[1] - range[0] + 1 },
+		(v, k) => k + range[0]);
+	DATA_CONFIG.years = years;
+	return years;
+}
+
+/**
+*	Finds list of years for which data is available
+*	for each dimension separately.
+*/
+function setDimYears (data) {
+	const dimYears = {};
+	DATA_CONFIG.dimensions.forEach (dim =>
+		dimYears[dim] = getAvailableYears(dim, data));
+	DATA_CONFIG.dimYears = dimYears;
+}
+
+function getDatum (data, mode, dimension) {
+	// Get index of a sign.
+	const i = data.findIndex(d => d.key == mode);
+	if (i == -1)	return 0.0;
+	else 			return data[i].values[dimension];
+}
+
+/*
+ *	Returns actual value given data item, desired dimension
+ *	and current display mode.
+ */
+function val (d, dim, mode, year) {
+	let yd;	// year data
+	// For some categories data might not be available
+	// for all years or for all signs. Then return 0.
+	const yi = d.data.findIndex(d => d.key == year.toString());
+	if (yi == -1)	return 0.0;
+	else 			yd = d.data[yi].values;
+
+	if (mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING || mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].REVENUE)
+		return getDatum(yd, mode, dim);
+
+	// Getting objects holding values at different signs.
+	const plusData = getDatum(yd, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING, dim);
+	const minusData = getDatum(yd, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].REVENUE, dim);
+
+	if (mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].BAL)
+		return plusData + minusData;
+	else if (mode == __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].COMB) {
+		const pa = Math.abs(plusData);
+		const ma = Math.abs(minusData);
+		return pa + ma;
+	}
+}
+
+/**
+*	Scrolls the page smoothly.
+*/
+function scroll (element, to, duration) {
     let start = element.scrollTop,
         change = to - start,
         currentTime = 0,
@@ -312,16 +464,16 @@ const hide = function (el, duration = 500) {
 		.style("visibility", "hidden")
 		;
 };
-/* harmony export (immutable) */ __webpack_exports__["d"] = hide;
+/* harmony export (immutable) */ __webpack_exports__["e"] = hide;
 
 
 const reveal = function (el, duration = 500) {
 	el.transition().duration(duration)
 		.style("visibility", "visible")
-	//	.transition().duration(duration)
+		//	.transition().duration(duration)
 		.style("opacity", 1);
 };
-/* harmony export (immutable) */ __webpack_exports__["e"] = reveal;
+/* harmony export (immutable) */ __webpack_exports__["g"] = reveal;
 
 
 
@@ -376,37 +528,37 @@ const Tooltip = (function () {
 				.classed("hidden", false);
 		}
 
-		const val = c.val(d, d.dim);
+		const value = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(d, d.dim, c.mode, c.year);
 		box.select(".text").text('');
 		box.select(".title").text(d.category);
-		box.select(".num").text("€" + Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(val));
-		box.select(".sign").text(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(val));
+		box.select(".num").text("€" + Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(value));
+		box.select(".sign").text(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(value));
 
-		const sumFun = (item) => stacked ? c.val(item, d.dim) :
-							Math.abs(c.val(item, d.dim));
+		const sumFun = (item) => stacked ? Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, d.dim, c.mode, c.year) :
+							Math.abs(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, d.dim, c.mode, c.year));
 
 		let sum = d3.sum(c.dataset.map(sumFun));
 		const label = stacked ? "Kostenart" : c.selectionName;
-		const percentage = Math.abs((val / sum * 100));
+		const percentage = Math.abs((value / sum * 100));
 		box.select(".stats")
 			.text(d3.format(".1f")(percentage) + "% of " + label);
 
 		let ay, ty;
 		if (direction==DIRECTION_UP) {
-			ay = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].arrowHeight;
+			ay = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].arrowHeight;
 			ty = ay ;
 			arrow.classed("up", true);
 			arrow.classed("down", false);
 		} else if (direction == DIRECTION_DOWN) {
-			ay = y - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].arrowHeight;	// arrow y
-			ty = ay - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].tooltipHeight - 3;	// tooltip y
+			ay = y - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].arrowHeight;	// arrow y
+			ty = ay - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].tooltipHeight - 3;	// tooltip y
 
 			arrow.classed("down", true);
 			arrow.classed("up", false);
 		}
 
 		arrow.style("top", ay);
-		arrow.style("left", x - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].arrowHeight);
+		arrow.style("left", x - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].arrowHeight);
 		// Prevent x overflow.
 		const boundary = c.width;
 		const client = box.node();
@@ -459,7 +611,7 @@ const Tooltip = (function () {
 
 		// Place div in the middle so that its width is calculated
 		// properly without div getting squeezed at the edge.
-		box.style("left", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel);
+		box.style("left", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel);
 		let width = text.node().clientWidth;
 		let tx;
 		if (direction==DIRECTION_LEFT) {
@@ -478,7 +630,7 @@ const Tooltip = (function () {
 		// Y
 		y = y - 4;
 		const height = client.offsetHeight;
-		const dy = (height + y) - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height;
+		const dy = (height + y) - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].height;
 		y = y - Math.max(dy, 0);
 
 		box.style("top", y);
@@ -553,9 +705,9 @@ function getChartAt (level) {
 	if (c==null) {
 		c = new __WEBPACK_IMPORTED_MODULE_2__chart__["a" /* default */](level);
 		charts.push(c);
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["f" /* scrollTo */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * level, 500);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["j" /* scroll */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].height * level, 500);
 	} else {
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["f" /* scrollTo */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height * (level-1), 250);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["j" /* scroll */])(document.body, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].height * (level-1), 250);
 		// If there is already chart at this level, check if there
 		// are charts at deeper levels and destroy them.
 		const rest = charts.slice(level + 1, charts.length);
@@ -565,46 +717,39 @@ function getChartAt (level) {
 	return c;
 }
 
-function roll (csv, level) {
-	const levels = DATA_CONFIG.levels;
-	const ready = d3.nest()
-		.key(function(d) {
-			return d[levels[level]];
-		})
-		.rollup(function(v) {
-			return {
-				data: v,
-				count: v.length
-			};
-		})
-		.entries(csv);
-	return ready;
-}
-
-function buildChart(level, data, selectionName) {
+function buildChart(level, data, selectionName, year, shownDimensions) {
 	if (level >= DATA_CONFIG.levels.length)
 		return;
 
-	const chart = getChartAt(level)
-			.setDataset(roll(data, level))
-			.setStackedDataset(roll(data, DATA_CONFIG.levels.length - 1))
+	const fullData = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["i" /* rollLevelData */])(data, level);
+	const levelData = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["h" /* roll */])(fullData);
+	const chart = getChartAt(level);
+
+	chart	.setFullData(fullData)
+			.setDataset(levelData)
+			.setStackedDataset(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["h" /* roll */])(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["i" /* rollLevelData */])(
+				data, DATA_CONFIG.levels.length - 1)))
 			.setLevel(level)
+			.setStartYear(year)
+			.setShownDimensions(shownDimensions)
 			.setSelectionName(selectionName)
-			.setLevelName(DATA_CONFIG.levels[level]);
-	chart.build();
+			.setLevelDesc(DATA_CONFIG.levels[level])
+			.build();
 }
 
-
-
 (function() {
+
 	const redraw = () => charts.forEach (c => c.resize());
-	const launchChart = (filename) =>
+	const launch = (filename) =>
 		d3.dsv(";", "text/plain")(filename, csv =>
-			buildChart(0, csv, DATA_CONFIG.name));
+			buildChart(0, csv,
+				DATA_CONFIG.name,
+				DATA_CONFIG.startYear,
+				DATA_CONFIG.startDimensions));
 
 	window.addEventListener("resize", redraw);
 
-	launchChart("data/out1.csv");
+	launch("data/out1.csv");
 })();
 
 
@@ -627,6 +772,8 @@ function buildChart(level, data, selectionName) {
 
 
 
+const DATA_CONFIG = __webpack_require__(7);
+
 function Display (chart) {
 	this.c = chart;
 	this.container = chart.mainContainer.append("g")
@@ -637,7 +784,7 @@ function Display (chart) {
 
 	// Y-Axis
 	this.yScale = d3.scale.linear().range([
-		__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].chartHeight - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].bottomPadding, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].topPadding]);
+		__WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].chartHeight - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].bottomPadding, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].topPadding]);
 
 	this.yAxis = d3.svg.axis()
 				.orient("left")
@@ -755,19 +902,6 @@ Display.prototype.updateLabels = function () {
 		;
 };
 
-Display.prototype.getAvailableYears = function (dim) {
-	const currentMode = this.c.mode;
-	this.c.mode = __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["b" /* Mode */].COMB;
-	const years = Array.from(this.c.years).reverse();
-	const data = years.map(y => ({
-		value: d3.sum(this.c.stackedDataset.map(
-			item => this.c.val(item, dim, y))),
-		year: y
-	}));
-	this.c.mode = currentMode;
-	return data.filter(d => d.value!=0).map(d => d.year);
-};
-
 Display.prototype.setNoDataMessage = function () {
 	let html = "No <span>" + this.c.year + "</span> data available for";
 	this.c.shownDimensions.forEach(
@@ -781,25 +915,31 @@ Display.prototype.setNoDataMessage = function () {
 */
 Display.prototype.noDataMessage = function (noData = true) {
 	if (noData) {
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.c.axisCon);
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.container);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.c.axisCon);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.container);
 		this.setNoDataMessage();
 		this.minimizeItems();
 		this.chartSet = false;
 	} else {
 		this.c.axisCon.style("visibility", "visible");
-		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* reveal */])(this.container);
+		Object(__WEBPACK_IMPORTED_MODULE_1__utils__["g" /* reveal */])(this.container);
 	}
 	this.labelsCon.classed("hidden", noData);
 	this.c.no.classed("reveal", noData);
 };
 
 Display.prototype.dataAvailable = function (dims = null) {
+	var start = new Date().getTime();
+
 	dims = dims || this.c.shownDimensions;
-	const available = dims.map(d => this.getAvailableYears(d)
-		.includes(this.c.year)).reduce((a, b) => a || b);
+	const available = dims.map(d =>
+		DATA_CONFIG.dimYears[d]
+			.includes(this.c.year)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;
+
+	var elapsed = new Date().getTime() - start;
+	console.log(elapsed);
 	return available;
 };
 
@@ -815,6 +955,15 @@ Display.prototype.setupChart = function (dims = null) {
 	this.chartSet = true;
 };
 
+/**
+*	Updates view.
+*
+*	The order of all checks and transitions is set specifically
+*	to handle quick switches between states and views.
+*
+*	Unless you really, really, really know what you are doing
+*	do not change anything here. Or the sky will fall.
+*/
 Display.prototype.updateData = function () {
 	// if there is currently no data or year was changed...
 	if(this.noData || this.c.action == __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["a" /* Action */].YEAR) {
@@ -895,7 +1044,7 @@ Display.prototype.restore = function () {
 };
 
 Display.prototype.labelOut = function (display) {
-	const y = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].chartHeight + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].labelMargin,
+	const y = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].chartHeight + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].labelMargin,
 		  w = display.c.axisWidth;
 	this.style("left", w)
 		.style("opacity", 0);
@@ -914,7 +1063,7 @@ Display.prototype.deactivate = function () {
 	this.active = false;
 	this.chartSet = false;
 
-	Object(__WEBPACK_IMPORTED_MODULE_1__utils__["d" /* hide */])(this.container);
+	Object(__WEBPACK_IMPORTED_MODULE_1__utils__["e" /* hide */])(this.container);
 	this.labelsCon.classed("hidden", true);
 
 	this.c.shownDimensions.forEach(
@@ -941,7 +1090,7 @@ Display.prototype.activate = function () {
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"stacks":"Kostenart"}
+module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015}
 
 /***/ }),
 /* 8 */
@@ -970,59 +1119,32 @@ module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung",
 
 
 
-function Chart (level) {
+const DATA_CONFIG = __webpack_require__(7);
 
+function Chart (level) {
 	// Keeps track of visible dimensions.
-	this.shownDimensions = ["Executed-Ist"];
-	var sd = this.shownDimensions;
-	// List of all dimensions available in data.
-	this.dimensions = ["Executed-Ist", "Planentwurf", "Plan"];
-	var dims = this.dimensions;
-	// List of categories.
-	this.categories = [];
+	this.shownDimensions = [];
 	// Actual dataset.
 	this.dataset = [];
-	var ds = this.dataset;
 	// Actual dataset.
 	this.stackedDataset = [];
-	var sds = this.stackedDataset;
-	// Stack charts' scales.
-	this.stackScales = [];
 	// Current mode.
 	this.mode = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING;
+	// View - categories or over time.
+	this.viewMode = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["d" /* View */].CATS;
 	// Last action type.
 	this.action = null;
-
+	// Level of this chart (starts with 0).
 	this.level = level;
 	// Sum of largest dimension in current mode.
 	this.maxDimSum = 0;
 	this.widthRight = null;
-
 	this.width = null;
 	this.axisWidth = null;
 
-	this.years = ["2024", "2023", "2022", "2021", "2020",
-					"2019", "2018", "2017", "2016",
-					"2015", "2014", "2013", "2012", "2011",
-					"2010", "2009", "2008"];
-	this.year = "2015";
-
-	this.viewMode = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["d" /* View */].CATS;
-	this.stacksVisible = true;
-
-//	var svgDimCon = null;
-	this.selected = -1;
 	this.initialized = false;
-	this.fullData = null;
 
-	this.tt = (dim) => test(dim);
-//	this.tt = test;
-	// this.tt = function (dim) {
-	// 	test(dim);
-	// };
-
-	// Reference to chart.
-	var c = this;
+	this.years = DATA_CONFIG.years || Object(__WEBPACK_IMPORTED_MODULE_4__utils__["f" /* readYears */])();
 
 	this.initialBuild();
 
@@ -1030,72 +1152,36 @@ function Chart (level) {
 	this.graphDisplay = new __WEBPACK_IMPORTED_MODULE_6__display_graph_display__["a" /* default */](this);
 	this.listPanel = new __WEBPACK_IMPORTED_MODULE_7__list_panel__["a" /* default */](this);
 
-	this.setParser = function (value) {
-		this.parser = value;
-		return this;
-	};
-
-	this.getParser = function () {
-		return this.parser;
-	};
-
-	this.setStackedDataset = function(data) {
-		var unpacked = this._rollupDataset(data);
+	this.setStackedDataset = function(_) {
 		this.stackedDataset.length = 0;
-		this.stackedDataset.push.apply(this.stackedDataset, unpacked); //.dataset;
+		this.stackedDataset.push.apply(this.stackedDataset, _); //.dataset;
 	//	this.stackCategories = unpacked.categories;
-
 		return this;
 	};
 
-	this._rollupDataset = function (value) {
-		var cats = [];
-		var item = null;
-		var rolled = null;
-		var parser = this.parser;
-		// Retrieve names of all categories.
-		return value.map ((c, i) => {
-			item = {category: c.key,
-					id: i };
-			rolled = d3.nest()
-				.key(d => d.Year).key(d => d.Sign)
-				.rollup (v => ({
-					"Executed-Ist"	: d3.sum(v, d => parseFloat(d["Executed-Ist"])),
-					"Planentwurf"	: d3.sum(v, d => parseFloat(d["Planentwurf"])),
-					"Plan"		: d3.sum(v, d => parseFloat(d["Plan"])) }))
-				.entries(c.values.data);
-			item.data = rolled;
-			return item;
-		});
+	this.setFullData = function (_) {
+		this.fullData = _;
+		return this;
 	};
 
 	this.setDataset = function(data) {
+		this.dataset.length = 0;
+		this.dataset.push.apply(this.dataset, data);
 
-		// var yearIndex = data.findIndex(
-		// 	item => item.key == year.toString());
-		var value = data;//[yearIndex].values;
-		this.fullData = value;
-		var ds = [];
-		// if (value.length > 0) {
-		// 	for (var key in value[0].values.dimensions)
-		// 		this.dimensions.push(key);
-		// }
+		if (!DATA_CONFIG.hasOwnProperty("dimYears"))
+			Object(__WEBPACK_IMPORTED_MODULE_4__utils__["k" /* setDimYears */])(data);
+		return this;
+	};
 
-	//	sd.forEach ((dim, i) => sd[i] = this.dimensions[i]);
-
-		var unpacked = this._rollupDataset(value);
-		this.dataset.length = 0; // Clearing dataset array.
-		this.dataset.push.apply(this.dataset, unpacked); // Pushing new data.
-		this.categories = unpacked.map(c => c.category);
-
-		this.barDisplay.setDataset(this.dataset);
-		this.graphDisplay.setDataset(this.dataset);
-
+	this.setStartYear = function (startYear) {
+		this.year = startYear;
+		if (this.yearSelect!=undefined)
+			this.yearSelect.node().value = this.year;
 		return this;
 	};
 
 	this.setShownDimensions = function (value) {
-		sd = value;
+		this.shownDimensions = value;
 		return this;
 	};
 
@@ -1104,14 +1190,13 @@ function Chart (level) {
 		return this;
 	};
 
-	this.setLevelName = function (value) {
-		this.levelName = value;
+	this.setLevelDesc = function (value) {
+		this.levelDesc = value;
 		return this;
 	};
 
 	this.setLevel = function (value) {
 		this.level = value;
-		this.colorBand = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["b" /* ColorSchemes */][this.level%__WEBPACK_IMPORTED_MODULE_0__ui_styling__["b" /* ColorSchemes */].length];
 		return this;
 	};
 
@@ -1119,7 +1204,6 @@ function Chart (level) {
 		this.levelContainer.transition("opacity").duration(500)
 			.style("opacity", 0);
 		this.levelContainer.transition("remove").duration(500).remove();
-
 	};
 
 	this.setDefaults = function () {
@@ -1127,12 +1211,12 @@ function Chart (level) {
 	};
 
 	this.build = function () {
+		this.barDisplay.setDataset(this.dataset);
+		this.graphDisplay.setDataset(this.dataset);
 		if (!this.initialized) {
 			this.action = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].ADD;
-			// this.initialBuild();
 			this.setTitle();
 			this.barDisplay.activate();
-			// this.barDisplay.updateLabels();
 			this.listPanel.activate();
 			this.initialized = true;
 		} else {
@@ -1144,23 +1228,14 @@ function Chart (level) {
 		this.action = null;
 	};
 
-	/*
-	*	Spread parameter indicates whether to add dimension
-	*	to the list of shown dimensions or not (in this case)
-	*	it is already there.
-	*/
 	this.addDimension = function (dim, push = true) {
-		var start = new Date().getTime();
 		this.action = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].ADD;
 		if(push)
-			sd.push(dim);
-//		this.display.addDimension.call(this, dim);
+			this.shownDimensions.push(dim);
 		this.display.addDimension(dim);
 		this.action = null;
-		var elapsed = new Date().getTime() - start;
-		console.log(elapsed);
-	//	this.listPanel.addDimension(dim);
-	//	this.addDimensionList(dim);
+		//	this.listPanel.addDimension(dim);
+		//	this.addDimensionList(dim);
 	};
 
 	this.removeDimension = function (dimension) {
@@ -1181,18 +1256,6 @@ function Chart (level) {
 		this.barDisplay.updateLabels();
 		this.graphDisplay.updateLabels();
 		this.display.updateDimensions();
-	};
-
-	this.getStackItemColor = function (index) {
-	//	const color = stackColors[sd.indexOf(dim)%colors.length][index%3];
-		const color = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Blacks */][index%__WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Blacks */].length];
-		return color;
-	};
-
-	this.getItemColor = function (dim) {
-	//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
-		const color = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["c" /* Colors */][dims.indexOf(dim)%__WEBPACK_IMPORTED_MODULE_0__ui_styling__["c" /* Colors */].length];
-		return color;
 	};
 
 	// Updates visualization when data changes.
@@ -1220,55 +1283,9 @@ function Chart (level) {
 		// 	.duration(500)
 		// 	.style("opacity", 1);
 
-		this.levelText.text(this.levelName);
+		this.levelText.text(this.levelDesc);
 		this.selectionText.text(this.selectionName);
 		Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* adjustFontSize */])(this.selectionText.node());
-	};
-
-	function getDatum (data, mode, dimension) {
-		// Get index of a sign.
-		var i = data.findIndex(d => d.key == mode);
-		if (i == -1)	return 0.0;
-		else 			return data[i].values[dimension];
-	}
-
-	/*
-	 *	Returns actual value given data item, desired dimension
-	 *	and current display mode.
-	 */
-	this.val = function (d, ...params) {
-		var dim = d.dim;
-		var year = this.year;
-		var yd = null;	// year data
-
-		// If dimension is sent separately, use it, otherwise
-		// it is included in the data object d.
-		if (params.length > 0) {
-			dim = params[0];
-			if (params.length > 1)
-				year = params[1];
-		}
-		// For some categories data might not be available
-		// for all years or for all signs. Then return 0.
-		var yi = d.data.findIndex(d => d.key == year.toString());
-		if (yi == -1)	return 0.0;
-		else 			yd = d.data[yi].values;
-
-		if (c.mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING || c.mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].REVENUE)
-			return getDatum(yd, c.mode, dim);
-
-		// Getting objects holding values at different signs.
-		const plusData = getDatum(yd, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING, dim);
-		const minusData = getDatum(yd, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].REVENUE, dim);
-
-		if (c.mode==__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].BAL)
-			return plusData + minusData;
-		else if (c.mode == __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].COMB) {
-			const pa = Math.abs(plusData);
-			const ma = Math.abs(minusData);
-			const ra = pa + ma;
-			return ra;
-		}
 	};
 
 	/*
@@ -1315,12 +1332,10 @@ function Chart (level) {
 
 	this.setYear = function () {
 		this.action = __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].YEAR;
-		this.year = this.yearSelect.property("value");
+		this.year = parseInt(this.yearSelect.property("value"));
 		this.listPanel.setYear(this.year);
 		this.updateData();
-	//	this.display.sortBars(0, Sort.NUM);
 		this.sortNumerical.classed("active-button", false);
-		// this.sortAlphabetical.classed("active-button", false);
 		this.action = null;
 	};
 
@@ -1363,7 +1378,7 @@ Chart.prototype.initialBuild = function () {
 	this.levelContainer = this.board.append("div")
 		.attr("id", "level-" + this.level)
 		.attr("class", "levelcon level-" + this.level)
-		.style("background-color", this.colorBand)
+		.style("background-color", Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["c" /* getLevelColor */])(this.level))
 		.style("opacity", "0.0")
 	//	.classed("hidden", true)
 		;
@@ -1403,7 +1418,7 @@ Chart.prototype.initialBuild = function () {
 
 	this.axisWrap = this.chartContainer.append("g")
 		.attr("class", "axiswrap")
-		.attr("transform", "translate(" + (__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].leftMargin) +", 0)");
+		.attr("transform", "translate(" + (__WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].leftMargin) +", 0)");
 
 	this.axisCon = this.axisWrap.append("g")
 		.attr("class", "axiscon");
@@ -1411,7 +1426,7 @@ Chart.prototype.initialBuild = function () {
 	this.mainContainer = this.chartContainer.append("g")
 		.attr("class", "maincon")
 		.attr("id", "main-" + this.level)
-		.attr("transform", "translate(" + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].leftMargin +", 0)");
+		.attr("transform", "translate(" + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].leftMargin +", 0)");
 
 	this.zeroAxis = this.axisCon.append("line")
 		.attr("class", "zero")
@@ -1461,7 +1476,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("class", "displayhelp controlhelp help")
 		.attr("id", "displayhelp-" + this.level)
 		.on("click", () => {
-			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel, y = 16;
+			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 16;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.view);
 		});
 
@@ -1500,7 +1515,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("class", "modehelp controlhelp help")
 		.attr("id", "modehelp-" + this.level)
 		.on("click", () => {
-			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel, y = 80;
+			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 80;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.mode);
 		});
 
@@ -1563,7 +1578,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("class", "yearhelp controlhelp help")
 		.attr("id", "yearhelp-" + this.level)
 		.on("click", () => {
-			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel, y = 144;
+			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 144;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.year);
 		});
 
@@ -1575,11 +1590,11 @@ Chart.prototype.initialBuild = function () {
 			.on("change", () => this.setYear());
 
 	this.yearSelect.selectAll("option")
-			.data(this.years).enter()
+			.data(Array.from(this.years).reverse()).enter()
 			.append("option").text(d => d)
 			.attr("class", "opt");
 
-	this.yearSelect.node().value = this.year;
+	this.yearSelect.node().value = this.year || DATA_CONFIG.startYear;
 
 	/*
 	* Sort control.
@@ -1602,7 +1617,7 @@ Chart.prototype.initialBuild = function () {
 		.attr("class", "sorthelp controlhelp help")
 		.attr("id", "sorthelp-" + this.level)
 		.on("click", () => {
-			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel, y = 208;
+			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 208;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.sort);
 		});
 
@@ -1638,13 +1653,13 @@ Chart.prototype.initialBuild = function () {
 Chart.prototype.calcWidth = function () {
 	this.chartWidth = this.leftContainer.node().offsetWidth;
 	this.width = this.chartWidth +
-		__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight;
+		__WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight;
 
-	this.axisWidth = this.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight -
-					__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].leftMargin - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthControlPanel
-					- __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].axisMarginRight;
-	this.actWidth = this.axisWidth - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].rightPadding;
-	this.graphWidth = this.axisWidth - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].rightPadding;
+	this.axisWidth = this.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight -
+					__WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].leftMargin - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel
+					- __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].axisMarginRight;
+	this.actWidth = this.axisWidth - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].rightPadding;
+	this.graphWidth = this.axisWidth - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].rightPadding;
 	// Find minimum width acceptable for the chart.
 
 	document.documentElement.style.setProperty("--width-page", this.width);
@@ -1659,10 +1674,12 @@ Chart.prototype.calcWidth = function () {
 /* harmony export (immutable) */ __webpack_exports__["a"] = BarDisplay;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__script__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_styling__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tooltip__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_styling__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip__ = __webpack_require__(3);
 /*jshint esversion: 6 */
+
 
 
 
@@ -1688,7 +1705,7 @@ function BarDisplay (chart) {
 
 	// this.labelsText = this.getLabels();
 	this.selected = -1;
-	this.sortMode = __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["c" /* Sort */].ABC;
+	this.sortMode = __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["c" /* Sort */].ABC;
 	this.bandLimit = 14;
 }
 
@@ -1770,14 +1787,14 @@ BarDisplay.prototype.buildBars = function (bars, dim) {
 		.append("rect")
 		// To make sure bars only appear within chart.
 		.attr("x", c.axisWidth - this.xScale.rangeBand())
-		.attr("fill", c.getItemColor(dim))
+		.attr("fill", Object(__WEBPACK_IMPORTED_MODULE_3__ui_styling__["b" /* getItemColor */])(dim))
 		.style("fill-opacity", 0)
 		.attr("dim", dim)
 		.attr("class", "bar-rect level-" + c.level)
 		.call(function() {
 			_this.setListeners.call(this, _this); })
 		.style("opacity", (d) => {
-			if (this.c.action==__WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].ADD && this.selected!=-1) {
+			if (this.c.action==__WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD && this.selected!=-1) {
 				if (d.id == this.selected)	return hi;
 				else 						return lo;
 			}
@@ -1802,12 +1819,12 @@ BarDisplay.prototype.updateXScale = function () {
 
 BarDisplay.prototype.updateYScale = function () {
 	const c = this.c;
-	if (c.mode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].SPENDING || c.mode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].COMB)
+	if (c.mode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].SPENDING || c.mode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].COMB)
 		this.yScale.domain([0, this.getShownMax()
 		]);
-	else if (c.mode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].REVENUE)
+	else if (c.mode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].REVENUE)
 		this.yScale.domain([this.getShownMin(), 0]);
-	else if (c.mode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].BAL) {
+	else if (c.mode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].BAL) {
 		let min = this.getShownMin();
 		let max = this.getShownMax();
 		if (min > 0)
@@ -1817,11 +1834,11 @@ BarDisplay.prototype.updateYScale = function () {
 		// If all values are zero, show an empty
 		// chart with coordinates stretched to extremes.
 		if (min==0 && max==0) {
-			c.mode = __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].SPENDING;
+			c.mode = __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].SPENDING;
 			max = this.getShownMax();
-			c.mode = __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].REVENUE;
+			c.mode = __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].REVENUE;
 			min = this.getShownMin();
-			c.mode = __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["b" /* Mode */].BAL;
+			c.mode = __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["b" /* Mode */].BAL;
 		}
 		this.yScale.domain([min, max]);
 	}
@@ -1838,9 +1855,9 @@ BarDisplay.prototype.renderDimension = function (dim) {
 	const _this = this;
 	const hi = 1.0;
 	const lo = 0.4;
-	if ([__WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].ADD, __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].UPDATE].includes(this.c.action)) {
+	if ([__WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD, __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].UPDATE].includes(this.c.action)) {
 		bars = this.buildBars(bars, dim);
-		if (this.c.action == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].ADD) {
+		if (this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD) {
 			bars.call(function () {
 					_this.setBarsWidth.call(this, _this); })
 				.attr("y", this.yScale(0))
@@ -1855,15 +1872,15 @@ BarDisplay.prototype.renderDimension = function (dim) {
 
 	bars.transition()
 		.delay((d, i) => {
-			if (_this.c.action == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].ADD)
+			if (_this.c.action == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].ADD)
 				return (offDelay + (i / dl) * delay);
 			return 0;
 		})
 		.duration(duration)
 		.call(function () {
-			if(_this.c.action!=__WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].RESIZE)
+			if(_this.c.action!=__WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].RESIZE)
 				_this.setBarsHeight.call(this, _this);
-			if ([__WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].UPDATE, __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["a" /* Action */].RESIZE].includes(_this.c.action))
+			if ([__WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].UPDATE, __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["a" /* Action */].RESIZE].includes(_this.c.action))
 				_this.setBarsWidth.call(this, _this);
 		});
 };
@@ -1935,10 +1952,10 @@ BarDisplay.prototype.sortBars = function (dimension, sort = null) {
 	// 		return d3.ascending(a.category, b.category);
 	// };
 
-	if (this.sortMode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["c" /* Sort */].NUM) {
+	if (this.sortMode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["c" /* Sort */].NUM) {
 		c.sortNumerical.classed("active-button", true);
 		c.sortAlphabetical.classed("active-button", false);
-	} else if (this.sortMode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["c" /* Sort */].ABC) {
+	} else if (this.sortMode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["c" /* Sort */].ABC) {
 		c.sortNumerical.classed("active-button", false);
 		c.sortAlphabetical.classed("active-button", true);
 	}
@@ -1968,7 +1985,8 @@ BarDisplay.prototype.sortBars = function (dimension, sort = null) {
 // Gets highest value across all visisble dimensions.
 BarDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(this.dataset.map(d => this.c.val(d, dim)))));
+		dim => d3.max(this.dataset.map(d =>
+			Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(d, dim, this.c.mode, this.c.year)))));
 	console.log("Max: " + max);
 	return max;
 };
@@ -1976,7 +1994,8 @@ BarDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 BarDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(this.dataset.map(d => this.c.val(d, dim)))));
+		dim => d3.min(this.dataset.map(d =>
+			Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(d, dim, this.c.mode, this.c.year)))));
 	console.log("Min: " + min);
 	return min;
 };
@@ -1992,7 +2011,7 @@ BarDisplay.prototype.highlight = function (index, highlight = true) {
 	const transition = this.barsContainer.transition().duration(150);
 	const bars = this.barsContainer.selectAll(".bar-rect");
 	const labels = this.labelsCon.selectAll(".axis-label");
-	const dimColor = this.c.getItemColor();
+	const dimColor = Object(__WEBPACK_IMPORTED_MODULE_3__ui_styling__["b" /* getItemColor */])();
 	const duration = 100,
 		  hi = 1.0,
 		  lo = 0.4;
@@ -2031,21 +2050,26 @@ BarDisplay.prototype.highlight = function (index, highlight = true) {
 		.style("font-weight", "bold");
 };
 
+
+
 BarDisplay.prototype.mouseOver = function (d, target) {
 	let bar;
 	if (target instanceof HTMLSpanElement) {
+		const first = Object(__WEBPACK_IMPORTED_MODULE_2__utils__["d" /* firstDim */])(this.c.shownDimensions, this.c.year);
+		d = Object.create(d);
+		d.dim = first;
 		const selection = this.barsContainer
 			.selectAll(".bar-rect").filter(b =>
-				b.id==d.id && b.dim==this.c.shownDimensions[0]);
+				b.id==d.id && b.dim==first);
 		bar = selection.node();
 	} else
 		bar = target;
 
 	const box = bar.getBBox();
 	let x = box.x + box.width / 2;
-	x = x + __WEBPACK_IMPORTED_MODULE_2__ui_styling__["d" /* Styles */].leftMargin + __WEBPACK_IMPORTED_MODULE_2__ui_styling__["d" /* Styles */].widthControlPanel;
+	x = x + __WEBPACK_IMPORTED_MODULE_3__ui_styling__["a" /* Styles */].leftMargin + __WEBPACK_IMPORTED_MODULE_3__ui_styling__["a" /* Styles */].widthControlPanel;
 
-	__WEBPACK_IMPORTED_MODULE_4__tooltip__["a" /* Tooltip */].draw(d, x, __WEBPACK_IMPORTED_MODULE_2__ui_styling__["d" /* Styles */].tooltipY - 1, __WEBPACK_IMPORTED_MODULE_4__tooltip__["a" /* Tooltip */].DOWN, this.c, false);
+	__WEBPACK_IMPORTED_MODULE_5__tooltip__["a" /* Tooltip */].draw(d, x, __WEBPACK_IMPORTED_MODULE_3__ui_styling__["a" /* Styles */].tooltipY - 1, __WEBPACK_IMPORTED_MODULE_5__tooltip__["a" /* Tooltip */].DOWN, this.c, false);
 
 	if (d.id!=this.selected)
 		this.highlight(d.id);
@@ -2076,15 +2100,19 @@ BarDisplay.prototype.click = function (d) {
 		this.highlight(this.selected, false);
 	this.selected = d.id;
 	this.highlight(this.selected);
-	Object(__WEBPACK_IMPORTED_MODULE_1__script__["buildChart"])(c.level+1, c.fullData[d.id].values.data, d.category, c.parser);
+	Object(__WEBPACK_IMPORTED_MODULE_1__script__["buildChart"])(	c.level + 1,
+				c.fullData[d.id].values.data,
+				d.category,
+				c.year,
+				c.shownDimensions);
 };
 
 BarDisplay.prototype.sortUtil = function (a, b) {
 	const c = this.c;
-	if (this.sortMode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["c" /* Sort */].NUM)
-		return d3.descending(	c.val(a, this.sortDim),
-								c.val(b, this.sortDim));
-	else if (this.sortMode == __WEBPACK_IMPORTED_MODULE_3__ui_ui_state__["c" /* Sort */].ABC)
+	if (this.sortMode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["c" /* Sort */].NUM)
+		return d3.descending(	Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(a, this.sortDim, c.mode, c.year),
+								Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(b, this.sortDim, c.mode, c.year));
+	else if (this.sortMode == __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__["c" /* Sort */].ABC)
 		return d3.ascending(a.category, b.category);
 };
 
@@ -2122,12 +2150,12 @@ BarDisplay.prototype.setBarsHeight = function (display) {
 		.attr("y", d => {
 			// Add/subtract 1 pixel to keep short distance
 			// between bars and axis.
-			const v = c.val(d);
+			const v = Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(d, d.dim, c.mode, c.year);
 			if (v >= 0) return (display.yScale(v) - 1);
 			else 		return (display.yScale(0) + 1);
 		})
-		.attr("height", d => Math.abs(
-			display.yScale(0) - display.yScale(c.val(d))));
+		.attr("height", d => Math.abs(display.yScale(0)
+			- display.yScale(Object(__WEBPACK_IMPORTED_MODULE_2__utils__["l" /* val */])(d, d.dim, c.mode, c.year))));
 	};
 
 BarDisplay.prototype.onExitTrans = function (display) {
@@ -2155,25 +2183,24 @@ BarDisplay.prototype.setListeners = function (display) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = GraphDisplay;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_styling__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_styling__ = __webpack_require__(0);
 /*jshint esversion: 6 */
 
 
 
 
 
+
+const DATA_CONFIG = __webpack_require__(7);
+
 function GraphDisplay (chart) {
 	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].call(this, chart);
-
-	// this.years = this.getLabels();
 
 	this.xScale = d3.scale.ordinal();
 	this.xScaleGraph = d3.scale.linear();
 	this.xAxis = d3.svg.axis().scale(this.xScaleGraph);
-
-	// this.updateXScale();
-	// this.updateXScaleRange();
 
 	this.graphContainer = this.container;
 	this.graphContainer
@@ -2213,15 +2240,16 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 	let points = this.graphContainer.selectAll("circle")
 					.filter(".dim-" + dim)
 					.data(data);
+	// If path being built for the first time...
 	if (!path.empty()) {
 		path.transition().duration(1000)
 			.attr("d", this.line(data));
 
 		points.transition().duration(1000)
 			.attr("cy", (d) => this.yScale(d.value));
-		if (this.c.action == __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].RESIZE)
+		if (this.c.action == __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["a" /* Action */].RESIZE)
 			points.transition("x").duration(1000)
-				.attr("cx", (d) => this.xScaleGraph(d.year));
+				.attr("cx", d => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
 		if (!this.chartSet) {
 			path.transition().style("opacity", 1);
@@ -2240,7 +2268,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 
 		points = this.buildPoints(points, dim);
 		points.transition("points")
-			.delay((d, i) => i / this.years.length * 1000)
+			.delay((d, i) => i / DATA_CONFIG.years.length * 1000)
 			.duration(1000)
 			.style("opacity", 1);
 	}
@@ -2273,16 +2301,16 @@ GraphDisplay.prototype.removeDimension = function (dim) {
 *	necessary to draw the graph.
 */
 GraphDisplay.prototype.getPathData = function (dim) {
-	if (![__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].MODE, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].YEAR, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["a" /* Action */].UPDATE]
+	if (![__WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["a" /* Action */].MODE, __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["a" /* Action */].YEAR, __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["a" /* Action */].UPDATE]
 			.includes(this.c.action)
 		&& this.pathData.hasOwnProperty(dim)) {
 			return this.pathData[dim];
 		}
 
-	const years = this.getAvailableYears(dim);
+	const years = DATA_CONFIG.dimYears[dim];
 	const data = years.map(y => ({
 		value: d3.sum(this.dataset.map(
-			item => this.c.val(item, dim, y))),
+			item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y))),
 		dim: dim,
 		year: y
 	}));
@@ -2294,7 +2322,7 @@ GraphDisplay.prototype.buildPath = function (dim, data) {
 	const _this = this;
 	const path = this.graphContainer.append("path")
 		.attr("d", this.line(data))
-		.attr("stroke", this.c.getItemColor(dim))
+		.attr("stroke", Object(__WEBPACK_IMPORTED_MODULE_3__ui_styling__["b" /* getItemColor */])(dim))
 		.attr("class", "path dim-" + dim)
 		.attr("id", "path-" + this.c.level + "-" + dim);
 	const tl = path.node().getTotalLength();
@@ -2308,7 +2336,7 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 	p.enter()
 		.append("circle")
 		.attr("r", 5)
-		.attr("fill", this.c.getItemColor(dim))
+		.attr("fill", Object(__WEBPACK_IMPORTED_MODULE_3__ui_styling__["b" /* getItemColor */])(dim))
 		.attr("class",
 			d => ("point dim-" + d.dim + " year-" + d.year))
 		.style("opacity", 0)
@@ -2318,12 +2346,11 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 };
 
 GraphDisplay.prototype.getLabels = function () {
-	return Array.from(this.c.years).reverse();
+	return DATA_CONFIG.years;
 };
 
-GraphDisplay.prototype.setDataset = function (_) {
-	this.years = Array.from(this.c.years).reverse();
-	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype.setDataset.call(this, _);
+GraphDisplay.prototype.getDimensionData = function (dim) {
+	return DATA_CONFIG.years;
 };
 
 GraphDisplay.prototype.addDimension = function (dim) {
@@ -2335,18 +2362,10 @@ GraphDisplay.prototype.addDimension = function (dim) {
 		this.renderDimension(dim);
 };
 
-GraphDisplay.prototype.getDimensionData = function (dim) {
-	const data = this.years;
-	// const data = this.c.dataset.map(
-	// 	d => (Object.assign({dimension: dim}, d)));
-	return data;
-};
-
 GraphDisplay.prototype.updateXScale = function () {
-//	this.xScaleGraph.domain([0, this.c.years.length-1]);
-	this.xScale.domain(d3.range(this.years.length-1));
-	this.xScaleGraph.domain(
-		[this.c.years[this.c.years.length-1], this.c.years[0]]);
+	const y = DATA_CONFIG.years;
+	this.xScale.domain(d3.range(y.length-1));
+	this.xScaleGraph.domain([y[0], y[y.length-1]]);
 };
 
 GraphDisplay.prototype.updateYScale = function () {
@@ -2358,7 +2377,7 @@ GraphDisplay.prototype.updateYScale = function () {
 };
 
 GraphDisplay.prototype.updateXScaleRange = function () {
-	const range = [__WEBPACK_IMPORTED_MODULE_2__ui_styling__["d" /* Styles */].leftPadding, this.c.graphWidth];
+	const range = [__WEBPACK_IMPORTED_MODULE_3__ui_styling__["a" /* Styles */].leftPadding, this.c.graphWidth];
 	this.xScale.rangeRoundBands(range, 0.0);
 	this.xScaleGraph.range(range, 0.1);
 };
@@ -2373,9 +2392,9 @@ GraphDisplay.prototype.getLabelX = function (i) {
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(this.getAvailableYears(dim).map(y => d3.sum(
+		dim => d3.max(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
-				item => this.c.val(item, dim, y)))))));
+				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
 //	console.log("Max: " + max);
 	return max;
 };
@@ -2383,9 +2402,9 @@ GraphDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(this.getAvailableYears(dim).map(y => d3.sum(
+		dim => d3.min(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
-				item => this.c.val(item, dim, y)))))));
+				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
 //	console.log("Min: " + min);
 	return min;
 };
@@ -2445,7 +2464,7 @@ GraphDisplay.prototype.click = function (y) {
 	this.c.year = y;
 	this.c.yearSelect.node().value = y;
 //	this.c.updateStackedCharts();
-	this.c.setDisplay(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["d" /* View */].CATS);
+	this.c.setDisplay(__WEBPACK_IMPORTED_MODULE_2__ui_ui_state__["d" /* View */].CATS);
 };
 
 GraphDisplay.prototype.highlight = function () {
@@ -2470,11 +2489,10 @@ GraphDisplay.prototype.highlight = function () {
 
 
 
+const DATA_CONFIG = __webpack_require__(7);
+
 function ListPanel (chart) {
-//	Display.call(this, chart);
-
 	this.c = chart;
-
 	this.dimCon = this.c.rightContainer.append("div")
 		.attr("class", "dimcon")
 		.attr("id", "dimscon-" + this.c.level);
@@ -2490,7 +2508,7 @@ function ListPanel (chart) {
 }
 
 ListPanel.prototype.activate = function () {
-	this.c.dimensions.forEach ((d, i) => this._listDimension(d, i));
+	DATA_CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
 	this.setYear(this.c.year);
 	this.updateStackedCharts();
 };
@@ -2519,7 +2537,7 @@ ListPanel.prototype.setFigure = function(dim, y) {
 		  	.select("#dim-sign-"+ this.c.level + "-" + dim);
 
 	const sum = d3.sum(this.c.dataset
-		.map(item => this.c.val(item, dim, year)));
+		.map(item => Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(item, dim, this.c.mode, year)));
 
 	value.text("€" + Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* MoneyNum */])(sum));
 	sign.text(Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* MoneySign */])(sum));
@@ -2533,26 +2551,23 @@ ListPanel.prototype.setFigures = function (year) {
 	this.c.shownDimensions.forEach(d => this.setFigure(d, year));
 };
 
-ListPanel.prototype.setYear = function (_) {
+ListPanel.prototype.setYear = function (y) {
 	const yearBoxes = this.list.selectAll(".dim-year"),
-		  year = _ || '';
-	if (_ == null) {
-//		yearBoxes.transition().duration(500).delay(1000)
-//			.style("opacity", 0);
+		  year = y || '';
+	if (y == null) {
 		yearBoxes.classed("hidden-delay", true);
 	} else {
 		yearBoxes.classed("hidden-delay", false);
-	//	yearBoxes.transition().style("opacity", 1);
 		yearBoxes.text(year.toString());
 	}
 };
 
 ListPanel.prototype._listDimension = function (dim, i) {
-	const entryHeight = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].dimListSpacing + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].stackHeight,
+	const entryHeight = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].dimListSpacing + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight,
 		  id = this.c.level + "-" + dim;
 
 	let last = false;
-	if (i==this.c.dimensions.length-1)
+	if (i==DATA_CONFIG.dimensions.length-1)
 		last = true;
 	const entry = this.list.append("div")
 				.attr("class", "dim-entry" + (last ? " last" : ''))
@@ -2565,13 +2580,13 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const marker = aux.append("div")
 					.attr("class", "dim-marker")
 				.attr("id", "dim-marker-"+ id)
-			.style("background-color", this.c.getItemColor(dim));
+			.style("background-color", Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["b" /* getItemColor */])(dim));
 
 	const figHelp = aux.append("span")
 		.attr("class", "fighelp listhelp help")
 		.attr("id", "fighelp-" + id)
 		.on("click", () => {
-			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight,
+			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight,
 				  y = 41;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, this.c, help.EN.fig);
 		});
@@ -2580,7 +2595,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		.attr("class", "stackhelp listhelp help")
 		.attr("id", "stackhelp-" + id)
 		.on("click", () => {
-			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight,
+			const x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight,
 				  y = 62;
 			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, this.c, help.EN.stack);
 		});
@@ -2708,7 +2723,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 	const sds = this.c.stackedDataset,
 		  c = this.c,
 		  id = this.c.level + "-" + dim,
-		  di = c.dimensions.indexOf(dim),
+		  di = DATA_CONFIG.dimensions.indexOf(dim),
 		  desc = this.dimCon.select("#dim-desc-" + id),
 		  sc = desc.select("#stackscon-" + id);
 	let sg = sc.select("#stacks-" + id);
@@ -2718,28 +2733,32 @@ ListPanel.prototype.renderDimension = function (dim) {
 			.attr("id", "stacks-" + id);
 	}
 
-	const filtered = sds.filter(d => Math.abs(c.val(d, dim)) != 0);
+	const filtered = sds.filter(d =>
+		Math.abs(Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(d, dim, c.mode, c.year)) != 0);
 	// Each stack is at least one pixel wide even though
 	// some stacks normally would not even be visible
 	// due to small values. So subtract number of stacks from
 	// regular range to account for extra width of each stack.
-	this.stackScales[di].rangeRound([0, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].stackWidth], 0.0);
+	this.stackScales[di].rangeRound([0, __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackWidth], 0.0);
 
 
 //	const rd = filtered.map (d => (Object.assign({dim: dim}, d)));
 	const layers = d3.layout.stack()
 		.y (d => d.x)
-		.out((d, y0, y) => {d.x0 = y0, d.y = 0})(
+		.out((d, y0, y) => { d.x0 = y0, d.y = 0 })(
 			filtered.map(d => [dim].map(dimension =>
-				Object.assign({dim: dim, x: Math.abs(c.val(d, dim))}, d))))
+				Object.assign(
+					{ dim: dim,
+						x: Math.abs(Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(d, dim, c.mode, c.year))
+					}, d))))
 		.map(d => d[0]);
 	const len = layers.length;
 	const stacks = sg.selectAll("rect").data(layers);
 	stacks.enter().append("rect")
 					.attr("class", "stacked-rect")
 					.attr("width", 0)
-					.attr("height", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].stackHeight)
-					.attr("fill", (d, i) => c.getStackItemColor(i))
+					.attr("height", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight)
+					.attr("fill", (d, i) => Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* getStackItemColor */])(i))
 					.attr("x", -len)
 					.attr("index", (d, i) => i)
 					.style("opacity", 0);
@@ -2754,7 +2773,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 		.transition()
 		.duration (1000)
 		.attr("width", 0)
-		.attr("x", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight)
+		.attr("x", __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight)
 		.style("opacity", 0)
 		.remove();
 
@@ -2779,10 +2798,11 @@ ListPanel.prototype.updateMax = function () {
 		  c = this.c,
 		  oldMax = this.maxSum;
 	const maxSum = Math.max.apply(null,
-			sd.map(dim => Math.abs(sds.map(d => c.val(d, dim))
+			sd.map(dim => Math.abs(sds.map(d =>
+				Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(d, dim, c.mode, c.year))
 					.reduce((a, b) => a + b))));
 	this.maxDimSum = maxSum;
-	this.stackScales = [...Array(this.c.dimensions.length)].map(
+	this.stackScales = [...Array(DATA_CONFIG.dimensions.length)].map(
 		() => d3.scale.linear().domain([0, this.maxDimSum]).nice());
 	return maxSum != oldMax;
 };
@@ -2793,23 +2813,23 @@ ListPanel.prototype.mouseOver = function (d, target) {
 		  con = this.dimCon.select("#stackscon-" + id);
 	const stack = con.selectAll(".stacked-rect")
 					.filter(s => s.id==d.id);
-	stack.attr('fill', c.getItemColor(d.dim));
+	stack.attr('fill', Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["b" /* getItemColor */])(d.dim));
 
 	// X
 	const box = target.getBBox();
 	let x = box.x + box.width / 2;
-		x = x + 3 * __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].dimListMargin;
-	x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].widthRight + x;
+		x = x + 3 * __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].dimListMargin;
+	x = this.c.width - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthRight + x;
 	// Y
 	const el = document.getElementById("dim-entry-" + id);
 	let y = el.offsetTop;
-		y = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].topMargin + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].stackHeight + 51; // bottom of stacks
-	let by = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].tooltipHeight + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].arrowHeight,
+		y = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].topMargin + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight + 51; // bottom of stacks
+	let by = y + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].tooltipHeight + __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].arrowHeight,
 		direction = __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].UP;
 	// if tooltip overflow bottom
-	if (by > __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].height)	{
+	if (by > __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].height)	{
 		direction = __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].DOWN;
-		y = y - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* Styles */].stackHeight;
+		y = y - __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].stackHeight;
 	}
 
 	__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].draw(d, x, y, direction, c, true);
@@ -2820,7 +2840,7 @@ ListPanel.prototype.mouseOut = function (d, target) {
 		.classed("hidden", true);
 	const stack = d3.select(target);
 	const index = parseInt(stack.attr("index"));
-	stack.attr('fill', this.c.getStackItemColor(index));
+	stack.attr('fill', Object(__WEBPACK_IMPORTED_MODULE_0__ui_styling__["d" /* getStackItemColor */])(index));
 };
 
 

@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 import { Styles } from './ui/styling';
-import { scrollTo } from './utils';
+import { scroll, rollLevelData, roll } from './utils';
 import Chart from './chart';
 
 const DATA_CONFIG = require('../../data/config.json');
@@ -14,9 +14,9 @@ function getChartAt (level) {
 	if (c==null) {
 		c = new Chart(level);
 		charts.push(c);
-		scrollTo(document.body, Styles.height * level, 500);
+		scroll(document.body, Styles.height * level, 500);
 	} else {
-		scrollTo(document.body, Styles.height * (level-1), 250);
+		scroll(document.body, Styles.height * (level-1), 250);
 		// If there is already chart at this level, check if there
 		// are charts at deeper levels and destroy them.
 		const rest = charts.slice(level + 1, charts.length);
@@ -26,46 +26,39 @@ function getChartAt (level) {
 	return c;
 }
 
-function roll (csv, level) {
-	const levels = DATA_CONFIG.levels;
-	const ready = d3.nest()
-		.key(function(d) {
-			return d[levels[level]];
-		})
-		.rollup(function(v) {
-			return {
-				data: v,
-				count: v.length
-			};
-		})
-		.entries(csv);
-	return ready;
-}
-
-function buildChart(level, data, selectionName) {
+function buildChart(level, data, selectionName, year, shownDimensions) {
 	if (level >= DATA_CONFIG.levels.length)
 		return;
 
-	const chart = getChartAt(level)
-			.setDataset(roll(data, level))
-			.setStackedDataset(roll(data, DATA_CONFIG.levels.length - 1))
+	const fullData = rollLevelData(data, level);
+	const levelData = roll(fullData);
+	const chart = getChartAt(level);
+
+	chart	.setFullData(fullData)
+			.setDataset(levelData)
+			.setStackedDataset(roll(rollLevelData(
+				data, DATA_CONFIG.levels.length - 1)))
 			.setLevel(level)
+			.setStartYear(year)
+			.setShownDimensions(shownDimensions)
 			.setSelectionName(selectionName)
-			.setLevelName(DATA_CONFIG.levels[level]);
-	chart.build();
+			.setLevelDesc(DATA_CONFIG.levels[level])
+			.build();
 }
 
-
-
 (function() {
+
 	const redraw = () => charts.forEach (c => c.resize());
-	const launchChart = (filename) =>
+	const launch = (filename) =>
 		d3.dsv(";", "text/plain")(filename, csv =>
-			buildChart(0, csv, DATA_CONFIG.name));
+			buildChart(0, csv,
+				DATA_CONFIG.name,
+				DATA_CONFIG.startYear,
+				DATA_CONFIG.startDimensions));
 
 	window.addEventListener("resize", redraw);
 
-	launchChart("data/out1.csv");
+	launch("data/out1.csv");
 })();
 
 export { buildChart };

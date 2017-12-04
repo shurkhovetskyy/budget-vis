@@ -1,69 +1,43 @@
 /*jshint esversion: 6 */
 /*jshint loopfunc: true */
 
-import { Styles, ColorSchemes, Colors, Blacks } from './ui/styling';
+import { Styles, getLevelColor } from './ui/styling';
 import { Mode, View, Action, Sort } from './ui/ui-state';
 import { Tooltip } from './tooltip';
 import { Help } from './ui/text';
-import { getFontSize, adjustFontSize } from './utils';
+import { getFontSize, adjustFontSize,
+		 readYears, setDimYears } from './utils';
 
 import BarDisplay from './display/bar-display';
 import GraphDisplay from './display/graph-display';
 import ListPanel from './list-panel';
 
-export default function Chart (level) {
+const DATA_CONFIG = require('../../data/config.json');
 
+export default function Chart (level) {
 	// Keeps track of visible dimensions.
-	this.shownDimensions = ["Executed-Ist"];
-	var sd = this.shownDimensions;
-	// List of all dimensions available in data.
-	this.dimensions = ["Executed-Ist", "Planentwurf", "Plan"];
-	var dims = this.dimensions;
-	// List of categories.
-	this.categories = [];
+	this.shownDimensions = [];
 	// Actual dataset.
 	this.dataset = [];
-	var ds = this.dataset;
 	// Actual dataset.
 	this.stackedDataset = [];
-	var sds = this.stackedDataset;
-	// Stack charts' scales.
-	this.stackScales = [];
 	// Current mode.
 	this.mode = Mode.SPENDING;
+	// View - categories or over time.
+	this.viewMode = View.CATS;
 	// Last action type.
 	this.action = null;
-
+	// Level of this chart (starts with 0).
 	this.level = level;
 	// Sum of largest dimension in current mode.
 	this.maxDimSum = 0;
 	this.widthRight = null;
-
 	this.width = null;
 	this.axisWidth = null;
 
-	this.years = ["2024", "2023", "2022", "2021", "2020",
-					"2019", "2018", "2017", "2016",
-					"2015", "2014", "2013", "2012", "2011",
-					"2010", "2009", "2008"];
-	this.year = "2015";
-
-	this.viewMode = View.CATS;
-	this.stacksVisible = true;
-
-//	var svgDimCon = null;
-	this.selected = -1;
 	this.initialized = false;
-	this.fullData = null;
 
-	this.tt = (dim) => test(dim);
-//	this.tt = test;
-	// this.tt = function (dim) {
-	// 	test(dim);
-	// };
-
-	// Reference to chart.
-	var c = this;
+	this.years = DATA_CONFIG.years || readYears();
 
 	this.initialBuild();
 
@@ -71,72 +45,36 @@ export default function Chart (level) {
 	this.graphDisplay = new GraphDisplay(this);
 	this.listPanel = new ListPanel(this);
 
-	this.setParser = function (value) {
-		this.parser = value;
-		return this;
-	};
-
-	this.getParser = function () {
-		return this.parser;
-	};
-
-	this.setStackedDataset = function(data) {
-		var unpacked = this._rollupDataset(data);
+	this.setStackedDataset = function(_) {
 		this.stackedDataset.length = 0;
-		this.stackedDataset.push.apply(this.stackedDataset, unpacked); //.dataset;
+		this.stackedDataset.push.apply(this.stackedDataset, _); //.dataset;
 	//	this.stackCategories = unpacked.categories;
-
 		return this;
 	};
 
-	this._rollupDataset = function (value) {
-		var cats = [];
-		var item = null;
-		var rolled = null;
-		var parser = this.parser;
-		// Retrieve names of all categories.
-		return value.map ((c, i) => {
-			item = {category: c.key,
-					id: i };
-			rolled = d3.nest()
-				.key(d => d.Year).key(d => d.Sign)
-				.rollup (v => ({
-					"Executed-Ist"	: d3.sum(v, d => parseFloat(d["Executed-Ist"])),
-					"Planentwurf"	: d3.sum(v, d => parseFloat(d["Planentwurf"])),
-					"Plan"		: d3.sum(v, d => parseFloat(d["Plan"])) }))
-				.entries(c.values.data);
-			item.data = rolled;
-			return item;
-		});
+	this.setFullData = function (_) {
+		this.fullData = _;
+		return this;
 	};
 
 	this.setDataset = function(data) {
+		this.dataset.length = 0;
+		this.dataset.push.apply(this.dataset, data);
 
-		// var yearIndex = data.findIndex(
-		// 	item => item.key == year.toString());
-		var value = data;//[yearIndex].values;
-		this.fullData = value;
-		var ds = [];
-		// if (value.length > 0) {
-		// 	for (var key in value[0].values.dimensions)
-		// 		this.dimensions.push(key);
-		// }
+		if (!DATA_CONFIG.hasOwnProperty("dimYears"))
+			setDimYears(data);
+		return this;
+	};
 
-	//	sd.forEach ((dim, i) => sd[i] = this.dimensions[i]);
-
-		var unpacked = this._rollupDataset(value);
-		this.dataset.length = 0; // Clearing dataset array.
-		this.dataset.push.apply(this.dataset, unpacked); // Pushing new data.
-		this.categories = unpacked.map(c => c.category);
-
-		this.barDisplay.setDataset(this.dataset);
-		this.graphDisplay.setDataset(this.dataset);
-
+	this.setStartYear = function (startYear) {
+		this.year = startYear;
+		if (this.yearSelect!=undefined)
+			this.yearSelect.node().value = this.year;
 		return this;
 	};
 
 	this.setShownDimensions = function (value) {
-		sd = value;
+		this.shownDimensions = value;
 		return this;
 	};
 
@@ -145,14 +83,13 @@ export default function Chart (level) {
 		return this;
 	};
 
-	this.setLevelName = function (value) {
-		this.levelName = value;
+	this.setLevelDesc = function (value) {
+		this.levelDesc = value;
 		return this;
 	};
 
 	this.setLevel = function (value) {
 		this.level = value;
-		this.colorBand = ColorSchemes[this.level%ColorSchemes.length];
 		return this;
 	};
 
@@ -160,7 +97,6 @@ export default function Chart (level) {
 		this.levelContainer.transition("opacity").duration(500)
 			.style("opacity", 0);
 		this.levelContainer.transition("remove").duration(500).remove();
-
 	};
 
 	this.setDefaults = function () {
@@ -168,12 +104,12 @@ export default function Chart (level) {
 	};
 
 	this.build = function () {
+		this.barDisplay.setDataset(this.dataset);
+		this.graphDisplay.setDataset(this.dataset);
 		if (!this.initialized) {
 			this.action = Action.ADD;
-			// this.initialBuild();
 			this.setTitle();
 			this.barDisplay.activate();
-			// this.barDisplay.updateLabels();
 			this.listPanel.activate();
 			this.initialized = true;
 		} else {
@@ -185,23 +121,14 @@ export default function Chart (level) {
 		this.action = null;
 	};
 
-	/*
-	*	Spread parameter indicates whether to add dimension
-	*	to the list of shown dimensions or not (in this case)
-	*	it is already there.
-	*/
 	this.addDimension = function (dim, push = true) {
-		var start = new Date().getTime();
 		this.action = Action.ADD;
 		if(push)
-			sd.push(dim);
-//		this.display.addDimension.call(this, dim);
+			this.shownDimensions.push(dim);
 		this.display.addDimension(dim);
 		this.action = null;
-		var elapsed = new Date().getTime() - start;
-		console.log(elapsed);
-	//	this.listPanel.addDimension(dim);
-	//	this.addDimensionList(dim);
+		//	this.listPanel.addDimension(dim);
+		//	this.addDimensionList(dim);
 	};
 
 	this.removeDimension = function (dimension) {
@@ -222,18 +149,6 @@ export default function Chart (level) {
 		this.barDisplay.updateLabels();
 		this.graphDisplay.updateLabels();
 		this.display.updateDimensions();
-	};
-
-	this.getStackItemColor = function (index) {
-	//	const color = stackColors[sd.indexOf(dim)%colors.length][index%3];
-		const color = Blacks[index%Blacks.length];
-		return color;
-	};
-
-	this.getItemColor = function (dim) {
-	//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
-		const color = Colors[dims.indexOf(dim)%Colors.length];
-		return color;
 	};
 
 	// Updates visualization when data changes.
@@ -261,55 +176,9 @@ export default function Chart (level) {
 		// 	.duration(500)
 		// 	.style("opacity", 1);
 
-		this.levelText.text(this.levelName);
+		this.levelText.text(this.levelDesc);
 		this.selectionText.text(this.selectionName);
 		adjustFontSize(this.selectionText.node());
-	};
-
-	function getDatum (data, mode, dimension) {
-		// Get index of a sign.
-		var i = data.findIndex(d => d.key == mode);
-		if (i == -1)	return 0.0;
-		else 			return data[i].values[dimension];
-	}
-
-	/*
-	 *	Returns actual value given data item, desired dimension
-	 *	and current display mode.
-	 */
-	this.val = function (d, ...params) {
-		var dim = d.dim;
-		var year = this.year;
-		var yd = null;	// year data
-
-		// If dimension is sent separately, use it, otherwise
-		// it is included in the data object d.
-		if (params.length > 0) {
-			dim = params[0];
-			if (params.length > 1)
-				year = params[1];
-		}
-		// For some categories data might not be available
-		// for all years or for all signs. Then return 0.
-		var yi = d.data.findIndex(d => d.key == year.toString());
-		if (yi == -1)	return 0.0;
-		else 			yd = d.data[yi].values;
-
-		if (c.mode==Mode.SPENDING || c.mode==Mode.REVENUE)
-			return getDatum(yd, c.mode, dim);
-
-		// Getting objects holding values at different signs.
-		const plusData = getDatum(yd, Mode.SPENDING, dim);
-		const minusData = getDatum(yd, Mode.REVENUE, dim);
-
-		if (c.mode==Mode.BAL)
-			return plusData + minusData;
-		else if (c.mode == Mode.COMB) {
-			const pa = Math.abs(plusData);
-			const ma = Math.abs(minusData);
-			const ra = pa + ma;
-			return ra;
-		}
 	};
 
 	/*
@@ -356,12 +225,10 @@ export default function Chart (level) {
 
 	this.setYear = function () {
 		this.action = Action.YEAR;
-		this.year = this.yearSelect.property("value");
+		this.year = parseInt(this.yearSelect.property("value"));
 		this.listPanel.setYear(this.year);
 		this.updateData();
-	//	this.display.sortBars(0, Sort.NUM);
 		this.sortNumerical.classed("active-button", false);
-		// this.sortAlphabetical.classed("active-button", false);
 		this.action = null;
 	};
 
@@ -404,7 +271,7 @@ Chart.prototype.initialBuild = function () {
 	this.levelContainer = this.board.append("div")
 		.attr("id", "level-" + this.level)
 		.attr("class", "levelcon level-" + this.level)
-		.style("background-color", this.colorBand)
+		.style("background-color", getLevelColor(this.level))
 		.style("opacity", "0.0")
 	//	.classed("hidden", true)
 		;
@@ -616,11 +483,11 @@ Chart.prototype.initialBuild = function () {
 			.on("change", () => this.setYear());
 
 	this.yearSelect.selectAll("option")
-			.data(this.years).enter()
+			.data(Array.from(this.years).reverse()).enter()
 			.append("option").text(d => d)
 			.attr("class", "opt");
 
-	this.yearSelect.node().value = this.year;
+	this.yearSelect.node().value = this.year || DATA_CONFIG.startYear;
 
 	/*
 	* Sort control.

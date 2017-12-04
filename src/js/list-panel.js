@@ -1,15 +1,14 @@
 /*jshint esversion: 6 */
 
-import { Styles } from './ui/styling';
+import { Styles, getStackItemColor, getItemColor } from './ui/styling';
 import { Mode } from './ui/ui-state';
 import { Tooltip } from './tooltip';
-import { MoneyNum, MoneySign } from './utils';
+import { MoneyNum, MoneySign, val } from './utils';
+
+const DATA_CONFIG = require('../../data/config.json');
 
 export default function ListPanel (chart) {
-//	Display.call(this, chart);
-
 	this.c = chart;
-
 	this.dimCon = this.c.rightContainer.append("div")
 		.attr("class", "dimcon")
 		.attr("id", "dimscon-" + this.c.level);
@@ -25,7 +24,7 @@ export default function ListPanel (chart) {
 }
 
 ListPanel.prototype.activate = function () {
-	this.c.dimensions.forEach ((d, i) => this._listDimension(d, i));
+	DATA_CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
 	this.setYear(this.c.year);
 	this.updateStackedCharts();
 };
@@ -54,7 +53,7 @@ ListPanel.prototype.setFigure = function(dim, y) {
 		  	.select("#dim-sign-"+ this.c.level + "-" + dim);
 
 	const sum = d3.sum(this.c.dataset
-		.map(item => this.c.val(item, dim, year)));
+		.map(item => val(item, dim, this.c.mode, year)));
 
 	value.text("€" + MoneyNum(sum));
 	sign.text(MoneySign(sum));
@@ -68,16 +67,13 @@ ListPanel.prototype.setFigures = function (year) {
 	this.c.shownDimensions.forEach(d => this.setFigure(d, year));
 };
 
-ListPanel.prototype.setYear = function (_) {
+ListPanel.prototype.setYear = function (y) {
 	const yearBoxes = this.list.selectAll(".dim-year"),
-		  year = _ || '';
-	if (_ == null) {
-//		yearBoxes.transition().duration(500).delay(1000)
-//			.style("opacity", 0);
+		  year = y || '';
+	if (y == null) {
 		yearBoxes.classed("hidden-delay", true);
 	} else {
 		yearBoxes.classed("hidden-delay", false);
-	//	yearBoxes.transition().style("opacity", 1);
 		yearBoxes.text(year.toString());
 	}
 };
@@ -87,7 +83,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		  id = this.c.level + "-" + dim;
 
 	let last = false;
-	if (i==this.c.dimensions.length-1)
+	if (i==DATA_CONFIG.dimensions.length-1)
 		last = true;
 	const entry = this.list.append("div")
 				.attr("class", "dim-entry" + (last ? " last" : ''))
@@ -100,7 +96,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const marker = aux.append("div")
 					.attr("class", "dim-marker")
 				.attr("id", "dim-marker-"+ id)
-			.style("background-color", this.c.getItemColor(dim));
+			.style("background-color", getItemColor(dim));
 
 	const figHelp = aux.append("span")
 		.attr("class", "fighelp listhelp help")
@@ -243,7 +239,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 	const sds = this.c.stackedDataset,
 		  c = this.c,
 		  id = this.c.level + "-" + dim,
-		  di = c.dimensions.indexOf(dim),
+		  di = DATA_CONFIG.dimensions.indexOf(dim),
 		  desc = this.dimCon.select("#dim-desc-" + id),
 		  sc = desc.select("#stackscon-" + id);
 	let sg = sc.select("#stacks-" + id);
@@ -253,7 +249,8 @@ ListPanel.prototype.renderDimension = function (dim) {
 			.attr("id", "stacks-" + id);
 	}
 
-	const filtered = sds.filter(d => Math.abs(c.val(d, dim)) != 0);
+	const filtered = sds.filter(d =>
+		Math.abs(val(d, dim, c.mode, c.year)) != 0);
 	// Each stack is at least one pixel wide even though
 	// some stacks normally would not even be visible
 	// due to small values. So subtract number of stacks from
@@ -264,9 +261,12 @@ ListPanel.prototype.renderDimension = function (dim) {
 //	const rd = filtered.map (d => (Object.assign({dim: dim}, d)));
 	const layers = d3.layout.stack()
 		.y (d => d.x)
-		.out((d, y0, y) => {d.x0 = y0, d.y = 0})(
+		.out((d, y0, y) => { d.x0 = y0, d.y = 0 })(
 			filtered.map(d => [dim].map(dimension =>
-				Object.assign({dim: dim, x: Math.abs(c.val(d, dim))}, d))))
+				Object.assign(
+					{ dim: dim,
+						x: Math.abs(val(d, dim, c.mode, c.year))
+					}, d))))
 		.map(d => d[0]);
 	const len = layers.length;
 	const stacks = sg.selectAll("rect").data(layers);
@@ -274,7 +274,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 					.attr("class", "stacked-rect")
 					.attr("width", 0)
 					.attr("height", Styles.stackHeight)
-					.attr("fill", (d, i) => c.getStackItemColor(i))
+					.attr("fill", (d, i) => getStackItemColor(i))
 					.attr("x", -len)
 					.attr("index", (d, i) => i)
 					.style("opacity", 0);
@@ -314,10 +314,11 @@ ListPanel.prototype.updateMax = function () {
 		  c = this.c,
 		  oldMax = this.maxSum;
 	const maxSum = Math.max.apply(null,
-			sd.map(dim => Math.abs(sds.map(d => c.val(d, dim))
+			sd.map(dim => Math.abs(sds.map(d =>
+				val(d, dim, c.mode, c.year))
 					.reduce((a, b) => a + b))));
 	this.maxDimSum = maxSum;
-	this.stackScales = [...Array(this.c.dimensions.length)].map(
+	this.stackScales = [...Array(DATA_CONFIG.dimensions.length)].map(
 		() => d3.scale.linear().domain([0, this.maxDimSum]).nice());
 	return maxSum != oldMax;
 };
@@ -328,7 +329,7 @@ ListPanel.prototype.mouseOver = function (d, target) {
 		  con = this.dimCon.select("#stackscon-" + id);
 	const stack = con.selectAll(".stacked-rect")
 					.filter(s => s.id==d.id);
-	stack.attr('fill', c.getItemColor(d.dim));
+	stack.attr('fill', getItemColor(d.dim));
 
 	// X
 	const box = target.getBBox();
@@ -355,5 +356,5 @@ ListPanel.prototype.mouseOut = function (d, target) {
 		.classed("hidden", true);
 	const stack = d3.select(target);
 	const index = parseInt(stack.attr("index"));
-	stack.attr('fill', this.c.getStackItemColor(index));
+	stack.attr('fill', getStackItemColor(index));
 };

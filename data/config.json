@@ -2,5 +2,8 @@
 	"name" : "Bonn Budget",
 	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
 	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"],
-	"stacks" : "Kostenart"
+	"startDimensions" : ["Executed-Ist"],
+	"stacks" : "Kostenart",
+	"yearsRange" : [2008, 2024],
+	"startYear": 2015
 }

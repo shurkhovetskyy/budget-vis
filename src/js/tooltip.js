@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 import { Styles } from './ui/styling';
-import { MoneyNum, MoneySign } from './utils';
+import { MoneyNum, MoneySign, val } from './utils';
 
 export const Tooltip = (function () {
 	const tooltip = {};
@@ -42,18 +42,18 @@ export const Tooltip = (function () {
 				.classed("hidden", false);
 		}
 
-		const val = c.val(d, d.dim);
+		const value = val(d, d.dim, c.mode, c.year);
 		box.select(".text").text('');
 		box.select(".title").text(d.category);
-		box.select(".num").text("€" + MoneyNum(val));
-		box.select(".sign").text(MoneySign(val));
+		box.select(".num").text("€" + MoneyNum(value));
+		box.select(".sign").text(MoneySign(value));
 
-		const sumFun = (item) => stacked ? c.val(item, d.dim) :
-							Math.abs(c.val(item, d.dim));
+		const sumFun = (item) => stacked ? val(item, d.dim, c.mode, c.year) :
+							Math.abs(val(item, d.dim, c.mode, c.year));
 
 		let sum = d3.sum(c.dataset.map(sumFun));
 		const label = stacked ? "Kostenart" : c.selectionName;
-		const percentage = Math.abs((val / sum * 100));
+		const percentage = Math.abs((value / sum * 100));
 		box.select(".stats")
 			.text(d3.format(".1f")(percentage) + "% of " + label);
 

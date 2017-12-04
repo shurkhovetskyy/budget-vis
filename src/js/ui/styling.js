@@ -1,13 +1,22 @@
 /*jshint esversion: 6 */
 
+const DATA_CONFIG = require('../../../data/config.json');
+
+// Non-used
 const colorBands = ["rgb(19, 52, 83)", "rgb(13, 78, 73)", "rgb(16, 94, 40)"];
-export const Colors = ["rgb(39, 127, 150)",
+const highColors = ["rgb(39, 127, 150)",
 				"rgb(212, 124, 60)",
 				"rgb(224, 219, 86)",
 				"rgb(78, 194, 101)",
 			//	"rgb(121, 178, 194)"
 			];
-const highColors = ["rgb(39, 127, 150)",
+let stackColors = [["rgb(11, 107, 128)", "rgb(125, 173, 244)", "rgb(37, 131, 199)"],
+					["rgb(245, 165, 106)", "rgb(128, 64, 21)", "rgb(181, 93, 70)", "rgb(128, 40, 21)"],
+					["rgb(210, 166, 66)", "rgb(218, 154, 46)", "rgb(231, 226, 91)"],
+					[]];
+
+// Used
+const Colors = ["rgb(39, 127, 150)",
 				"rgb(212, 124, 60)",
 				"rgb(224, 219, 86)",
 				"rgb(78, 194, 101)",
@@ -15,16 +24,29 @@ const highColors = ["rgb(39, 127, 150)",
 			];
 
 			//"rgb(121, 178, 194)" - nice blue ---- rgb(121, 20, 34)
-export const ColorSchemes = ["rgb(38, 47, 52)", "rgb(21, 28, 32)"];
-export const Blacks = ["rgb(147, 147, 147)", "rgb(103, 102, 106)", "rgb(195, 195, 195)"];
-let stackColors = [["rgb(11, 107, 128)", "rgb(125, 173, 244)", "rgb(37, 131, 199)"],
-					["rgb(245, 165, 106)", "rgb(128, 64, 21)", "rgb(181, 93, 70)", "rgb(128, 40, 21)"],
-					["rgb(210, 166, 66)", "rgb(218, 154, 46)", "rgb(231, 226, 91)"],
-					[]];
+const ColorSchemes = ["rgb(38, 47, 52)", "rgb(21, 28, 32)"];
+const Blacks = ["rgb(147, 147, 147)", "rgb(103, 102, 106)", "rgb(195, 195, 195)"];
+
+
+export function getStackItemColor (index) {
+	const color = Blacks[index % Blacks.length];
+	return color;
+}
+
+export function getItemColor (dim) {
+//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
+	const color = Colors[DATA_CONFIG.dimensions
+		.indexOf(dim) % Colors.length];
+	return color;
+}
+
+export function getLevelColor (level) {
+	return ColorSchemes[level % ColorSchemes.length];
+}
 
 export const Styles = (function() {
 	function getStyleProperty(property) {
-		var styles = getComputedStyle(document.documentElement);
+		const styles = getComputedStyle(document.documentElement);
 		return String(styles.getPropertyValue(property)).trim();
 	}
 

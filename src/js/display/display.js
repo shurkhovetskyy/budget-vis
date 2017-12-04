@@ -1,9 +1,11 @@
 /*jshint esversion: 6 */
 
 import { Styles } from '../ui/styling';
-import { reveal, hide, MoneyNum, MoneySign } from '../utils';
+import { reveal, hide, MoneyNum, MoneySign, val } from '../utils';
 import { Mode, View, Action, Sort } from '../ui/ui-state';
 import { Sign } from '../ui/text';
+
+const DATA_CONFIG = require('../../../data/config.json');
 
 export default function Display (chart) {
 	this.c = chart;
@@ -133,19 +135,6 @@ Display.prototype.updateLabels = function () {
 		;
 };
 
-Display.prototype.getAvailableYears = function (dim) {
-	const currentMode = this.c.mode;
-	this.c.mode = Mode.COMB;
-	const years = Array.from(this.c.years).reverse();
-	const data = years.map(y => ({
-		value: d3.sum(this.c.stackedDataset.map(
-			item => this.c.val(item, dim, y))),
-		year: y
-	}));
-	this.c.mode = currentMode;
-	return data.filter(d => d.value!=0).map(d => d.year);
-};
-
 Display.prototype.setNoDataMessage = function () {
 	let html = "No <span>" + this.c.year + "</span> data available for";
 	this.c.shownDimensions.forEach(
@@ -173,11 +162,17 @@ Display.prototype.noDataMessage = function (noData = true) {
 };
 
 Display.prototype.dataAvailable = function (dims = null) {
+	var start = new Date().getTime();
+
 	dims = dims || this.c.shownDimensions;
-	const available = dims.map(d => this.getAvailableYears(d)
-		.includes(this.c.year)).reduce((a, b) => a || b);
+	const available = dims.map(d =>
+		DATA_CONFIG.dimYears[d]
+			.includes(this.c.year)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;
+
+	var elapsed = new Date().getTime() - start;
+	console.log(elapsed);
 	return available;
 };
 
@@ -193,6 +188,15 @@ Display.prototype.setupChart = function (dims = null) {
 	this.chartSet = true;
 };
 
+/**
+*	Updates view.
+*
+*	The order of all checks and transitions is set specifically
+*	to handle quick switches between states and views.
+*
+*	Unless you really, really, really know what you are doing
+*	do not change anything here. Or the sky will fall.
+*/
 Display.prototype.updateData = function () {
 	// if there is currently no data or year was changed...
 	if(this.noData || this.c.action == Action.YEAR) {

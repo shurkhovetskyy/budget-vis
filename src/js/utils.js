@@ -1,8 +1,134 @@
 /*jshint esversion: 6 */
 
 import { Sign } from './ui/text';
+import { Mode } from './ui/ui-state';
 
-export function scrollTo (element, to, duration) {
+const DATA_CONFIG = require('../../data/config.json');
+
+/**
+*	Returns first available dimension among those shown.
+*/
+export function firstDim (shown, year) {
+	const availableDimensions = shown.filter(
+		dim => DATA_CONFIG.dimYears[dim].includes(year));
+	return availableDimensions.shift();
+}
+
+export function roll (value) {
+	var cats = [];
+	var item = null;
+	var rolled = null;
+	// Retrieve names of all categories.
+	return value.map ((c, i) => {
+		item = {category: c.key,
+				id: i };
+		rolled = d3.nest()
+			.key(d => d.Year).key(d => d.Sign)
+			.rollup (v => (generateEntry(v)))
+			.entries(c.values.data);
+		item.data = rolled;
+		return item;
+	});
+}
+
+export function rollLevelData (csv, level) {
+	const levels = DATA_CONFIG.levels;
+	const ready = d3.nest()
+		.key(function(d) {
+			return d[levels[level]];
+		})
+		.rollup(function(v) {
+			return {
+				data: v,
+				count: v.length
+			};
+		})
+		.entries(csv);
+	return ready;
+}
+
+function generateEntry (v) {
+	const entry = {};
+	DATA_CONFIG.dimensions.forEach (dim =>
+		entry[dim] = d3.sum(v, d => parseFloat(d[dim])));
+	return entry;
+}
+
+/**
+*	Returns list of years for which data is available
+*	for specified dimension.
+*/
+function getAvailableYears (dim, data) {
+	const years = Array.from(DATA_CONFIG.years);
+	const res = years.map(y => ({
+		value: d3.sum(data.map(
+			item => val(item, dim, Mode.COMB, y))),
+		year: y
+	}));
+	return res.filter(d => d.value!=0).map(d => d.year);
+}
+
+/**
+*	Calculates the list of years from the range specified.
+*/
+export function readYears () {
+	const range = DATA_CONFIG.yearsRange;
+	const years = Array.from({ length: range[1] - range[0] + 1 },
+		(v, k) => k + range[0]);
+	DATA_CONFIG.years = years;
+	return years;
+}
+
+/**
+*	Finds list of years for which data is available
+*	for each dimension separately.
+*/
+export function setDimYears (data) {
+	const dimYears = {};
+	DATA_CONFIG.dimensions.forEach (dim =>
+		dimYears[dim] = getAvailableYears(dim, data));
+	DATA_CONFIG.dimYears = dimYears;
+}
+
+function getDatum (data, mode, dimension) {
+	// Get index of a sign.
+	const i = data.findIndex(d => d.key == mode);
+	if (i == -1)	return 0.0;
+	else 			return data[i].values[dimension];
+}
+
+/*
+ *	Returns actual value given data item, desired dimension
+ *	and current display mode.
+ */
+export function val (d, dim, mode, year) {
+	let yd;	// year data
+	// For some categories data might not be available
+	// for all years or for all signs. Then return 0.
+	const yi = d.data.findIndex(d => d.key == year.toString());
+	if (yi == -1)	return 0.0;
+	else 			yd = d.data[yi].values;
+
+	if (mode==Mode.SPENDING || mode==Mode.REVENUE)
+		return getDatum(yd, mode, dim);
+
+	// Getting objects holding values at different signs.
+	const plusData = getDatum(yd, Mode.SPENDING, dim);
+	const minusData = getDatum(yd, Mode.REVENUE, dim);
+
+	if (mode==Mode.BAL)
+		return plusData + minusData;
+	else if (mode == Mode.COMB) {
+		const pa = Math.abs(plusData);
+		const ma = Math.abs(minusData);
+		return pa + ma;
+	}
+}
+
+/**
+*	Scrolls the page smoothly.
+*/
+export function scroll (element, to, duration) {
     let start = element.scrollTop,
         change = to - start,
         currentTime = 0,
@@ -120,6 +246,6 @@ export const hide = function (el, duration = 500) {
 export const reveal = function (el, duration = 500) {
 	el.transition().duration(duration)
 		.style("visibility", "visible")
-	//	.transition().duration(duration)
+		//	.transition().duration(duration)
 		.style("opacity", 1);
 };

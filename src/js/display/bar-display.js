@@ -2,7 +2,8 @@
 
 import Display from './display';
 import { buildChart } from '../script';
-import { Styles } from '../ui/styling';
+import { val, firstDim } from '../utils';
+import { Styles, getItemColor } from '../ui/styling';
 import { Mode, Action, Sort } from '../ui/ui-state';
 import { Tooltip } from '../tooltip';
 
@@ -106,7 +107,7 @@ BarDisplay.prototype.buildBars = function (bars, dim) {
 		.append("rect")
 		// To make sure bars only appear within chart.
 		.attr("x", c.axisWidth - this.xScale.rangeBand())
-		.attr("fill", c.getItemColor(dim))
+		.attr("fill", getItemColor(dim))
 		.style("fill-opacity", 0)
 		.attr("dim", dim)
 		.attr("class", "bar-rect level-" + c.level)
@@ -304,7 +305,8 @@ BarDisplay.prototype.sortBars = function (dimension, sort = null) {
 // Gets highest value across all visisble dimensions.
 BarDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(this.dataset.map(d => this.c.val(d, dim)))));
+		dim => d3.max(this.dataset.map(d =>
+			val(d, dim, this.c.mode, this.c.year)))));
 	console.log("Max: " + max);
 	return max;
 };
@@ -312,7 +314,8 @@ BarDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 BarDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(this.dataset.map(d => this.c.val(d, dim)))));
+		dim => d3.min(this.dataset.map(d =>
+			val(d, dim, this.c.mode, this.c.year)))));
 	console.log("Min: " + min);
 	return min;
 };
@@ -328,7 +331,7 @@ BarDisplay.prototype.highlight = function (index, highlight = true) {
 	const transition = this.barsContainer.transition().duration(150);
 	const bars = this.barsContainer.selectAll(".bar-rect");
 	const labels = this.labelsCon.selectAll(".axis-label");
-	const dimColor = this.c.getItemColor();
+	const dimColor = getItemColor();
 	const duration = 100,
 		  hi = 1.0,
 		  lo = 0.4;
@@ -367,12 +370,17 @@ BarDisplay.prototype.highlight = function (index, highlight = true) {
 		.style("font-weight", "bold");
 };
 
+
+
 BarDisplay.prototype.mouseOver = function (d, target) {
 	let bar;
 	if (target instanceof HTMLSpanElement) {
+		const first = firstDim(this.c.shownDimensions, this.c.year);
+		d = Object.create(d);
+		d.dim = first;
 		const selection = this.barsContainer
 			.selectAll(".bar-rect").filter(b =>
-				b.id==d.id && b.dim==this.c.shownDimensions[0]);
+				b.id==d.id && b.dim==first);
 		bar = selection.node();
 	} else
 		bar = target;
@@ -412,14 +420,18 @@ BarDisplay.prototype.click = function (d) {
 		this.highlight(this.selected, false);
 	this.selected = d.id;
 	this.highlight(this.selected);
-	buildChart(c.level+1, c.fullData[d.id].values.data, d.category, c.parser);
+	buildChart(	c.level + 1,
+				c.fullData[d.id].values.data,
+				d.category,
+				c.year,
+				c.shownDimensions);
 };
 
 BarDisplay.prototype.sortUtil = function (a, b) {
 	const c = this.c;
 	if (this.sortMode == Sort.NUM)
-		return d3.descending(	c.val(a, this.sortDim),
-								c.val(b, this.sortDim));
+		return d3.descending(	val(a, this.sortDim, c.mode, c.year),
+								val(b, this.sortDim, c.mode, c.year));
 	else if (this.sortMode == Sort.ABC)
 		return d3.ascending(a.category, b.category);
 };
@@ -458,12 +470,12 @@ BarDisplay.prototype.setBarsHeight = function (display) {
 		.attr("y", d => {
 			// Add/subtract 1 pixel to keep short distance
 			// between bars and axis.
-			const v = c.val(d);
+			const v = val(d, d.dim, c.mode, c.year);
 			if (v >= 0) return (display.yScale(v) - 1);
 			else 		return (display.yScale(0) + 1);
 		})
-		.attr("height", d => Math.abs(
-			display.yScale(0) - display.yScale(c.val(d))));
+		.attr("height", d => Math.abs(display.yScale(0)
+			- display.yScale(val(d, d.dim, c.mode, c.year))));
 	};
 
 BarDisplay.prototype.onExitTrans = function (display) {

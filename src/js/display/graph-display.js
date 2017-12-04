@@ -1,20 +1,18 @@
 /*jshint esversion: 6 */
 
 import Display from './display';
+import { val } from '../utils';
 import { Action, View } from '../ui/ui-state';
-import { Styles } from '../ui/styling';
+import { Styles, getItemColor } from '../ui/styling';
+
+const DATA_CONFIG = require('../../../data/config.json');
 
 export default function GraphDisplay (chart) {
 	Display.call(this, chart);
 
-	// this.years = this.getLabels();
-
 	this.xScale = d3.scale.ordinal();
 	this.xScaleGraph = d3.scale.linear();
 	this.xAxis = d3.svg.axis().scale(this.xScaleGraph);
-
-	// this.updateXScale();
-	// this.updateXScaleRange();
 
 	this.graphContainer = this.container;
 	this.graphContainer
@@ -54,6 +52,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 	let points = this.graphContainer.selectAll("circle")
 					.filter(".dim-" + dim)
 					.data(data);
+	// If path being built for the first time...
 	if (!path.empty()) {
 		path.transition().duration(1000)
 			.attr("d", this.line(data));
@@ -62,7 +61,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 			.attr("cy", (d) => this.yScale(d.value));
 		if (this.c.action == Action.RESIZE)
 			points.transition("x").duration(1000)
-				.attr("cx", (d) => this.xScaleGraph(d.year));
+				.attr("cx", d => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
 		if (!this.chartSet) {
 			path.transition().style("opacity", 1);
@@ -81,7 +80,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 
 		points = this.buildPoints(points, dim);
 		points.transition("points")
-			.delay((d, i) => i / this.years.length * 1000)
+			.delay((d, i) => i / DATA_CONFIG.years.length * 1000)
 			.duration(1000)
 			.style("opacity", 1);
 	}
@@ -120,10 +119,10 @@ GraphDisplay.prototype.getPathData = function (dim) {
 			return this.pathData[dim];
 		}
 
-	const years = this.getAvailableYears(dim);
+	const years = DATA_CONFIG.dimYears[dim];
 	const data = years.map(y => ({
 		value: d3.sum(this.dataset.map(
-			item => this.c.val(item, dim, y))),
+			item => val(item, dim, this.c.mode, y))),
 		dim: dim,
 		year: y
 	}));
@@ -135,7 +134,7 @@ GraphDisplay.prototype.buildPath = function (dim, data) {
 	const _this = this;
 	const path = this.graphContainer.append("path")
 		.attr("d", this.line(data))
-		.attr("stroke", this.c.getItemColor(dim))
+		.attr("stroke", getItemColor(dim))
 		.attr("class", "path dim-" + dim)
 		.attr("id", "path-" + this.c.level + "-" + dim);
 	const tl = path.node().getTotalLength();
@@ -149,7 +148,7 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 	p.enter()
 		.append("circle")
 		.attr("r", 5)
-		.attr("fill", this.c.getItemColor(dim))
+		.attr("fill", getItemColor(dim))
 		.attr("class",
 			d => ("point dim-" + d.dim + " year-" + d.year))
 		.style("opacity", 0)
@@ -159,12 +158,11 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 };
 
 GraphDisplay.prototype.getLabels = function () {
-	return Array.from(this.c.years).reverse();
+	return DATA_CONFIG.years;
 };
 
-GraphDisplay.prototype.setDataset = function (_) {
-	this.years = Array.from(this.c.years).reverse();
-	Display.prototype.setDataset.call(this, _);
+GraphDisplay.prototype.getDimensionData = function (dim) {
+	return DATA_CONFIG.years;
 };
 
 GraphDisplay.prototype.addDimension = function (dim) {
@@ -176,18 +174,10 @@ GraphDisplay.prototype.addDimension = function (dim) {
 		this.renderDimension(dim);
 };
 
-GraphDisplay.prototype.getDimensionData = function (dim) {
-	const data = this.years;
-	// const data = this.c.dataset.map(
-	// 	d => (Object.assign({dimension: dim}, d)));
-	return data;
-};
-
 GraphDisplay.prototype.updateXScale = function () {
-//	this.xScaleGraph.domain([0, this.c.years.length-1]);
-	this.xScale.domain(d3.range(this.years.length-1));
-	this.xScaleGraph.domain(
-		[this.c.years[this.c.years.length-1], this.c.years[0]]);
+	const y = DATA_CONFIG.years;
+	this.xScale.domain(d3.range(y.length-1));
+	this.xScaleGraph.domain([y[0], y[y.length-1]]);
 };
 
 GraphDisplay.prototype.updateYScale = function () {
@@ -214,9 +204,9 @@ GraphDisplay.prototype.getLabelX = function (i) {
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(this.getAvailableYears(dim).map(y => d3.sum(
+		dim => d3.max(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
-				item => this.c.val(item, dim, y)))))));
+				item => val(item, dim, this.c.mode, y)))))));
 //	console.log("Max: " + max);
 	return max;
 };
@@ -224,9 +214,9 @@ GraphDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(this.getAvailableYears(dim).map(y => d3.sum(
+		dim => d3.min(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
-				item => this.c.val(item, dim, y)))))));
+				item => val(item, dim, this.c.mode, y)))))));
 //	console.log("Min: " + min);
 	return min;
 };
