@@ -39,3 +39,10 @@ export const Controls = {
 		abc: "Name"
 	}
 };
+
+export const Messages = {
+	EN: {
+		noDataMessage: "",
+		noData: "N/A"
+	}
+};

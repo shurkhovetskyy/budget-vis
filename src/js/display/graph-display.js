@@ -44,6 +44,8 @@ GraphDisplay.prototype.minimizeItems = function (	items = null,
 };
 
 GraphDisplay.prototype.renderDimension = function (dim) {
+	if (!this.dimAvailable(dim))
+		return;
 	const _this = this;
 	const data = this.getPathData(dim);
 	const id = this.c.level + "-" + dim;
@@ -63,10 +65,10 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 			points.transition("x").duration(1000)
 				.attr("cx", d => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
-		if (!this.chartSet) {
-			path.transition().style("opacity", 1);
-			points.transition().style("opacity", 1);
-		}
+			//	if (!this.chartSet) {
+		path.transition().style("opacity", 1);
+		points.transition().style("opacity", 1);
+			//	}
 	} else {
 		path = this.buildPath(dim, data);
 		const tl = path.node().getTotalLength();
@@ -86,6 +88,10 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 	}
 };
 
+GraphDisplay.prototype.noText = function () {
+	return "No data available for";
+};
+
 GraphDisplay.prototype.updateData = function () {
 	//this.setAxis(true, true, true);
 
@@ -101,10 +107,15 @@ GraphDisplay.prototype.removeDimension = function (dim) {
 
 	// Update remaining paths and points.
 	if (this.active) {
-		this.updateYScale();
-		this.setAxis();
-		this.c.shownDimensions.forEach(
-			d => this.renderDimension(d));
+		if (this.noData || !this.dataAvailable()) {
+			// update the noDataMessage and exit.
+			this.noDataMessage();
+		} else {
+			this.updateYScale();
+			this.setAxis();
+			this.c.shownDimensions.forEach(
+				d => this.renderDimension(d));
+		}
 	}
 };
 
@@ -165,9 +176,17 @@ GraphDisplay.prototype.getDimensionData = function (dim) {
 	return CONFIG.years;
 };
 
+GraphDisplay.prototype.dimAvailable = function (dim) {
+	return CONFIG.dimYears[dim].length > 0;
+};
+
 GraphDisplay.prototype.addDimension = function (dim) {
+	if (!Display.prototype.handleState.call(this, dim))
+		return;
+	// if(CONFIG.dimYears[dim].length==0)
+	// 	return;
 	if (this.active) {
-		this.setAxis(false, true);	// RETURN.
+//		this.setAxis(false, true);	// RETURN.
 		this.c.shownDimensions.forEach(
 			d => this.renderDimension(d));
 	} else
@@ -203,21 +222,23 @@ GraphDisplay.prototype.getLabelX = function (i) {
 
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
-	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
-			this.dataset.map(
-				item => val(item, dim, this.c.mode, y)))))));
-//	console.log("Max: " + max);
+	const max = Math.max.apply(null, this.c.shownDimensions.filter(
+		dim => CONFIG.dimYears[dim].length > 0).map(
+			dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
+				this.dataset.map(
+					item => val(item, dim, this.c.mode, y)))))));
+	console.log("Max: " + max);
 	return max;
 };
 
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
-	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
-			this.dataset.map(
-				item => val(item, dim, this.c.mode, y)))))));
-//	console.log("Min: " + min);
+	const min = Math.min.apply(null, this.c.shownDimensions.filter(
+		dim => CONFIG.dimYears[dim].length > 0).map(
+			dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
+				this.dataset.map(
+					item => val(item, dim, this.c.mode, y)))))));
+	console.log("Min: " + min);
 	return min;
 };
 

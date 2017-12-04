@@ -401,11 +401,11 @@ function MoneyNum(labelValue) {
 
 function MoneySign(labelValue) {
   // Nine Zeroes for Billions
-  return Math.abs(Number(labelValue)) >= 1.0e+9 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].billion
+  return Math.abs(Number(labelValue)) >= 1.0e+9 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["d" /* Sign */][CONFIG.lang].billion
        // Six Zeroes for Millions
-       : Math.abs(Number(labelValue)) >= 1.0e+6 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].million
+       : Math.abs(Number(labelValue)) >= 1.0e+6 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["d" /* Sign */][CONFIG.lang].million
        // Three Zeroes for Thousands
-       : Math.abs(Number(labelValue)) >= 1.0e+3 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].thousand
+       : Math.abs(Number(labelValue)) >= 1.0e+3 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["d" /* Sign */][CONFIG.lang].thousand
 	   : "";
 }
 
@@ -489,6 +489,8 @@ const reveal = function (el, duration = 500) {
 
 
 
+const CONFIG = __webpack_require__(13);
+
 const Tooltip = (function () {
 	const tooltip = {};
 
@@ -531,7 +533,7 @@ const Tooltip = (function () {
 		const value = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(d, d.dim, c.mode, c.year);
 		box.select(".text").text('');
 		box.select(".title").text(d.category);
-		box.select(".num").text("€" + Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(value));
+		box.select(".num").text(CONFIG.currency + Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(value));
 		box.select(".sign").text(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(value));
 
 		const sumFun = (item) => stacked ? Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, d.dim, c.mode, c.year) :
@@ -682,7 +684,7 @@ const Sign = {
 		thousand: "Tsd"
 	}
 };
-/* harmony export (immutable) */ __webpack_exports__["c"] = Sign;
+/* harmony export (immutable) */ __webpack_exports__["d"] = Sign;
 
 
 const Controls = {
@@ -701,6 +703,15 @@ const Controls = {
 	}
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = Controls;
+
+
+const Messages = {
+	EN: {
+		noDataMessage: "",
+		noData: "N/A"
+	}
+};
+/* harmony export (immutable) */ __webpack_exports__["c"] = Messages;
 
 
 
@@ -830,7 +841,7 @@ Display.prototype.tickTextFormat = function(d) {
 	const num = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(d);
 	const sign = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(d);
 	let precision = 0;
-	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["c" /* Sign */][CONFIG.lang].billion)
+	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["d" /* Sign */][CONFIG.lang].billion)
 		precision = 2;
 	return ((d3.format("." + precision.toString() + "f")(num) + " " + sign));
 };
@@ -928,7 +939,7 @@ Display.prototype.updateLabels = function () {
 };
 
 Display.prototype.setNoDataMessage = function () {
-	let html = "No <span>" + this.c.year + "</span> data available for";
+	let html = this.noText();
 	this.c.shownDimensions.forEach(
 		d => html = html + "<br><span>" + d + "</span>");
 	this.c.no.html(html);
@@ -954,17 +965,16 @@ Display.prototype.noDataMessage = function (noData = true) {
 };
 
 Display.prototype.dataAvailable = function (dims = null) {
-	var start = new Date().getTime();
+	// var start = new Date().getTime();
 
 	dims = dims || this.c.shownDimensions;
 	const available = dims.map(d =>
-		CONFIG.dimYears[d]
-			.includes(this.c.year)).reduce((a, b) => a || b);
+		this.dimAvailable(d)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;
 
-	var elapsed = new Date().getTime() - start;
-	console.log(elapsed);
+	// var elapsed = new Date().getTime() - start;
+	// console.log(elapsed);
 	return available;
 };
 
@@ -972,12 +982,38 @@ Display.prototype.dataAvailable = function (dims = null) {
 *	Shows all dimensions open.
 */
 Display.prototype.setupChart = function (dims = null) {
+	if (!this.dataAvailable()) {
+		this.noDataMessage();
+		return;
+	}
 	dims = dims || this.c.shownDimensions;
 	console.log("setupChart");
 	this.noDataMessage(false);
 	this.setAxis(true, true, true);
 	dims.forEach(dim => this.addDimension(dim));
 	this.chartSet = true;
+};
+
+Display.prototype.handleState = function (dim) {
+	// if display already active...
+	if (this.active) {
+		// and there is no data...
+		if(this.noData) {
+			// and new dimension data is also not available...
+			if (!this.dataAvailable([dim])) {
+				// update the noDataMessage and exit.
+				this.setNoDataMessage();
+				return false;
+			}
+			// if data is now available, set up chart
+			Display.prototype.setupChart.call(this, [dim]);
+		}
+		// and chart is set, then update axis to accomodate
+		// new data from new dimension.
+		else if (this.chartSet)
+			this.setAxis(true, true);
+	}
+	return true;
 };
 
 /**
@@ -1716,6 +1752,8 @@ Chart.prototype.calcWidth = function () {
 
 
 
+const CONFIG = __webpack_require__(13);
+
 function BarDisplay (chart) {
 	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].call(this, chart);
 
@@ -1740,14 +1778,6 @@ function BarDisplay (chart) {
 
 BarDisplay.prototype = Object.create(__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype);
 
-BarDisplay.prototype.setupChart = function () {
-	if (!this.dataAvailable()) {
-		this.noDataMessage();
-		return;
-	}
-	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype.setupChart.call(this);
-};
-
 BarDisplay.prototype.minimizeItems = function (items = null, duration = 500) {
 	items = items || this.barsContainer.selectAll('.bar-rect');
 	const trans = items.transition().duration(duration);
@@ -1756,25 +1786,9 @@ BarDisplay.prototype.minimizeItems = function (items = null, duration = 500) {
 	return trans;
 };
 
-BarDisplay.prototype.addDimension = function (dim, checkData = false) {
-	// if display already active...
-	if (this.active) {
-		// and there is no data...
-		if(this.noData) {
-			// and new dimension data is also not available...
-			if (!this.dataAvailable([dim])) {
-				// update the noDataMessage and exit.
-				this.setNoDataMessage();
-				return;
-			}
-			// if data is now available, set up chart
-			__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype.setupChart.call(this, [dim]);
-		}
-		// and chart is set, then update axis to accomodate
-		// new data from new dimension.
-		else if (this.chartSet)
-			this.setAxis(true, true);
-	}
+BarDisplay.prototype.addDimension = function (dim) {
+	if (!__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype.handleState.call(this, dim))
+		return;
 
 	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
 
@@ -1877,6 +1891,8 @@ BarDisplay.prototype.updateYScale = function () {
 
 BarDisplay.prototype.renderDimension = function (dim) {
 	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
+	if (!this.dimAvailable(dim))
+		return;
 	console.log("renderDimension - " + dim);
 	let bars = this.barsContainer
 				.selectAll(".bar-rect")
@@ -1962,6 +1978,10 @@ BarDisplay.prototype.removeDimension = function (dim) {
 	this.minimizeItems(goingBars).remove();
 };
 
+BarDisplay.prototype.noText = function () {
+	return "No <span>" + this.c.year + "</span> data available for";
+};
+
 BarDisplay.prototype.getLabels = function () {
 	return this.dataset.map(c => c.category);
 };
@@ -2035,6 +2055,10 @@ BarDisplay.prototype.getDimensionData = function (dim) {
 	const data = this.dataset.map(
 		d => (Object.assign({dim: dim}, d)));
 	return data;
+};
+
+BarDisplay.prototype.dimAvailable = function (dim) {
+	return CONFIG.dimYears[dim].includes(this.c.year);
 };
 
 BarDisplay.prototype.highlight = function (index, highlight = true) {
@@ -2147,16 +2171,6 @@ BarDisplay.prototype.sortUtil = function (a, b) {
 		return d3.ascending(a.category, b.category);
 };
 
-const Properties = (function () {
-	const module = {};
-
-	module.name = function () {
-
-	};
-
-	return module;
-})();
-
 /*
 *	Methods which run on bar elements.
 */
@@ -2263,6 +2277,8 @@ GraphDisplay.prototype.minimizeItems = function (	items = null,
 };
 
 GraphDisplay.prototype.renderDimension = function (dim) {
+	if (!this.dimAvailable(dim))
+		return;
 	const _this = this;
 	const data = this.getPathData(dim);
 	const id = this.c.level + "-" + dim;
@@ -2282,10 +2298,10 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 			points.transition("x").duration(1000)
 				.attr("cx", d => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
-		if (!this.chartSet) {
-			path.transition().style("opacity", 1);
-			points.transition().style("opacity", 1);
-		}
+			//	if (!this.chartSet) {
+		path.transition().style("opacity", 1);
+		points.transition().style("opacity", 1);
+			//	}
 	} else {
 		path = this.buildPath(dim, data);
 		const tl = path.node().getTotalLength();
@@ -2305,6 +2321,10 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 	}
 };
 
+GraphDisplay.prototype.noText = function () {
+	return "No data available for";
+};
+
 GraphDisplay.prototype.updateData = function () {
 	//this.setAxis(true, true, true);
 
@@ -2320,10 +2340,15 @@ GraphDisplay.prototype.removeDimension = function (dim) {
 
 	// Update remaining paths and points.
 	if (this.active) {
-		this.updateYScale();
-		this.setAxis();
-		this.c.shownDimensions.forEach(
-			d => this.renderDimension(d));
+		if (this.noData || !this.dataAvailable()) {
+			// update the noDataMessage and exit.
+			this.noDataMessage();
+		} else {
+			this.updateYScale();
+			this.setAxis();
+			this.c.shownDimensions.forEach(
+				d => this.renderDimension(d));
+		}
 	}
 };
 
@@ -2384,9 +2409,17 @@ GraphDisplay.prototype.getDimensionData = function (dim) {
 	return CONFIG.years;
 };
 
+GraphDisplay.prototype.dimAvailable = function (dim) {
+	return CONFIG.dimYears[dim].length > 0;
+};
+
 GraphDisplay.prototype.addDimension = function (dim) {
+	if (!__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].prototype.handleState.call(this, dim))
+		return;
+	// if(CONFIG.dimYears[dim].length==0)
+	// 	return;
 	if (this.active) {
-		this.setAxis(false, true);	// RETURN.
+//		this.setAxis(false, true);	// RETURN.
 		this.c.shownDimensions.forEach(
 			d => this.renderDimension(d));
 	} else
@@ -2422,21 +2455,23 @@ GraphDisplay.prototype.getLabelX = function (i) {
 
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
-	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
-			this.dataset.map(
-				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
-//	console.log("Max: " + max);
+	const max = Math.max.apply(null, this.c.shownDimensions.filter(
+		dim => CONFIG.dimYears[dim].length > 0).map(
+			dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
+				this.dataset.map(
+					item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
+	console.log("Max: " + max);
 	return max;
 };
 
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
-	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
-			this.dataset.map(
-				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
-//	console.log("Min: " + min);
+	const min = Math.min.apply(null, this.c.shownDimensions.filter(
+		dim => CONFIG.dimYears[dim].length > 0).map(
+			dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
+				this.dataset.map(
+					item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
+	console.log("Min: " + min);
 	return min;
 };
 
@@ -2570,8 +2605,14 @@ ListPanel.prototype.setFigure = function(dim, y) {
 	const sum = d3.sum(this.c.dataset
 		.map(item => Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(item, dim, this.c.mode, year)));
 
-	value.text("€" + Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* MoneyNum */])(sum));
-	sign.text(Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* MoneySign */])(sum));
+	if (CONFIG.dimYears[dim].includes(year)) {
+		value.text(CONFIG.currency + Object(__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* MoneyNum */])(sum))
+			.style("color", "white");
+		sign.text(Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* MoneySign */])(sum));
+	} else {
+		value.text(__WEBPACK_IMPORTED_MODULE_4__ui_text__["c" /* Messages */].EN.noData).style("color", "gray");
+		sign.text('');
+	}
 };
 
 /*
@@ -2884,7 +2925,7 @@ function prepareHelp (c, target, offset, text) {
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015,"lang":"EN"}
+module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2008,"lang":"EN","currency":"€"}
 
 /***/ })
 /******/ ]);

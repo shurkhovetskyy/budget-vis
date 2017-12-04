@@ -7,6 +7,8 @@ import { Styles, getItemColor } from '../ui/styling';
 import { Mode, Action, Sort } from '../ui/ui-state';
 import { Tooltip } from '../tooltip';
 
+const CONFIG = require('../../../config.json');
+
 export default function BarDisplay (chart) {
 	Display.call(this, chart);
 
@@ -31,14 +33,6 @@ export default function BarDisplay (chart) {
 
 BarDisplay.prototype = Object.create(Display.prototype);
 
-BarDisplay.prototype.setupChart = function () {
-	if (!this.dataAvailable()) {
-		this.noDataMessage();
-		return;
-	}
-	Display.prototype.setupChart.call(this);
-};
-
 BarDisplay.prototype.minimizeItems = function (items = null, duration = 500) {
 	items = items || this.barsContainer.selectAll('.bar-rect');
 	const trans = items.transition().duration(duration);
@@ -47,25 +41,9 @@ BarDisplay.prototype.minimizeItems = function (items = null, duration = 500) {
 	return trans;
 };
 
-BarDisplay.prototype.addDimension = function (dim, checkData = false) {
-	// if display already active...
-	if (this.active) {
-		// and there is no data...
-		if(this.noData) {
-			// and new dimension data is also not available...
-			if (!this.dataAvailable([dim])) {
-				// update the noDataMessage and exit.
-				this.setNoDataMessage();
-				return;
-			}
-			// if data is now available, set up chart
-			Display.prototype.setupChart.call(this, [dim]);
-		}
-		// and chart is set, then update axis to accomodate
-		// new data from new dimension.
-		else if (this.chartSet)
-			this.setAxis(true, true);
-	}
+BarDisplay.prototype.addDimension = function (dim) {
+	if (!Display.prototype.handleState.call(this, dim))
+		return;
 
 	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
 
@@ -168,6 +146,8 @@ BarDisplay.prototype.updateYScale = function () {
 
 BarDisplay.prototype.renderDimension = function (dim) {
 	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
+	if (!this.dimAvailable(dim))
+		return;
 	console.log("renderDimension - " + dim);
 	let bars = this.barsContainer
 				.selectAll(".bar-rect")
@@ -253,6 +233,10 @@ BarDisplay.prototype.removeDimension = function (dim) {
 	this.minimizeItems(goingBars).remove();
 };
 
+BarDisplay.prototype.noText = function () {
+	return "No <span>" + this.c.year + "</span> data available for";
+};
+
 BarDisplay.prototype.getLabels = function () {
 	return this.dataset.map(c => c.category);
 };
@@ -326,6 +310,10 @@ BarDisplay.prototype.getDimensionData = function (dim) {
 	const data = this.dataset.map(
 		d => (Object.assign({dim: dim}, d)));
 	return data;
+};
+
+BarDisplay.prototype.dimAvailable = function (dim) {
+	return CONFIG.dimYears[dim].includes(this.c.year);
 };
 
 BarDisplay.prototype.highlight = function (index, highlight = true) {
@@ -437,16 +425,6 @@ BarDisplay.prototype.sortUtil = function (a, b) {
 	else if (this.sortMode == Sort.ABC)
 		return d3.ascending(a.category, b.category);
 };
-
-const Properties = (function () {
-	const module = {};
-
-	module.name = function () {
-
-	};
-
-	return module;
-})();
 
 /*
 *	Methods which run on bar elements.

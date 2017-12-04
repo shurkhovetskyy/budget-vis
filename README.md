@@ -51,8 +51,9 @@ In order to use your own data, place the file in `data` directory and modify `co
 	"startDimensions" : ["Executed-Ist"],
 	"stacks" : "Kostenart",
 	"yearsRange" : [2008, 2024],
-	"startYear": 2015,
-	"lang": "EN"
+	"startYear": 2008,
+	"lang": "EN",
+	"currency": "€"
 }
 ```
 `levels` - short explanations/titles for each level of data.

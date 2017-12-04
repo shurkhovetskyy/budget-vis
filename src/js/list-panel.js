@@ -4,7 +4,7 @@ import { Styles, getStackItemColor, getItemColor } from './ui/styling';
 import { Mode } from './ui/ui-state';
 import { Tooltip } from './tooltip';
 import { MoneyNum, MoneySign, val } from './utils';
-import { Help } from './ui/text';
+import { Help, Messages } from './ui/text';
 
 const CONFIG = require('../../config.json');
 
@@ -54,8 +54,14 @@ ListPanel.prototype.setFigure = function(dim, y) {
 	const sum = d3.sum(this.c.dataset
 		.map(item => val(item, dim, this.c.mode, year)));
 
-	value.text("€" + MoneyNum(sum));
-	sign.text(MoneySign(sum));
+	if (CONFIG.dimYears[dim].includes(year)) {
+		value.text(CONFIG.currency + MoneyNum(sum))
+			.style("color", "white");
+		sign.text(MoneySign(sum));
+	} else {
+		value.text(Messages.EN.noData).style("color", "gray");
+		sign.text('');
+	}
 };
 
 /*

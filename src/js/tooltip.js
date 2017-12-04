@@ -3,6 +3,8 @@
 import { Styles } from './ui/styling';
 import { MoneyNum, MoneySign, val } from './utils';
 
+const CONFIG = require('../../config.json');
+
 export const Tooltip = (function () {
 	const tooltip = {};
 
@@ -45,7 +47,7 @@ export const Tooltip = (function () {
 		const value = val(d, d.dim, c.mode, c.year);
 		box.select(".text").text('');
 		box.select(".title").text(d.category);
-		box.select(".num").text("€" + MoneyNum(value));
+		box.select(".num").text(CONFIG.currency + MoneyNum(value));
 		box.select(".sign").text(MoneySign(value));
 
 		const sumFun = (item) => stacked ? val(item, d.dim, c.mode, c.year) :

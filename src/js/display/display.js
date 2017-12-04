@@ -136,7 +136,7 @@ Display.prototype.updateLabels = function () {
 };
 
 Display.prototype.setNoDataMessage = function () {
-	let html = "No <span>" + this.c.year + "</span> data available for";
+	let html = this.noText();
 	this.c.shownDimensions.forEach(
 		d => html = html + "<br><span>" + d + "</span>");
 	this.c.no.html(html);
@@ -162,17 +162,16 @@ Display.prototype.noDataMessage = function (noData = true) {
 };
 
 Display.prototype.dataAvailable = function (dims = null) {
-	var start = new Date().getTime();
+	// var start = new Date().getTime();
 
 	dims = dims || this.c.shownDimensions;
 	const available = dims.map(d =>
-		CONFIG.dimYears[d]
-			.includes(this.c.year)).reduce((a, b) => a || b);
+		this.dimAvailable(d)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;
 
-	var elapsed = new Date().getTime() - start;
-	console.log(elapsed);
+	// var elapsed = new Date().getTime() - start;
+	// console.log(elapsed);
 	return available;
 };
 
@@ -180,12 +179,38 @@ Display.prototype.dataAvailable = function (dims = null) {
 *	Shows all dimensions open.
 */
 Display.prototype.setupChart = function (dims = null) {
+	if (!this.dataAvailable()) {
+		this.noDataMessage();
+		return;
+	}
 	dims = dims || this.c.shownDimensions;
 	console.log("setupChart");
 	this.noDataMessage(false);
 	this.setAxis(true, true, true);
 	dims.forEach(dim => this.addDimension(dim));
 	this.chartSet = true;
+};
+
+Display.prototype.handleState = function (dim) {
+	// if display already active...
+	if (this.active) {
+		// and there is no data...
+		if(this.noData) {
+			// and new dimension data is also not available...
+			if (!this.dataAvailable([dim])) {
+				// update the noDataMessage and exit.
+				this.setNoDataMessage();
+				return false;
+			}
+			// if data is now available, set up chart
+			Display.prototype.setupChart.call(this, [dim]);
+		}
+		// and chart is set, then update axis to accomodate
+		// new data from new dimension.
+		else if (this.chartSet)
+			this.setAxis(true, true);
+	}
+	return true;
 };
 
 /**
