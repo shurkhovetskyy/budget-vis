@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,7 +73,7 @@
 /* harmony export (immutable) */ __webpack_exports__["c"] = getLevelColor;
 /*jshint esversion: 6 */
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 // Non-used
 const colorBands = ["rgb(19, 52, 83)", "rgb(13, 78, 73)", "rgb(16, 94, 40)"];
@@ -161,9 +161,44 @@ const Styles = (function() {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015,"lang":"EN"}
+"use strict";
+/*jshint esversion: 6 */
+
+const Mode = {
+	SPENDING: "plus",
+	REVENUE: "minus",
+	COMB: "combined",
+	BAL: "balanced"
+};
+/* harmony export (immutable) */ __webpack_exports__["b"] = Mode;
+
+
+const Action = {
+	MODE: "mode",
+	RESIZE: "resize",
+	YEAR: "year",
+	UPDATE: "update",
+	ADD: "add"
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = Action;
+
+
+const Sort = {
+	NUM: "num",
+	ABC: "abc"
+};
+/* harmony export (immutable) */ __webpack_exports__["c"] = Sort;
+
+
+const View = {
+	TIME: "overtime",
+	CATS: "categories"
+};
+/* harmony export (immutable) */ __webpack_exports__["d"] = View;
+
+
 
 /***/ }),
 /* 2 */
@@ -180,13 +215,13 @@ module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Pro
 /* harmony export (immutable) */ __webpack_exports__["a"] = MoneyNum;
 /* harmony export (immutable) */ __webpack_exports__["b"] = MoneySign;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_text__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
 /*jshint esversion: 6 */
 
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 /**
 *	Returns first available dimension among those shown.
@@ -447,101 +482,6 @@ const reveal = function (el, duration = 500) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/*jshint esversion: 6 */
-
-const Mode = {
-	SPENDING: "plus",
-	REVENUE: "minus",
-	COMB: "combined",
-	BAL: "balanced"
-};
-/* harmony export (immutable) */ __webpack_exports__["b"] = Mode;
-
-
-const Action = {
-	MODE: "mode",
-	RESIZE: "resize",
-	YEAR: "year",
-	UPDATE: "update",
-	ADD: "add"
-};
-/* harmony export (immutable) */ __webpack_exports__["a"] = Action;
-
-
-const Sort = {
-	NUM: "num",
-	ABC: "abc"
-};
-/* harmony export (immutable) */ __webpack_exports__["c"] = Sort;
-
-
-const View = {
-	TIME: "overtime",
-	CATS: "categories"
-};
-/* harmony export (immutable) */ __webpack_exports__["d"] = View;
-
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/*jshint esversion: 6 */
-
-const Help = {
-	EN: {
-		view: "<strong>Over time</strong><br>Shows change in sum of all categories year over year.<br><br><strong>Categories</strong><br>Shows breakdown of single year.",
-		mode: "<strong>Spending</strong><br>Amount spent.<br><br><strong>Revenue</strong><br>Amount earned. <br><br> <strong>Balance</strong><br>Differnece between Spending and Revenue, shows whether year/category earned or lost money.",
-		year: "Displays amounts for selected year.",
-		sort: "<strong>123</strong><br> Numerical sort of categories by amount.<br><br> <strong>ABC</strong><br> Alphabetical sort of categories by name.",
-		fig: "Sum of amounts of all categories shown.",
-		stack: "Breakdown of types of costs that constitute the sum above. This view is not available in balanced mode."
-	}
-};
-/* harmony export (immutable) */ __webpack_exports__["b"] = Help;
-
-
-const Sign = {
-	EN: {
-		billion : "B",
-		million: "M",
-		thousand: "K"
-	},
-	DE: {
-		billion : "B",
-		million: "Mio",
-		thousand: "Tsd"
-	}
-};
-/* harmony export (immutable) */ __webpack_exports__["c"] = Sign;
-
-
-const Controls = {
-	EN: {
-		display: "View",
-		overtime: "Over time",
-		categories: "Categories",
-		mode: "Mode",
-		spending: "Spending",
-		revenue: "Revenue",
-		balance: "Balance",
-		year: "Year",
-		sort: "Sort",
-		num: "123",
-		abc: "ABC"
-	}
-};
-/* harmony export (immutable) */ __webpack_exports__["a"] = Controls;
-
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_styling__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(2);
 /*jshint esversion: 6 */
@@ -711,7 +651,61 @@ const Tooltip = (function () {
 
 
 /***/ }),
-/* 6 */
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*jshint esversion: 6 */
+
+const Help = {
+	EN: {
+		view: "<strong>Over time</strong><br>Shows change in sum of all categories year over year.<br><br><strong>Categories</strong><br>Shows breakdown of single year.",
+		mode: "<strong>Spending</strong><br>Amount spent.<br><br><strong>Revenue</strong><br>Amount earned. <br><br> <strong>Balance</strong><br>Differnece between Spending and Revenue, shows whether year/category earned or lost money.",
+		year: "Displays amounts for selected year.",
+		sort: "<strong>123</strong><br> Numerical sort of categories by amount.<br><br> <strong>ABC</strong><br> Alphabetical sort of categories by name.",
+		fig: "Sum of amounts of all categories shown.",
+		stack: "Breakdown of types of costs that constitute the sum above. This view is not available in balanced mode."
+	}
+};
+/* harmony export (immutable) */ __webpack_exports__["b"] = Help;
+
+
+const Sign = {
+	EN: {
+		billion : "B",
+		million: "M",
+		thousand: "K"
+	},
+	DE: {
+		billion : "B",
+		million: "Mio",
+		thousand: "Tsd"
+	}
+};
+/* harmony export (immutable) */ __webpack_exports__["c"] = Sign;
+
+
+const Controls = {
+	EN: {
+		display: "View",
+		overtime: "Over time",
+		categories: "Categories",
+		mode: "Mode",
+		spending: "Spending",
+		revenue: "Revenue",
+		balance: "Balance",
+		year: "Year",
+		sort: "Sort",
+		num: "123",
+		abc: "ABC"
+	}
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = Controls;
+
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -726,7 +720,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 let charts = [];
 
@@ -787,14 +781,14 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = Display;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_styling__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_text__ = __webpack_require__(4);
 /*jshint esversion: 6 */
 
@@ -803,7 +797,7 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 function Display (chart) {
 	this.c = chart;
@@ -836,9 +830,9 @@ Display.prototype.tickTextFormat = function(d) {
 	const num = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(d);
 	const sign = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(d);
 	let precision = 0;
-	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["c" /* Sign */].billion)
+	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["c" /* Sign */][CONFIG.lang].billion)
 		precision = 2;
-	return ((d3.format("." + precision + "f")(num) + " " + sign));
+	return ((d3.format("." + precision.toString() + "f")(num) + " " + sign));
 };
 
 Display.prototype.setDataset = function (_) {
@@ -1118,14 +1112,15 @@ Display.prototype.activate = function () {
 
 
 /***/ }),
+/* 7 */,
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = Chart;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_styling__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_text__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__display_bar_display__ = __webpack_require__(9);
@@ -1144,7 +1139,7 @@ Display.prototype.activate = function () {
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 function Chart (level) {
 	// Keeps track of visible dimensions.
@@ -1706,12 +1701,12 @@ Chart.prototype.calcWidth = function () {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = BarDisplay;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__script__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__script__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_styling__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_ui_state__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tooltip__ = __webpack_require__(3);
 /*jshint esversion: 6 */
 
 
@@ -2218,9 +2213,9 @@ BarDisplay.prototype.setListeners = function (display) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = GraphDisplay;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__display__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_ui_state__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_styling__ = __webpack_require__(0);
 /*jshint esversion: 6 */
 
@@ -2229,7 +2224,7 @@ BarDisplay.prototype.setListeners = function (display) {
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 function GraphDisplay (chart) {
 	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].call(this, chart);
@@ -2515,8 +2510,8 @@ GraphDisplay.prototype.highlight = function () {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = ListPanel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_styling__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tooltip__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_text__ = __webpack_require__(4);
 /*jshint esversion: 6 */
@@ -2527,7 +2522,7 @@ GraphDisplay.prototype.highlight = function () {
 
 
 
-const CONFIG = __webpack_require__(1);
+const CONFIG = __webpack_require__(13);
 
 function ListPanel (chart) {
 	this.c = chart;
@@ -2883,6 +2878,13 @@ function prepareHelp (c, target, offset, text) {
 	__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, c, text);
 }
 
+
+/***/ }),
+/* 12 */,
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015,"lang":"EN"}
 
 /***/ })
 /******/ ]);

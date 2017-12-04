@@ -38,9 +38,9 @@ Display.prototype.tickTextFormat = function(d) {
 	const num = MoneyNum(d);
 	const sign = MoneySign(d);
 	let precision = 0;
-	if (sign == Sign.billion)
+	if (sign == Sign[CONFIG.lang].billion)
 		precision = 2;
-	return ((d3.format("." + precision + "f")(num) + " " + sign));
+	return ((d3.format("." + precision.toString() + "f")(num) + " " + sign));
 };
 
 Display.prototype.setDataset = function (_) {

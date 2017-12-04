@@ -4,6 +4,11 @@ This is a visualization concept designed as part of [OpenBudgets.eu](https://ope
 
 Live version visualizing budget of Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
 
+<img src="https://image.ibb.co/nq5qxw/screen1.png" align="center">
+
+
+GNU GENERAL PUBLIC LICENSE Version 3.
+
 ## Running locally
 
 Have latest version of [Node](https://nodejs.org/en/) installed. Navigate to root of project directory and fetch project dependencies:
@@ -37,4 +42,8 @@ Execute commands from previous section (Running locally) to see your build.
 
 ## Changing data/configuration
 
-Available under GNU GENERAL PUBLIC LICENSE Version 3.
+```js
+d3.select("body")
+  .transition()
+    .style("background-color", "red");
+```
