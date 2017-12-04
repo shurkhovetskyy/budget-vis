@@ -35,7 +35,7 @@ export const Controls = {
 		balance: "Balance",
 		year: "Year",
 		sort: "Sort",
-		num: "123",
-		abc: "ABC"
+		num: "Amount",
+		abc: "Name"
 	}
 };
