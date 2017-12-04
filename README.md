@@ -1,4 +1,4 @@
-## Budget Visualization
+# Budget Visualization
 
 This is a visualization concept designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built using [D3](https://d3js.org/) it allows creating interactive visualizations of budget data.
 
