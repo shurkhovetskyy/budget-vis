@@ -1,6 +1,6 @@
-<img src="https://image.ibb.co/n8gNcw/budget.png" align="center">
-
 # Budget Visualization
+
+<img src="https://image.ibb.co/iQUdjb/budget.png" align="center">
 
 This is a visualization concept designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built using [D3](https://d3js.org/) it allows creating interactive visualizations of budget data.
 
