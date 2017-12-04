@@ -12,7 +12,30 @@ export const Help = {
 };
 
 export const Sign = {
-	billion : "B",
-	million: "Mio",
-	thousand: "Tsd"
+	EN: {
+		billion : "B",
+		million: "M",
+		thousand: "K"
+	},
+	DE: {
+		billion : "B",
+		million: "Mio",
+		thousand: "Tsd"
+	}
+};
+
+export const Controls = {
+	EN: {
+		display: "View",
+		overtime: "Over time",
+		categories: "Categories",
+		mode: "Mode",
+		spending: "Spending",
+		revenue: "Revenue",
+		balance: "Balance",
+		year: "Year",
+		sort: "Sort",
+		num: "123",
+		abc: "ABC"
+	}
 };

@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-const DATA_CONFIG = require('../../../data/config.json');
+const CONFIG = require('../../../config.json');
 
 // Non-used
 const colorBands = ["rgb(19, 52, 83)", "rgb(13, 78, 73)", "rgb(16, 94, 40)"];
@@ -35,7 +35,7 @@ export function getStackItemColor (index) {
 
 export function getItemColor (dim) {
 //	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
-	const color = Colors[DATA_CONFIG.dimensions
+	const color = Colors[CONFIG.dimensions
 		.indexOf(dim) % Colors.length];
 	return color;
 }

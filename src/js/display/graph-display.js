@@ -5,7 +5,7 @@ import { val } from '../utils';
 import { Action, View } from '../ui/ui-state';
 import { Styles, getItemColor } from '../ui/styling';
 
-const DATA_CONFIG = require('../../../data/config.json');
+const CONFIG = require('../../../config.json');
 
 export default function GraphDisplay (chart) {
 	Display.call(this, chart);
@@ -80,7 +80,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 
 		points = this.buildPoints(points, dim);
 		points.transition("points")
-			.delay((d, i) => i / DATA_CONFIG.years.length * 1000)
+			.delay((d, i) => i / CONFIG.years.length * 1000)
 			.duration(1000)
 			.style("opacity", 1);
 	}
@@ -119,7 +119,7 @@ GraphDisplay.prototype.getPathData = function (dim) {
 			return this.pathData[dim];
 		}
 
-	const years = DATA_CONFIG.dimYears[dim];
+	const years = CONFIG.dimYears[dim];
 	const data = years.map(y => ({
 		value: d3.sum(this.dataset.map(
 			item => val(item, dim, this.c.mode, y))),
@@ -158,11 +158,11 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 };
 
 GraphDisplay.prototype.getLabels = function () {
-	return DATA_CONFIG.years;
+	return CONFIG.years;
 };
 
 GraphDisplay.prototype.getDimensionData = function (dim) {
-	return DATA_CONFIG.years;
+	return CONFIG.years;
 };
 
 GraphDisplay.prototype.addDimension = function (dim) {
@@ -175,7 +175,7 @@ GraphDisplay.prototype.addDimension = function (dim) {
 };
 
 GraphDisplay.prototype.updateXScale = function () {
-	const y = DATA_CONFIG.years;
+	const y = CONFIG.years;
 	this.xScale.domain(d3.range(y.length-1));
 	this.xScaleGraph.domain([y[0], y[y.length-1]]);
 };
@@ -204,7 +204,7 @@ GraphDisplay.prototype.getLabelX = function (i) {
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
+		dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
 				item => val(item, dim, this.c.mode, y)))))));
 //	console.log("Max: " + max);
@@ -214,7 +214,7 @@ GraphDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
+		dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
 				item => val(item, dim, this.c.mode, y)))))));
 //	console.log("Min: " + min);

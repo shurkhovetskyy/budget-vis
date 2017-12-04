@@ -4,7 +4,7 @@ import { Styles } from './ui/styling';
 import { scroll, rollLevelData, roll } from './utils';
 import Chart from './chart';
 
-const DATA_CONFIG = require('../../data/config.json');
+const CONFIG = require('../../config.json');
 
 let charts = [];
 
@@ -27,7 +27,7 @@ function getChartAt (level) {
 }
 
 function buildChart(level, data, selectionName, year, shownDimensions) {
-	if (level >= DATA_CONFIG.levels.length)
+	if (level >= CONFIG.levels.length)
 		return;
 
 	const fullData = rollLevelData(data, level);
@@ -37,12 +37,12 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 	chart	.setFullData(fullData)
 			.setDataset(levelData)
 			.setStackedDataset(roll(rollLevelData(
-				data, DATA_CONFIG.levels.length - 1)))
+				data, CONFIG.levels.length - 1)))
 			.setLevel(level)
 			.setStartYear(year)
 			.setShownDimensions(shownDimensions)
 			.setSelectionName(selectionName)
-			.setLevelDesc(DATA_CONFIG.levels[level])
+			.setLevelDesc(CONFIG.levels[level])
 			.build();
 }
 
@@ -52,9 +52,9 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 	const launch = (filename) =>
 		d3.dsv(";", "text/plain")(filename, csv =>
 			buildChart(0, csv,
-				DATA_CONFIG.name,
-				DATA_CONFIG.startYear,
-				DATA_CONFIG.startDimensions));
+				CONFIG.name,
+				CONFIG.startYear,
+				CONFIG.startDimensions));
 
 	window.addEventListener("resize", redraw);
 

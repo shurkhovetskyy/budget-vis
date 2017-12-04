@@ -1,9 +1,11 @@
 {
 	"name" : "Bonn Budget",
+	"datafile": "bonn-data.csv",
 	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
 	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"],
 	"startDimensions" : ["Executed-Ist"],
 	"stacks" : "Kostenart",
 	"yearsRange" : [2008, 2024],
-	"startYear": 2015
+	"startYear": 2015,
+	"lang": "EN"
 }

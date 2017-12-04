@@ -4,7 +4,7 @@
 import { Styles, getLevelColor } from './ui/styling';
 import { Mode, View, Action, Sort } from './ui/ui-state';
 import { Tooltip } from './tooltip';
-import { Help } from './ui/text';
+import { Help, Controls } from './ui/text';
 import { getFontSize, adjustFontSize,
 		 readYears, setDimYears } from './utils';
 
@@ -12,7 +12,7 @@ import BarDisplay from './display/bar-display';
 import GraphDisplay from './display/graph-display';
 import ListPanel from './list-panel';
 
-const DATA_CONFIG = require('../../data/config.json');
+const CONFIG = require('../../config.json');
 
 export default function Chart (level) {
 	// Keeps track of visible dimensions.
@@ -39,7 +39,7 @@ export default function Chart (level) {
 
 	this.initialized = false;
 
-	this.years = DATA_CONFIG.years || readYears();
+	this.years = CONFIG.years || readYears();
 
 	this.initialBuild();
 
@@ -63,7 +63,7 @@ export default function Chart (level) {
 		this.dataset.length = 0;
 		this.dataset.push.apply(this.dataset, data);
 
-		if (!DATA_CONFIG.hasOwnProperty("dimYears"))
+		if (!CONFIG.hasOwnProperty("dimYears"))
 			setDimYears(data);
 		return this;
 	};
@@ -372,7 +372,7 @@ Chart.prototype.initialBuild = function () {
 	this.displayText = this.displayDesc.append("span")
 		.attr("class", "displaytext controltext")
 		.attr("id", "displaytext-" + this.level)
-		.text("View");
+		.text(Controls[CONFIG.lang].display);
 
 	this.displayHelp = this.displayDesc.append("span")
 		.attr("class", "displayhelp controlhelp help")
@@ -387,13 +387,13 @@ Chart.prototype.initialBuild = function () {
 
 	this.displayOverTime = this.displaySwitch.append("button")
 		.attr("id", "displayovertime-" + this.level)
-		.text("Over time")
+		.text(Controls[CONFIG.lang].overtime)
 		.on("click", () => this.setDisplay(View.TIME));
 
 	this.displayCategories = this.displaySwitch.append("button")
 		.attr("class", "last active-button")
 		.attr("id", "displaycats-" + this.level)
-		.text("Categories")
+		.text(Controls[CONFIG.lang].categories)
 		.on("click", () => this.setDisplay(View.CATS));
 
 	/*
@@ -411,7 +411,7 @@ Chart.prototype.initialBuild = function () {
 	this.modeText = this.modeDesc.append("span")
 		.attr("class", "modetext controltext")
 		.attr("id", "modetext-" + this.level)
-		.text("Mode");
+		.text(Controls[CONFIG.lang].mode);
 
 	this.modeHelp = this.modeDesc.append("span")
 		.attr("class", "modehelp controlhelp help")
@@ -427,7 +427,7 @@ Chart.prototype.initialBuild = function () {
 	this.modePlus = this.modeSwitch.append("button")
 		.attr("class", "active-button")
 		.attr("id", "modeplus-" + this.level)
-		.text("Spending")
+		.text(Controls[CONFIG.lang].spending)
 		.on("click", () => {
 			this.buttonPress(this.modePlus, this.modeSwitch);
 			this.setMode(Mode.SPENDING);
@@ -435,7 +435,7 @@ Chart.prototype.initialBuild = function () {
 
 	this.modeMinus = this.modeSwitch.append("button")
 		.attr("id", "modeMinus-" + this.level)
-		.text("Revenue")
+		.text(Controls[CONFIG.lang].revenue)
 		.on("click", () => {
 			this.buttonPress(this.modeMinus, this.modeSwitch);
 			this.setMode(Mode.REVENUE);
@@ -444,7 +444,7 @@ Chart.prototype.initialBuild = function () {
 	this.modeBal = this.modeSwitch.append("button")
 		.attr("id", "modeBal-" + this.level)
 		.attr("class", "last")
-		.text("Balance")
+		.text(Controls[CONFIG.lang].balance)
 		.on("click", () => {
 			this.buttonPress(this.modeBal, this.modeSwitch);
 			this.setMode(Mode.BAL);
@@ -474,7 +474,7 @@ Chart.prototype.initialBuild = function () {
 	this.yearText = this.yearDesc.append("span")
 		.attr("class", "yeartext controltext")
 		.attr("id", "yeartext-" + this.level)
-		.text("Year");
+		.text(Controls[CONFIG.lang].year);
 
 	this.yearHelp = this.yearDesc.append("span")
 		.attr("class", "yearhelp controlhelp help")
@@ -496,7 +496,7 @@ Chart.prototype.initialBuild = function () {
 			.append("option").text(d => d)
 			.attr("class", "opt");
 
-	this.yearSelect.node().value = this.year || DATA_CONFIG.startYear;
+	this.yearSelect.node().value = this.year || CONFIG.startYear;
 
 	/*
 	* Sort control.
@@ -513,7 +513,7 @@ Chart.prototype.initialBuild = function () {
 	this.sortText = this.sortDesc.append("span")
 		.attr("class", "sorttext controltext")
 		.attr("id", "sorttext-" + this.level)
-		.text("Sort");
+		.text(Controls[CONFIG.lang].sort);
 
 	this.sortHelp = this.sortDesc.append("span")
 		.attr("class", "sorthelp controlhelp help")
@@ -528,7 +528,7 @@ Chart.prototype.initialBuild = function () {
 
 	this.sortNumerical = this.sortSwitch.append("button")
 		.attr("id", "sortbytext-" + this.level)
-		.text("123")
+		.text(Controls[CONFIG.lang].num)
 		.on("click", () => {
 			this.buttonPress(this.sortNumerical, this.sortSwitch);
 			this.sortBars(0, Sort.NUM);
@@ -537,7 +537,7 @@ Chart.prototype.initialBuild = function () {
 	this.sortAlphabetical = this.sortSwitch.append("button")
 		.attr("class", "last active-button")
 		.attr("id", "sortbytext-" + this.level)
-		.text("ABC")
+		.text(Controls[CONFIG.lang].abc)
 		.on("click", () => {
 			this.buttonPress(this.sortAlphabetical, this.sortSwitch);
 			this.sortBars(0, Sort.ABC);

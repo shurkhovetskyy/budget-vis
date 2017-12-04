@@ -73,7 +73,7 @@
 /* harmony export (immutable) */ __webpack_exports__["c"] = getLevelColor;
 /*jshint esversion: 6 */
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 // Non-used
 const colorBands = ["rgb(19, 52, 83)", "rgb(13, 78, 73)", "rgb(16, 94, 40)"];
@@ -108,7 +108,7 @@ function getStackItemColor (index) {
 
 function getItemColor (dim) {
 //	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
-	const color = Colors[DATA_CONFIG.dimensions
+	const color = Colors[CONFIG.dimensions
 		.indexOf(dim) % Colors.length];
 	return color;
 }
@@ -221,14 +221,14 @@ const View = {
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 /**
 *	Returns first available dimension among those shown.
 */
 function firstDim (shown, year) {
 	const availableDimensions = shown.filter(
-		dim => DATA_CONFIG.dimYears[dim].includes(year));
+		dim => CONFIG.dimYears[dim].includes(year));
 	return availableDimensions.shift();
 }
 
@@ -250,7 +250,7 @@ function roll (value) {
 }
 
 function rollLevelData (csv, level) {
-	const levels = DATA_CONFIG.levels;
+	const levels = CONFIG.levels;
 	const ready = d3.nest()
 		.key(function(d) {
 			return d[levels[level]];
@@ -267,7 +267,7 @@ function rollLevelData (csv, level) {
 
 function generateEntry (v) {
 	const entry = {};
-	DATA_CONFIG.dimensions.forEach (dim =>
+	CONFIG.dimensions.forEach (dim =>
 		entry[dim] = d3.sum(v, d => parseFloat(d[dim])));
 	return entry;
 }
@@ -277,7 +277,7 @@ function generateEntry (v) {
 *	for specified dimension.
 */
 function getAvailableYears (dim, data) {
-	const years = Array.from(DATA_CONFIG.years);
+	const years = Array.from(CONFIG.years);
 	const res = years.map(y => ({
 		value: d3.sum(data.map(
 			item => val(item, dim, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].COMB, y))),
@@ -290,10 +290,10 @@ function getAvailableYears (dim, data) {
 *	Calculates the list of years from the range specified.
 */
 function readYears () {
-	const range = DATA_CONFIG.yearsRange;
+	const range = CONFIG.yearsRange;
 	const years = Array.from({ length: range[1] - range[0] + 1 },
 		(v, k) => k + range[0]);
-	DATA_CONFIG.years = years;
+	CONFIG.years = years;
 	return years;
 }
 
@@ -303,9 +303,9 @@ function readYears () {
 */
 function setDimYears (data) {
 	const dimYears = {};
-	DATA_CONFIG.dimensions.forEach (dim =>
+	CONFIG.dimensions.forEach (dim =>
 		dimYears[dim] = getAvailableYears(dim, data));
-	DATA_CONFIG.dimYears = dimYears;
+	CONFIG.dimYears = dimYears;
 }
 
 function getDatum (data, mode, dimension) {
@@ -401,11 +401,11 @@ function MoneyNum(labelValue) {
 
 function MoneySign(labelValue) {
   // Nine Zeroes for Billions
-  return Math.abs(Number(labelValue)) >= 1.0e+9 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["b" /* Sign */].billion
+  return Math.abs(Number(labelValue)) >= 1.0e+9 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].billion
        // Six Zeroes for Millions
-       : Math.abs(Number(labelValue)) >= 1.0e+6 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["b" /* Sign */].million
+       : Math.abs(Number(labelValue)) >= 1.0e+6 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].million
        // Three Zeroes for Thousands
-       : Math.abs(Number(labelValue)) >= 1.0e+3 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["b" /* Sign */].thousand
+       : Math.abs(Number(labelValue)) >= 1.0e+3 ? __WEBPACK_IMPORTED_MODULE_0__ui_text__["c" /* Sign */][CONFIG.lang].thousand
 	   : "";
 }
 
@@ -667,15 +667,40 @@ const Help = {
 		stack: "Breakdown of types of costs that constitute the sum above. This view is not available in balanced mode."
 	}
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = Help;
+/* harmony export (immutable) */ __webpack_exports__["b"] = Help;
 
 
 const Sign = {
-	billion : "B",
-	million: "Mio",
-	thousand: "Tsd"
+	EN: {
+		billion : "B",
+		million: "M",
+		thousand: "K"
+	},
+	DE: {
+		billion : "B",
+		million: "Mio",
+		thousand: "Tsd"
+	}
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = Sign;
+/* harmony export (immutable) */ __webpack_exports__["c"] = Sign;
+
+
+const Controls = {
+	EN: {
+		display: "View",
+		overtime: "Over time",
+		categories: "Categories",
+		mode: "Mode",
+		spending: "Spending",
+		revenue: "Revenue",
+		balance: "Balance",
+		year: "Year",
+		sort: "Sort",
+		num: "123",
+		abc: "ABC"
+	}
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = Controls;
 
 
 
@@ -695,7 +720,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 let charts = [];
 
@@ -718,7 +743,7 @@ function getChartAt (level) {
 }
 
 function buildChart(level, data, selectionName, year, shownDimensions) {
-	if (level >= DATA_CONFIG.levels.length)
+	if (level >= CONFIG.levels.length)
 		return;
 
 	const fullData = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["i" /* rollLevelData */])(data, level);
@@ -728,12 +753,12 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 	chart	.setFullData(fullData)
 			.setDataset(levelData)
 			.setStackedDataset(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["h" /* roll */])(Object(__WEBPACK_IMPORTED_MODULE_1__utils__["i" /* rollLevelData */])(
-				data, DATA_CONFIG.levels.length - 1)))
+				data, CONFIG.levels.length - 1)))
 			.setLevel(level)
 			.setStartYear(year)
 			.setShownDimensions(shownDimensions)
 			.setSelectionName(selectionName)
-			.setLevelDesc(DATA_CONFIG.levels[level])
+			.setLevelDesc(CONFIG.levels[level])
 			.build();
 }
 
@@ -743,9 +768,9 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 	const launch = (filename) =>
 		d3.dsv(";", "text/plain")(filename, csv =>
 			buildChart(0, csv,
-				DATA_CONFIG.name,
-				DATA_CONFIG.startYear,
-				DATA_CONFIG.startDimensions));
+				CONFIG.name,
+				CONFIG.startYear,
+				CONFIG.startDimensions));
 
 	window.addEventListener("resize", redraw);
 
@@ -772,7 +797,7 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 function Display (chart) {
 	this.c = chart;
@@ -805,7 +830,7 @@ Display.prototype.tickTextFormat = function(d) {
 	const num = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["a" /* MoneyNum */])(d);
 	const sign = Object(__WEBPACK_IMPORTED_MODULE_1__utils__["b" /* MoneySign */])(d);
 	let precision = 0;
-	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["b" /* Sign */].billion)
+	if (sign == __WEBPACK_IMPORTED_MODULE_3__ui_text__["c" /* Sign */].billion)
 		precision = 2;
 	return ((d3.format("." + precision + "f")(num) + " " + sign));
 };
@@ -933,7 +958,7 @@ Display.prototype.dataAvailable = function (dims = null) {
 
 	dims = dims || this.c.shownDimensions;
 	const available = dims.map(d =>
-		DATA_CONFIG.dimYears[d]
+		CONFIG.dimYears[d]
 			.includes(this.c.year)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;
@@ -1087,12 +1112,7 @@ Display.prototype.activate = function () {
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015}
-
-/***/ }),
+/* 7 */,
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1119,7 +1139,7 @@ module.exports = {"name":"Bonn Budget","levels":["Produktbereich","Bezeichnung",
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 function Chart (level) {
 	// Keeps track of visible dimensions.
@@ -1146,7 +1166,7 @@ function Chart (level) {
 
 	this.initialized = false;
 
-	this.years = DATA_CONFIG.years || Object(__WEBPACK_IMPORTED_MODULE_4__utils__["f" /* readYears */])();
+	this.years = CONFIG.years || Object(__WEBPACK_IMPORTED_MODULE_4__utils__["f" /* readYears */])();
 
 	this.initialBuild();
 
@@ -1170,7 +1190,7 @@ function Chart (level) {
 		this.dataset.length = 0;
 		this.dataset.push.apply(this.dataset, data);
 
-		if (!DATA_CONFIG.hasOwnProperty("dimYears"))
+		if (!CONFIG.hasOwnProperty("dimYears"))
 			Object(__WEBPACK_IMPORTED_MODULE_4__utils__["k" /* setDimYears */])(data);
 		return this;
 	};
@@ -1479,14 +1499,14 @@ Chart.prototype.initialBuild = function () {
 	this.displayText = this.displayDesc.append("span")
 		.attr("class", "displaytext controltext")
 		.attr("id", "displaytext-" + this.level)
-		.text("View");
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].display);
 
 	this.displayHelp = this.displayDesc.append("span")
 		.attr("class", "displayhelp controlhelp help")
 		.attr("id", "displayhelp-" + this.level)
 		.on("click", () => {
 			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 16;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.view);
+			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["b" /* Help */].EN.view);
 		});
 
 	this.displaySwitch = this.displayControl.append("div")
@@ -1494,13 +1514,13 @@ Chart.prototype.initialBuild = function () {
 
 	this.displayOverTime = this.displaySwitch.append("button")
 		.attr("id", "displayovertime-" + this.level)
-		.text("Over time")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].overtime)
 		.on("click", () => this.setDisplay(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["d" /* View */].TIME));
 
 	this.displayCategories = this.displaySwitch.append("button")
 		.attr("class", "last active-button")
 		.attr("id", "displaycats-" + this.level)
-		.text("Categories")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].categories)
 		.on("click", () => this.setDisplay(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["d" /* View */].CATS));
 
 	/*
@@ -1518,14 +1538,14 @@ Chart.prototype.initialBuild = function () {
 	this.modeText = this.modeDesc.append("span")
 		.attr("class", "modetext controltext")
 		.attr("id", "modetext-" + this.level)
-		.text("Mode");
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].mode);
 
 	this.modeHelp = this.modeDesc.append("span")
 		.attr("class", "modehelp controlhelp help")
 		.attr("id", "modehelp-" + this.level)
 		.on("click", () => {
 			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 80;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.mode);
+			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["b" /* Help */].EN.mode);
 		});
 
 	this.modeSwitch = this.modeControl.append("div")
@@ -1534,7 +1554,7 @@ Chart.prototype.initialBuild = function () {
 	this.modePlus = this.modeSwitch.append("button")
 		.attr("class", "active-button")
 		.attr("id", "modeplus-" + this.level)
-		.text("Spending")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].spending)
 		.on("click", () => {
 			this.buttonPress(this.modePlus, this.modeSwitch);
 			this.setMode(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].SPENDING);
@@ -1542,7 +1562,7 @@ Chart.prototype.initialBuild = function () {
 
 	this.modeMinus = this.modeSwitch.append("button")
 		.attr("id", "modeMinus-" + this.level)
-		.text("Revenue")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].revenue)
 		.on("click", () => {
 			this.buttonPress(this.modeMinus, this.modeSwitch);
 			this.setMode(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].REVENUE);
@@ -1551,7 +1571,7 @@ Chart.prototype.initialBuild = function () {
 	this.modeBal = this.modeSwitch.append("button")
 		.attr("id", "modeBal-" + this.level)
 		.attr("class", "last")
-		.text("Balance")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].balance)
 		.on("click", () => {
 			this.buttonPress(this.modeBal, this.modeSwitch);
 			this.setMode(__WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["b" /* Mode */].BAL);
@@ -1581,14 +1601,14 @@ Chart.prototype.initialBuild = function () {
 	this.yearText = this.yearDesc.append("span")
 		.attr("class", "yeartext controltext")
 		.attr("id", "yeartext-" + this.level)
-		.text("Year");
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].year);
 
 	this.yearHelp = this.yearDesc.append("span")
 		.attr("class", "yearhelp controlhelp help")
 		.attr("id", "yearhelp-" + this.level)
 		.on("click", () => {
 			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 144;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.year);
+			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["b" /* Help */].EN.year);
 		});
 
 	this.yearSwitch = this.yearControl.append("div")
@@ -1603,7 +1623,7 @@ Chart.prototype.initialBuild = function () {
 			.append("option").text(d => d)
 			.attr("class", "opt");
 
-	this.yearSelect.node().value = this.year || DATA_CONFIG.startYear;
+	this.yearSelect.node().value = this.year || CONFIG.startYear;
 
 	/*
 	* Sort control.
@@ -1620,14 +1640,14 @@ Chart.prototype.initialBuild = function () {
 	this.sortText = this.sortDesc.append("span")
 		.attr("class", "sorttext controltext")
 		.attr("id", "sorttext-" + this.level)
-		.text("Sort");
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].sort);
 
 	this.sortHelp = this.sortDesc.append("span")
 		.attr("class", "sorthelp controlhelp help")
 		.attr("id", "sorthelp-" + this.level)
 		.on("click", () => {
 			const x = __WEBPACK_IMPORTED_MODULE_0__ui_styling__["a" /* Styles */].widthControlPanel, y = 208;
-			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Help */].EN.sort);
+			__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].LEFT, this, __WEBPACK_IMPORTED_MODULE_3__ui_text__["b" /* Help */].EN.sort);
 		});
 
 	this.sortSwitch = this.sortControl.append("div")
@@ -1635,7 +1655,7 @@ Chart.prototype.initialBuild = function () {
 
 	this.sortNumerical = this.sortSwitch.append("button")
 		.attr("id", "sortbytext-" + this.level)
-		.text("123")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].num)
 		.on("click", () => {
 			this.buttonPress(this.sortNumerical, this.sortSwitch);
 			this.sortBars(0, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["c" /* Sort */].NUM);
@@ -1644,7 +1664,7 @@ Chart.prototype.initialBuild = function () {
 	this.sortAlphabetical = this.sortSwitch.append("button")
 		.attr("class", "last active-button")
 		.attr("id", "sortbytext-" + this.level)
-		.text("ABC")
+		.text(__WEBPACK_IMPORTED_MODULE_3__ui_text__["a" /* Controls */][CONFIG.lang].abc)
 		.on("click", () => {
 			this.buttonPress(this.sortAlphabetical, this.sortSwitch);
 			this.sortBars(0, __WEBPACK_IMPORTED_MODULE_1__ui_ui_state__["c" /* Sort */].ABC);
@@ -2204,7 +2224,7 @@ BarDisplay.prototype.setListeners = function (display) {
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 function GraphDisplay (chart) {
 	__WEBPACK_IMPORTED_MODULE_0__display__["a" /* default */].call(this, chart);
@@ -2279,7 +2299,7 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 
 		points = this.buildPoints(points, dim);
 		points.transition("points")
-			.delay((d, i) => i / DATA_CONFIG.years.length * 1000)
+			.delay((d, i) => i / CONFIG.years.length * 1000)
 			.duration(1000)
 			.style("opacity", 1);
 	}
@@ -2318,7 +2338,7 @@ GraphDisplay.prototype.getPathData = function (dim) {
 			return this.pathData[dim];
 		}
 
-	const years = DATA_CONFIG.dimYears[dim];
+	const years = CONFIG.dimYears[dim];
 	const data = years.map(y => ({
 		value: d3.sum(this.dataset.map(
 			item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y))),
@@ -2357,11 +2377,11 @@ GraphDisplay.prototype.buildPoints = function (p, dim) {
 };
 
 GraphDisplay.prototype.getLabels = function () {
-	return DATA_CONFIG.years;
+	return CONFIG.years;
 };
 
 GraphDisplay.prototype.getDimensionData = function (dim) {
-	return DATA_CONFIG.years;
+	return CONFIG.years;
 };
 
 GraphDisplay.prototype.addDimension = function (dim) {
@@ -2374,7 +2394,7 @@ GraphDisplay.prototype.addDimension = function (dim) {
 };
 
 GraphDisplay.prototype.updateXScale = function () {
-	const y = DATA_CONFIG.years;
+	const y = CONFIG.years;
 	this.xScale.domain(d3.range(y.length-1));
 	this.xScaleGraph.domain([y[0], y[y.length-1]]);
 };
@@ -2403,7 +2423,7 @@ GraphDisplay.prototype.getLabelX = function (i) {
 // Gets highest value across all visisble dimensions.
 GraphDisplay.prototype.getShownMax = function () {
 	const max = Math.max.apply(null, this.c.shownDimensions.map(
-		dim => d3.max(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
+		dim => d3.max(CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
 				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
 //	console.log("Max: " + max);
@@ -2413,7 +2433,7 @@ GraphDisplay.prototype.getShownMax = function () {
 // Gets minimum value across all visible dimensions.
 GraphDisplay.prototype.getShownMin = function () {
 	const min = Math.min.apply(null, this.c.shownDimensions.map(
-		dim => d3.min(DATA_CONFIG.dimYears[dim].map(y => d3.sum(
+		dim => d3.min(CONFIG.dimYears[dim].map(y => d3.sum(
 			this.dataset.map(
 				item => Object(__WEBPACK_IMPORTED_MODULE_1__utils__["l" /* val */])(item, dim, this.c.mode, y)))))));
 //	console.log("Min: " + min);
@@ -2502,7 +2522,7 @@ GraphDisplay.prototype.highlight = function () {
 
 
 
-const DATA_CONFIG = __webpack_require__(7);
+const CONFIG = __webpack_require__(13);
 
 function ListPanel (chart) {
 	this.c = chart;
@@ -2521,7 +2541,7 @@ function ListPanel (chart) {
 }
 
 ListPanel.prototype.activate = function () {
-	DATA_CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
+	CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
 	this.setYear(this.c.year);
 	this.updateStackedCharts();
 };
@@ -2578,7 +2598,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const id = this.c.level + "-" + dim;
 
 	let last = false;
-	if (i==DATA_CONFIG.dimensions.length-1)
+	if (i==CONFIG.dimensions.length-1)
 		last = true;
 	const entry = this.list.append("div")
 				.attr("class", "dim-entry" + (last ? " last" : ''))
@@ -2597,13 +2617,13 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		.attr("class", "fighelp listhelp help")
 		.attr("id", "fighelp-" + id)
 		.on("click", () => prepareHelp (
-			this.c, d3.event.target, 41, __WEBPACK_IMPORTED_MODULE_4__ui_text__["a" /* Help */].EN.fig));
+			this.c, d3.event.target, 41, __WEBPACK_IMPORTED_MODULE_4__ui_text__["b" /* Help */][CONFIG.lang].fig));
 
 	const stackHelp = aux.append("span")
 		.attr("class", "stackhelp listhelp help")
 		.attr("id", "stackhelp-" + id)
 		.on("click", () => prepareHelp (
-			this.c, d3.event.target, 62, __WEBPACK_IMPORTED_MODULE_4__ui_text__["a" /* Help */].EN.stack));
+			this.c, d3.event.target, 62, __WEBPACK_IMPORTED_MODULE_4__ui_text__["b" /* Help */][CONFIG.lang].stack));
 
 	aux.selectAll(".help").on("mouseout",
 			() => __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].hide(this.c, false));
@@ -2731,7 +2751,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 	const sds = this.c.stackedDataset,
 		  c = this.c,
 		  id = this.c.level + "-" + dim,
-		  di = DATA_CONFIG.dimensions.indexOf(dim),
+		  di = CONFIG.dimensions.indexOf(dim),
 		  desc = this.dimCon.select("#dim-desc-" + id),
 		  sc = desc.select("#stackscon-" + id);
 	let sg = sc.select("#stacks-" + id);
@@ -2810,7 +2830,7 @@ ListPanel.prototype.updateMax = function () {
 				Object(__WEBPACK_IMPORTED_MODULE_3__utils__["l" /* val */])(d, dim, c.mode, c.year))
 					.reduce((a, b) => a + b))));
 	this.maxDimSum = maxSum;
-	this.stackScales = [...Array(DATA_CONFIG.dimensions.length)].map(
+	this.stackScales = [...Array(CONFIG.dimensions.length)].map(
 		() => d3.scale.linear().domain([0, this.maxDimSum]).nice());
 	return maxSum != oldMax;
 };
@@ -2858,6 +2878,13 @@ function prepareHelp (c, target, offset, text) {
 	__WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].help(x, y, __WEBPACK_IMPORTED_MODULE_2__tooltip__["a" /* Tooltip */].RIGHT, c, text);
 }
 
+
+/***/ }),
+/* 12 */,
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2015,"lang":"EN"}
 
 /***/ })
 /******/ ]);

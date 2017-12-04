@@ -6,7 +6,7 @@ import { Tooltip } from './tooltip';
 import { MoneyNum, MoneySign, val } from './utils';
 import { Help } from './ui/text';
 
-const DATA_CONFIG = require('../../data/config.json');
+const CONFIG = require('../../config.json');
 
 export default function ListPanel (chart) {
 	this.c = chart;
@@ -25,7 +25,7 @@ export default function ListPanel (chart) {
 }
 
 ListPanel.prototype.activate = function () {
-	DATA_CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
+	CONFIG.dimensions.forEach ((d, i) => this._listDimension(d, i));
 	this.setYear(this.c.year);
 	this.updateStackedCharts();
 };
@@ -82,7 +82,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 	const id = this.c.level + "-" + dim;
 
 	let last = false;
-	if (i==DATA_CONFIG.dimensions.length-1)
+	if (i==CONFIG.dimensions.length-1)
 		last = true;
 	const entry = this.list.append("div")
 				.attr("class", "dim-entry" + (last ? " last" : ''))
@@ -101,13 +101,13 @@ ListPanel.prototype._listDimension = function (dim, i) {
 		.attr("class", "fighelp listhelp help")
 		.attr("id", "fighelp-" + id)
 		.on("click", () => prepareHelp (
-			this.c, d3.event.target, 41, Help.EN.fig));
+			this.c, d3.event.target, 41, Help[CONFIG.lang].fig));
 
 	const stackHelp = aux.append("span")
 		.attr("class", "stackhelp listhelp help")
 		.attr("id", "stackhelp-" + id)
 		.on("click", () => prepareHelp (
-			this.c, d3.event.target, 62, Help.EN.stack));
+			this.c, d3.event.target, 62, Help[CONFIG.lang].stack));
 
 	aux.selectAll(".help").on("mouseout",
 			() => Tooltip.hide(this.c, false));
@@ -235,7 +235,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 	const sds = this.c.stackedDataset,
 		  c = this.c,
 		  id = this.c.level + "-" + dim,
-		  di = DATA_CONFIG.dimensions.indexOf(dim),
+		  di = CONFIG.dimensions.indexOf(dim),
 		  desc = this.dimCon.select("#dim-desc-" + id),
 		  sc = desc.select("#stackscon-" + id);
 	let sg = sc.select("#stacks-" + id);
@@ -314,7 +314,7 @@ ListPanel.prototype.updateMax = function () {
 				val(d, dim, c.mode, c.year))
 					.reduce((a, b) => a + b))));
 	this.maxDimSum = maxSum;
-	this.stackScales = [...Array(DATA_CONFIG.dimensions.length)].map(
+	this.stackScales = [...Array(CONFIG.dimensions.length)].map(
 		() => d3.scale.linear().domain([0, this.maxDimSum]).nice());
 	return maxSum != oldMax;
 };

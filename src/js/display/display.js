@@ -5,7 +5,7 @@ import { reveal, hide, MoneyNum, MoneySign, val } from '../utils';
 import { Mode, View, Action, Sort } from '../ui/ui-state';
 import { Sign } from '../ui/text';
 
-const DATA_CONFIG = require('../../../data/config.json');
+const CONFIG = require('../../../config.json');
 
 export default function Display (chart) {
 	this.c = chart;
@@ -166,7 +166,7 @@ Display.prototype.dataAvailable = function (dims = null) {
 
 	dims = dims || this.c.shownDimensions;
 	const available = dims.map(d =>
-		DATA_CONFIG.dimYears[d]
+		CONFIG.dimYears[d]
 			.includes(this.c.year)).reduce((a, b) => a || b);
 	console.log(available);
 	this.noData = !available;

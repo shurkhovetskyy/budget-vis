@@ -3,14 +3,14 @@
 import { Sign } from './ui/text';
 import { Mode } from './ui/ui-state';
 
-const DATA_CONFIG = require('../../data/config.json');
+const CONFIG = require('../../config.json');
 
 /**
 *	Returns first available dimension among those shown.
 */
 export function firstDim (shown, year) {
 	const availableDimensions = shown.filter(
-		dim => DATA_CONFIG.dimYears[dim].includes(year));
+		dim => CONFIG.dimYears[dim].includes(year));
 	return availableDimensions.shift();
 }
 
@@ -32,7 +32,7 @@ export function roll (value) {
 }
 
 export function rollLevelData (csv, level) {
-	const levels = DATA_CONFIG.levels;
+	const levels = CONFIG.levels;
 	const ready = d3.nest()
 		.key(function(d) {
 			return d[levels[level]];
@@ -49,7 +49,7 @@ export function rollLevelData (csv, level) {
 
 function generateEntry (v) {
 	const entry = {};
-	DATA_CONFIG.dimensions.forEach (dim =>
+	CONFIG.dimensions.forEach (dim =>
 		entry[dim] = d3.sum(v, d => parseFloat(d[dim])));
 	return entry;
 }
@@ -59,7 +59,7 @@ function generateEntry (v) {
 *	for specified dimension.
 */
 function getAvailableYears (dim, data) {
-	const years = Array.from(DATA_CONFIG.years);
+	const years = Array.from(CONFIG.years);
 	const res = years.map(y => ({
 		value: d3.sum(data.map(
 			item => val(item, dim, Mode.COMB, y))),
@@ -72,10 +72,10 @@ function getAvailableYears (dim, data) {
 *	Calculates the list of years from the range specified.
 */
 export function readYears () {
-	const range = DATA_CONFIG.yearsRange;
+	const range = CONFIG.yearsRange;
 	const years = Array.from({ length: range[1] - range[0] + 1 },
 		(v, k) => k + range[0]);
-	DATA_CONFIG.years = years;
+	CONFIG.years = years;
 	return years;
 }
 
@@ -85,9 +85,9 @@ export function readYears () {
 */
 export function setDimYears (data) {
 	const dimYears = {};
-	DATA_CONFIG.dimensions.forEach (dim =>
+	CONFIG.dimensions.forEach (dim =>
 		dimYears[dim] = getAvailableYears(dim, data));
-	DATA_CONFIG.dimYears = dimYears;
+	CONFIG.dimYears = dimYears;
 }
 
 function getDatum (data, mode, dimension) {
@@ -183,11 +183,11 @@ export function MoneyNum(labelValue) {
 
 export function MoneySign(labelValue) {
   // Nine Zeroes for Billions
-  return Math.abs(Number(labelValue)) >= 1.0e+9 ? Sign.billion
+  return Math.abs(Number(labelValue)) >= 1.0e+9 ? Sign[CONFIG.lang].billion
        // Six Zeroes for Millions
-       : Math.abs(Number(labelValue)) >= 1.0e+6 ? Sign.million
+       : Math.abs(Number(labelValue)) >= 1.0e+6 ? Sign[CONFIG.lang].million
        // Three Zeroes for Thousands
-       : Math.abs(Number(labelValue)) >= 1.0e+3 ? Sign.thousand
+       : Math.abs(Number(labelValue)) >= 1.0e+3 ? Sign[CONFIG.lang].thousand
 	   : "";
 }
 
