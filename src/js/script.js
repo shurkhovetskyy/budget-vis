@@ -47,7 +47,6 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 }
 
 (function() {
-
 	const redraw = () => charts.forEach (c => c.resize());
 	const launch = (filename) =>
 		d3.dsv(";", "text/plain")(filename, csv =>
@@ -58,6 +57,7 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 
 	window.addEventListener("resize", redraw);
 
+//	launch("data/out_full.csv");
 	launch("data/out1.csv");
 })();
 

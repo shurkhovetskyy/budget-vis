@@ -57,17 +57,19 @@ GraphDisplay.prototype.renderDimension = function (dim) {
 	// If path being built for the first time...
 	if (!path.empty()) {
 		path.transition().duration(1000)
-			.attr("d", this.line(data));
+			.attr("d", this.line(data))
+			.style("opacity", 1);
 
 		points.transition().duration(1000)
-			.attr("cy", (d) => this.yScale(d.value));
+			.attr("cy", (d) => this.yScale(d.value))
+			.style("opacity", 1);
 		if (this.c.action == Action.RESIZE)
 			points.transition("x").duration(1000)
 				.attr("cx", d => this.xScaleGraph(d.year));
 		// Keep to bring opacity back after fast display switch.
 			//	if (!this.chartSet) {
-		path.transition().style("opacity", 1);
-		points.transition().style("opacity", 1);
+		// path.transition().style("opacity", 1);
+		//points.transition().style("opacity", 1);
 			//	}
 	} else {
 		path = this.buildPath(dim, data);

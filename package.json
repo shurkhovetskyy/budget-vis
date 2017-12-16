@@ -1,6 +1,7 @@
 {
   "name": "openbudgets.eu-visualization",
   "version": "0.8.0",
+  "babel": ".babelrc",
   "description": "D3.js-based Visualization for OpenBudgets.eu",
   "engines": {
     "node": "6.11.1"
