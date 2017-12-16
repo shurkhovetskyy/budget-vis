@@ -8,7 +8,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/'));
 
-//app.use(favicon(__dirname + '/src/favicon.png'));
+app.use(favicon(__dirname + '/src/favicon.png'));
 
 app.set('views', __dirname + '/');
 app.set('view engine', 'ejs');
