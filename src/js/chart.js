@@ -353,9 +353,11 @@ Chart.prototype.initialBuild = function () {
 	*	Controls.
 	*/
 
-	this.controlContainer = this.controlPanel.append("div")
-		.attr("class", "controlcon")
-		.attr("id", "controlbox-" + this.level);
+	// this.controlContainer = this.controlPanel.append("div")
+	// 	.attr("class", "controlcon")
+	// 	.attr("id", "controlbox-" + this.level);
+
+	this.controlContainer = this.controlPanel;
 
 	/*
 	*	Display mode.
