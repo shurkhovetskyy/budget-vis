@@ -70,6 +70,7 @@ export default function Chart (level) {
 
 	this.setStartYear = function (startYear) {
 		this.year = startYear;
+		this.listPanel.setYear(this.year);
 		if (this.yearSelect!=undefined)
 			this.yearSelect.node().value = this.year;
 		return this;
@@ -83,6 +84,7 @@ export default function Chart (level) {
 		}
 		else
 			this.shownDimensions = Array.from(value);
+		console.log("New SD: ", this.shownDimensions);
 		return this;
 	};
 

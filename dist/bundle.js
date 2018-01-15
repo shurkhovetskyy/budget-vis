@@ -1238,6 +1238,7 @@ function Chart (level) {
 
 	this.setStartYear = function (startYear) {
 		this.year = startYear;
+		this.listPanel.setYear(this.year);
 		if (this.yearSelect!=undefined)
 			this.yearSelect.node().value = this.year;
 		return this;
@@ -1251,6 +1252,7 @@ function Chart (level) {
 		}
 		else
 			this.shownDimensions = Array.from(value);
+		console.log("New SD: ", this.shownDimensions);
 		return this;
 	};
 
@@ -1863,7 +1865,7 @@ BarDisplay.prototype.updateXScaleRange = function (range) {
 };
 
 BarDisplay.prototype.updateXScale = function () {
-	this.xScale.domain(d3.range(this.c.fullData.length));
+	this.xScale.domain(d3.range(this.dataset.length));
 	this._xGroup.rangeRoundBands([0, this.xScale.rangeBand()], 0);
 };
 
@@ -1898,12 +1900,16 @@ BarDisplay.prototype.updateYScale = function () {
 
 BarDisplay.prototype.renderDimension = function (dim) {
 	this._xGroup.domain(d3.range(this.c.shownDimensions.length));
-	if (!this.dimAvailable(dim))
-		return;
-	console.log("renderDimension - " + dim);
 	let bars = this.barsContainer
 				.selectAll(".bar-rect")
 				.filter(b => b.dim == dim);
+	if (!this.dimAvailable(dim)) {
+		this.minimizeItems(bars);
+		//this.removeDimension(dim);
+		return;
+	}
+	console.log("renderDimension - " + dim);
+
 	let duration = 1000;
 	const _this = this;
 	const hi = 1.0;
