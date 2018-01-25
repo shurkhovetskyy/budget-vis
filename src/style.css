@@ -1,0 +1,843 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+:root {
+	--width-right: 200;
+	--width-control-panel: 230;
+
+	--width-page: 500;
+
+	--height: 285;
+	--header-height: 80;
+
+	--chart-height: 100; /* height of chart */
+	--label-margin: 35;	/* margin between axis and labels */
+	--label-truncate: 12; /* number of symbols for labels */
+	--label-height: 90;
+
+	/*for not cutting of labels and shapes at top and bottom*/
+	--top-padding: 10;
+	--bottom-padding: 10;
+
+	--left-margin: 50;
+	--left-padding: 30;
+	--right-padding: 30;
+	--top-margin: 15;
+
+	--axis-margin-right:35;
+
+	--button-height:30;
+	--controlbox-height:50;
+	--dim-entry-height:95;
+	--tooltip-height: 65;
+	--tooltip-clr: rgba(0, 0, 0, 0.9);
+	--arrow-height:10;
+
+	--main-color:rgb(38, 47, 52);
+
+	/*Transitions*/
+
+	--dim-duration: 0.3;
+	--hover-duration: 0.3;
+
+	/* Dimensions/stacks display*/
+	--dim-list-margin: 10;
+
+	--stack-height: 15;
+
+
+
+	/* Computed values */
+
+	--axis-width: calc(var(--leftcon-width)
+					 - var(--left-margin));
+	--act-width: calc(var(--axis-width)
+					- var(--right-padding));
+
+
+	/*--bottom-padding: calc(var(--label-margin)
+					+ var(--label-length));*/
+
+	--act-height: calc(var(--height)
+					- var(--bottom-padding)
+					- var(--top-padding));
+
+	--header-full-height: calc(var(--header-height)
+					+ var(--top-margin));
+
+	--stack-width: calc(var(--width-right) - (var(--dim-list-margin) * 2));
+	--stack-width: 150;
+	--dim-list-spacing-hidden: calc(var(--dimensions-list-spacing)
+					- var(stack-height));
+
+	--clr: red;
+	--unit: 1px;
+	--sec: 1s;
+}
+
+body {
+	margin:0px;
+	background-color: var(--main-color);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	font-family: 'Lato';
+	/*width: calc(100vw - 34px);*/
+}
+
+.levelcon, .leftcon, .rightcon, .dimcon, .svgdimcon {
+	height: calc(var(--height) * var(--unit));
+}
+
+.levelcon {
+	/*width: calc(var(--width-page) * var(--unit));*/
+	opacity: 0;
+	margin-right: calc(-1 * (100vw - 100%));
+	/*width: 700px;*/
+	position: relative;
+	border-bottom: 1px solid grey;
+	/*transition: 0.5s;*/
+}
+
+a {
+	color:white;
+}
+
+.rightcon {
+	width: calc(var(--width-right) * var(--unit));
+	position: relative;
+	z-index: 0;
+	/*background-color: var(--clr);*/
+}
+
+.chartcon, .leftcon, .labelsgroup {
+	width: calc(100%
+		- var(--width-right) * var(--unit)
+		- var(--width-control-panel) * var(--unit));
+}
+
+.levelcon {
+	display: flex;
+	width:100%;
+}
+
+.headerleftcon {
+	height: calc(var(--header-height) * var(--unit));
+	z-index: 1;
+	position: relative;
+	margin-left: calc(var(--left-margin) * var(--unit));
+	color:white;
+	white-space: nowrap;
+	margin-top:calc(var(--top-margin) * var(--unit));
+	/*width:calc(var(--leftcon-width) - var(--left-margin));*/
+}
+
+.labelsgroup {
+	position: absolute;
+	height: calc(var(--label-height) * var(--unit));
+	top: calc((var(--header-full-height) + var(--chart-height))* var(--unit));
+}
+
+.labelscon {
+	width:100%;
+	height: calc(var(--label-height) * var(--unit));
+	position: absolute;
+	margin-left: calc((var(--left-margin) - 15) * var(--unit));
+	transition: 0.5s;
+	cursor: default;
+}
+
+.chartcon {
+	position: absolute;
+	top: 0px;
+	z-index: 0;
+	height: calc(var(--chart-height) * var(--unit));
+	top:calc(var(--header-full-height) * var(--unit));
+}
+
+.graphcon path {
+	stroke-width: 3;
+	fill: none;
+	opacity: 1;
+	mix-blend-mode: screen;
+}
+
+.graphcon path:hover {
+	stroke-width: 6;
+	fill: none;
+	opacity:1;
+}
+
+circle {
+	mix-blend-mode: normal;
+	/*fill-opacity:0.5;*/
+}
+
+circle:hover {
+	mix-blend-mode:normal;
+	fill-opacity: 0.5;
+}
+
+.controlpanel {
+	width: calc(var(--width-control-panel) * var(--unit));
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bar-rect {
+	cursor:pointer;
+}
+
+/*
+*	Control boxes.
+*/
+
+.switch {
+	display: flex;
+	height:calc(var(--button-height) * var(--unit));
+	margin-top: 5px;
+}
+
+.controlcon {
+	width: calc(var(--width-control-panel) * var(--unit));
+	height: calc(var(--height) * var(--unit));
+	background-color: rgba(255, 255, 255, 0.1);
+	position: absolute;
+	/*opacity: 0.5;
+	transition: .5s;*/
+}
+
+/*.controlcon:hover {
+	opacity: 1.0;
+	transition: .5s;
+}*/
+
+/*
+*	Buttons.
+*/
+
+button {
+	text-transform: capitalize;
+}
+
+.viewbox button {
+	width:105px;
+}
+
+.modebox button {
+	width:70px;
+	padding: 0px;
+}
+
+.sortbox button {
+	width:105px;
+}
+
+select {
+	width:210px;
+	appearance:none;
+	outline: none;
+}
+
+option {
+	height:40px;
+	background-color: rgb(100, 100, 100);
+	color:white;
+}
+
+.controlbox {
+	/*margin-left: 10px;
+	margin-bottom: 40px;
+	margin-top: 20px;*/
+	height:calc(var(--controlbox-height) * var(--unit));
+	position: relative;
+	left:10px;
+	margin-top: calc(var(--top-margin) * var(--unit));
+	transition: .5s;
+}
+
+.controltext {
+	color: rgb(150, 150, 150);
+	color:lightgray;
+	font-family: 'Lato';
+	font-size: 14px;
+	text-transform: capitalize;
+}
+
+.help {
+	width:13px;
+	height: 13px;
+	border: 1px solid lightgray;
+	border-radius: 50%;
+	text-align: center;
+	color: lightgray;
+	font-size: 12;
+	font-family: arial;
+	cursor: pointer;
+	opacity: 0;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.controlpanel:hover .help,
+.dim-entry.active:not(.figs-hidden):hover .fighelp,
+.dim-entry.active:not(.stacks-hidden):hover .stackhelp {
+	opacity: 0.3;
+}
+
+.dim-entry.active:hover .help:hover,
+.controlpanel:hover .help:hover {
+	opacity: 1;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.controldesc {
+	width:210px;
+}
+
+.help:after {
+	content: "?";
+	/*content: "i";
+	font-family: monospace;*/
+}
+
+.listhelp {
+	position: absolute;
+	left: 8px;
+}
+
+.dim-entry .fighelp {
+	top:40px;
+}
+
+.dim-entry .stackhelp {
+	top:66px;
+}
+
+.controlhelp {
+	margin-left: 5px;
+	margin-top:2px;
+	float:right;
+}
+
+.tooltip .text strong {
+	color:yellow;
+	font-weight: normal;
+}
+
+button, select {
+	height:calc(var(--button-height) * var(--unit));
+	background-color: rgba(0, 0, 0, 0.2);
+	opacity: 1.0;
+	border: 1px solid rgb(20, 20, 20);
+	border-right: none;
+	/*border:none;*/
+	/*margin-left: 2px;*/
+	/*font-family: 'Lato';*/
+	font-weight: bold;
+	color:rgba(255, 255, 255, 0.6);
+	font-family: sans-serif;
+	font-size: 12px;
+	transition: .2s;
+	outline: none;
+}
+
+button.last, select {
+
+	/*border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;*/
+	border-right: 1px solid rgb(0, 0, 0);
+}
+
+button {}
+
+button:hover {
+	cursor: pointer;
+
+	background-color: rgba(0, 0, 0, 0.4);
+	/*background-color: rgb(70, 70, 70);*/
+	color:rgba(255, 255, 255, 0.8);
+	transition: 0.5s;
+}
+
+button:focus, .active-button {
+	background-color: rgba(0, 0, 0, 0.7);
+	/*background-color: rgb(45, 45, 45);*/
+	/*font-weight: bold;*/
+	color: white;
+	transition: 0.2s;
+}
+
+.active-button {
+	cursor: default;
+	pointer-events: none;
+}
+
+
+
+/*
+*	Axes.
+*/
+
+.axiscon text {
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: lighter;
+	fill: rgba(255, 255, 255, 0.5);
+}
+
+.axis-label {
+	display: block;
+	font-size: 13px;
+	color:white;
+	width:100px;
+	height:15px;
+	top:calc(var(--label-margin) * var(--unit));
+	/*opacity: 0.5;
+	transition: 0.5s;*/
+	position: absolute;
+	transform: rotate(45deg);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	/*outline: 1px solid red;*/
+}
+
+.axis-label:hover {
+	cursor:pointer;
+	/*opacity: 1;
+	transition: 0.5s;*/
+}
+
+.axiscon line, .axiscon path {
+	shape-rendering:crispEdges;
+	stroke:white;
+	opacity: 0.1;
+}
+
+.axiscon path {
+	opacity: 0.7;
+}
+
+line.zero {
+	fill:white;
+	stroke:white;
+	shape-rendering:crispEdges;
+}
+
+.yAxis {
+	fill:white;
+}
+
+.selection-name {
+	font-family: 'Lato';
+	font-weight: normal;
+	width: calc(100% - var(--axis-margin-right) * var(--unit));
+	/*width:calc(100% - 200px);*/
+	height:40px;
+	white-space: nowrap;
+}
+
+.level-name {
+	font-family: 'Lato';
+	font-size: 16px;
+	opacity: 0.6;
+
+}
+
+#value {
+	font-family: sans-serif;
+	fill:yellow;
+	width: 50px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+
+
+@font-face {
+	fill:yellow;
+	unicode-range: U+30-39;
+}
+
+/*Tooltip*/
+
+.tooltip {
+	background-color: var(--tooltip-clr);
+	position: absolute;
+	/*height: calc(var(--tooltip-height) * var(--unit));*/
+	z-index: 2;
+	border-radius: 4px;
+	white-space: nowrap;
+	/*transition: calc(var(--dim-duration) * var(--sec));*/
+}
+
+.tooltip .text {
+	max-width: 300px;
+	white-space: normal;
+	/*display: inline;*/
+	/*text-align:justify;*/
+}
+
+.arrow {
+	position: absolute;
+	background-color: none;
+}
+
+.arrow:after {
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 0;
+	height: 0;
+	position: absolute;
+	content:'';
+
+}
+
+.arrow.right:after {
+    top: 100%;
+    border-top: solid calc(var(--arrow-height) * var(--unit)) transparent;
+	border-left: solid calc(var(--arrow-height) * var(--unit)) var(--tooltip-clr);
+	border-bottom: solid calc(var(--arrow-height) * var(--unit)) transparent;
+}
+
+.arrow.left:after {
+    top: 100%;
+    border-top: solid calc(var(--arrow-height) * var(--unit)) transparent;
+	border-right: solid calc(var(--arrow-height) * var(--unit)) var(--tooltip-clr);
+	border-bottom: solid calc(var(--arrow-height) * var(--unit)) transparent;
+}
+
+.arrow.down:after {
+    /*top: 100%;*/
+    border-top: solid calc(var(--arrow-height) * var(--unit)) var(--tooltip-clr);
+	border-left: solid calc(var(--arrow-height) * var(--unit)) transparent;
+	border-right: solid calc(var(--arrow-height) * var(--unit)) transparent;
+}
+
+.arrow.up:after {
+    top: calc(var(--arrow-height) * -1 * var(--unit));
+    border-bottom: solid calc(var(--arrow-height) * var(--unit)) var(--tooltip-clr);
+	border-left: solid calc(var(--arrow-height) * var(--unit)) transparent;
+	border-right: solid calc(var(--arrow-height) * var(--unit)) transparent;
+}
+
+.tooltip .content {
+	margin:5px;
+	color:white;
+}
+
+.tooltip .title {
+	color:lightgray;
+}
+
+.tooltip .stats {
+	font-size: 14px;
+	color:white;
+}
+
+.tooltip .fig {
+	color:yellow;
+	display: flex;
+	/*font-weight: bold;*/
+	font-size: 18px;
+}
+
+.tooltip .sign {
+	color:white;
+	margin-left: 3px;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+	height: 1px;
+}
+
+.high {
+	fill-opacity:white;
+	opacity: 1;
+}
+
+.nodata {
+	/*background-color: red;*/
+	width:100%;
+	/*height:100%;*/
+	text-align: center;
+	color:lightgray;
+	font-size: 16px;
+	margin-top: 40px;
+	font-family: 'Lato';
+	position: relative;
+	z-index: 1;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+	/*transition-delay: 1s;*/
+}
+
+.nodata.reveal {
+	visibility: visible;
+	opacity: 0.8;
+	transition: 1.0s;
+	transition-delay: 0.5s;
+
+}
+
+.nodata span {
+	color:white;
+	opacity:1;
+	font-weight: bold;
+}
+
+/*
+*	Dimensions container.
+*/
+
+.dim-list {
+	/*margin-top: calc(var(--top-margin) * var(--unit));*/
+}
+
+.dim-entry {
+	font-family: 'Lato';
+	/*transition: 0.3s;*/
+	display: flex;
+	position: relative;
+	height: 45px;
+	border-bottom: 1px solid rgb(20, 20, 20);
+	/*border-left: 1px solid rgb(20, 20, 20);*/
+	cursor: pointer;
+	background-color: rgba(20, 20, 20, 0.3);
+	/*margin: calc(var(--dim-list-margin) * var(--unit));*/
+}
+
+/* fast display of figures on mouse hover in graph mode */
+.dim-entry:not(.stacks-hidden-instant) {
+	transition: 0.3s;
+}
+
+.dim-entry.active {
+	cursor: default;
+	height:  calc(var(--dim-entry-height) * var(--unit));
+	background-color: rgba(20, 20, 20, 0);
+}
+
+.dim-entry.active.stacks-hidden {
+	height: 70px;
+	transition: 0.5s;
+}
+
+.dim-entry.active.stacks-hidden-instant {
+	height: 70px;
+}
+
+.dim-entry.active.figs-hidden {
+	height: 45px;
+	transition: 0.5s;
+}
+
+.dim-entry.active.figs-hidden-delay {
+	transition-delay: 1s;
+}
+
+.dim-entry.active.last {
+	border-bottom: none;
+}
+
+.dim-entry:not(.active):hover {
+	/*background-color: rgba(255, 255, 255, 0.1);*/
+	background-color: rgba(20, 20, 20, 0.4);
+	transition: 0.3s;
+}
+/*.dim-entry div {
+	position: relative;
+}*/
+
+.dim-desc {
+	left: calc(var(--dim-list-margin) * 3 * var(--unit));
+	width: calc(var(--stack-width) * var(--unit));
+	position: absolute;
+	top: calc(var(--top-margin) * var(--unit));
+}
+
+.dim-namebox {
+	display: flex;
+}
+
+.dim-name {
+	color: white;
+	font-size: 14px;
+	left: calc(var(--dim-list-margin) * var(--unit));
+	/*width: calc(var(--stack-width) * var(--unit));*/
+	opacity: 0.8;
+
+	/*text-transform: uppercase;*/
+}
+
+.dim-year {
+	margin-left: 5px;
+	color: gray;
+	font-size: 14px;
+}
+
+.dim-figure {
+	display: flex;
+}
+
+.dim-value {
+	color:white;
+	font-size: 24px;
+	height:34px;
+}
+
+.dim-sign {
+	color:white;
+	font-size: 24px;
+	height:34px;
+	/*opacity: 0.6;*/
+	margin-left: 5px;
+	font-weight: bold;
+}
+
+.dim-marker {
+	position: absolute;
+	height: 10px;
+	width: 10px;
+
+	left: calc(var(--dim-list-margin) * var(--unit));
+	top: calc((var(--top-margin) + 4) * var(--unit));
+	transition: calc(var(--dim-duration) * var(--sec));
+	/*left:-200px;*/
+}
+
+.dim-entry.active > .dim-marker {
+	outline: none;
+	opacity: 1;
+	transition: calc(var(--dim-duration) * var(--sec));
+	/*z-index: 1;*/
+}
+
+.dim-marker::after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-color: gray;
+	opacity: 1;
+	position: absolute;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.dim-entry.active .dim-marker::after {
+	content: '';
+	opacity: 0;
+	position: absolute;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+/*hides value when dim inactive*/
+.dim-entry .dim-value,
+.dim-entry .dim-sign {
+	opacity: 0;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.dim-entry.active .dim-value,
+.dim-entry.active .dim-sign {
+	opacity: 1;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.stackscon {
+	/*position: relative;*/
+	width: calc(var(--stack-width) * var(--unit));
+	height: calc(var(--stack-height) * var(--unit));
+	transition: .5s;
+	position: absolute;
+	/*z-index: 2;*/
+	/*left: calc(var(--dim-list-margin) * var(--unit));*/
+}
+
+.active .stackscon {
+	/*z-index: 2;*/
+}
+
+.dim-remove {
+	position: absolute;
+	width:14px;
+	color:white;
+	opacity:0;
+	transition: calc(var(--dim-duration) * var(--sec));
+	right: calc((var(--top-margin) - 9) * var(--unit));
+	top: calc((var(--top-margin) - 9) * var(--unit));
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.dim-remove:after {
+	content: "\2715";
+}
+
+.active:hover > .dim-remove {
+	color:rgb(180, 180, 180);
+	opacity:1;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.active:hover > .dim-remove:hover:after {
+	opacity: 1;
+	cursor:pointer;
+	color:white;
+	transition: calc(var(--dim-duration) * var(--sec));
+}
+
+.dimcon, .svgdimcon {
+	width: calc(var(--width-right) * var(--unit));
+	position: absolute;
+	top:0px;
+	/*outline:1px solid red;*/
+}
+
+.dimcon {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stacked-rect:hover {
+	/*mix-blend-mode: normal;*/
+	/*height:30px;*/
+	/*fill:steelblue;*/
+}
+
+/*
+*	Technical classes.
+*/
+
+.highlighted {
+	opacity: 1;
+/*	transition: 0.5s; */
+}
+
+.hidden {
+	opacity: 0;
+	transition: 0.5s;
+	visibility: hidden;
+}
+
+.hidden-delay {
+	opacity: 0;
+	transition: 0.5s;
+	transition-delay: 1s;
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+	opacity: 1;
+	transition: 0.5s;
+}
+
+#fit {
+
+	/*font-size: 20px;*/
+	color:white;
+	width:200px;
+}
+
+.dummy {
+	width: auto;
+	display: inline-block;
+	white-space: nowrap;
+}
