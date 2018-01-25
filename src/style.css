@@ -647,6 +647,7 @@ line.zero {
 	background-color: rgba(20, 20, 20, 0.4);
 	transition: 0.3s;
 }
+
 /*.dim-entry div {
 	position: relative;
 }*/
@@ -772,6 +773,10 @@ line.zero {
 
 .dim-remove:after {
 	content: "\2715";
+}
+
+.dim-entry:not(.active) > .dim-remove{
+	pointer-events: none;
 }
 
 .active:hover > .dim-remove {
