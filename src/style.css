@@ -395,6 +395,7 @@ button:focus, .active-button {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow:ellipsis;
+	text-transform: capitalize;
 	/*outline: 1px solid red;*/
 }
 
@@ -465,6 +466,7 @@ line.zero {
 	z-index: 2;
 	border-radius: 4px;
 	white-space: nowrap;
+	text-transform: capitalize;
 	/*transition: calc(var(--dim-duration) * var(--sec));*/
 }
 

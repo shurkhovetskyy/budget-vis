@@ -27940,9 +27940,13 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _extends2 = __webpack_require__(30);
+var _defineProperty2 = __webpack_require__(267);
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends3 = __webpack_require__(30);
+
+var _extends4 = _interopRequireDefault(_extends3);
 
 var _toConsumableArray2 = __webpack_require__(188);
 
@@ -27974,27 +27978,27 @@ var reducers = function reducers() {
 			{
 				nl[action.level].view = action.payload;
 				nl[action.level].mark += 1;
-				return (0, _extends3.default)({}, state, { levels: nl, action: null });
+				return (0, _extends4.default)({}, state, { levels: nl, action: null });
 			}
 		case 'SET_MODE':
 			{
 				nl[action.level].mode = action.payload;
 				nl[action.level].mark += 1;
 				//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
-				return (0, _extends3.default)({}, state, { levels: nl, action: _options.Action.MODE });
+				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.MODE });
 			}
 		case 'SET_YEAR':
 			{
 				nl[action.level].year = action.payload;
 				nl[action.level].mark += 1;
 				if (nl[action.level].sort == _options.Sort.NUM) nl[action.level].sort = _options.Sort.NA;
-				return (0, _extends3.default)({}, state, { levels: nl, action: null });
+				return (0, _extends4.default)({}, state, { levels: nl, action: null });
 			}
 		case 'SET_SORT':
 			{
 				nl[action.level].sort = action.payload;
 				nl[action.level].mark += 1;
-				return (0, _extends3.default)({}, state, { levels: nl, action: _options.Action.SORT });
+				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.SORT });
 			}
 
 		case 'ADD_DIMENSION':
@@ -28002,7 +28006,7 @@ var reducers = function reducers() {
 				var od = nl[action.level].openDimensions;
 				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(od), [action.payload]); //.push(action.payload);
 				nl[action.level].mark += 1;
-				return (0, _extends3.default)({}, state, { levels: nl, action: _options.Action.ADD });
+				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.ADD });
 			}
 
 		case 'REMOVE_DIMENSION':
@@ -28012,12 +28016,12 @@ var reducers = function reducers() {
 				_od.splice(ind, 1);
 				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(_od));
 				nl[action.level].mark += 1;
-				return (0, _extends3.default)({}, state, { levels: nl, action: _options.Action.REMOVE });
+				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.REMOVE });
 			}
 
 		case 'SET_WIDTH':
 			{
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					width: action.payload,
 					action: _options.Action.RESIZE
 				});
@@ -28028,7 +28032,7 @@ var reducers = function reducers() {
 				nl[action.level].displayYear = action.payload;
 				nl[action.level].mark += 1;
 				nl[action.level].instantShow = true;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.GRAPH_OVER
 				});
@@ -28038,7 +28042,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].instantShow = false;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.GRAPH_OUT
 				});
@@ -28048,7 +28052,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_OVER,
 					tooltip: {
@@ -28063,7 +28067,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_OUT
 				});
@@ -28073,7 +28077,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].selection = action.payload;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_CLICK
 				});
@@ -28083,7 +28087,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.STACKS_OVER,
 					tooltip: {
@@ -28098,7 +28102,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.STACKS_OUT
 				});
@@ -28108,7 +28112,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.HELP_CLICK,
 					tooltip: {
@@ -28124,7 +28128,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.HELP_OUT
 				});
@@ -28143,7 +28147,7 @@ var reducers = function reducers() {
 					}
 				}
 
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: _options.Action.OPEN
 				});
@@ -28155,7 +28159,7 @@ var reducers = function reducers() {
 				nl[action.level].view = _options.View.CATS;
 				nl[action.level].year = action.payload;
 				if (nl[action.level].sort == _options.Sort.NUM) nl[action.level].sort = _options.Sort.NA;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: null
 				});
@@ -28172,9 +28176,9 @@ var reducers = function reducers() {
 						nl[action.level].stackedData = action.payload.stacks;
 					}
 
-				nl[action.level].data[action.view] = action.payload.data;
+				nl[action.level].data = (0, _extends4.default)({}, nl[action.level].data, (0, _defineProperty3.default)({}, action.view, [].concat((0, _toConsumableArray3.default)(action.payload.data))));
 				nl[action.level].mark += 1;
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: nl,
 					action: action.userAction
 				});
@@ -28182,11 +28186,11 @@ var reducers = function reducers() {
 
 		case 'FETCH_DIM_YEARS':
 			{
-				return (0, _extends3.default)({}, state);
+				return (0, _extends4.default)({}, state);
 			}
 		case 'SET_ALL':
 			{
-				return (0, _extends3.default)({}, state, {
+				return (0, _extends4.default)({}, state, {
 					levels: action.payload,
 					action: null
 				});
