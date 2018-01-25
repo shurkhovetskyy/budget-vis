@@ -60,6 +60,7 @@ class Chart extends React.Component {
 	}
 
 	componentDidUpdate (prevProps) {
+
 		this.axisCon = this.axisCon || d3.select("#axiscon-" + this.props.level);
 		this.zeroAxis = this.zeroAxis || d3.select("#zero-" + this.props.level);
 

@@ -5313,6 +5313,7 @@ var Chart = function (_React$Component) {
 	(0, _createClass3.default)(Chart, [{
 		key: 'componentDidUpdate',
 		value: function componentDidUpdate(prevProps) {
+
 			this.axisCon = this.axisCon || d3.select("#axiscon-" + this.props.level);
 			this.zeroAxis = this.zeroAxis || d3.select("#zero-" + this.props.level);
 
@@ -27944,9 +27945,9 @@ var _defineProperty2 = __webpack_require__(267);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _extends3 = __webpack_require__(30);
+var _extends4 = __webpack_require__(30);
 
-var _extends4 = _interopRequireDefault(_extends3);
+var _extends5 = _interopRequireDefault(_extends4);
 
 var _toConsumableArray2 = __webpack_require__(188);
 
@@ -27978,27 +27979,27 @@ var reducers = function reducers() {
 			{
 				nl[action.level].view = action.payload;
 				nl[action.level].mark += 1;
-				return (0, _extends4.default)({}, state, { levels: nl, action: null });
+				return (0, _extends5.default)({}, state, { levels: nl, action: null });
 			}
 		case 'SET_MODE':
 			{
 				nl[action.level].mode = action.payload;
 				nl[action.level].mark += 1;
 				//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
-				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.MODE });
+				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.MODE });
 			}
 		case 'SET_YEAR':
 			{
 				nl[action.level].year = action.payload;
 				nl[action.level].mark += 1;
 				if (nl[action.level].sort == _options.Sort.NUM) nl[action.level].sort = _options.Sort.NA;
-				return (0, _extends4.default)({}, state, { levels: nl, action: null });
+				return (0, _extends5.default)({}, state, { levels: nl, action: null });
 			}
 		case 'SET_SORT':
 			{
 				nl[action.level].sort = action.payload;
 				nl[action.level].mark += 1;
-				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.SORT });
+				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.SORT });
 			}
 
 		case 'ADD_DIMENSION':
@@ -28006,7 +28007,7 @@ var reducers = function reducers() {
 				var od = nl[action.level].openDimensions;
 				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(od), [action.payload]); //.push(action.payload);
 				nl[action.level].mark += 1;
-				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.ADD });
+				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.ADD });
 			}
 
 		case 'REMOVE_DIMENSION':
@@ -28016,12 +28017,12 @@ var reducers = function reducers() {
 				_od.splice(ind, 1);
 				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(_od));
 				nl[action.level].mark += 1;
-				return (0, _extends4.default)({}, state, { levels: nl, action: _options.Action.REMOVE });
+				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.REMOVE });
 			}
 
 		case 'SET_WIDTH':
 			{
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					width: action.payload,
 					action: _options.Action.RESIZE
 				});
@@ -28032,7 +28033,7 @@ var reducers = function reducers() {
 				nl[action.level].displayYear = action.payload;
 				nl[action.level].mark += 1;
 				nl[action.level].instantShow = true;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.GRAPH_OVER
 				});
@@ -28042,7 +28043,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].instantShow = false;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.GRAPH_OUT
 				});
@@ -28052,7 +28053,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_OVER,
 					tooltip: {
@@ -28067,7 +28068,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_OUT
 				});
@@ -28077,7 +28078,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].selection = action.payload;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.BAR_CLICK
 				});
@@ -28087,7 +28088,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.STACKS_OVER,
 					tooltip: {
@@ -28102,7 +28103,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.STACKS_OUT
 				});
@@ -28112,7 +28113,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = action.payload;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.HELP_CLICK,
 					tooltip: {
@@ -28128,7 +28129,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mark += 1;
 				nl[action.level].highlight = null;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Interaction.HELP_OUT
 				});
@@ -28147,7 +28148,7 @@ var reducers = function reducers() {
 					}
 				}
 
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: _options.Action.OPEN
 				});
@@ -28159,7 +28160,7 @@ var reducers = function reducers() {
 				nl[action.level].view = _options.View.CATS;
 				nl[action.level].year = action.payload;
 				if (nl[action.level].sort == _options.Sort.NUM) nl[action.level].sort = _options.Sort.NA;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: null
 				});
@@ -28174,11 +28175,13 @@ var reducers = function reducers() {
 							return (0, _utils.sortUtil)(a, b, nl[action.level].sort, nl[action.level].mode, nl[action.level].year, (0, _utils.firstDim)(nl[action.level].openDimensions, nl[action.level].year));
 						});
 						nl[action.level].stackedData = action.payload.stacks;
-					}
+						nl[action.level].data = (0, _extends5.default)({}, nl[action.level].data, (0, _defineProperty3.default)({}, action.view, [].concat((0, _toConsumableArray3.default)(action.payload.data))));
+					} else {
+					nl[action.level].data = (0, _extends5.default)({}, nl[action.level].data, (0, _defineProperty3.default)({}, action.view, (0, _extends5.default)({}, action.payload.data)));
+				}
 
-				nl[action.level].data = (0, _extends4.default)({}, nl[action.level].data, (0, _defineProperty3.default)({}, action.view, [].concat((0, _toConsumableArray3.default)(action.payload.data))));
 				nl[action.level].mark += 1;
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: action.userAction
 				});
@@ -28186,11 +28189,11 @@ var reducers = function reducers() {
 
 		case 'FETCH_DIM_YEARS':
 			{
-				return (0, _extends4.default)({}, state);
+				return (0, _extends5.default)({}, state);
 			}
 		case 'SET_ALL':
 			{
-				return (0, _extends4.default)({}, state, {
+				return (0, _extends5.default)({}, state, {
 					levels: action.payload,
 					action: null
 				});
@@ -31139,15 +31142,10 @@ var BarChart = function (_Chart) {
 				return;
 			}
 
-			if (this.action == _options.Interaction.BAR_OVER) {
-				this.mouseOver(this.props.highlight);
-				return;
-			}
-
-			if (this.action == _options.Interaction.BAR_OUT) {
-				this.mouseOut(prevProps.highlight);
-				return;
-			}
+			// if (this.action == Interaction.BAR_OUT){
+			// 	this.mouseOut(prevProps.highlight);
+			// 	return;
+			// }
 
 			if (this.action == _options.Action.ADD) {
 				var dim = newDims.filter(function (v) {
@@ -31442,28 +31440,12 @@ var BarChart = function (_Chart) {
 			this.on("mouseover",
 			//	d => display.props.callbacks.mouseOver(d, d3.event.target))
 			function (d) {
-				return display.handleMouseOver(d, d3.event.target);
+				return display.mouseOver(d, d3.event.target);
 			}).on("mouseout", function (d) {
-				return display.props.callbacks.mouseOut(d);
+				return display.mouseOut(d);
 			}).on("click", function (d) {
 				return display.props.callbacks.click(d);
 			});
-		}
-	}, {
-		key: 'handleMouseOver',
-		value: function handleMouseOver(d, target) {
-			var bar = void 0;
-			if (target instanceof HTMLSpanElement) {
-				var first = (0, _utils.firstDim)(this.props.openDimensions, this.props.year);
-				d = (0, _create2.default)(d);
-				d.dim = first;
-				var selection = this.container.selectAll(".bar-rect").filter(function (b) {
-					return b.id == d.id && b.dim == first;
-				});
-				bar = selection.node();
-			} else bar = target;
-
-			this.props.callbacks.mouseOver(d, bar);
 		}
 	}, {
 		key: 'highlight',
@@ -31496,11 +31478,11 @@ var BarChart = function (_Chart) {
 				var bar = bars.filter(function (d) {
 					return d.id == index;
 				});
-				bar.transition("highlight-index").duration(duration).style("opacity", "1.0");
+				bar.transition("highlight-index").duration(0).style("opacity", "1.0");
 				var label = labels.filter(function (d) {
 					return d.id == index;
 				});
-				label.transition().duration(duration).style("opacity", hi);
+				label.transition().duration(0).style("opacity", hi);
 			}
 			var selectionBar = bars.filter(function (d) {
 				return d.id == _this9.props.selection;
@@ -31516,25 +31498,25 @@ var BarChart = function (_Chart) {
 		key: 'mouseOver',
 		value: function mouseOver(d, target) {
 			if (d == null) return;
-			// let bar;
-			// if (target instanceof HTMLSpanElement) {
-			// 	const first = firstDim(this.props.openDimensions, this.props.year);
-			// 	d = Object.create(d);
-			// 	d.dim = first;
-			// 	const selection = this.container
-			// 		.selectAll(".bar-rect").filter(b =>
-			// 			b.id==d.id && b.dim==first);
-			// 	bar = selection.node();
-			// } else
-			// 	bar = target;
-			//
-			// const box = bar.getBBox();
-			// let x = box.x + box.width / 2;
-			// x = x + Styles.leftMargin + Styles.widthControlPanel;
-			//
-			// Tooltip.draw(d, x, Styles.tooltipY - 1, Tooltip.DOWN, this.c, false);
+
+			this.start = performance.now();
+			var bar = void 0;
+			if (target instanceof HTMLSpanElement) {
+				var first = (0, _utils.firstDim)(this.props.openDimensions, this.props.year);
+				d = (0, _create2.default)(d);
+				d.dim = first;
+				var selection = this.container.selectAll(".bar-rect").filter(function (b) {
+					return b.id == d.id && b.dim == first;
+				});
+				bar = selection.node();
+			} else bar = target;
 
 			if (d.id != this.selection) this.highlight(d.id);
+
+			var now = performance.now();
+			console.log("MOUSE OVER TOOK: ", now - this.start);
+
+			this.props.callbacks.mouseOver(d, bar);
 		}
 	}, {
 		key: 'mouseOut',
@@ -31543,6 +31525,8 @@ var BarChart = function (_Chart) {
 			// this.c.levelContainer.selectAll(".tooltip")
 			// 	.classed("hidden-delay", true);
 			if (this.props.selection == 'n') this.highlight(d.id, false);else this.highlight(this.props.selection);
+
+			this.props.callbacks.mouseOut(d);
 		}
 	}, {
 		key: 'render',

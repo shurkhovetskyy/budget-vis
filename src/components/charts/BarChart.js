@@ -51,15 +51,10 @@ export default class BarChart extends Chart {
 			return;
 		}
 
-		if (this.action == Interaction.BAR_OVER){
-			this.mouseOver(this.props.highlight);
-			return;
-		}
-
-		if (this.action == Interaction.BAR_OUT){
-			this.mouseOut(prevProps.highlight);
-			return;
-		}
+		// if (this.action == Interaction.BAR_OUT){
+		// 	this.mouseOut(prevProps.highlight);
+		// 	return;
+		// }
 
 		if (this.action==Action.ADD) {
 			const dim = newDims.filter(
@@ -425,27 +420,9 @@ export default class BarChart extends Chart {
 	setListeners (display) {
 		this.on("mouseover",
 			//	d => display.props.callbacks.mouseOver(d, d3.event.target))
-				d => display.handleMouseOver(d, d3.event.target))
-			.on("mouseout", d => display.props.callbacks.mouseOut(d))
+				d => display.mouseOver(d, d3.event.target))
+			.on("mouseout", d => display.mouseOut(d))
 			.on("click", d => display.props.callbacks.click(d));
-	}
-
-	handleMouseOver (d, target) {
-		let bar;
-		if (target instanceof HTMLSpanElement) {
-			const first = firstDim(	this.props.openDimensions,
-									this.props.year);
-			d = Object.create(d);
-			d.dim = first;
-			const selection = this.container
-					.selectAll(".bar-rect")
-					.filter(
-						b => b.id==d.id && b.dim==first);
-			bar = selection.node();
-		} else
-			bar = target;
-
-		this.props.callbacks.mouseOver(d, bar);
 	}
 
 	highlight (index, highlight = true) {
@@ -476,10 +453,10 @@ export default class BarChart extends Chart {
 
 		if (highlight && (index != this.props.selection)) {
 			const bar = bars.filter(d => d.id==index);
-			bar.transition("highlight-index").duration(duration)
+			bar.transition("highlight-index").duration(0)
 				.style("opacity", "1.0");
 			const label = labels.filter(d => d.id==index);
-			label.transition().duration(duration)
+			label.transition().duration(0)
 				.style("opacity", hi);
 		}
 		const selectionBar = bars.filter(d => d.id==this.props.selection);
@@ -495,26 +472,29 @@ export default class BarChart extends Chart {
 	mouseOver (d, target) {
 		if (d == null)
 			return;
-		// let bar;
-		// if (target instanceof HTMLSpanElement) {
-		// 	const first = firstDim(this.props.openDimensions, this.props.year);
-		// 	d = Object.create(d);
-		// 	d.dim = first;
-		// 	const selection = this.container
-		// 		.selectAll(".bar-rect").filter(b =>
-		// 			b.id==d.id && b.dim==first);
-		// 	bar = selection.node();
-		// } else
-		// 	bar = target;
-        //
-		// const box = bar.getBBox();
-		// let x = box.x + box.width / 2;
-		// x = x + Styles.leftMargin + Styles.widthControlPanel;
-        //
-		// Tooltip.draw(d, x, Styles.tooltipY - 1, Tooltip.DOWN, this.c, false);
+
+		this.start = performance.now();
+		let bar;
+		if (target instanceof HTMLSpanElement) {
+			const first = firstDim(	this.props.openDimensions,
+									this.props.year);
+			d = Object.create(d);
+			d.dim = first;
+			const selection = this.container
+					.selectAll(".bar-rect")
+					.filter(
+						b => b.id==d.id && b.dim==first);
+			bar = selection.node();
+		} else
+			bar = target;
 
 		if (d.id!=this.selection)
 			this.highlight(d.id);
+
+		const now = performance.now();
+		console.log("MOUSE OVER TOOK: ", now - this.start);
+
+		this.props.callbacks.mouseOver(d, bar);
 	}
 
 	mouseOut (d) {
@@ -526,6 +506,8 @@ export default class BarChart extends Chart {
 			this.highlight(d.id, false);
 		else
 			this.highlight(this.props.selection);
+
+		this.props.callbacks.mouseOut(d)
 	}
 
 	render() {

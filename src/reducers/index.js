@@ -209,10 +209,18 @@ const reducers = (state = initial, action) => {
 								nl[action.level].year)
 						))
 				nl[action.level].stackedData = action.payload.stacks;
+				nl[action.level].data = {
+						...nl[action.level].data,
+						[action.view]: [...action.payload.data]
+					};
+			} else {
+				nl[action.level].data = {
+						...nl[action.level].data,
+						[action.view]: {...action.payload.data}
+					};
 			}
 
-			nl[action.level].data = {...nl[action.level].data,
-									[action.view]:[...action.payload.data]};
+
 			nl[action.level].mark += 1;
 			return {...state,
 				levels: nl,
