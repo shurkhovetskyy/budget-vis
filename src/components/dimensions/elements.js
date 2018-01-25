@@ -37,7 +37,9 @@ export function ListEntry (props) {
 				})
 			} >
 			<ListAux id = {id} color = {color}
-				helpClick = {props.callbacks.helpClick}/>
+				helpClick = {props.callbacks.helpClick}
+				helpOut = {props.callbacks.helpOut}
+			/>
 			<ListDesc {...props} id = {id} />
 			<ListRemove
 				onClick = {props.remove}
@@ -60,11 +62,13 @@ export function ListAux (props) {
 				className = 'fighelp listhelp help'
 				id = {'fighelp-' + id}
 				onClick = { (e) => props.helpClick(e.target, 'fig') }
+				onMouseOut = { () => props.helpOut() }
 			/>
 			<div
 				className = 'stackhelp listhelp help'
 				id = {'stackhelp-' + id}
 				onClick = { (e) => props.helpClick(e.target, 'stack') }
+				onMouseOut = { () => props.helpOut() }
 			/>
 		</div>
 	);

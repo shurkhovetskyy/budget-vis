@@ -28120,6 +28120,16 @@ var reducers = function reducers() {
 				});
 			}
 
+		case 'HELP_OUT':
+			{
+				nl[action.level].mark += 1;
+				nl[action.level].highlight = null;
+				return (0, _extends3.default)({}, state, {
+					levels: nl,
+					action: _options.Interaction.HELP_OUT
+				});
+			}
+
 		case 'OPEN_LEVEL':
 			{
 				//	nl[action.level].mark += 1;
@@ -29593,6 +29603,9 @@ var Level = function (_React$Component) {
 			},
 			helpClick: function helpClick(target, name) {
 				return _this.listHelpClick(target, name);
+			},
+			helpOut: function helpOut() {
+				return _this.props.dispatch(interaction.helpMouseOut(_this.props.level));
 			}
 		};
 
@@ -33033,7 +33046,9 @@ function ListEntry(props) {
 				'stacks-hidden-instant': !props.stacksVisible || props.instantShow
 			}) },
 		_react2.default.createElement(ListAux, { id: id, color: color,
-			helpClick: props.callbacks.helpClick }),
+			helpClick: props.callbacks.helpClick,
+			helpOut: props.callbacks.helpOut
+		}),
 		_react2.default.createElement(ListDesc, (0, _extends3.default)({}, props, { id: id })),
 		_react2.default.createElement(ListRemove, {
 			onClick: props.remove,
@@ -33057,6 +33072,9 @@ function ListAux(props) {
 			id: 'fighelp-' + id,
 			onClick: function onClick(e) {
 				return props.helpClick(e.target, 'fig');
+			},
+			onMouseOut: function onMouseOut() {
+				return props.helpOut();
 			}
 		}),
 		_react2.default.createElement('div', {
@@ -33064,6 +33082,9 @@ function ListAux(props) {
 			id: 'stackhelp-' + id,
 			onClick: function onClick(e) {
 				return props.helpClick(e.target, 'stack');
+			},
+			onMouseOut: function onMouseOut() {
+				return props.helpOut();
 			}
 		})
 	);
@@ -33302,7 +33323,11 @@ function ControlDescription(_ref2) {
 			className: name + 'help controlhelp help',
 			onClick: function onClick() {
 				return dispatch(interaction.helpClick(_styles2.default.widthControlPanel, helpY[name], _options.TooltipOpts.LEFT, _text.Help[_settings2.default.lang][name], level));
-			} })
+			},
+			onMouseOut: function onMouseOut() {
+				return dispatch(interaction.helpMouseOut(level));
+			}
+		})
 	);
 }
 
@@ -33387,6 +33412,7 @@ exports.openLevel = openLevel;
 exports.stacksMouseOver = stacksMouseOver;
 exports.stacksMouseOut = stacksMouseOut;
 exports.helpClick = helpClick;
+exports.helpMouseOut = helpMouseOut;
 
 var _axios = __webpack_require__(108);
 
@@ -33574,7 +33600,6 @@ function stacksMouseOver(d, target, level) {
 }
 
 function stacksMouseOut(level) {
-
 	return function (dispatch) {
 		dispatch({
 			type: "STACKS_MOUSE_OUT",
@@ -33596,6 +33621,15 @@ function helpClick(x, y, direction, text, level) {
 			tooltipY: y,
 			toolTipDirection: direction,
 			payload: text
+		});
+	};
+}
+
+function helpMouseOut(level) {
+	return function (dispatch) {
+		dispatch({
+			type: "HELP_OUT",
+			level: level
 		});
 	};
 }

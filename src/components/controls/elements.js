@@ -49,7 +49,10 @@ export function ControlDescription ({ name, level, dispatch }) {
 					  TooltipOpts.LEFT,
 					  Help[CONFIG.lang][name],
 					  level
-				  )) } >
+				  )) }
+				  onMouseOut = { () => dispatch(
+					  interaction.helpMouseOut(level)) }
+				  >
 			</span>
 		</div>
 	);

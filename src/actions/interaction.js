@@ -192,7 +192,6 @@ export function stacksMouseOver (d, target, level) {
 }
 
 export function stacksMouseOut (level) {
-
 	return function (dispatch) {
 		dispatch ({
 			type: "STACKS_MOUSE_OUT",
@@ -214,6 +213,15 @@ export function helpClick (x, y, direction, text, level) {
 			tooltipY: y,
 			toolTipDirection: direction,
 			payload: text
+		});
+	}
+}
+
+export function helpMouseOut (level) {
+	return function (dispatch) {
+		dispatch ({
+			type: "HELP_OUT",
+			level: level
 		});
 	}
 }

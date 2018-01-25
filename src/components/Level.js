@@ -40,7 +40,9 @@ export default class Level extends React.Component {
 				interaction.stacksMouseOver(d, target, this.props.level)),
 			mouseOut: () => this.props.dispatch(
 				interaction.stacksMouseOut(this.props.level)),
-			helpClick: (target, name) => this.listHelpClick(target, name)
+			helpClick: (target, name) => this.listHelpClick(target, name),
+			helpOut: () => this.props.dispatch(interaction.helpMouseOut(
+				this.props.level))
 		}
 
 		this.graphActions = {

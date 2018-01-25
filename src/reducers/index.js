@@ -154,6 +154,15 @@ const reducers = (state = initial, action) => {
 			};
 		}
 
+		case 'HELP_OUT': {
+			nl[action.level].mark += 1;
+			nl[action.level].highlight = null;
+			return {...state,
+				levels: nl,
+				action: Interaction.HELP_OUT
+			};
+		}
+
 		case 'OPEN_LEVEL': {
 		//	nl[action.level].mark += 1;
 			nl[action.level].selection = action.selection;
