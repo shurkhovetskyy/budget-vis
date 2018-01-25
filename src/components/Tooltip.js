@@ -73,7 +73,7 @@ export default class Tooltip extends Component {
 		const help = this.props.type == "help"
 
 		// Arrow
-		let ay, ty = y, tx, up;
+		let ay, ty = y, tx = x, up;
 		if (direction == TooltipOpts.UP) {
 			ay = y + Styles.arrowHeight;
 			ty = ay ;
@@ -117,7 +117,7 @@ export default class Tooltip extends Component {
 					}
 					style = {{
 						top: ty,
-						left: x
+						left: tx
 					}} >
 					<div className = 'content'>
 						<div className = 'title'>

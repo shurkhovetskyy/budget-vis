@@ -33935,7 +33935,7 @@ var Tooltip = function (_Component) {
 			// Arrow
 			var ay = void 0,
 			    ty = y,
-			    tx = void 0,
+			    tx = x,
 			    up = void 0;
 			if (direction == _options.TooltipOpts.UP) {
 				ay = y + _styles2.default.arrowHeight;
@@ -33986,7 +33986,7 @@ var Tooltip = function (_Component) {
 						}),
 						style: {
 							top: ty,
-							left: x
+							left: tx
 						} },
 					_react2.default.createElement(
 						'div',
