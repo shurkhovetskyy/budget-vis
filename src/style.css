@@ -431,6 +431,7 @@ line.zero {
 	/*width:calc(100% - 200px);*/
 	height:40px;
 	white-space: nowrap;
+	text-transform: capitalize;
 }
 
 .level-name {

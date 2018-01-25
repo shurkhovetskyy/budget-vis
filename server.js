@@ -31,7 +31,7 @@ app.get('/dim-years', function(req, res) {
 app.get('/stacks', function(req, res) {
 	console.log("Stacks-all");
 
-	fs.readFile("data/out_full.csv", 'utf8', function(err, raw) {
+//	fs.readFile("data/out_full_en.csv", 'utf8', function(err, raw) {
 		if (err) throw err;
 
 		let data, parent, year, dim, level;
@@ -44,48 +44,40 @@ app.get('/stacks', function(req, res) {
 		res.setHeader('Content-Type', 'application/json');
 		res.send(data);
 		return res;
-	});
+//	});
 
 });
 
 app.get('/data', function(req, res) {
-	console.log("Data-all");
+	var start = new Date().getTime();
 
-	fs.readFile("data/out_full.csv", 'utf8', function(err, raw) {
-		if (err) throw err;
-		console.log("**** Rolling starts.");
+	const view = req.query.view;
+	let data, parent, year, dim, stacks;
+	//	if (view == "categories") {
+		level = req.query.level;
+		parent = req.query.parent;
+		year = req.query.year;
+		console.log("Level", level);
+		console.log("Parent", parent);
+		data = utils.getData(cache, level, parent, year);
 
-		var start = new Date().getTime();
+		stacks = utils.getStacks(cache, parent, year, level-1);
 
-		const view = req.query.view;
-		let data, parent, year, dim, stacks;
-		//	if (view == "categories") {
-			level = req.query.level;
-			parent = req.query.parent;
-			year = req.query.year;
-			console.log("Level", level);
-			console.log("Parent", parent);
-			data = utils.getData(cache, level, parent, year);
+	if (view == View.TIME) {
+	//	data = JSON.stringify(utils.overtime(data));
+		data = utils.overtime(data);
+	}
 
-			stacks = utils.getStacks(cache, parent, year, level-1);
+	var end = new Date().getTime();
+	var time = end - start;
+	console.log('Execution time: ' + time);
 
-		if (view == View.TIME) {
-		//	data = JSON.stringify(utils.overtime(data));
-			data = utils.overtime(data);
-		}
+	let resp = { };
+	resp.data = data;
+	resp.stacks = stacks;
 
-		var end = new Date().getTime();
-		var time = end - start;
-		console.log('Execution time: ' + time);
-
-		let resp = { };
-		resp.data = data;
-		resp.stacks = stacks;
-
-		res.setHeader('Content-Type', 'application/json');
-		res.send(resp);
-		return res;
-	});
+	res.setHeader('Content-Type', 'application/json');
+	res.send(resp);
 });
 
 app.get('*', function(req, res) {
@@ -96,7 +88,7 @@ app.get('*', function(req, res) {
 app.listen(app.get('port'), function() {
   console.log('React App is running on port', app.get('port'));
 
-  fs.readFile("data/out_full.csv", 'utf8', function(err, raw) {
+  fs.readFile("data/out_full_en.csv", 'utf8', function(err, raw) {
 	  cache = utils.parse(raw);
 	  dimYears = utils.getDimYears(utils.getData(cache));
 	  return;

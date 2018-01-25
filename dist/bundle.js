@@ -950,7 +950,7 @@ module.exports = function (it, key) {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"dimensions":["Executed-Ist","Planentwurf","Plan"],"startDimensions":["Executed-Ist","Plan"],"stacks":"Kostenart","yearsRange":[2008,2024],"startYear":2013,"lang":"EN","currency":"€"}
+module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels_de":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"levels":["Product Category","Description","Profit Center","Cost Type"],"dimensions":["Executed","Plan Design","Plan"],"startDimensions":["Executed","Plan"],"stacks":"Cost Type","yearsRange":[2008,2024],"startYear":2013,"lang":"EN","currency":"€"}
 
 /***/ }),
 /* 17 */
