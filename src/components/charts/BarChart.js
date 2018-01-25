@@ -32,7 +32,7 @@ export default class BarChart extends Chart {
 
 		this.action = this.props.action;
 
-		if (prevProps.sort != this.props.sort) {
+		if (this.props.action == Action.SORT) {
 			this.sortBars(0, this.props.sort);
 			return;
 		}

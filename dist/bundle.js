@@ -27986,6 +27986,7 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mode = action.payload;
 				nl[action.level].mark += 1;
+				nl[action.level].sort = 'na';
 				//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
 				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.MODE });
 			}
@@ -31123,7 +31124,7 @@ var BarChart = function (_Chart) {
 
 			this.action = this.props.action;
 
-			if (prevProps.sort != this.props.sort) {
+			if (this.props.action == _options.Action.SORT) {
 				this.sortBars(0, this.props.sort);
 				return;
 			}

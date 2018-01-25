@@ -26,6 +26,7 @@ const reducers = (state = initial, action) => {
 		case 'SET_MODE': {
 			nl[action.level].mode = action.payload;
 			nl[action.level].mark += 1;
+			nl[action.level].sort = 'na';
 		//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
 			return {...state, levels: nl, action: Action.MODE};
 		}
