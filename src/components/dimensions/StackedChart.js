@@ -144,7 +144,7 @@ export default class StackedChart extends Component {
 				className = {
 					classNames({
 						'stackscon': true,
-						'hidden': !this.props.stacksVisible
+						'hidden': !this.props.stacksVisible || !this.active
 					})
 				}
 			/>

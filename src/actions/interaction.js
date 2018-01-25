@@ -200,3 +200,20 @@ export function stacksMouseOut (level) {
 		});
 	}
 }
+
+// Help
+
+// Stacks interactions
+
+export function helpClick (x, y, direction, text, level) {
+	return function (dispatch) {
+		dispatch ({
+			type: "HELP_CLICK",
+			level: level,
+			tooltipX: x,
+			tooltipY: y,
+			toolTipDirection: direction,
+			payload: text
+		});
+	}
+}

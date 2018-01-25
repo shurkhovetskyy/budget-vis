@@ -139,6 +139,21 @@ const reducers = (state = initial, action) => {
 			};
 		}
 
+		case 'HELP_CLICK': {
+			nl[action.level].mark += 1;
+			nl[action.level].highlight = action.payload;
+			return {...state,
+				levels: nl,
+				action: Interaction.HELP_CLICK,
+				tooltip: {
+					type: "help",
+					x: action.tooltipX,
+					y: action.tooltipY,
+					direction: action.toolTipDirection
+				}
+			};
+		}
+
 		case 'OPEN_LEVEL': {
 		//	nl[action.level].mark += 1;
 			nl[action.level].selection = action.selection;

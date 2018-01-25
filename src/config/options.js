@@ -35,7 +35,9 @@ const Interaction = {
 	BAR_OUT: "bar_out",
 	BAR_CLICK: "bar_click",
 	STACKS_OVER: "stacks_over",
-	STACKS_OUT: "stacks_out"
+	STACKS_OUT: "stacks_out",
+	HELP_CLICK: "help_click",
+	HELP_OUT: "help_out"
 }
 
 const TooltipOpts = {

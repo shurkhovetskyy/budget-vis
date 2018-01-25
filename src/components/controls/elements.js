@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import { TooltipOpts } from '../../config/options';
+import Styles from '../../config/styles';
+import { Help } from '../../config/text';
+import * as interaction from '../../actions/interaction';
+
+import CONFIG from '../../config/settings.json';
+
 export function ControlButton (props) {
 	return (
-		<button id={props.id} onClick={() => props.press()}
+		<button id = {props.id}
+				onClick={() => props.press()}
 				className = {props.className}>
 			{props.name}
 		</button>
@@ -14,7 +22,7 @@ export function DropDown ({ current, opts, press }) {
 	return (
 		<div className='switch'>
 			<select className = "select" value = {current}
-					onChange={ (e) => press(parseInt(e.target.value)) }>
+					onChange = { (e) => press(parseInt(e.target.value)) } >
 				{
 					Array.from(opts).reverse().map((y, i) => (
 						<option key = {i} className = "opt"> {y} </option>
@@ -25,7 +33,7 @@ export function DropDown ({ current, opts, press }) {
 	);
 }
 
-export function ControlDescription ({ name, level }) {
+export function ControlDescription ({ name, level, dispatch }) {
 	return (
 		<div id={'displaydesc-' + level}
 			 className='displaydesc controldesc'>
@@ -35,7 +43,13 @@ export function ControlDescription ({ name, level }) {
 			</span>
 			<span id = {name + 'help-' + level}
 				  className = {name + 'help controlhelp help'}
-				  onClick={()=>alert("help")}>
+				  onClick = { () => dispatch(interaction.helpClick(
+					  Styles.widthControlPanel,
+					  helpY[name],
+					  TooltipOpts.LEFT,
+					  Help[CONFIG.lang][name],
+					  level
+				  )) } >
 			</span>
 		</div>
 	);
@@ -56,6 +70,7 @@ export function ControlBox (props) {
 			<ControlDescription
 				name = {props.name}
 				level = {level}
+				dispatch = {props.dispatch}
 			/>
 			{ React.createElement(props.renderer, {...rest}) }
 		</div>
@@ -78,4 +93,11 @@ export function ButtonSwitch ({ current, opts }) {
 			))}
 		</div>
 	);
+}
+
+const helpY = {
+	'view': 16,
+	'mode': 80,
+	'year': 144,
+	'sort': 208
 }

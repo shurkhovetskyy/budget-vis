@@ -11,13 +11,16 @@ import ListPanel from './dimensions/ListPanel';
 import LevelHeader from './LevelHeader';
 import Tooltip from './Tooltip';
 
-import { View, Action } from '../config/options';
+import { View, Action, TooltipOpts } from '../config/options';
 import { adjustFontSize, getLevelColor } from '../utils/';
 
+import { Help } from '../config/text';
 import store from '../config/store';
 import Styles from '../config/styles';
 import * as actions from '../actions/';
 import * as interaction from '../actions/interaction';
+
+import CONFIG from '../config/settings.json';
 
 export default class Level extends React.Component {
 	constructor(props) {
@@ -36,7 +39,8 @@ export default class Level extends React.Component {
 			mouseOver: (d, target) => this.props.dispatch(
 				interaction.stacksMouseOver(d, target, this.props.level)),
 			mouseOut: () => this.props.dispatch(
-				interaction.stacksMouseOut(this.props.level))
+				interaction.stacksMouseOut(this.props.level)),
+			helpClick: (target, name) => this.listHelpClick(target, name)
 		}
 
 		this.graphActions = {
@@ -140,6 +144,24 @@ export default class Level extends React.Component {
 		this.props.dispatch(interaction.openLevel(parent, this.props.level));
 		this.props.navigate();
 	}
+	// function prepareHelp (c, target, offset, text) {
+	// 	const entry = target.closest(".dim-entry");
+	// 	const x = c.width - Styles.widthRight;
+	// 	const y = offset + entry.offsetTop;
+	// 	Tooltip.help(x, y, Tooltip.RIGHT, c, text);
+	// }
+	listHelpClick (target, name) {
+		const entry = target.closest(".dim-entry");
+		const x = this.props.width - Styles.widthRight;
+		const y = helpY[name] + entry.offsetTop;
+
+		this.props.dispatch(interaction.helpClick(
+			x, y,
+			TooltipOpts.RIGHT,
+			Help[CONFIG.lang][name],
+			this.props.level
+		))
+	}
 
 	shouldComponentUpdate (nextProps) {
 		console.log(nextProps.width, this.props.width);
@@ -158,7 +180,9 @@ export default class Level extends React.Component {
 			<div id = {'level-' + level} className = 'levelcon'
 				style = {{backgroundColor: getLevelColor(level)}}>
 				<ControlPanel {...this.props}
-					actions = {this.controlActions} />
+					actions = {this.controlActions}
+					dispatch = {this.props.dispatch}
+				/>
 				<div id = {'left-' + level}
 					className = 'sidediv leftcon' >
 					<LevelHeader level = {level}
@@ -198,10 +222,16 @@ export default class Level extends React.Component {
 					action = {this.props.action}
 					x = {this.props.tooltip.x}
 					y = {this.props.tooltip.y}
+					type = {this.props.tooltip.type}
 					direction = {this.props.tooltip.direction}
 					width = {this.props.width}
 				/>
 			</div>
 		);
 	}
+}
+
+const helpY = {
+	'fig': 41,
+	'stack': 62
 }

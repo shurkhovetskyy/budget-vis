@@ -1456,7 +1456,9 @@ var Interaction = {
 	BAR_OUT: "bar_out",
 	BAR_CLICK: "bar_click",
 	STACKS_OVER: "stacks_over",
-	STACKS_OUT: "stacks_out"
+	STACKS_OUT: "stacks_out",
+	HELP_CLICK: "help_click",
+	HELP_OUT: "help_out"
 };
 
 var TooltipOpts = {
@@ -28102,6 +28104,22 @@ var reducers = function reducers() {
 				});
 			}
 
+		case 'HELP_CLICK':
+			{
+				nl[action.level].mark += 1;
+				nl[action.level].highlight = action.payload;
+				return (0, _extends3.default)({}, state, {
+					levels: nl,
+					action: _options.Interaction.HELP_CLICK,
+					tooltip: {
+						type: "help",
+						x: action.tooltipX,
+						y: action.tooltipY,
+						direction: action.toolTipDirection
+					}
+				});
+			}
+
 		case 'OPEN_LEVEL':
 			{
 				//	nl[action.level].mark += 1;
@@ -29511,6 +29529,8 @@ var _options = __webpack_require__(29);
 
 var _utils = __webpack_require__(265);
 
+var _text = __webpack_require__(271);
+
 var _store = __webpack_require__(38);
 
 var _store2 = _interopRequireDefault(_store);
@@ -29526,6 +29546,10 @@ var actions = _interopRequireWildcard(_actions);
 var _interaction = __webpack_require__(283);
 
 var interaction = _interopRequireWildcard(_interaction);
+
+var _settings = __webpack_require__(16);
+
+var _settings2 = _interopRequireDefault(_settings);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -29566,6 +29590,9 @@ var Level = function (_React$Component) {
 			},
 			mouseOut: function mouseOut() {
 				return _this.props.dispatch(interaction.stacksMouseOut(_this.props.level));
+			},
+			helpClick: function helpClick(target, name) {
+				return _this.listHelpClick(target, name);
 			}
 		};
 
@@ -29700,6 +29727,22 @@ var Level = function (_React$Component) {
 			this.props.dispatch(interaction.openLevel(parent, this.props.level));
 			this.props.navigate();
 		}
+		// function prepareHelp (c, target, offset, text) {
+		// 	const entry = target.closest(".dim-entry");
+		// 	const x = c.width - Styles.widthRight;
+		// 	const y = offset + entry.offsetTop;
+		// 	Tooltip.help(x, y, Tooltip.RIGHT, c, text);
+		// }
+
+	}, {
+		key: 'listHelpClick',
+		value: function listHelpClick(target, name) {
+			var entry = target.closest(".dim-entry");
+			var x = this.props.width - _styles2.default.widthRight;
+			var y = helpY[name] + entry.offsetTop;
+
+			this.props.dispatch(interaction.helpClick(x, y, _options.TooltipOpts.RIGHT, _text.Help[_settings2.default.lang][name], this.props.level));
+		}
 	}, {
 		key: 'shouldComponentUpdate',
 		value: function shouldComponentUpdate(nextProps) {
@@ -29719,7 +29762,9 @@ var Level = function (_React$Component) {
 				{ id: 'level-' + level, className: 'levelcon',
 					style: { backgroundColor: (0, _utils.getLevelColor)(level) } },
 				_react2.default.createElement(_ControlPanel2.default, (0, _extends3.default)({}, this.props, {
-					actions: this.controlActions })),
+					actions: this.controlActions,
+					dispatch: this.props.dispatch
+				})),
 				_react2.default.createElement(
 					'div',
 					{ id: 'left-' + level,
@@ -29761,6 +29806,7 @@ var Level = function (_React$Component) {
 					action: this.props.action,
 					x: this.props.tooltip.x,
 					y: this.props.tooltip.y,
+					type: this.props.tooltip.type,
 					direction: this.props.tooltip.direction,
 					width: this.props.width
 				}))
@@ -29771,6 +29817,12 @@ var Level = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Level;
+
+
+var helpY = {
+	'fig': 41,
+	'stack': 62
+};
 
 /***/ }),
 /* 232 */
@@ -30745,6 +30797,7 @@ var ControlPanel = function (_React$Component) {
 					current: _options.TextMapping[this.props.view],
 					opts: this.buttons.view,
 					renderer: _elements.ButtonSwitch,
+					dispatch: this.props.dispatch,
 					active: true
 				}),
 				_react2.default.createElement(_elements.ControlBox, {
@@ -30753,6 +30806,7 @@ var ControlPanel = function (_React$Component) {
 					current: _options.TextMapping[this.props.mode],
 					opts: this.buttons.mode,
 					renderer: _elements.ButtonSwitch,
+					dispatch: this.props.dispatch,
 					active: true
 				}),
 				_react2.default.createElement(_elements.ControlBox, {
@@ -30762,6 +30816,7 @@ var ControlPanel = function (_React$Component) {
 					opts: _settings2.default.years,
 					renderer: _elements.DropDown,
 					active: this.props.view != _options.View.TIME && !this.firstRender,
+					dispatch: this.props.dispatch,
 					press: function press(y) {
 						return _this2.props.actions.year(y);
 					}
@@ -30772,6 +30827,7 @@ var ControlPanel = function (_React$Component) {
 					current: this.props.sort,
 					opts: this.buttons.sort,
 					renderer: _elements.ButtonSwitch,
+					dispatch: this.props.dispatch,
 					active: this.props.view != _options.View.TIME && !this.firstRender
 				})
 			);
@@ -32935,11 +32991,23 @@ var _StackedChart = __webpack_require__(285);
 
 var _StackedChart2 = _interopRequireDefault(_StackedChart);
 
+var _options = __webpack_require__(29);
+
+var _styles = __webpack_require__(269);
+
+var _styles2 = _interopRequireDefault(_styles);
+
+var _interaction = __webpack_require__(283);
+
+var interaction = _interopRequireWildcard(_interaction);
+
 var _text = __webpack_require__(271);
 
 var _settings = __webpack_require__(16);
 
 var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32964,7 +33032,8 @@ function ListEntry(props) {
 				'stacks-hidden': !props.stacksVisible && !props.instantShow,
 				'stacks-hidden-instant': !props.stacksVisible || props.instantShow
 			}) },
-		_react2.default.createElement(ListAux, { id: id, color: color }),
+		_react2.default.createElement(ListAux, { id: id, color: color,
+			helpClick: props.callbacks.helpClick }),
 		_react2.default.createElement(ListDesc, (0, _extends3.default)({}, props, { id: id })),
 		_react2.default.createElement(ListRemove, {
 			onClick: props.remove,
@@ -32985,11 +33054,17 @@ function ListAux(props) {
 		}),
 		_react2.default.createElement('div', {
 			className: 'fighelp listhelp help',
-			id: 'fighelp-' + id
+			id: 'fighelp-' + id,
+			onClick: function onClick(e) {
+				return props.helpClick(e.target, 'fig');
+			}
 		}),
 		_react2.default.createElement('div', {
 			className: 'stackhelp listhelp help',
-			id: 'stackhelp-' + id
+			id: 'stackhelp-' + id,
+			onClick: function onClick(e) {
+				return props.helpClick(e.target, 'stack');
+			}
 		})
 	);
 }
@@ -33070,6 +33145,11 @@ function ListRemove(props) {
 	});
 }
 
+var helpY = {
+	'fig': 16,
+	'stack': 80
+};
+
 /***/ }),
 /* 279 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -33144,12 +33224,31 @@ var _classnames = __webpack_require__(70);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _options = __webpack_require__(29);
+
+var _styles = __webpack_require__(269);
+
+var _styles2 = _interopRequireDefault(_styles);
+
+var _text = __webpack_require__(271);
+
+var _interaction = __webpack_require__(283);
+
+var interaction = _interopRequireWildcard(_interaction);
+
+var _settings = __webpack_require__(16);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ControlButton(props) {
 	return _react2.default.createElement(
 		'button',
-		{ id: props.id, onClick: function onClick() {
+		{ id: props.id,
+			onClick: function onClick() {
 				return props.press();
 			},
 			className: props.className },
@@ -33186,7 +33285,8 @@ function DropDown(_ref) {
 
 function ControlDescription(_ref2) {
 	var name = _ref2.name,
-	    level = _ref2.level;
+	    level = _ref2.level,
+	    dispatch = _ref2.dispatch;
 
 	return _react2.default.createElement(
 		'div',
@@ -33201,7 +33301,7 @@ function ControlDescription(_ref2) {
 		_react2.default.createElement('span', { id: name + 'help-' + level,
 			className: name + 'help controlhelp help',
 			onClick: function onClick() {
-				return alert("help");
+				return dispatch(interaction.helpClick(_styles2.default.widthControlPanel, helpY[name], _options.TooltipOpts.LEFT, _text.Help[_settings2.default.lang][name], level));
 			} })
 	);
 }
@@ -33222,7 +33322,8 @@ function ControlBox(props) {
 			}, (0, _defineProperty3.default)(_classNames, box, true), (0, _defineProperty3.default)(_classNames, 'hidden', !props.active), _classNames)) },
 		_react2.default.createElement(ControlDescription, {
 			name: props.name,
-			level: level
+			level: level,
+			dispatch: props.dispatch
 		}),
 		_react2.default.createElement(props.renderer, (0, _extends3.default)({}, rest))
 	);
@@ -33246,6 +33347,13 @@ function ButtonSwitch(_ref3) {
 		})
 	);
 }
+
+var helpY = {
+	'view': 16,
+	'mode': 80,
+	'year': 144,
+	'sort': 208
+};
 
 /***/ }),
 /* 283 */
@@ -33278,6 +33386,7 @@ exports.barMouseOut = barMouseOut;
 exports.openLevel = openLevel;
 exports.stacksMouseOver = stacksMouseOver;
 exports.stacksMouseOut = stacksMouseOut;
+exports.helpClick = helpClick;
 
 var _axios = __webpack_require__(108);
 
@@ -33470,6 +33579,23 @@ function stacksMouseOut(level) {
 		dispatch({
 			type: "STACKS_MOUSE_OUT",
 			level: level
+		});
+	};
+}
+
+// Help
+
+// Stacks interactions
+
+function helpClick(x, y, direction, text, level) {
+	return function (dispatch) {
+		dispatch({
+			type: "HELP_CLICK",
+			level: level,
+			tooltipX: x,
+			tooltipY: y,
+			toolTipDirection: direction,
+			payload: text
 		});
 	};
 }
@@ -33672,7 +33798,7 @@ var StackedChart = function (_Component) {
 			return _react2.default.createElement('svg', { id: 'stackscon-' + this.props.id,
 				className: (0, _classnames2.default)({
 					'stackscon': true,
-					'hidden': !this.props.stacksVisible
+					'hidden': !this.props.stacksVisible || !this.active
 				})
 			});
 		}
@@ -33758,12 +33884,27 @@ var Tooltip = function (_Component) {
 			if (box.empty()) return;
 
 			var boxWidth = box.node().offsetWidth;
-			var boundary = this.props.width;
-			var x = this.props.x - boxWidth / 2;
-			var dx = x + boxWidth - boundary;
-			x = x - Math.max(dx, 0);
+			if (this.props.type == "help") {
+				// Y
+				var y = this.props.y - 4;
+				var height = box.node().offsetHeight;
+				var dy = height + y - _styles2.default.height;
+				y = y - Math.max(dy, 0);
+				box.style("top", y);
 
-			box.style("left", x);
+				if (this.props.direction == _options.TooltipOpts.RIGHT) {
+					var x = this.props.x - boxWidth;
+					box.style("left", x);
+				}
+			} else {
+
+				var boundary = this.props.width;
+				var _x = this.props.x - boxWidth / 2;
+				var dx = _x + boxWidth - boundary;
+				_x = _x - Math.max(dx, 0);
+
+				box.style("left", _x);
+			}
 		}
 	}, {
 		key: 'render',
@@ -33788,11 +33929,13 @@ var Tooltip = function (_Component) {
 			var x = this.props.x;
 			var y = this.props.y;
 			var l = this.props.level;
-			var value = (0, _val.val)(d, d.dim, this.props.mode, this.props.year);
+
+			var help = this.props.type == "help";
 
 			// Arrow
 			var ay = void 0,
-			    ty = void 0,
+			    ty = y,
+			    tx = void 0,
 			    up = void 0;
 			if (direction == _options.TooltipOpts.UP) {
 				ay = y + _styles2.default.arrowHeight;
@@ -33802,17 +33945,34 @@ var Tooltip = function (_Component) {
 				ay = y - _styles2.default.arrowHeight; // arrow y
 				ty = ay - _styles2.default.tooltipHeight - 3; // tooltip y
 				up = false;
+			} else if (direction == _options.TooltipOpts.LEFT) {
+				tx = x;
+			} else if (direction == _options.TooltipOpts.RIGHT) {
+				tx = 0; // - this.props.width - 10; // tooltip x
 			}
 
-			var sumFun = function sumFun(item) {
-				return Math.abs((0, _val.val)(item, d.dim, _this2.props.mode, _this2.props.year));
-			};
+			var title = void 0,
+			    num = void 0,
+			    sign = void 0,
+			    stats = void 0,
+			    text = void 0;
 
-			var sum = d3.sum(this.props.data[_options.View.CATS].map(sumFun));
-			var percentage = Math.abs(value / sum * 100);
-			var label = this.props.name;
+			if (!help) {
+				var value = (0, _val.val)(d, d.dim, this.props.mode, this.props.year);
+				var sumFun = function sumFun(item) {
+					return Math.abs((0, _val.val)(item, d.dim, _this2.props.mode, _this2.props.year));
+				};
 
-			console.log("STACKS TIP:", this.props.x, x);
+				var sum = d3.sum(this.props.data[_options.View.CATS].map(sumFun));
+				var percentage = Math.abs(value / sum * 100);
+
+				title = d.category;
+				sign = (0, _utils.MoneySign)(value);
+				num = _settings2.default.currency + (0, _utils.MoneyNum)(value);
+				stats = d3.format(".1f")(percentage) + '% of ' + this.props.name;
+			} else {
+				text = d;
+			}
 
 			return _react2.default.createElement(
 				'div',
@@ -33834,7 +33994,7 @@ var Tooltip = function (_Component) {
 						_react2.default.createElement(
 							'div',
 							{ className: 'title' },
-							d.category
+							title
 						),
 						_react2.default.createElement(
 							'div',
@@ -33842,22 +34002,21 @@ var Tooltip = function (_Component) {
 							_react2.default.createElement(
 								'div',
 								{ className: 'num' },
-								_settings2.default.currency + (0, _utils.MoneyNum)(value)
+								num
 							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'sign' },
-								(0, _utils.MoneySign)(value)
+								sign
 							)
 						),
 						_react2.default.createElement(
 							'div',
 							{ className: 'stats' },
-							d3.format(".1f")(percentage),
-							' % of ',
-							label
+							stats
 						),
-						_react2.default.createElement('div', { className: 'text' })
+						_react2.default.createElement('div', { className: 'text',
+							dangerouslySetInnerHTML: { __html: text } })
 					)
 				),
 				_react2.default.createElement('div', { className: (0, _classnames2.default)({
@@ -33869,7 +34028,8 @@ var Tooltip = function (_Component) {
 					}),
 					style: {
 						top: ay,
-						left: x - _styles2.default.arrowHeight
+						left: x - _styles2.default.arrowHeight,
+						visibility: help ? 'hidden' : 'visible'
 					},
 					id: 'arrow-' + l })
 			);

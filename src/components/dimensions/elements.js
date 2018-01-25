@@ -9,7 +9,12 @@ import {
 
 import StackedChart from './StackedChart';
 
-import { Messages } from '../../config/text';
+import { TooltipOpts } from '../../config/options';
+
+import Styles from '../../config/styles';
+import * as interaction from '../../actions/interaction';
+
+import { Messages, Help } from '../../config/text';
 
 import CONFIG from '../../config/settings.json';
 
@@ -31,7 +36,8 @@ export function ListEntry (props) {
 					'stacks-hidden-instant': !props.stacksVisible || props.instantShow
 				})
 			} >
-			<ListAux id = {id} color = {color} />
+			<ListAux id = {id} color = {color}
+				helpClick = {props.callbacks.helpClick}/>
 			<ListDesc {...props} id = {id} />
 			<ListRemove
 				onClick = {props.remove}
@@ -53,10 +59,12 @@ export function ListAux (props) {
 			<div
 				className = 'fighelp listhelp help'
 				id = {'fighelp-' + id}
+				onClick = { (e) => props.helpClick(e.target, 'fig') }
 			/>
 			<div
 				className = 'stackhelp listhelp help'
 				id = {'stackhelp-' + id}
+				onClick = { (e) => props.helpClick(e.target, 'stack') }
 			/>
 		</div>
 	);
@@ -141,4 +149,9 @@ export function ListRemove (props) {
 			onClick = {props.onClick}
 		/>
 	);
+}
+
+const helpY = {
+	'fig': 16,
+	'stack': 80
 }

@@ -51,6 +51,7 @@ export default class ControlPanel extends React.Component {
 					current = {TextMapping[this.props.view]}
 					opts = {this.buttons.view}
 					renderer = { ButtonSwitch }
+					dispatch = {this.props.dispatch}
 					active
 				/>
 				<ControlBox
@@ -59,6 +60,7 @@ export default class ControlPanel extends React.Component {
 					current = {TextMapping[this.props.mode]}
 					opts = {this.buttons.mode}
 					renderer = { ButtonSwitch }
+					dispatch = {this.props.dispatch}
 					active
 				/>
 				<ControlBox
@@ -68,6 +70,7 @@ export default class ControlPanel extends React.Component {
 					opts = { CONFIG.years }
 					renderer = { DropDown }
 					active = {this.props.view!=View.TIME && !this.firstRender}
+					dispatch = {this.props.dispatch}
 					press = { (y) => this.props.actions.year(y) }
 				/>
 				<ControlBox
@@ -76,6 +79,7 @@ export default class ControlPanel extends React.Component {
 					current = {this.props.sort}
 					opts = {this.buttons.sort}
 					renderer = { ButtonSwitch }
+					dispatch = {this.props.dispatch}
 					active = {this.props.view!=View.TIME && !this.firstRender}
 				/>
 			</div>

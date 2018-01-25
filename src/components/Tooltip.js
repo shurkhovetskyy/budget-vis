@@ -27,12 +27,27 @@ export default class Tooltip extends Component {
 			return;
 
 		const boxWidth = box.node().offsetWidth;
-		const boundary = this.props.width;
-		let x = this.props.x - boxWidth / 2;
-		let dx = x + boxWidth - boundary;
-		x = x - Math.max(dx, 0);
+		if (this.props.type == "help") {
+			// Y
+			let y = this.props.y - 4;
+			const height = box.node().offsetHeight;
+			const dy = (height + y) - Styles.height;
+			y = y - Math.max(dy, 0);
+			box.style("top", y);
 
-		box.style("left", x);
+			if (this.props.direction == TooltipOpts.RIGHT) {
+				let x = this.props.x - boxWidth;
+				box.style("left", x);
+			}
+		} else {
+
+			const boundary = this.props.width;
+			let x = this.props.x - boxWidth / 2;
+			let dx = x + boxWidth - boundary;
+			x = x - Math.max(dx, 0);
+
+			box.style("left", x);
+		}
 	}
 
 	render() {
@@ -54,10 +69,11 @@ export default class Tooltip extends Component {
 		let x = this.props.x;
 		let y = this.props.y;
 		const l = this.props.level;
-		const value = val(d, d.dim, this.props.mode, this.props.year);
+
+		const help = this.props.type == "help"
 
 		// Arrow
-		let ay, ty, up;
+		let ay, ty = y, tx, up;
 		if (direction == TooltipOpts.UP) {
 			ay = y + Styles.arrowHeight;
 			ty = ay ;
@@ -66,16 +82,29 @@ export default class Tooltip extends Component {
 			ay = y - Styles.arrowHeight;	// arrow y
 			ty = ay - Styles.tooltipHeight - 3;	// tooltip y
 			up = false;
+		} else if (direction == TooltipOpts.LEFT) {
+			tx = x;
+		} else if (direction == TooltipOpts.RIGHT) {
+			tx = 0;// - this.props.width - 10; // tooltip x
 		}
 
-		const sumFun = (item) => Math.abs(
-			val(item, d.dim, this.props.mode, this.props.year));
+		let title, num, sign, stats, text;
 
-		const sum = d3.sum(this.props.data[View.CATS].map(sumFun));
-		const percentage = Math.abs((value / sum * 100));
-		const label = this.props.name;
+		if (!help) {
+			const value = val(d, d.dim, this.props.mode, this.props.year);
+			const sumFun = (item) => Math.abs(
+				val(item, d.dim, this.props.mode, this.props.year));
 
-		console.log("STACKS TIP:", this.props.x, x);
+			const sum = d3.sum(this.props.data[View.CATS].map(sumFun));
+			const percentage = Math.abs((value / sum * 100));
+
+			title = d.category;
+			sign = MoneySign(value);
+			num = CONFIG.currency + MoneyNum(value);
+			stats = d3.format(".1f")(percentage) + '% of ' + this.props.name;
+		} else {
+			text = d;
+		}
 
 		return (
 			<div id = {'toolcon-' + l} className = 'toolcon'>
@@ -92,21 +121,23 @@ export default class Tooltip extends Component {
 					}} >
 					<div className = 'content'>
 						<div className = 'title'>
-							{d.category}
+							{title}
 						</div>
 						<div className = 'fig'>
 							<div className = 'num'>
-								{CONFIG.currency + MoneyNum(value)}
+								{num}
 							</div>
 							<div className = 'sign'>
-								{MoneySign(value)}
+								{sign}
 							</div>
 						</div>
 						<div className = 'stats'>
-							{d3.format(".1f")(percentage)} % of {label}
+							{stats}
 						</div>
-						<div className = 'text'>
-
+						<div className = 'text'
+							dangerouslySetInnerHTML = {
+								{__html: text}
+							} >
 						</div>
 					</div>
 				</div>
@@ -121,7 +152,8 @@ export default class Tooltip extends Component {
 					}
 					style = {{
 						top: ay,
-						left: x - Styles.arrowHeight
+						left: x - Styles.arrowHeight,
+						visibility: help ? 'hidden' : 'visible'
 					}}
 					id = {'arrow-' + l} >
 
