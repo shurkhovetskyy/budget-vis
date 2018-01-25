@@ -66,16 +66,6 @@ export default class GraphChart extends Chart {
 			return;
 		}
 
-		if (this.action == Interaction.GRAPH_OVER) {
-			this.mouseOver(this.props.displayYear);
-			return;
-		}
-
-		if (this.action == Interaction.GRAPH_OUT) {
-			this.mouseOut(prevProps.displayYear);
-			return;
-		}
-
 		super.componentDidUpdate(prevProps);
 	}
 
@@ -300,13 +290,14 @@ export default class GraphChart extends Chart {
 	}
 
 	setListeners (display) {
-		this.on("mouseover", d => display.handleMouseOver(d, d3.event.target))
-			.on("mouseout", d => display.props.callbacks.mouseOut(d))
+		this.on("mouseover", d => display.mouseOver(d, d3.event.target))
+			.on("mouseout", d => display.mouseOut(d))
 			.on("click", d => display.props.callbacks.click(d))
 			;
 	}
 
-	mouseOver (d) {
+	mouseOver (d, target) {
+		this.start = performance.now();
 		const circles = this.container.selectAll("circle");
 
 		circles.filter(".year-" + d)
@@ -317,11 +308,18 @@ export default class GraphChart extends Chart {
 		labels.transition().duration(100)
 			.style("opacity", 0.4 * this.lop);
 
-		d3.select(this.item).transition().duration(100)
+		d3.select(target).transition().duration(100)
 			.style("opacity", 1);
+
+
+		const now = performance.now();
+		console.log("MOUSE OVER TOOK: ", now - this.start);
+	//	this.props.callbacks.mouseOver(d);
 	}
 
 	handleMouseOver (d, item) {
+		this.start = performance.now();
+
 		this.item = item;
 		this.props.callbacks.mouseOver(d);
 	}
@@ -336,6 +334,8 @@ export default class GraphChart extends Chart {
 		const labels = this.labelsCon.selectAll(".axis-label");
 		labels.transition().duration(500).delay(1000)
 			.style("opacity", 1 * this.lop);
+
+		this.props.callbacks.mouseOut(d);
 	}
 
 	render() {

@@ -3,7 +3,7 @@
 	"datafile": "bonn-data.csv",
 	"levels_de": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
 	"levels": ["Product Category", "Description", "Profit Center", "Cost Type"],
-	"dimensions" : ["Executed", "Plan Design", "Plan"],
+	"dimensions" : ["Executed", "Plan-Design", "Plan"],
 	"startDimensions" : ["Executed", "Plan"],
 	"stacks" : "Cost Type",
 	"yearsRange" : [2008, 2024],

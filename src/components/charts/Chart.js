@@ -113,8 +113,8 @@ class Chart extends React.Component {
 		if (Object.values(Action).includes(nextProps.action))
 			return true;
 
-		if (Object.values(Interaction).includes(nextProps.action))
-			return true;
+		// if (Object.values(Interaction).includes(nextProps.action))
+		// 	return true;
 
 		return false;
 	}

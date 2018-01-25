@@ -109,7 +109,7 @@ export default class Level extends React.Component {
 
 	addDimension (dim) {
 		this.props.dispatch(actions.addDimension(dim, this.props.level));
-		this.props.navigate();
+	//	this.props.navigate();
 	}
 
 	removeDimension (dim) {
@@ -166,7 +166,6 @@ export default class Level extends React.Component {
 	}
 
 	shouldComponentUpdate (nextProps) {
-		console.log(nextProps.width, this.props.width);
 		if (nextProps.mark != this.props.mark)
 			return true;
 		if (nextProps.width != this.props.width)

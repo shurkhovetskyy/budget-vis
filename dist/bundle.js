@@ -950,7 +950,7 @@ module.exports = function (it, key) {
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels_de":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"levels":["Product Category","Description","Profit Center","Cost Type"],"dimensions":["Executed","Plan Design","Plan"],"startDimensions":["Executed","Plan"],"stacks":"Cost Type","yearsRange":[2008,2024],"startYear":2013,"lang":"EN","currency":"€"}
+module.exports = {"name":"Bonn Budget","datafile":"bonn-data.csv","levels_de":["Produktbereich","Bezeichnung","Profitcenter","Kostenart"],"levels":["Product Category","Description","Profit Center","Cost Type"],"dimensions":["Executed","Plan-Design","Plan"],"startDimensions":["Executed","Plan"],"stacks":"Cost Type","yearsRange":[2008,2024],"startYear":2013,"lang":"EN","currency":"€"}
 
 /***/ }),
 /* 17 */
@@ -5359,7 +5359,8 @@ var Chart = function (_React$Component) {
 
 			if ((0, _values2.default)(_options.Action).includes(nextProps.action)) return true;
 
-			if ((0, _values2.default)(_options.Interaction).includes(nextProps.action)) return true;
+			// if (Object.values(Interaction).includes(nextProps.action))
+			// 	return true;
 
 			return false;
 		}
@@ -29701,7 +29702,7 @@ var Level = function (_React$Component) {
 		key: 'addDimension',
 		value: function addDimension(dim) {
 			this.props.dispatch(actions.addDimension(dim, this.props.level));
-			this.props.navigate();
+			//	this.props.navigate();
 		}
 	}, {
 		key: 'removeDimension',
@@ -29766,7 +29767,6 @@ var Level = function (_React$Component) {
 	}, {
 		key: 'shouldComponentUpdate',
 		value: function shouldComponentUpdate(nextProps) {
-			console.log(nextProps.width, this.props.width);
 			if (nextProps.mark != this.props.mark) return true;
 			if (nextProps.width != this.props.width) return true;
 
@@ -31786,16 +31786,6 @@ var GraphChart = function (_Chart) {
 				return;
 			}
 
-			if (this.action == _options.Interaction.GRAPH_OVER) {
-				this.mouseOver(this.props.displayYear);
-				return;
-			}
-
-			if (this.action == _options.Interaction.GRAPH_OUT) {
-				this.mouseOut(prevProps.displayYear);
-				return;
-			}
-
 			(0, _get3.default)(GraphChart.prototype.__proto__ || (0, _getPrototypeOf2.default)(GraphChart.prototype), 'componentDidUpdate', this).call(this, prevProps);
 		}
 	}, {
@@ -32023,16 +32013,17 @@ var GraphChart = function (_Chart) {
 		key: 'setListeners',
 		value: function setListeners(display) {
 			this.on("mouseover", function (d) {
-				return display.handleMouseOver(d, d3.event.target);
+				return display.mouseOver(d, d3.event.target);
 			}).on("mouseout", function (d) {
-				return display.props.callbacks.mouseOut(d);
+				return display.mouseOut(d);
 			}).on("click", function (d) {
 				return display.props.callbacks.click(d);
 			});
 		}
 	}, {
 		key: 'mouseOver',
-		value: function mouseOver(d) {
+		value: function mouseOver(d, target) {
+			this.start = performance.now();
 			var circles = this.container.selectAll("circle");
 
 			circles.filter(".year-" + d).attr("fill-opacity", 0.5).attr("r", 10);
@@ -32040,11 +32031,17 @@ var GraphChart = function (_Chart) {
 			var labels = this.labelsCon.selectAll(".axis-label");
 			labels.transition().duration(100).style("opacity", 0.4 * this.lop);
 
-			d3.select(this.item).transition().duration(100).style("opacity", 1);
+			d3.select(target).transition().duration(100).style("opacity", 1);
+
+			var now = performance.now();
+			console.log("MOUSE OVER TOOK: ", now - this.start);
+			//	this.props.callbacks.mouseOver(d);
 		}
 	}, {
 		key: 'handleMouseOver',
 		value: function handleMouseOver(d, item) {
+			this.start = performance.now();
+
 			this.item = item;
 			this.props.callbacks.mouseOver(d);
 		}
@@ -32055,6 +32052,8 @@ var GraphChart = function (_Chart) {
 
 			var labels = this.labelsCon.selectAll(".axis-label");
 			labels.transition().duration(500).delay(1000).style("opacity", 1 * this.lop);
+
+			this.props.callbacks.mouseOut(d);
 		}
 	}, {
 		key: 'render',
