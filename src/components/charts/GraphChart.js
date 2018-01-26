@@ -320,7 +320,7 @@ export default class GraphChart extends Chart {
 	mouseOut (d) {
 		const p = this.container.selectAll("circle")
 						.filter(".year-" + d)
-						.transition().duration(250)
+						.transition("out").duration(250)
 						.attr("fill-opacity", 1)
 						.attr("r", 5);
 

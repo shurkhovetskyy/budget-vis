@@ -76,6 +76,7 @@ class Chart extends React.Component {
 			if (this.props.view==this.association) {
 				this.bindLabels();
 				this.activate();
+			//	this.bindLabels();
 			} else
 				this.deactivate();
 			return;
@@ -170,12 +171,17 @@ class Chart extends React.Component {
 		if ([Action.MODE, Action.YEAR].includes(this.props.action))
 			return;
 
-		//console.log("updateLabels", this.xScale.range());
+		console.log("****updateLabels", this.props.level, [...this.xScale.range()]);
 
 		let _this = this,
 			  labels = this.generateLabels();
 		const hi = this.hi;
 	  	const lo = this.lo;
+
+
+
+		// Enforce "on end" to bu executed once.
+		let numTrans = labels.size();
 		labels.transition()
 			// Make sure labels appear quickly when shown
 			// for the first time (set is false then).
@@ -191,6 +197,11 @@ class Chart extends React.Component {
 				let cond = (d.id == this.props.selection || this.props.selection=='n');
 				return cond ? (hi * this.lop) : (lo * this.lop);
 			})
+			.each("end", () => {
+					if (--numTrans == 0)
+						this.setListeners.call(labels, this);
+				})
+			;
 			// .style("font-weight", d => {
 			// 	console.log(d.id == this.selection);
 			// 	return (d.id == this.selection ? "bold" : "normal");
@@ -211,6 +222,10 @@ class Chart extends React.Component {
 				// Specify which dimension is represented by this set of bars.
 				.data(this.getDimensionData(
 					firstDim(sd, this.props.year)));
+
+		labels.call(function() {
+			_this.setListeners.call(this, _this, true); })
+
 		this.labelsText = this.getLabels();
 		labels.enter()
 			.append("span")
@@ -219,11 +234,11 @@ class Chart extends React.Component {
 			.style("opacity", 0)
 			.call(function () {
 				_this.labelIn.call(this, _this); })
-			.call(function() {
-				_this.setListeners.call(this, _this); })
 			;
 
 		labels.exit()
+			.call(function() {
+				_this.setListeners.call(this, _this, true); })
 			.transition()
 			.duration(1000)
 			.call(function () {

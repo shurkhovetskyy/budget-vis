@@ -5221,6 +5221,10 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _toConsumableArray2 = __webpack_require__(188);
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
 var _values = __webpack_require__(114);
 
 var _values2 = _interopRequireDefault(_values);
@@ -5329,6 +5333,7 @@ var Chart = function (_React$Component) {
 				if (this.props.view == this.association) {
 					this.bindLabels();
 					this.activate();
+					//	this.bindLabels();
 				} else this.deactivate();
 				return;
 			}
@@ -5423,12 +5428,15 @@ var Chart = function (_React$Component) {
 
 			if ([_options.Action.MODE, _options.Action.YEAR].includes(this.props.action)) return;
 
-			//console.log("updateLabels", this.xScale.range());
+			console.log("****updateLabels", this.props.level, [].concat((0, _toConsumableArray3.default)(this.xScale.range())));
 
 			var _this = this,
 			    labels = this.generateLabels();
 			var hi = this.hi;
 			var lo = this.lo;
+
+			// Enforce "on end" to bu executed once.
+			var numTrans = labels.size();
 			labels.transition()
 			// Make sure labels appear quickly when shown
 			// for the first time (set is false then).
@@ -5439,7 +5447,9 @@ var Chart = function (_React$Component) {
 			}).transition().duration(500).style("opacity", function (d) {
 				var cond = d.id == _this4.props.selection || _this4.props.selection == 'n';
 				return cond ? hi * _this4.lop : lo * _this4.lop;
-			})
+			}).each("end", function () {
+				if (--numTrans == 0) _this4.setListeners.call(labels, _this4);
+			});
 			// .style("font-weight", d => {
 			// 	console.log(d.id == this.selection);
 			// 	return (d.id == this.selection ? "bold" : "normal");
@@ -5461,16 +5471,21 @@ var Chart = function (_React$Component) {
 			//	.filter(".level-" + this.props.level)
 			// Specify which dimension is represented by this set of bars.
 			.data(this.getDimensionData((0, _utils.firstDim)(sd, this.props.year)));
+
+			labels.call(function () {
+				_this.setListeners.call(this, _this, true);
+			});
+
 			this.labelsText = this.getLabels();
 			labels.enter().append("span").text(function (d, i) {
 				return _this5.labelsText[i];
 			}).attr("class", "axis-label level-" + this.props.level).style("opacity", 0).call(function () {
 				_this.labelIn.call(this, _this);
-			}).call(function () {
-				_this.setListeners.call(this, _this);
 			});
 
-			labels.exit().transition().duration(1000).call(function () {
+			labels.exit().call(function () {
+				_this.setListeners.call(this, _this, true);
+			}).transition().duration(1000).call(function () {
 				_this.labelOut.call(this, _this);
 			}).remove();
 
@@ -28059,6 +28074,7 @@ var reducers = function reducers() {
 					levels: nl,
 					action: _options.Interaction.BAR_OVER,
 					tooltip: {
+						type: "bar",
 						x: action.tooltipX,
 						y: action.tooltipY,
 						direction: action.toolTipDirection
@@ -28094,6 +28110,7 @@ var reducers = function reducers() {
 					levels: nl,
 					action: _options.Interaction.STACKS_OVER,
 					tooltip: {
+						type: "stacks",
 						x: action.tooltipX,
 						y: action.tooltipY,
 						direction: action.toolTipDirection
@@ -31111,6 +31128,7 @@ var BarChart = function (_Chart) {
 		_this2.bandLimit = 14;
 		_this2.association = _options.View.CATS;
 		_this2.builtDims = [];
+		_this2.selection = 'n';
 		return _this2;
 	}
 
@@ -31132,10 +31150,10 @@ var BarChart = function (_Chart) {
 			var oldDims = prevProps.openDimensions;
 			var newDims = this.props.openDimensions;
 
-			if (this.props.action == _options.Interaction.BAR_CLICK) {
-				this.highlight(this.props.selection);
-				return;
-			}
+			// if (this.props.action == Interaction.BAR_CLICK) {
+			// 	this.highlight(this.props.selection);
+			// 	return;
+			// }
 
 			if (this.props.action == _options.Action.UPDATE) {
 				this.updateData();
@@ -31246,6 +31264,7 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'getLabelX',
 		value: function getLabelX(i) {
+			console.log(this.xScale(i) + this.xScale.rangeBand() / 2);
 			return this.xScale(i) + this.xScale.rangeBand() / 2;
 		}
 	}, {
@@ -31278,10 +31297,18 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'renderDimension',
 		value: function renderDimension(dim) {
+			var _this8 = this;
+
 			this.xGroup.domain(d3.range(this.props.openDimensions.length));
 
+			var _this = this;
 			var bars = this.container.selectAll(".bar-rect").filter(function (b) {
 				return b.dim == dim;
+			});
+
+			// Disable all interaction before transitions.
+			bars.call(function () {
+				_this.setListeners.call(this, _this, true);
 			});
 
 			if (!this.dimAvailable(dim)) {
@@ -31291,7 +31318,7 @@ var BarChart = function (_Chart) {
 			}
 			console.log("Render");
 			var duration = 1000;
-			var _this = this;
+
 			var hi = this.hi;
 			var lo = this.lo;
 			var newDim = !this.builtDims.includes(dim);
@@ -31314,6 +31341,8 @@ var BarChart = function (_Chart) {
 				bars = bars.data(this.getDimensionData(dim));
 			}
 
+			// Enforce "on end" to bu executed once.
+			var numTrans = bars.size();
 			bars.transition().delay(function (d, i) {
 				if (_this.action == _options.Action.ADD || newDim) return offDelay + i / dl * delay;
 				return 0;
@@ -31323,6 +31352,8 @@ var BarChart = function (_Chart) {
 					_this.setBarsWidth.call(this, _this);
 					if (_options.Action.UPDATE == _this.action) this.style("opacity", _this.hi);
 				}
+			}).each("end", function () {
+				if (--numTrans == 0) _this8.setListeners.call(bars, _this8);
 			});
 		}
 	}, {
@@ -31346,7 +31377,7 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'buildBars',
 		value: function buildBars(bars, dim) {
-			var _this8 = this;
+			var _this9 = this;
 
 			console.log("buildBars");
 			var c = this.c,
@@ -31361,15 +31392,18 @@ var BarChart = function (_Chart) {
 
 			bars.enter().append("rect")
 			// To make sure bars only appear within chart.
-			.attr("x", this.axisWidth - this.xScale.rangeBand()).attr("fill", (0, _utils.getItemColor)(dim)).style("fill-opacity", 0).attr("dim", dim).attr("class", "bar-rect level-" + this.props.level).call(function () {
-				_this.setListeners.call(this, _this);
-			}).style("opacity", function (d) {
-				if (_this8.action == _options.Action.ADD && _this8.props.selection != 'n') {
-					if (d.id == _this8.props.selection) return hi;else return lo;
+			.attr("x", this.axisWidth - this.xScale.rangeBand()).attr("fill", (0, _utils.getItemColor)(dim)).style("fill-opacity", 0).attr("dim", dim).attr("class", "bar-rect level-" + this.props.level)
+			// .call(function() {
+			// 	_this.setListeners.call(this, _this); })
+			.style("opacity", function (d) {
+				if (_this9.action == _options.Action.ADD && _this9.props.selection != 'n') {
+					if (d.id == _this9.props.selection) return hi;else return lo;
 				}
 			});
 
-			bars.exit().transition().call(function () {
+			bars.exit().call(function () {
+				_this.setListeners.call(this, _this, true);
+			}).transition().call(function () {
 				_this.onExitTrans.call(this, _this);
 			});
 
@@ -31438,18 +31472,20 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'setListeners',
 		value: function setListeners(display) {
-			this.on("mouseover", function (d) {
+			var disable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+			this.on("mouseover", disable ? null : function (d) {
 				return display.mouseOver(d, d3.event.target);
-			}).on("mouseout", function (d) {
+			}).on("mouseout", disable ? null : function (d) {
 				return display.mouseOut(d, d3.event.target);
-			}).on("click", function (d) {
-				return display.props.callbacks.click(d);
+			}).on("click", disable ? null : function (d) {
+				return display.click(d);
 			});
 		}
 	}, {
 		key: 'highlight',
 		value: function highlight(index) {
-			var _this9 = this;
+			var _this10 = this;
 
 			var _highlight = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
@@ -31471,9 +31507,9 @@ var BarChart = function (_Chart) {
 			}
 
 			labels.transition().duration(durationOut).delay(delay).style("opacity", !_highlight ? hi * o : lo * o).style("font-weight", "normal");
-			bars.transition(this.props.selection == 'n' ? "general" : null).duration(durationOut).delay(delay).style("opacity", !_highlight ? hi : lo);
+			bars.transition(this.selection == 'n' ? "general" : null).duration(durationOut).delay(delay).style("opacity", !_highlight ? hi : lo);
 
-			if (_highlight && index != this.props.selection) {
+			if (_highlight && index != this.selection) {
 				var bar = bars.filter(function (d) {
 					return d.id == index;
 				});
@@ -31485,14 +31521,21 @@ var BarChart = function (_Chart) {
 				label.transition().duration(0).style("opacity", hi);
 			}
 			var selectionBar = bars.filter(function (d) {
-				return d.id == _this9.props.selection;
+				return d.id == _this10.selection;
 			});
 			selectionBar.transition().duration(duration).style("opacity", hi);
 			//		.style("fill", "white");
 			var selectionLabel = labels.filter(function (d) {
-				return d.id == _this9.props.selection;
+				return d.id == _this10.selection;
 			});
 			selectionLabel.transition().duration(duration).style("opacity", hi).style("font-weight", "bold");
+		}
+	}, {
+		key: 'click',
+		value: function click(d) {
+			this.selection = d.id;
+			this.highlight(d.id);
+			this.props.callbacks.click(d);
 		}
 	}, {
 		key: 'mouseOver',
@@ -31531,13 +31574,13 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this10 = this;
+			var _this11 = this;
 
 			console.log("Bar Chart Render");
 			return _react2.default.createElement('g', { className: 'barscon',
 				id: 'barscon-' + this.props.level,
 				ref: function ref(node) {
-					return _this10.node = node;
+					return _this11.node = node;
 				}
 			});
 		}
@@ -32040,7 +32083,7 @@ var GraphChart = function (_Chart) {
 	}, {
 		key: 'mouseOut',
 		value: function mouseOut(d) {
-			var p = this.container.selectAll("circle").filter(".year-" + d).transition().duration(250).attr("fill-opacity", 1).attr("r", 5);
+			var p = this.container.selectAll("circle").filter(".year-" + d).transition("out").duration(250).attr("fill-opacity", 1).attr("r", 5);
 
 			var labels = this.labelsCon.selectAll(".axis-label");
 			labels.transition().duration(500).delay(1000).style("opacity", 1 * this.lop);
@@ -33011,6 +33054,7 @@ function ListEntry(props) {
 
 	var color = (0, _utils.getItemColor)(props.dim);
 	var id = props.level + '-' + dim;
+	console.log("Entry", dim);
 	return _react2.default.createElement(
 		'div',
 		{ id: 'dim-entry-' + id,
@@ -33914,7 +33958,7 @@ var Tooltip = function (_Component) {
 				var boundary = this.props.width;
 				var _x = this.props.x - boxWidth / 2;
 				var dx = _x + boxWidth - boundary;
-				_x = _x - Math.max(dx, 0);
+				_x = _x - Math.max(dx, 0) - 5;
 
 				box.style("left", _x);
 			}
@@ -33944,6 +33988,7 @@ var Tooltip = function (_Component) {
 			var l = this.props.level;
 
 			var help = this.props.type == "help";
+			var bar = this.props.type == "bar";
 
 			// Arrow
 			var ay = void 0,
@@ -33995,7 +34040,8 @@ var Tooltip = function (_Component) {
 					{ id: 'tooltip-' + l,
 						className: (0, _classnames2.default)({
 							'tooltip box': true,
-							'hidden-delay': !this.active
+							'hidden-delay': !this.active && bar,
+							'hidden': !this.active && !bar
 						}),
 						style: {
 							top: ty,
@@ -34035,7 +34081,8 @@ var Tooltip = function (_Component) {
 				_react2.default.createElement('div', { className: (0, _classnames2.default)({
 						'arrow': true,
 						'tooltip': true,
-						'hidden-delay': !this.active,
+						'hidden-delay': !this.active && bar,
+						'hidden': !this.active && !bar,
 						'down': !up,
 						'up': up
 					}),

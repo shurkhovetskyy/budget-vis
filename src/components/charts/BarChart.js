@@ -21,6 +21,7 @@ export default class BarChart extends Chart {
 		this.bandLimit = 14
 		this.association = View.CATS;
 		this.builtDims = [];
+		this.selection = 'n';
 	}
 
 	componentDidUpdate (prevProps) {
@@ -40,10 +41,10 @@ export default class BarChart extends Chart {
 		const oldDims = prevProps.openDimensions;
 		const newDims = this.props.openDimensions;
 
-		if (this.props.action == Interaction.BAR_CLICK) {
-			this.highlight(this.props.selection);
-			return;
-		}
+		// if (this.props.action == Interaction.BAR_CLICK) {
+		// 	this.highlight(this.props.selection);
+		// 	return;
+		// }
 
 		if (this.props.action == Action.UPDATE) {
 			this.updateData();
@@ -139,6 +140,7 @@ export default class BarChart extends Chart {
 	}
 
 	getLabelX (i) {
+		console.log(this.xScale(i) + this.xScale.rangeBand() / 2);
 		return this.xScale(i) + this.xScale.rangeBand() / 2;
 	};
 
@@ -207,10 +209,14 @@ export default class BarChart extends Chart {
 		this.xGroup.domain(d3.range(
 			this.props.openDimensions.length));
 
+		const _this = this;
 		let bars = this.container
 					.selectAll(".bar-rect")
 					.filter(b => b.dim == dim);
 
+		// Disable all interaction before transitions.
+		bars.call(function() {
+			_this.setListeners.call(this, _this, true); })
 
 		if (!this.dimAvailable(dim)) {
 			this.minimizeItems(bars);
@@ -219,7 +225,7 @@ export default class BarChart extends Chart {
 		}
 		console.log("Render");
 		let duration = 1000;
-		const _this = this;
+
 		const hi = this.hi;
 		const lo = this.lo;
 		const newDim = !this.builtDims.includes(dim);
@@ -243,6 +249,8 @@ export default class BarChart extends Chart {
 			bars = bars.data(this.getDimensionData(dim));
 		}
 
+		// Enforce "on end" to bu executed once.
+		let numTrans = bars.size();
 		bars.transition()
 			.delay((d, i) => {
 				if (_this.action == Action.ADD || newDim)
@@ -259,7 +267,12 @@ export default class BarChart extends Chart {
 						this.style("opacity", _this.hi);
 				}
 
-			});
+			})
+			.each("end", () => {
+					if (--numTrans == 0)
+						this.setListeners.call(bars, this);
+				}
+			);
 	}
 
 	dimAvailable (dim) {
@@ -295,8 +308,8 @@ export default class BarChart extends Chart {
 			.style("fill-opacity", 0)
 			.attr("dim", dim)
 			.attr("class", "bar-rect level-" + this.props.level)
-			.call(function() {
-				_this.setListeners.call(this, _this); })
+			// .call(function() {
+			// 	_this.setListeners.call(this, _this); })
 			.style("opacity", (d) => {
 				if (this.action==Action.ADD && this.props.selection!='n') {
 					if (d.id == this.props.selection)	return hi;
@@ -305,6 +318,8 @@ export default class BarChart extends Chart {
 			});
 
 		bars.exit()
+			.call(function() {
+				_this.setListeners.call(this, _this, true); })
 			.transition()
 			.call(function () {
 				_this.onExitTrans.call(this, _this); });
@@ -417,13 +432,17 @@ export default class BarChart extends Chart {
 			.remove();
 	}
 
-	setListeners (display) {
-		this.on("mouseover", d => display.mouseOver(d, d3.event.target))
-			.on("mouseout", d => display.mouseOut(d, d3.event.target))
-			.on("click", d => display.props.callbacks.click(d));
+	setListeners (display, disable = false) {
+		this.on("mouseover", disable ? null :
+				d => display.mouseOver(d, d3.event.target))
+			.on("mouseout", disable ? null :
+				d => display.mouseOut(d, d3.event.target))
+			.on("click", disable ? null :
+				d => display.click(d));
 	}
 
 	highlight (index, highlight = true) {
+
 	//	c.destroy();
 		const transition = this.container.transition().duration(150);
 		const bars = this.container.selectAll(".bar-rect");
@@ -445,11 +464,11 @@ export default class BarChart extends Chart {
 		labels.transition().duration(durationOut).delay(delay)
 			.style("opacity", !highlight ? hi * o : lo * o)
 			.style("font-weight", "normal");
-		bars.transition(this.props.selection=='n' ? "general" : null)
+		bars.transition(this.selection=='n' ? "general" : null)
 			.duration(durationOut).delay(delay)
 			.style("opacity", !highlight ? hi : lo);
 
-		if (highlight && (index != this.props.selection)) {
+		if (highlight && (index != this.selection)) {
 			const bar = bars.filter(d => d.id==index);
 			const highDuration = duration;
 			bar.transition("highlight-index").duration(highDuration)
@@ -458,14 +477,20 @@ export default class BarChart extends Chart {
 			label.transition().duration(0)
 				.style("opacity", hi);
 		}
-		const selectionBar = bars.filter(d => d.id==this.props.selection);
+		const selectionBar = bars.filter(d => d.id==this.selection);
 		selectionBar.transition().duration(duration)
 			.style("opacity", hi);
 	//		.style("fill", "white");
-		const selectionLabel = labels.filter(d => d.id==this.props.selection);
+		const selectionLabel = labels.filter(d => d.id==this.selection);
 		selectionLabel.transition().duration(duration)
 			.style("opacity", hi)
 			.style("font-weight", "bold");
+	}
+
+	click (d) {
+		this.selection = d.id;
+		this.highlight(d.id);
+		this.props.callbacks.click(d);
 	}
 
 	mouseOver (d, target) {

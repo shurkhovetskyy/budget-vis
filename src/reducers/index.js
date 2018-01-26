@@ -92,6 +92,7 @@ const reducers = (state = initial, action) => {
 				levels: nl,
 				action: Interaction.BAR_OVER,
 				tooltip: {
+					type: "bar",
 					x: action.tooltipX,
 					y: action.tooltipY,
 					direction: action.toolTipDirection
@@ -124,6 +125,7 @@ const reducers = (state = initial, action) => {
 				levels: nl,
 				action: Interaction.STACKS_OVER,
 				tooltip: {
+					type: "stacks",
 					x: action.tooltipX,
 					y: action.tooltipY,
 					direction: action.toolTipDirection

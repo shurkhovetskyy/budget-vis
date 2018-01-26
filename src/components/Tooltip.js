@@ -44,7 +44,7 @@ export default class Tooltip extends Component {
 			const boundary = this.props.width;
 			let x = this.props.x - boxWidth / 2;
 			let dx = x + boxWidth - boundary;
-			x = x - Math.max(dx, 0);
+			x = x - Math.max(dx, 0) - 5;
 
 			box.style("left", x);
 		}
@@ -71,6 +71,7 @@ export default class Tooltip extends Component {
 		const l = this.props.level;
 
 		const help = this.props.type == "help"
+		const bar = this.props.type == "bar";
 
 		// Arrow
 		let ay, ty = y, tx = x, up;
@@ -112,7 +113,8 @@ export default class Tooltip extends Component {
 					className = {
 						classNames({
 							'tooltip box': true,
-							'hidden-delay': !this.active
+							'hidden-delay': !this.active && bar,
+							'hidden': !this.active && !bar
 						})
 					}
 					style = {{
@@ -145,7 +147,8 @@ export default class Tooltip extends Component {
 						classNames({
 							'arrow': true,
 							'tooltip': true,
-							'hidden-delay': !this.active,
+							'hidden-delay': !this.active && bar,
+							'hidden': !this.active && !bar,
 							'down': !up,
 							'up': up
 						})
