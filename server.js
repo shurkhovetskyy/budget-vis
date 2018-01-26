@@ -15,7 +15,7 @@ var dimYears = null;
 app.set('port', (process.env.PORT || 4000));
 app.use(express.static(__dirname + '/'));
 
-//app.use(favicon(__dirname + '/src/favicon.png'));
+app.use(favicon(__dirname + '/src/favicon.ico'));
 
 app.set('views', __dirname + '/');
 app.set('view engine', 'ejs');
