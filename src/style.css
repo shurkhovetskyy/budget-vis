@@ -466,7 +466,6 @@ line.zero {
 	z-index: 2;
 	border-radius: 4px;
 	white-space: nowrap;
-	text-transform: capitalize;
 	/*transition: calc(var(--dim-duration) * var(--sec));*/
 }
 
@@ -523,20 +522,21 @@ line.zero {
 
 .tooltip .content {
 	margin:5px;
-	color:white;
+	color: white;
 }
 
 .tooltip .title {
-	color:lightgray;
+	color: lightgray;
+	text-transform: capitalize;
 }
 
 .tooltip .stats {
 	font-size: 14px;
-	color:white;
+	color: white;
 }
 
 .tooltip .fig {
-	color:yellow;
+	color: yellow;
 	display: flex;
 	/*font-weight: bold;*/
 	font-size: 18px;

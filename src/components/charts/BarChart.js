@@ -418,10 +418,8 @@ export default class BarChart extends Chart {
 	}
 
 	setListeners (display) {
-		this.on("mouseover",
-			//	d => display.props.callbacks.mouseOver(d, d3.event.target))
-				d => display.mouseOver(d, d3.event.target))
-			.on("mouseout", d => display.mouseOut(d))
+		this.on("mouseover", d => display.mouseOver(d, d3.event.target))
+			.on("mouseout", d => display.mouseOut(d, d3.event.target))
 			.on("click", d => display.props.callbacks.click(d));
 	}
 
@@ -453,7 +451,8 @@ export default class BarChart extends Chart {
 
 		if (highlight && (index != this.props.selection)) {
 			const bar = bars.filter(d => d.id==index);
-			bar.transition("highlight-index").duration(0)
+			const highDuration = duration;
+			bar.transition("highlight-index").duration(highDuration)
 				.style("opacity", "1.0");
 			const label = labels.filter(d => d.id==index);
 			label.transition().duration(0)

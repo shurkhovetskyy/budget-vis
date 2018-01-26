@@ -31438,12 +31438,10 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'setListeners',
 		value: function setListeners(display) {
-			this.on("mouseover",
-			//	d => display.props.callbacks.mouseOver(d, d3.event.target))
-			function (d) {
+			this.on("mouseover", function (d) {
 				return display.mouseOver(d, d3.event.target);
 			}).on("mouseout", function (d) {
-				return display.mouseOut(d);
+				return display.mouseOut(d, d3.event.target);
 			}).on("click", function (d) {
 				return display.props.callbacks.click(d);
 			});
@@ -31479,7 +31477,8 @@ var BarChart = function (_Chart) {
 				var bar = bars.filter(function (d) {
 					return d.id == index;
 				});
-				bar.transition("highlight-index").duration(0).style("opacity", "1.0");
+				var highDuration = duration;
+				bar.transition("highlight-index").duration(highDuration).style("opacity", "1.0");
 				var label = labels.filter(function (d) {
 					return d.id == index;
 				});
@@ -31891,7 +31890,7 @@ var GraphChart = function (_Chart) {
 		value: function getPathData(dim) {
 			var _this7 = this;
 
-			if (![_options.Action.MODE, _options.Action.YEAR, _options.Action.UPDATE].includes(this.action) && this.pathData.hasOwnProperty(dim)) {
+			if (![_options.Action.MODE, _options.Action.YEAR, _options.Action.UPDATE, _options.Action.ADD].includes(this.action) && this.pathData.hasOwnProperty(dim)) {
 				return this.pathData[dim];
 			}
 
@@ -32036,14 +32035,6 @@ var GraphChart = function (_Chart) {
 
 			var now = performance.now();
 			console.log("MOUSE OVER TOOK: ", now - this.start);
-			//	this.props.callbacks.mouseOver(d);
-		}
-	}, {
-		key: 'handleMouseOver',
-		value: function handleMouseOver(d, item) {
-			this.start = performance.now();
-
-			this.item = item;
 			this.props.callbacks.mouseOver(d);
 		}
 	}, {

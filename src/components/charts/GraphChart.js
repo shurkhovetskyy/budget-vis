@@ -162,7 +162,7 @@ export default class GraphChart extends Chart {
 	*	necessary to draw the graph.
 	*/
 	getPathData (dim) {
-		if (![Action.MODE, Action.YEAR, Action.UPDATE]
+		if (![Action.MODE, Action.YEAR, Action.UPDATE, Action.ADD]
 				.includes(this.action)
 			&& this.pathData.hasOwnProperty(dim)) {
 				return this.pathData[dim];
@@ -314,13 +314,6 @@ export default class GraphChart extends Chart {
 
 		const now = performance.now();
 		console.log("MOUSE OVER TOOK: ", now - this.start);
-	//	this.props.callbacks.mouseOver(d);
-	}
-
-	handleMouseOver (d, item) {
-		this.start = performance.now();
-
-		this.item = item;
 		this.props.callbacks.mouseOver(d);
 	}
 
