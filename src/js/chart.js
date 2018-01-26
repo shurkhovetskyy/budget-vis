@@ -152,7 +152,7 @@ export default function Chart (level) {
 		const ind = this.shownDimensions.indexOf(dimension);
 		this.shownDimensions.splice(ind, 1);
 		this.display.removeDimension(dimension);
-		this.listPanel.updateStackedCharts();
+	//	this.listPanel.updateStackedCharts();
 	};
 
 	this.resize = function () {

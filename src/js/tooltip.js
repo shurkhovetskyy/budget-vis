@@ -84,6 +84,8 @@ export const Tooltip = (function () {
 
 		box.style("top", ty);
 		box.style("left", x);
+
+		console.log(y, ay);
 	};
 
 	tooltip.hide = function (c, delay = true) {

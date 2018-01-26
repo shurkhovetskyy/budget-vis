@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 export const Help = {
 	EN: {
 		view: "<strong>Over time</strong><br>Shows change in sum of all categories year over year.<br><br><strong>Categories</strong><br>Shows breakdown of single year.",

@@ -441,7 +441,8 @@ BarDisplay.prototype.setBarsWidth = function (display) {
 		.attr("x", d => {
 			const k = sd.indexOf(d.dim),
 				  i = display.dataset.map(
-					  item => item.data).indexOf(d.data),
+				//	  item => item.data).indexOf(d.data),
+					  item => item.category).indexOf(d.category),
 				  r = display._xGroup(k);
 			return display.xScale(i) + r;
 		});

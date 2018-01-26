@@ -23,6 +23,7 @@ function getChartAt (level) {
 		rest.forEach (rc => rc.destroy());
 		charts = charts.slice(0, level + 1);
 	}
+	let x;
 	return c;
 }
 
@@ -34,10 +35,12 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 	const levelData = roll(fullData);
 	const chart = getChartAt(level);
 
+	const stacks = roll(rollLevelData(
+		data, CONFIG.levels.length - 1));
+
 	chart	.setFullData(fullData)
 			.setDataset(levelData)
-			.setStackedDataset(roll(rollLevelData(
-				data, CONFIG.levels.length - 1)))
+			.setStackedDataset(stacks)
 			.setLevel(level)
 			.setStartYear(year)
 			.setShownDimensions(shownDimensions)
@@ -57,8 +60,8 @@ function buildChart(level, data, selectionName, year, shownDimensions) {
 
 	window.addEventListener("resize", redraw);
 
-//	launch("data/out_full.csv");
-	launch("data/out1.csv");
+	launch("data/out_full.csv");
+//	launch("data/out1.csv");
 })();
 
 export { buildChart };

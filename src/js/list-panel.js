@@ -12,16 +12,18 @@ export default function ListPanel (chart) {
 	this.c = chart;
 	this.dimCon = this.c.rightContainer.append("div")
 		.attr("class", "dimcon")
-		.attr("id", "dimscon-" + this.c.level);
+		.attr("id", "dimcon-" + this.c.level);
 
 	this.list = this.dimCon.append("div")
 		.attr("class", "dim-list")
 		.attr("id", "dim-list-" + this.c.level);
 
 	// Stack charts' scales.
-	this.stackScales = [];
+	this.stackScale = null;
 	this.stacksVisible = true;
 	this.figsVisible = true;
+
+	this.maxDimSum = 0;
 }
 
 ListPanel.prototype.activate = function () {
@@ -96,11 +98,11 @@ ListPanel.prototype._listDimension = function (dim, i) {
 
 	const aux = entry.append("div")
 				.attr("class", "aux")
-				.attr("id", "aix-" + id);
+				.attr("id", "aux-" + id);
 
 	const marker = aux.append("div")
 					.attr("class", "dim-marker")
-				.attr("id", "dim-marker-"+ id)
+					.attr("id", "dim-marker-"+ id)
 			.style("background-color", getItemColor(dim));
 
 	const figHelp = aux.append("span")
@@ -137,7 +139,7 @@ ListPanel.prototype._listDimension = function (dim, i) {
 					.attr("id", "dim-figure-"+ id);
 	const value = figure.append("div")
 					.attr("class", "dim-value")
-			.attr("id", "dim-value-"+ id);
+					.attr("id", "dim-value-"+ id);
 	const sign = figure.append("div")
 					.attr("class", "dim-sign")
 			.attr("id", "dim-sign-"+ id);
@@ -257,8 +259,7 @@ ListPanel.prototype.renderDimension = function (dim) {
 	// some stacks normally would not even be visible
 	// due to small values. So subtract number of stacks from
 	// regular range to account for extra width of each stack.
-	this.stackScales[di].rangeRound([0, Styles.stackWidth], 0.0);
-
+	this.stackScale.rangeRound([0, Styles.stackWidth], 0.0);
 
 //	const rd = filtered.map (d => (Object.assign({dim: dim}, d)));
 	const layers = d3.layout.stack()
@@ -283,8 +284,8 @@ ListPanel.prototype.renderDimension = function (dim) {
 
 	stacks.transition ()
 		.duration (1000)
-		.attr("width", d => this.stackScales[di](d.x) + 1)
-		.attr("x", d => this.stackScales[di](d.x0))
+		.attr("width", d => this.stackScale(d.x) + 1)
+		.attr("x", d => this.stackScale(d.x0))
 		.style("opacity", 1);
 
 	stacks.exit()
@@ -314,14 +315,14 @@ ListPanel.prototype.updateMax = function () {
 	const sd = this.c.shownDimensions,
 		  sds = this.c.stackedDataset,
 		  c = this.c,
-		  oldMax = this.maxSum;
+		  oldMax = this.maxDimSum;
 	const maxSum = Math.max.apply(null,
 			sd.map(dim => Math.abs(sds.map(d =>
 				val(d, dim, c.mode, c.year))
 					.reduce((a, b) => a + b))));
 	this.maxDimSum = maxSum;
-	this.stackScales = [...Array(CONFIG.dimensions.length)].map(
-		() => d3.scale.linear().domain([0, this.maxDimSum]).nice());
+	this.stackScale = d3.scale.linear().domain([0, maxSum]);
+	console.log("MAX CHANGED", maxSum != oldMax);
 	return maxSum != oldMax;
 };
 
