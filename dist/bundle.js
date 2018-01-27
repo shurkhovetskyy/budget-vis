@@ -29534,6 +29534,10 @@ var _redux = __webpack_require__(54);
 
 var _reactRedux = __webpack_require__(52);
 
+var _Header = __webpack_require__(278);
+
+var _Header2 = _interopRequireDefault(_Header);
+
 var _Level = __webpack_require__(242);
 
 var _Level2 = _interopRequireDefault(_Level);
@@ -29613,6 +29617,7 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 			return _react2.default.createElement(
 				'div',
 				{ id: 'board' },
+				_react2.default.createElement(_Header2.default, null),
 				_store2.default.getState().levels.map(function (level, i) {
 					return _react2.default.createElement(_Level2.default, (0, _extends3.default)({}, state.levels[i], {
 						dispatch: _store2.default.dispatch,
@@ -33962,6 +33967,45 @@ var Tooltip = function (_Component) {
 }(_react.Component);
 
 exports.default = Tooltip;
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = Header;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(31);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header(props) {
+	return _react2.default.createElement(
+		'div',
+		{ id: 'header' },
+		_react2.default.createElement(
+			'span',
+			{ className: 'open' },
+			'Open'
+		),
+		_react2.default.createElement(
+			'span',
+			{ className: 'budgets' },
+			'Budgets'
+		)
+	);
+}
 
 /***/ })
 /******/ ]);

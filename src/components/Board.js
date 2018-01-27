@@ -13,6 +13,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
+import Header from './Header';
 import Level from './Level';
 import store from '../config/store';
 import Styles from '../config/styles';
@@ -58,6 +59,7 @@ export default class Board extends React.Component {
 		const state = store.getState();
 		return (
 			<div id = "board" >
+				<Header />
 				{store.getState().levels.map((level, i) => (
 					<Level {...state.levels[i]}
 						dispatch = {store.dispatch}

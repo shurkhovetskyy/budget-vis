@@ -118,6 +118,25 @@ a {
 	width:100%;
 }
 
+#header {
+	color: white;
+	padding: 10px;
+	padding-left: 25;
+    font-family: 'Lato';
+    font-size: 28px;
+    font-weight: bold;
+	background-color: #252a2c;
+	border-bottom: 1px solid rgb(20, 20, 20);
+}
+
+#header > .open {
+	font-weight: lighter;
+}
+
+#header:hover {
+	cursor: default;
+}
+
 .headerleftcon {
 	height: calc(var(--header-height) * var(--unit));
 	z-index: 1;
