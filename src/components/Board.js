@@ -40,7 +40,7 @@ export default class Board extends React.Component {
 			this.props.dispatch(actions.setAll(this.props.match.params));
 			this.props.dispatch(actions.setWidth(width));
 		} catch (e) {
-			console.log("Error: ", e);
+			console.log("URL parameters invalid. Redirecting to default view.");
 			this.props.dispatch(actions.setFallback());
 			this.props.dispatch(actions.setWidth(width));
 			navigate(this.props.history, store.getState().levels);

@@ -2,7 +2,7 @@
 
 <img src="https://image.ibb.co/iQUdjb/budget.png" align="center">
 
-This is a visualization concept designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built using [D3](https://d3js.org/) it allows creating interactive visualizations of budget data.
+This is a concept interactive visualization of budget data designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built with [React](https://reactjs.org/) view library, [Redux](https://redux.js.org/) state management and [D3](https://d3js.org/).
 
 Live version visualizing budget of Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
 
@@ -20,15 +20,15 @@ npm start
 ```
 Visualization will be available in your browser at:
 ```
-http://localhost:5000/
+http://localhost:4000/
 ```
 
 ## Building
 
-Install [webpack](https://webpack.js.org/):
+Install dependencies:
 
 ```bash
-npm install webpack
+npm install
 ```
 
 Build sources:
@@ -36,36 +36,76 @@ Build sources:
 ```bash
 npm run build
 ```
-Execute commands from previous section (Running locally) to see your build.
 
-## Changing data/configuration
+Run your build (port 4000 by default):
+```bash
+npm start
+```
 
-In order to use your own data, place the file in `data` directory and modify `config.json`.
+## Configuration
+
+All settings are placed in `src/config/settings.json`:
 
 ```js
 {
 	"name" : "Bonn Budget",
-	"datafile": "bonn-data.csv",
-	"levels": ["Produktbereich", "Bezeichnung", "Profitcenter", "Kostenart"],
-	"dimensions" : ["Executed-Ist", "Planentwurf", "Plan"],
-	"startDimensions" : ["Executed-Ist"],
-	"stacks" : "Kostenart",
+	"datafile": "bonn-data-en.csv",
+	"levels": ["Product Category", "Description", "Cost Type"],
+	"levels_alias": ["Product Categories", "Descriptions", "Cost Types"],
+	"dimensions" : ["Executed", "Plan-Design", "Plan"],
+	"startDimensions" : ["Executed", "Plan-Design"],
+	"stacks" : "Cost Type",
 	"yearsRange" : [2008, 2024],
-	"startYear": 2008,
+	"startYear": 2015,
 	"lang": "EN",
 	"currency": "€"
 }
 ```
-`levels` - short explanations/titles for each level of data.
 
-`dimensions` - these are variables for which data is available. In Bonn budget data there is Executed budget, Planned budget and budget of Planentwurf (Plan Design in German).
+`name` - title of the visualization (top level of data hierarchy), can be anything.
 
-`startDimensions` - list of dimensions which are open when visualization starts.
+`datafile` - source placed in /data directory.
 
-`stacks` - based on which dimension stacked barcharts on the right will be built. Leaving the property empty will result in no stacked barchart displayed.
+`levels` - titles for each level of data hierarchy as per data (must correspond to columns in source).
 
-`yearsRange` - specify all years for which data is available inclusively.
+`level_alias` - text descriptions for each level. In this example same as `levels` but plural for clarity (can be anything)
 
-`lang` - you can specify the language and provide translations for all text and labels of visualization in `src/js/ui/text.js`. Bonn example is in English, but since data is in German, they are left as is.
+`dimensions` - variables for which data is available (maximum 3). In Bonn budget data there is Executed budget, Planned budget and budget of Planentwurf (Plan Design in German). These must correspond to columns in data as well.
 
-Rest of parameters are self-explanatory.
+`startDimensions` - list of dimensions which are open when visualization starts, must be a subset of `dimensions`.
+
+`stacks` - variable (data column) based on which stacked bar charts on the right should be built, must be one of `dimensions`. Leaving the property empty will result in no stacked bar chart displayed.
+
+`yearsRange` - specify all years for which data is available, inclusively.
+
+`startYear` - year to which visualization should default at the beginning, must be in the range of `yearsRange`.
+
+`lang` - you can specify the language and provide translations for all text and labels of visualization in `src/config/text.js`. Bonn budget demo is in English, with machine-translated data labels.
+
+## Data
+
+In order to use your own data, place the file in `data` directory and modify `src/config/settings.json` accordingly.
+
+For example, to load the original German version of the data, simply change `datafile`:
+
+```js
+"datafile": "bonn-data-de.csv",
+```
+
+Since column names in `bonn-data-de.csv` are different, change `levels`, `stacks` and `dimensions` as well:
+
+```js
+"levels": ["Produktbereich", "Bezeichnung", "Kostenart"],
+"stacks": "Kostenart",
+"dimensions": ["Executed-Ist", "Plan", "Planentwurf"]
+```
+
+In short, when specifying new data, it must be ensured that its header has the following format:
+
+`[levels], [dimensions], Year, Sign`
+
+`Year` - capitalized, corresponds to year for which row holds information.
+
+`Sign` - capitalized, can be either `plus` or `minus`. This is in case your data contains both positive and negative values (spending and revenue). If not, set value to `plus` for all rows.
+
+Column order is irrelevant. See both `bonn-data-en.csv` and `bonn-data-de.csv` for examples.
