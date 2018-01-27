@@ -1,6 +1,6 @@
 # Budget Visualization
 
-<img src="https://image.ibb.co/jR06uG/final.png" align="center">
+<img src="https://image.ibb.co/j56wuG/final.png" align="center">
 
 This is a concept interactive visualization of budget data designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built with [React](https://reactjs.org/) view library, [Redux](https://redux.js.org/) state management and [D3](https://d3js.org/).
 
