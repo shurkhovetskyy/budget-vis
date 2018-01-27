@@ -32692,7 +32692,6 @@ var GraphChart = function (_Chart) {
 				this.updateLabels();
 				return;
 			}
-
 			if (this.action == _options.Action.ADD) {
 				var dim = newDims.filter(function (v) {
 					return !oldDims.includes(v);
@@ -32700,7 +32699,6 @@ var GraphChart = function (_Chart) {
 				this.addDimension(dim);
 				return;
 			}
-
 			if (this.action == _options.Action.REMOVE) {
 				var _dim = oldDims.filter(function (v) {
 					return !newDims.includes(v);
@@ -32708,7 +32706,6 @@ var GraphChart = function (_Chart) {
 				this.removeDimension(_dim);
 				return;
 			}
-
 			(0, _get3.default)(GraphChart.prototype.__proto__ || (0, _getPrototypeOf2.default)(GraphChart.prototype), 'componentDidUpdate', this).call(this, prevProps);
 		}
 	}, {
@@ -32717,10 +32714,7 @@ var GraphChart = function (_Chart) {
 			var _this4 = this;
 
 			if (!this.handleState.call(this, dim)) return;
-			// if(CONFIG.dimYears[dim].length==0)
-			// 	return;
 			if (this.active) {
-				//		this.setAxis(false, true);	// RETURN.
 				this.props.openDimensions.forEach(function (d) {
 					return _this4.renderDimension(d);
 				});

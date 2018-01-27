@@ -196,7 +196,6 @@ export default class Level extends React.Component {
 						className = {'chartcon chart-' + level} >
 
 						<Axis level = {level}/>
-
 						<g id = {'main-' + level}
 							className = 'maincon'
 							transform = {'translate(' + Styles.leftMargin + ', 0)'}>
@@ -213,7 +212,6 @@ export default class Level extends React.Component {
 								data = {this.props.data[View.CATS]}
 							/>
 						</g>
-
 					</svg>
 
 					<Labels level = {level}/>

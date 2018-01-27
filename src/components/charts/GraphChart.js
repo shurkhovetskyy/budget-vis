@@ -47,31 +47,25 @@ export default class GraphChart extends Chart {
 			this.updateLabels();
 			return;
 		}
-
 		if (this.action==Action.ADD) {
 			const dim = newDims.filter(
 				v => !oldDims.includes(v)).shift();
 			this.addDimension(dim);
 			return;
 		}
-
 		if (this.action==Action.REMOVE) {
 			const dim = oldDims.filter(
 				v => !newDims.includes(v)).shift();
 			this.removeDimension(dim);
 			return;
 		}
-
 		super.componentDidUpdate(prevProps);
 	}
 
 	addDimension (dim) {
 		if (!this.handleState.call(this, dim))
 			return;
-		// if(CONFIG.dimYears[dim].length==0)
-		// 	return;
 		if (this.active) {
-	//		this.setAxis(false, true);	// RETURN.
 			this.props.openDimensions.forEach(
 				d => this.renderDimension(d));
 		} else
