@@ -12,7 +12,8 @@ import {
 
 import {
 	Action,
-	Interaction
+	Interaction,
+	Sort
 } from '../../config/options';
 
 import {
@@ -168,8 +169,14 @@ class Chart extends React.Component {
 	};
 
 	updateLabels () {
-		if ([Action.MODE, Action.YEAR].includes(this.props.action))
+		if ([Action.MODE].includes(this.props.action))
 			return;
+
+		if (Action.YEAR == this.props.action &&
+			[Sort.ABC].includes(this.props.sort)) {
+			this.bindLabels();
+			return;
+		}
 
 		console.log("****updateLabels", this.props.level, [...this.xScale.range()]);
 

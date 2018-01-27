@@ -1,4 +1,4 @@
-import { initial } from '../config/initial';
+import { initial } from '../config/state';
 
 import {
 	Action,
@@ -26,15 +26,15 @@ const reducers = (state = initial, action) => {
 		case 'SET_MODE': {
 			nl[action.level].mode = action.payload;
 			nl[action.level].mark += 1;
-			nl[action.level].sort = 'na';
+		//	nl[action.level].sort = 'na';
 		//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
 			return {...state, levels: nl, action: Action.MODE};
 		}
 		case 'SET_YEAR': {
 			nl[action.level].year = action.payload;
 			nl[action.level].mark += 1;
-			if (nl[action.level].sort == Sort.NUM)
-				nl[action.level].sort = Sort.NA;
+			// if (nl[action.level].sort == Sort.NUM)
+			// 	nl[action.level].sort = Sort.NA;
 			return {...state, levels: nl, action: null };
 		}
 		case 'SET_SORT': {
@@ -190,8 +190,8 @@ const reducers = (state = initial, action) => {
 			nl[action.level].mark += 1;
 			nl[action.level].view = View.CATS;
 			nl[action.level].year = action.payload;
-			if (nl[action.level].sort == Sort.NUM)
-				nl[action.level].sort = Sort.NA;
+			// if (nl[action.level].sort == Sort.NUM)
+			// 	nl[action.level].sort = Sort.NA;
 			return {...state,
 				levels: nl,
 				action: null
@@ -223,7 +223,7 @@ const reducers = (state = initial, action) => {
 					};
 			}
 
-
+			nl[action.level].set = true;
 			nl[action.level].mark += 1;
 			return {...state,
 				levels: nl,
@@ -234,11 +234,15 @@ const reducers = (state = initial, action) => {
 		case 'FETCH_DIM_YEARS': {
 			return {...state};
 		}
+
 		case 'SET_ALL': {
 			return {...state,
 				levels: action.payload,
 				action: null
 			};
+		}
+		case 'SET_FALLBACK': {
+			return {...action.payload};
 		}
 	}
 	return state;

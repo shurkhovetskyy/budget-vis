@@ -15,11 +15,7 @@ import { val } from './val';
 
 const CONFIG = require('../config/settings.json');
 
-
-// DEFINITELY HERE
-
 export function getItemColor (dim) {
-//	const color = shadeRGBColor(this.colorBand, 0.3 + 0.2 * sd.indexOf(dim));
 	const color = colors[CONFIG.dimensions
 		.indexOf(dim) % colors.length];
 	return color;
@@ -90,8 +86,6 @@ export function sortUtil (a, b, sort, mode, year, sortDim) {
 	return res;
 }
 
-/////////////////
-
 /**
 *	Returns first available dimension among those shown.
 */
@@ -156,52 +150,6 @@ Math.easeInOutQuad = function (t, b, c, d) {
 	return -c/2 * (t*(t-2) - 1) + b;
 };
 
-
-//
-// export const adjustFontSize = function (element) {
-//     if(!element.innerHTML) return;
-//     const dummy = document.createElement('div');
-// 		dummy.className = 'dummy';
-//     const elementStyle = getComputedStyle(element);
-//     dummy.style.font = elementStyle.font;
-//     dummy.style.padding = elementStyle.padding;
-//     dummy.style.boxSizing = elementStyle.boxSizing;
-//     dummy.innerHTML = element.innerHTML;
-//     document.body.appendChild(dummy);
-//     const dummyStyle = getComputedStyle(dummy);
-//
-//     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
-//     let font = parseFloat(dummy.style.fontSize) / rw;
-// 	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
-// 	font = Math.min(font, 32) + 'px';
-//
-//     element.style.fontSize = font;
-//     document.body.removeChild(dummy);
-// };
-//
-// export const getFontSize = function (element, text) {
-//   	//  if(!element.innerHTML) return;
-//     const dummy = document.createElement('div');
-// 		dummy.className = 'dummy';
-//     const elementStyle = getComputedStyle(element);
-//     dummy.style.font = elementStyle.font;
-//     dummy.style.padding = elementStyle.padding;
-//     dummy.style.boxSizing = elementStyle.boxSizing;
-// 	//	dummy.innerHTML = element.innerHTML;
-// 	dummy.innerText = text;
-//     document.body.appendChild(dummy);
-//     const dummyStyle = getComputedStyle(dummy);
-//
-//     const rw = parseFloat(dummyStyle.width) / parseFloat(elementStyle.width);
-//     let font = parseFloat(dummy.style.fontSize) / rw;
-// 	//	font = parseFloat(dummy.style.fontSize) / rh + 'px';
-// 	font = Math.min(font, 32) + 'px';
-//
-// 	//	element.style.fontSize = font;
-//     document.body.removeChild(dummy);
-// 	return font;
-// };
-//
 
 export const hide = function (el, duration = 500) {
 	el.transition().duration(duration)

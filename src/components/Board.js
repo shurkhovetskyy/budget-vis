@@ -31,19 +31,20 @@ export default class Board extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener("resize", () => calcWidth(this.props.dispatch));
+		window.addEventListener("resize",
+			() => this.props.dispatch(actions.setWidth(calcWidth())));
 
-		calcWidth(this.props.dispatch);
-
+		const width = calcWidth();
 		this.props.dispatch(actions.fetchDimYears());
 
 		try {
 			this.props.dispatch(actions.setAll(this.props.match.params));
+			this.props.dispatch(actions.setWidth(width));
 		} catch (e) {
 			console.log("Error: ", e);
-			this.props.dispatch(actions.fetchAll());
+			this.props.dispatch(actions.setFallback());
+			this.props.dispatch(actions.setWidth(width));
 			navigate(this.props.history, store.getState().levels);
-
 		}
 	}
 
@@ -108,9 +109,9 @@ function navigate (history, levels) {
 	history.replace(getURL(levels));
 }
 
-function calcWidth (dispatch) {
+function calcWidth () {
 	const boardWidth = d3.select("#board").node().offsetWidth;
-	dispatch(actions.setWidth(boardWidth));
 	document.documentElement.style.setProperty(
 		"--width-page", boardWidth);
+	return boardWidth;
 }

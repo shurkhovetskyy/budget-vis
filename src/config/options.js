@@ -12,8 +12,7 @@ const Mode = {
 
 const Sort = {
 	NUM: "amount",
-	ABC: "name",
-	NA: 'na'
+	ABC: "name"
 };
 
 const Action = {

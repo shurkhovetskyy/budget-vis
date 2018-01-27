@@ -435,11 +435,20 @@ line.zero {
 	text-transform: capitalize;
 }
 
+.selection-name > span {
+	color: dimgrey;
+	transition: 0.7s;
+}
+
+.hide > span {
+	opacity: 0;
+}
+
 .level-name {
 	font-family: 'Lato';
 	font-size: 16px;
 	opacity: 0.6;
-
+	transition: 0.5s;
 }
 
 #value {

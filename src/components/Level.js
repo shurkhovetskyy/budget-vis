@@ -60,7 +60,7 @@ export default class Level extends React.Component {
 
 	componentDidMount () {
 		this.nameBox = d3.select("#selection-name-" + this.props.level)
-		this.nameBox.node().innerHTML = this.props.name;
+		this.nameBox.node().innerHTML = this.levelName();
 		adjustFontSize(this.nameBox.node());
 		this.nameBox.transition().duration(750).style("opacity", 1);
 
@@ -75,12 +75,19 @@ export default class Level extends React.Component {
 			const trans = this.nameBox.transition("hide").duration(250);
 			trans.style("opacity", 0);
 			trans.each("end", () => {
-				this.nameBox.node().innerHTML = this.props.name;
+				this.nameBox.node().innerHTML = this.levelName();
 				adjustFontSize(this.nameBox.node());
 			});
 			trans.transition("reveal").duration(500).style("opacity", 1);
+		} else if ([Action.ACTIVATE, Action.YEAR].includes(this.props.action)) {
+			this.nameBox.select('span').node().innerHTML = this.props.year;
 		}
+	}
 
+	levelName() {
+		let html = this.props.name;
+		html += ' <span>' + this.props.year + '</span>';
+		return html;
 	}
 
 	// Control Panel
@@ -187,7 +194,10 @@ export default class Level extends React.Component {
 				<div id = {'left-' + level}
 					className = 'sidediv leftcon' >
 					<LevelHeader level = {level}
-								name = {this.props.name} />
+								name = {this.props.name}
+								view = {this.props.view}
+								year = {this.props.year}
+					/>
 					<svg id = {'chart-' + level}
 						className = {'chartcon chart-' + level} >
 

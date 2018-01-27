@@ -16,7 +16,7 @@ import {
 	checkView
 } from './utils';
 
-import { skeleton } from '../config/initial';
+import { skeleton, fallback } from '../config/state';
 
 const CONFIG = require('../config/settings.json')
 
@@ -34,11 +34,22 @@ export function fetchDimYears () {
 }
 
 export function fetchAll (levels = null) {
-	levels = levels || store.getState().levels;
+	levels = levels || fallback.levels;
 	return function (dispatch) {
 		levels.forEach((level) => {
 			fetch(dispatch, level, Action.ACTIVATE);
 		});
+	};
+}
+
+export function setFallback () {
+	return function (dispatch) {
+		dispatch ({
+				type: "SET_FALLBACK",
+				payload: fallback
+		});
+
+		dispatch(fetchAll());
 	};
 }
 

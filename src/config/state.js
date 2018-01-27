@@ -4,10 +4,10 @@ import CONFIG from './settings.json';
 
 export const skeleton = {
 	name: '',
-	view: View.TIME,
-	mode: Mode.SPENDING,
-	sort: Sort.NUM,
-	year: null,
+	view: null,
+	mode: null,
+	sort: null,
+	year: '',
 	displayYear: null,
 	parent: 'na',
 	level: 0,
@@ -19,10 +19,19 @@ export const skeleton = {
 	stackedData: [],
 	mark: 0,
 	selection: 'n',
-	highlight: null
+	highlight: null,
 }
 
 export const initial = {
+	levels: [
+		{...skeleton}
+	],
+	action: null,
+	width: 0,
+	tooltip: {}
+}
+
+export const fallback = {
 	levels: [
 		// 0
 		{ ... skeleton,
@@ -30,7 +39,7 @@ export const initial = {
 			view: View.TIME,
 			mode: Mode.SPENDING,
 			sort: Sort.NUM,
-			year: 2014,
+			year: 2015,
 			openDimensions: CONFIG.startDimensions,
 		}
 	],

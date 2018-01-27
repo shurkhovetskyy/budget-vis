@@ -34,6 +34,14 @@ export default class BarChart extends Chart {
 		this.action = this.props.action;
 
 		if (this.props.action == Action.SORT) {
+		//	this.bindLabels();
+			this.sortBars(0, this.props.sort);
+			return;
+		}
+
+		if (this.props.action == Action.MODE) {
+		//	this.bindLabels();
+			this.updateData();
 			this.sortBars(0, this.props.sort);
 			return;
 		}
@@ -75,7 +83,15 @@ export default class BarChart extends Chart {
 		this.labelsCon = this.labelsCon || d3.select("#labelscon-bar-" + this.props.level);
 
 		if (Action.YEAR == this.props.action) {
-			this.bindLabels();
+			this.updateLabels();
+		//	this.bindLabels();
+			// this.labelsCon.selectAll("span")
+			// 	.filter(".axis-label")
+			// 	.sort((a, b) => this.sortUtil(a, b))
+			// 	.transition("sort")
+			// 	.duration(500)
+			// 	.style("left", (d, i) => this.getLabelX(i));
+
 			this.updateData();
 			return;
 		}
@@ -140,7 +156,6 @@ export default class BarChart extends Chart {
 	}
 
 	getLabelX (i) {
-		console.log(this.xScale(i) + this.xScale.rangeBand() / 2);
 		return this.xScale(i) + this.xScale.rangeBand() / 2;
 	};
 
@@ -345,15 +360,6 @@ export default class BarChart extends Chart {
 		console.log("PROPER SORTING");
 
 		this.sortDim = c.openDimensions[dimension];
-
-		// let sortUtil = function (a, b) {
-		// 	const c = _this.c;
-		// 	if (_this.sortMode == Sort.NUM)
-		// 		return d3.descending(	c.val(a, _this.sortDim),
-		// 								c.val(b, _this.sortDim));
-		// 	else if (_this.sortMode == Sort.ABC)
-		// 		return d3.ascending(a.category, b.category);
-		// };
 
 		this.props.data.sort((a, b) => this.sortUtil(a, b));
 
