@@ -1,6 +1,6 @@
 # Budget Visualization
 
-<img src="https://image.ibb.co/iQUdjb/budget.png" align="center">
+<img src="https://image.ibb.co/jR06uG/final.png" align="center">
 
 This is a concept interactive visualization of budget data designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built with [React](https://reactjs.org/) view library, [Redux](https://redux.js.org/) state management and [D3](https://d3js.org/).
 
@@ -10,7 +10,7 @@ Live version visualizing budget of Bonn, Germany is [available here](https://bud
 
 ## Running locally
 
-Have latest version of [Node](https://nodejs.org/en/) installed. Navigate to root of project directory and fetch project dependencies:
+Have latest version of [Node](https://nodejs.org/en/) installed. Navigate to root directory and fetch project dependencies:
 ```bash
 npm install --only=prod
 ```
