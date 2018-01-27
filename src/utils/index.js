@@ -81,7 +81,7 @@ export function sortUtil (a, b, sort, mode, year, sortDim) {
 	else if (sort == Sort.ABC)
 		res = d3.ascending(a.category, b.category);
 	else
-		res = 0;
+		res = 0; 
 
 	return res;
 }
