@@ -1,16 +1,6 @@
-
-// import { Sign } from './ui/text';
-// import { Mode } from './ui/ui-state';
 import { colors, colorSchemes, blacks } from '../config/colors';
-
-import {
-	Sign
-} from '../config/text';
-
-import {
-	Sort
-} from '../config/options';
-
+import { Sign } from '../config/text';
+import { Sort } from '../config/options';
 import { val } from './val';
 
 const CONFIG = require('../config/settings.json');
@@ -81,7 +71,7 @@ export function sortUtil (a, b, sort, mode, year, sortDim) {
 	else if (sort == Sort.ABC)
 		res = d3.ascending(a.category, b.category);
 	else
-		res = 0; 
+		res = 0;
 
 	return res;
 }
@@ -125,19 +115,19 @@ export function scroll (element, to, duration) {
     };
     animateScroll();
 }
-//
-// /**
-//    * Helper functions
-//    */
-// function tweenText (newValue) {
-// 	return function () {
-// 		var currentValue = + this.textContent;
-// 		var i = d3.interpolateRound (currentValue, newValue);
-// 		return function (t) {
-// 			this.textContent = i(t);
-// 		};
-// 	};
-// }
+
+/**
+   * Helper functions
+   */
+function tweenText (newValue) {
+	return function () {
+		var currentValue = + this.textContent;
+		var i = d3.interpolateRound (currentValue, newValue);
+		return function (t) {
+			this.textContent = i(t);
+		};
+	};
+}
 
 //t = current time
 //b = start value

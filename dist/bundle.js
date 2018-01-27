@@ -870,11 +870,8 @@ var Styles = function () {
 
 	// Bar tooltip y.
 	var y = styles.headerHeight + styles.topMargin + styles.topPadding;
-	//	y = y - styles.tooltipHeight - styles.arrowHeight;
 	styles.tooltipY = y;
-
 	styles.axisWidthShift = styles.widthRight + styles.leftMargin + styles.widthControlPanel + styles.axisMarginRight;
-	//	styles.bottomPadding = styles.labelMargin + styles.labelLength;
 	return styles;
 }();
 
@@ -1006,8 +1003,6 @@ var _val = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { Sign } from './ui/text';
-// import { Mode } from './ui/ui-state';
 var CONFIG = __webpack_require__(3);
 
 function getItemColor(dim) {
@@ -1113,19 +1108,19 @@ function scroll(element, to, duration) {
 	};
 	animateScroll();
 }
-//
-// /**
-//    * Helper functions
-//    */
-// function tweenText (newValue) {
-// 	return function () {
-// 		var currentValue = + this.textContent;
-// 		var i = d3.interpolateRound (currentValue, newValue);
-// 		return function (t) {
-// 			this.textContent = i(t);
-// 		};
-// 	};
-// }
+
+/**
+   * Helper functions
+   */
+function tweenText(newValue) {
+	return function () {
+		var currentValue = +this.textContent;
+		var i = d3.interpolateRound(currentValue, newValue);
+		return function (t) {
+			this.textContent = i(t);
+		};
+	};
+}
 
 //t = current time
 //b = start value
@@ -1438,7 +1433,6 @@ function getTimeArray(data, mode, dim) {
 		return (0, _keys2.default)(d).includes(dim);
 	});
 	arr = arr.shift()[dim];
-	console.log("Arr", arr);
 	return arr;
 }
 
@@ -1878,8 +1872,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var logger = function logger(store) {
 	return function (next) {
 		return function (action) {
-			console.log("Action: ", action.type);
-			console.log("Payload: ", action.payload);
+			//console.log("Action: ", action.type);
+			//console.log("Payload: ", action.payload);
 			next(action);
 		};
 	};
@@ -1889,7 +1883,7 @@ var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, logger);
 var store = (0, _redux.createStore)(_reducers2.default, middleware);
 
 store.subscribe(function () {
-	console.log("Store changed: ", store.getState());
+	//console.log("Store changed: ", store.getState());
 });
 
 exports.default = store;
@@ -3632,7 +3626,6 @@ var CONFIG = __webpack_require__(3);
 function fetchDimYears() {
 	return function (dispatch) {
 		_axios2.default.get('/dim-years').then(function (resp) {
-			console.log("Response", resp.data);
 			CONFIG.dimYears = resp.data;
 			dispatch({
 				type: "FETCH_DIM_YEARS"
@@ -3680,7 +3673,6 @@ function setAll(params) {
 		(0, _utils.checkYear)(years[i]);
 		(0, _utils.checkSort)(sorts[i]);
 
-		console.log("Dims:", params.dims);
 		var actualDims = openDims[i].split('+').map(function (d) {
 			return CONFIG.dimensions[parseInt(d)];
 		});
@@ -6164,9 +6156,8 @@ function fetch(dispatch, ls, userAction) {
 	var params = [view, level, parent];
 	if (ls.view == _options.View.CATS) params.push(year); // only relevant for categories
 	var query = '/data?' + params.join('&');
-	console.log(query);
+	//console.log(query);
 	_axios2.default.get(query).then(function (resp) {
-		console.log("Response", resp.data);
 		dispatch({
 			type: "FETCH_DATA",
 			level: ls.level,
@@ -6232,10 +6223,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _toConsumableArray2 = __webpack_require__(72);
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _values = __webpack_require__(42);
 
 var _values2 = _interopRequireDefault(_values);
@@ -6274,13 +6261,11 @@ var _options = __webpack_require__(2);
 
 var _text = __webpack_require__(41);
 
+var _val = __webpack_require__(23);
+
 var _settings = __webpack_require__(3);
 
 var _settings2 = _interopRequireDefault(_settings);
-
-var _helpers = __webpack_require__(272);
-
-var _val = __webpack_require__(23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6333,8 +6318,6 @@ var Chart = function (_React$Component) {
 			this.zeroAxis = this.zeroAxis || d3.select("#zero-" + this.props.level);
 
 			this.no = this.no || d3.select("#nodata-" + this.props.level);
-			// if (!CONFIG.hasOwnProperty("dimYears"))
-			// 	setDimYears(this.props.data);
 
 			this.updateXScale();
 			this.updateXScaleRange();
@@ -6426,7 +6409,6 @@ var Chart = function (_React$Component) {
 		value: function updateDimensions() {
 			var _this3 = this;
 
-			console.log("UpdateDimensions");
 			this.setAxis(true, true);
 			this.props.openDimensions.forEach(function (dim) {
 				return _this3.renderDimension(dim);
@@ -6444,14 +6426,12 @@ var Chart = function (_React$Component) {
 				return;
 			}
 
-			console.log("****updateLabels", this.props.level, [].concat((0, _toConsumableArray3.default)(this.xScale.range())));
-
 			var _this = this,
 			    labels = this.generateLabels();
 			var hi = this.hi;
 			var lo = this.lo;
 
-			// Enforce "on end" to bu executed once.
+			// Enforce "on end" to be executed once.
 			var numTrans = labels.size();
 			labels.transition()
 			// Make sure labels appear quickly when shown
@@ -6465,12 +6445,10 @@ var Chart = function (_React$Component) {
 				return cond ? hi * _this4.lop : lo * _this4.lop;
 			}).each("end", function () {
 				if (--numTrans == 0) _this4.setListeners.call(labels, _this4);
-			});
+			})
 			// .style("font-weight", d => {
-			// 	console.log(d.id == this.selection);
 			// 	return (d.id == this.selection ? "bold" : "normal");
 			// }
-
 			;
 		}
 	}, {
@@ -6542,19 +6520,13 @@ var Chart = function (_React$Component) {
 
 			var dims = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-			// var start = new Date().getTime();
-
 			dims = dims || this.props.openDimensions;
 			var available = dims.map(function (d) {
 				return _this6.dimAvailable(d);
 			}).reduce(function (a, b) {
 				return a || b;
 			});
-			console.log(available);
 			this.noData = !available;
-
-			// var elapsed = new Date().getTime() - start;
-			// console.log(elapsed);
 			return available;
 		}
 	}, {
@@ -6618,7 +6590,7 @@ var Chart = function (_React$Component) {
 			if (y) this.updateYScale();
 
 			this.yAxis.tickSize(-this.axisWidth, 0);
-			console.log("setAxis");
+			//console.log("setAxis");
 			if (fading) {
 				// Hide axis.
 				var invTrans = this.axisCon.transition().duration(this.chartSet ? 500 : 250);
@@ -6643,7 +6615,7 @@ var Chart = function (_React$Component) {
 			}
 			// Smooth transition of zero axis.
 			this.zeroAxis.transition("hide").duration(500).style("opacity", "0.0").transition("position")
-			//	.duration(1000)
+			//.duration(1000)
 			.attr("y1", this.yScale(0)).attr("y2", this.yScale(0)).attr("x1", 0).attr("x2", this.axisWidth).transition("reveal").duration(500).style("opacity", "0.7");
 		}
 	}, {
@@ -28846,16 +28818,12 @@ var reducers = function reducers() {
 			{
 				nl[action.level].mode = action.payload;
 				nl[action.level].mark += 1;
-				//	nl[action.level].sort = 'na';
-				//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
 				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.MODE });
 			}
 		case 'SET_YEAR':
 			{
 				nl[action.level].year = action.payload;
 				nl[action.level].mark += 1;
-				// if (nl[action.level].sort == Sort.NUM)
-				// 	nl[action.level].sort = Sort.NA;
 				return (0, _extends5.default)({}, state, { levels: nl, action: null });
 			}
 		case 'SET_SORT':
@@ -28868,7 +28836,7 @@ var reducers = function reducers() {
 		case 'ADD_DIMENSION':
 			{
 				var od = nl[action.level].openDimensions;
-				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(od), [action.payload]); //.push(action.payload);
+				nl[action.level].openDimensions = [].concat((0, _toConsumableArray3.default)(od), [action.payload]);
 				nl[action.level].mark += 1;
 				return (0, _extends5.default)({}, state, { levels: nl, action: _options.Action.ADD });
 			}
@@ -29002,12 +28970,10 @@ var reducers = function reducers() {
 
 		case 'OPEN_LEVEL':
 			{
-				//	nl[action.level].mark += 1;
 				nl[action.level].selection = action.selection;
 
 				if (action.payload != null) {
 					if (nl.length - 1 == action.level) nl.push(action.payload);else {
-						//const rest = nl.slice(level + 2, nl.length)
 						nl[action.level + 1] = action.payload;
 						nl = nl.slice(0, action.level + 2);
 					}
@@ -29024,8 +28990,6 @@ var reducers = function reducers() {
 				nl[action.level].mark += 1;
 				nl[action.level].view = _options.View.CATS;
 				nl[action.level].year = action.payload;
-				// if (nl[action.level].sort == Sort.NUM)
-				// 	nl[action.level].sort = Sort.NA;
 				return (0, _extends5.default)({}, state, {
 					levels: nl,
 					action: null
@@ -29459,8 +29423,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var colors = ["rgb(39, 127, 150)", "rgb(212, 124, 60)", "rgb(224, 219, 86)", "rgb(78, 194, 101)"];
 
-//"rgb(121, 178, 194)" - nice blue ---- rgb(121, 20, 34)
 var colorSchemes = ["rgb(38, 47, 52)", "rgb(21, 28, 32)"];
+
 var blacks = ["rgb(147, 147, 147)", "rgb(103, 102, 106)", "rgb(195, 195, 195)"];
 
 exports.colors = colors;
@@ -29556,7 +29520,6 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 		var _this = (0, _possibleConstructorReturn3.default)(this, (Board.__proto__ || (0, _getPrototypeOf2.default)(Board)).call(this, props));
 
 		(0, _utils.readYears)();
-
 		return _this;
 	}
 
@@ -29569,9 +29532,9 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 				return _this2.props.dispatch(actions.setWidth(calcWidth()));
 			});
 
-			var width = calcWidth();
 			this.props.dispatch(actions.fetchDimYears());
 
+			var width = calcWidth();
 			try {
 				this.props.dispatch(actions.setAll(this.props.match.params));
 				this.props.dispatch(actions.setWidth(width));
@@ -29595,10 +29558,8 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 		value: function render() {
 			var _this3 = this;
 
-			var t0 = performance.now();
 			var state = _store2.default.getState();
-
-			var res = _react2.default.createElement(
+			return _react2.default.createElement(
 				'div',
 				{ id: 'board' },
 				_store2.default.getState().levels.map(function (level, i) {
@@ -29607,6 +29568,7 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 						navigate: function navigate() {
 							return _navigate(_this3.props.history, state.levels);
 						},
+						history: _this3.props.history,
 						key: i,
 						level: i,
 						action: state.action,
@@ -29615,10 +29577,6 @@ var Board = (_dec = (0, _reactRedux.connect)(function (store) {
 					}));
 				})
 			);
-			var t1 = performance.now();
-			console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.");
-
-			return res;
 		}
 	}]);
 	return Board;
@@ -30494,7 +30452,7 @@ var Level = function (_React$Component) {
 		key: 'addDimension',
 		value: function addDimension(dim) {
 			this.props.dispatch(actions.addDimension(dim, this.props.level));
-			//	this.props.navigate();
+			this.props.navigate();
 		}
 	}, {
 		key: 'removeDimension',
@@ -30540,13 +30498,6 @@ var Level = function (_React$Component) {
 			this.props.dispatch(interaction.openLevel(parent, this.props.level));
 			this.props.navigate();
 		}
-		// function prepareHelp (c, target, offset, text) {
-		// 	const entry = target.closest(".dim-entry");
-		// 	const x = c.width - Styles.widthRight;
-		// 	const y = offset + entry.offsetTop;
-		// 	Tooltip.help(x, y, Tooltip.RIGHT, c, text);
-		// }
-
 	}, {
 		key: 'listHelpClick',
 		value: function listHelpClick(target, name) {
@@ -30567,7 +30518,6 @@ var Level = function (_React$Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log("Level ", this.props.level, " rendering.");
 			var level = this.props.level;
 			return _react2.default.createElement(
 				'div',
@@ -32037,8 +31987,6 @@ var BarChart = function (_Chart) {
 				    sd = c.openDimensions,
 				    _this = this;
 
-				console.log("PROPER SORTING");
-
 				this.sortDim = c.openDimensions[dimension];
 
 				this.props.data.sort(function (a, b) {
@@ -32090,13 +32038,11 @@ var BarChart = function (_Chart) {
 			this.action = this.props.action;
 
 			if (this.props.action == _options.Action.SORT) {
-				//	this.bindLabels();
 				this.sortBars(0, this.props.sort);
 				return;
 			}
 
 			if (this.props.action == _options.Action.MODE) {
-				//	this.bindLabels();
 				this.updateData();
 				this.sortBars(0, this.props.sort);
 				return;
@@ -32105,21 +32051,11 @@ var BarChart = function (_Chart) {
 			var oldDims = prevProps.openDimensions;
 			var newDims = this.props.openDimensions;
 
-			// if (this.props.action == Interaction.BAR_CLICK) {
-			// 	this.highlight(this.props.selection);
-			// 	return;
-			// }
-
 			if (this.props.action == _options.Action.UPDATE) {
 				this.updateData();
 				this.updateLabels();
 				return;
 			}
-
-			// if (this.action == Interaction.BAR_OUT){
-			// 	this.mouseOut(prevProps.highlight);
-			// 	return;
-			// }
 
 			if (this.action == _options.Action.ADD) {
 				var dim = newDims.filter(function (v) {
@@ -32142,14 +32078,6 @@ var BarChart = function (_Chart) {
 
 			if (_options.Action.YEAR == this.props.action) {
 				this.updateLabels();
-				//	this.bindLabels();
-				// this.labelsCon.selectAll("span")
-				// 	.filter(".axis-label")
-				// 	.sort((a, b) => this.sortUtil(a, b))
-				// 	.transition("sort")
-				// 	.duration(500)
-				// 	.style("left", (d, i) => this.getLabelX(i));
-
 				this.updateData();
 				return;
 			}
@@ -32199,7 +32127,7 @@ var BarChart = function (_Chart) {
 					return (0, _val.val)(d, dim, mode, _this5.props.year);
 				}));
 			}));
-			console.log("Max: " + max);
+			//console.log("Max: " + max);
 			return max;
 		}
 	}, {
@@ -32214,7 +32142,7 @@ var BarChart = function (_Chart) {
 					return (0, _val.val)(d, dim, mode, _this6.props.year);
 				}));
 			}));
-			console.log("Min: " + min);
+			//console.log("Min: " + min);
 			return min;
 		}
 	}, {
@@ -32275,10 +32203,8 @@ var BarChart = function (_Chart) {
 
 			if (!this.dimAvailable(dim)) {
 				this.minimizeItems(bars);
-				//this.removeDimension(dim);
 				return;
 			}
-			console.log("Render");
 			var duration = 1000;
 
 			var hi = this.hi;
@@ -32329,8 +32255,6 @@ var BarChart = function (_Chart) {
 			var data = this.props.data.map(function (d) {
 				return (0, _assign2.default)({ dim: dim }, d);
 			});
-
-			//	data.sort((a, b) => this.sortUtil(a, b));
 			return data;
 		}
 
@@ -32341,7 +32265,6 @@ var BarChart = function (_Chart) {
 		value: function buildBars(bars, dim) {
 			var _this9 = this;
 
-			console.log("buildBars");
 			var c = this.c,
 			    _this = this;
 			var hi = 1.0;
@@ -32396,7 +32319,6 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'setBarsWidth',
 		value: function setBarsWidth(display) {
-			console.log("barsWidth");
 			var sd = display.props.openDimensions;
 			this.attr("width", display.xGroup.rangeBand()).attr("x", function (d) {
 				var k = sd.indexOf(d.dim),
@@ -32412,7 +32334,6 @@ var BarChart = function (_Chart) {
 	}, {
 		key: 'setBarsHeight',
 		value: function setBarsHeight(display) {
-			console.log("barsHeight");
 			var c = display.props;
 			this.style("fill-opacity", 1).attr("y", function (d) {
 				// Add/subtract 1 pixel to keep short distance
@@ -32422,7 +32343,6 @@ var BarChart = function (_Chart) {
 			}).attr("height", function (d) {
 				var s = display.yScale(0);
 				var v = (0, _val.val)(d, d.dim, c.mode, c.year);
-				//console.log(s, v);
 				return Math.abs(display.yScale(0) - display.yScale((0, _val.val)(d, d.dim, c.mode, c.year)));
 			});
 		}
@@ -32503,8 +32423,6 @@ var BarChart = function (_Chart) {
 		key: 'mouseOver',
 		value: function mouseOver(d, target) {
 			if (d == null) return;
-
-			this.start = performance.now();
 			var bar = void 0;
 			if (target instanceof HTMLSpanElement) {
 				var first = (0, _utils.firstDim)(this.props.openDimensions, this.props.year);
@@ -32517,9 +32435,6 @@ var BarChart = function (_Chart) {
 			} else bar = target;
 
 			if (d.id != this.selection) this.highlight(d.id);
-
-			var now = performance.now();
-			console.log("MOUSE OVER TOOK: ", now - this.start);
 
 			this.props.callbacks.mouseOver(d, bar);
 		}
@@ -32538,7 +32453,6 @@ var BarChart = function (_Chart) {
 		value: function render() {
 			var _this11 = this;
 
-			console.log("Bar Chart Render");
 			return _react2.default.createElement('g', { className: 'barscon',
 				id: 'barscon-' + this.props.level,
 				ref: function ref(node) {
@@ -32585,27 +32499,7 @@ __webpack_require__(76)('getOwnPropertyDescriptor', function () {
 
 
 /***/ }),
-/* 272 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _defineProperty2 = __webpack_require__(26);
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _modeMapping;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Mode = __webpack_require__(2).Mode;
-
-var CONFIG = __webpack_require__(3);
-
-var modeMapping = (_modeMapping = {}, (0, _defineProperty3.default)(_modeMapping, Mode.SPENDING, "plus"), (0, _defineProperty3.default)(_modeMapping, Mode.REVENUE, "minus"), _modeMapping);
-
-/***/ }),
+/* 272 */,
 /* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32703,7 +32597,7 @@ var GraphChart = function (_Chart) {
 						return item.value;
 					}));
 				}));
-				console.log("Min: " + min);
+				//console.log("Min: " + min);
 				return min;
 			}
 		});
@@ -32743,8 +32637,6 @@ var GraphChart = function (_Chart) {
 			var oldDims = prevProps.openDimensions;
 			var newDims = this.props.openDimensions;
 
-			console.log(oldDims, newDims);
-
 			if (this.props.action == _options.Action.UPDATE) {
 				this.updateData();
 				this.updateLabels();
@@ -32760,7 +32652,6 @@ var GraphChart = function (_Chart) {
 			}
 
 			if (this.action == _options.Action.REMOVE) {
-				console.log("REMOVEDIM");
 				var _dim = oldDims.filter(function (v) {
 					return !newDims.includes(v);
 				}).shift();
@@ -32832,8 +32723,8 @@ var GraphChart = function (_Chart) {
 				});
 				// Keep to bring opacity back after fast display switch.
 				//	if (!this.chartSet) {
-				// path.transition().style("opacity", 1);
-				//points.transition().style("opacity", 1);
+				// 		path.transition().style("opacity", 1);
+				//		points.transition().style("opacity", 1);
 				//	}
 			} else {
 				path = this.buildPath(dim, data);
@@ -32888,7 +32779,6 @@ var GraphChart = function (_Chart) {
 				};
 			});
 			this.pathData[dim] = data;
-			console.log("GRAPH DATA", data);
 			return data;
 		}
 	}, {
@@ -32985,7 +32875,7 @@ var GraphChart = function (_Chart) {
 				}));
 			}));
 
-			console.log("Max: " + max);
+			//console.log("Max: " + max);
 			return max;
 		}
 
@@ -33005,9 +32895,7 @@ var GraphChart = function (_Chart) {
 	}, {
 		key: 'mouseOver',
 		value: function mouseOver(d, target) {
-			this.start = performance.now();
 			var circles = this.container.selectAll("circle");
-
 			circles.filter(".year-" + d).attr("fill-opacity", 0.5).attr("r", 10);
 
 			var labels = this.labelsCon.selectAll(".axis-label");
@@ -33015,8 +32903,6 @@ var GraphChart = function (_Chart) {
 
 			d3.select(target).transition().duration(100).style("opacity", 1);
 
-			var now = performance.now();
-			console.log("MOUSE OVER TOOK: ", now - this.start);
 			this.props.callbacks.mouseOver(d);
 		}
 	}, {
@@ -33034,7 +32920,6 @@ var GraphChart = function (_Chart) {
 		value: function render() {
 			var _this9 = this;
 
-			console.log("Graph Chart Render");
 			return _react2.default.createElement('g', { className: 'graphcon',
 				id: 'graphcon-' + this.props.level,
 				ref: function ref(node) {
@@ -33089,7 +32974,6 @@ function Axis(_ref) {
 function Labels(_ref2) {
 	var level = _ref2.level;
 
-	console.log("**********LABELS");
 	return _react2.default.createElement(
 		'div',
 		{ id: 'labelsgroup-' + level,
@@ -33402,7 +33286,6 @@ function ListEntry(props) {
 
 	var color = (0, _utils.getItemColor)(props.dim);
 	var id = props.level + '-' + dim;
-	console.log("Entry", dim);
 	return _react2.default.createElement(
 		'div',
 		{ id: 'dim-entry-' + id,

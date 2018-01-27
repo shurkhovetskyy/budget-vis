@@ -116,7 +116,7 @@ export default class Level extends React.Component {
 
 	addDimension (dim) {
 		this.props.dispatch(actions.addDimension(dim, this.props.level));
-	//	this.props.navigate();
+		this.props.navigate();
 	}
 
 	removeDimension (dim) {
@@ -153,12 +153,7 @@ export default class Level extends React.Component {
 		this.props.dispatch(interaction.openLevel(parent, this.props.level));
 		this.props.navigate();
 	}
-	// function prepareHelp (c, target, offset, text) {
-	// 	const entry = target.closest(".dim-entry");
-	// 	const x = c.width - Styles.widthRight;
-	// 	const y = offset + entry.offsetTop;
-	// 	Tooltip.help(x, y, Tooltip.RIGHT, c, text);
-	// }
+
 	listHelpClick (target, name) {
 		const entry = target.closest(".dim-entry");
 		const x = this.props.width - Styles.widthRight;
@@ -182,7 +177,6 @@ export default class Level extends React.Component {
 	}
 
 	render () {
-		console.log("Level ", this.props.level, " rendering.");
 		const level = this.props.level;
 		return (
 			<div id = {'level-' + level} className = 'levelcon'

@@ -4,7 +4,6 @@ import Chart from './Chart';
 import { View, Mode, Sort, Action, Interaction } from '../../config/options';
 import { getItemColor, sortUtil, firstDim } from '../../utils';
 import Styles from '../../config/styles';
-
 import { val } from '../../utils/val';
 
 import CONFIG from '../../config/settings';
@@ -34,13 +33,11 @@ export default class BarChart extends Chart {
 		this.action = this.props.action;
 
 		if (this.props.action == Action.SORT) {
-		//	this.bindLabels();
 			this.sortBars(0, this.props.sort);
 			return;
 		}
 
 		if (this.props.action == Action.MODE) {
-		//	this.bindLabels();
 			this.updateData();
 			this.sortBars(0, this.props.sort);
 			return;
@@ -49,21 +46,11 @@ export default class BarChart extends Chart {
 		const oldDims = prevProps.openDimensions;
 		const newDims = this.props.openDimensions;
 
-		// if (this.props.action == Interaction.BAR_CLICK) {
-		// 	this.highlight(this.props.selection);
-		// 	return;
-		// }
-
 		if (this.props.action == Action.UPDATE) {
 			this.updateData();
 			this.updateLabels();
 			return;
 		}
-
-		// if (this.action == Interaction.BAR_OUT){
-		// 	this.mouseOut(prevProps.highlight);
-		// 	return;
-		// }
 
 		if (this.action==Action.ADD) {
 			const dim = newDims.filter(
@@ -84,14 +71,6 @@ export default class BarChart extends Chart {
 
 		if (Action.YEAR == this.props.action) {
 			this.updateLabels();
-		//	this.bindLabels();
-			// this.labelsCon.selectAll("span")
-			// 	.filter(".axis-label")
-			// 	.sort((a, b) => this.sortUtil(a, b))
-			// 	.transition("sort")
-			// 	.duration(500)
-			// 	.style("left", (d, i) => this.getLabelX(i));
-
 			this.updateData();
 			return;
 		}
@@ -139,7 +118,7 @@ export default class BarChart extends Chart {
 		const max = Math.max.apply(null, this.props.openDimensions.map(
 			dim => d3.max(this.props.data.map(d =>
 				val(d, dim, mode, this.props.year)))));
-		console.log("Max: " + max);
+		//console.log("Max: " + max);
 		return max;
 	};
 
@@ -147,7 +126,7 @@ export default class BarChart extends Chart {
 		const min = Math.min.apply(null, this.props.openDimensions.map(
 			dim => d3.min(this.props.data.map(d =>
 				val(d, dim, mode, this.props.year)))));
-		console.log("Min: " + min);
+		//console.log("Min: " + min);
 		return min;
 	};
 
@@ -235,10 +214,8 @@ export default class BarChart extends Chart {
 
 		if (!this.dimAvailable(dim)) {
 			this.minimizeItems(bars);
-			//this.removeDimension(dim);
 			return;
 		}
-		console.log("Render");
 		let duration = 1000;
 
 		const hi = this.hi;
@@ -297,14 +274,11 @@ export default class BarChart extends Chart {
 	getDimensionData (dim) {
 		const data = this.props.data.map(
 			d => (Object.assign({dim: dim}, d)));
-
-	//	data.sort((a, b) => this.sortUtil(a, b));
 		return data;
 	}
 
 	// Generates the bars and attaches data to them.
 	buildBars (bars, dim) {
-		console.log("buildBars");
 		const c = this.c,
 			  _this = this;
 		const hi = 1.0;
@@ -357,8 +331,6 @@ export default class BarChart extends Chart {
 			  sd = c.openDimensions,
 			  _this = this;
 
-		console.log("PROPER SORTING");
-
 		this.sortDim = c.openDimensions[dimension];
 
 		this.props.data.sort((a, b) => this.sortUtil(a, b));
@@ -398,7 +370,6 @@ export default class BarChart extends Chart {
 	*/
 
 	setBarsWidth (display) {
-		console.log("barsWidth");
 		const sd = display.props.openDimensions;
 		this.attr("width", display.xGroup.rangeBand())
 			.attr("x", d => {
@@ -412,7 +383,6 @@ export default class BarChart extends Chart {
 	}
 
 	setBarsHeight (display) {
-		console.log("barsHeight");
 		const c = display.props;
 		this.style("fill-opacity", 1)
 			.attr("y", d => {
@@ -425,7 +395,6 @@ export default class BarChart extends Chart {
 			.attr("height", d => {
 				const s = display.yScale(0);
 				const v = val(d, d.dim, c.mode, c.year);
-				//console.log(s, v);
 				return Math.abs(display.yScale(0) -
 				display.yScale(
 					val(d, d.dim, c.mode, c.year)))});
@@ -502,8 +471,6 @@ export default class BarChart extends Chart {
 	mouseOver (d, target) {
 		if (d == null)
 			return;
-
-		this.start = performance.now();
 		let bar;
 		if (target instanceof HTMLSpanElement) {
 			const first = firstDim(	this.props.openDimensions,
@@ -520,9 +487,6 @@ export default class BarChart extends Chart {
 
 		if (d.id!=this.selection)
 			this.highlight(d.id);
-
-		const now = performance.now();
-		console.log("MOUSE OVER TOOK: ", now - this.start);
 
 		this.props.callbacks.mouseOver(d, bar);
 	}
@@ -541,7 +505,6 @@ export default class BarChart extends Chart {
 	}
 
 	render() {
-		console.log("Bar Chart Render");
 		return (
 			<g className = 'barscon'
 				id = {'barscon-' + this.props.level}

@@ -41,19 +41,10 @@ function getData (data, level = 0, parent = 'na', year = '') {
 	return rolled;
 }
 
-function getStacks (raw, parent = 'na', year, parentLevel) {
-	var start = new Date().getTime();
-		const data = raw;
-
-	var end = new Date().getTime();
-	var time = end - start;
-	console.log('	Parsing time: ' + time);
-
+function getStacks (data, parent = 'na', year, parentLevel) {
 	const levelData = getStacksLevelData(
 		data, CONFIG.levels.length - 1, parent, year, parentLevel);
-	const stacks = roll(levelData);
-
-	return stacks;
+	return roll(levelData);
 }
 
 function parse (raw) {
@@ -102,13 +93,12 @@ function getStacksLevelData (data, level, parent, year, parentLevel) {
 
 function getLevelData (data, level, parent, year) {
 	const levels = CONFIG.levels;
-	//console.log(data.length);
 	if (parent != 'na')
 		data = data.filter(v => v[levels[level-1]] == parent)
 
 	if (year != '')
 		data = data.filter(v => v.Year == year);
-	//console.log(data.length);
+		
 	const ready = d3.nest()
 		.key(function(d) {
 			return d[levels[level]];

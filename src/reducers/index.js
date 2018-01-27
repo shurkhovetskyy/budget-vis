@@ -26,15 +26,11 @@ const reducers = (state = initial, action) => {
 		case 'SET_MODE': {
 			nl[action.level].mode = action.payload;
 			nl[action.level].mark += 1;
-		//	nl[action.level].sort = 'na';
-		//	const a = nl[action.level].view == View.CATS ? Action.MODE : null;
 			return {...state, levels: nl, action: Action.MODE};
 		}
 		case 'SET_YEAR': {
 			nl[action.level].year = action.payload;
 			nl[action.level].mark += 1;
-			// if (nl[action.level].sort == Sort.NUM)
-			// 	nl[action.level].sort = Sort.NA;
 			return {...state, levels: nl, action: null };
 		}
 		case 'SET_SORT': {
@@ -45,7 +41,7 @@ const reducers = (state = initial, action) => {
 
 		case 'ADD_DIMENSION': {
 			const od = nl[action.level].openDimensions;
-			nl[action.level].openDimensions = [...od, action.payload];//.push(action.payload);
+			nl[action.level].openDimensions = [...od, action.payload];
 			nl[action.level].mark += 1;
 			return {...state, levels: nl, action: Action.ADD};
 		}
@@ -167,14 +163,12 @@ const reducers = (state = initial, action) => {
 		}
 
 		case 'OPEN_LEVEL': {
-		//	nl[action.level].mark += 1;
 			nl[action.level].selection = action.selection;
 
 			if (action.payload!=null) {
 				if (nl.length -1 == action.level)
 					nl.push(action.payload);
 				else {
-					//const rest = nl.slice(level + 2, nl.length)
 					nl[action.level + 1] = action.payload;
 					nl = nl.slice(0, action.level + 2);
 				}
@@ -190,8 +184,6 @@ const reducers = (state = initial, action) => {
 			nl[action.level].mark += 1;
 			nl[action.level].view = View.CATS;
 			nl[action.level].year = action.payload;
-			// if (nl[action.level].sort == Sort.NUM)
-			// 	nl[action.level].sort = Sort.NA;
 			return {...state,
 				levels: nl,
 				action: null

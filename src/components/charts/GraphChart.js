@@ -4,7 +4,6 @@ import Chart from './Chart';
 import { View, Mode, Sort, Action, Interaction } from '../../config/options';
 import { getItemColor } from '../../utils';
 import Styles from '../../config/styles';
-
 import { val } from '../../utils/val';
 
 import CONFIG from '../../config/settings';
@@ -43,8 +42,6 @@ export default class GraphChart extends Chart {
 		const oldDims = prevProps.openDimensions;
 		const newDims = this.props.openDimensions;
 
-		console.log(oldDims, newDims);
-
 		if (this.props.action == Action.UPDATE) {
 			this.updateData();
 			this.updateLabels();
@@ -59,7 +56,6 @@ export default class GraphChart extends Chart {
 		}
 
 		if (this.action==Action.REMOVE) {
-			console.log("REMOVEDIM");
 			const dim = oldDims.filter(
 				v => !newDims.includes(v)).shift();
 			this.removeDimension(dim);
@@ -127,10 +123,10 @@ export default class GraphChart extends Chart {
 				points.transition("x").duration(1000)
 					.attr("cx", d => this.xScaleGraph(d.year));
 			// Keep to bring opacity back after fast display switch.
-				//	if (!this.chartSet) {
-			// path.transition().style("opacity", 1);
-			//points.transition().style("opacity", 1);
-				//	}
+			//	if (!this.chartSet) {
+			// 		path.transition().style("opacity", 1);
+			//		points.transition().style("opacity", 1);
+			//	}
 		} else {
 			path = this.buildPath(dim, data);
 			const tl = path.node().getTotalLength();
@@ -178,7 +174,6 @@ export default class GraphChart extends Chart {
 			year: y
 		}));
 		this.pathData[dim] = data;
-		console.log("GRAPH DATA", data);
 		return data;
 	}
 
@@ -271,7 +266,7 @@ export default class GraphChart extends Chart {
 			)))
 		);
 
-		console.log("Max: " + max);
+		//console.log("Max: " + max);
 		return max;
 	}
 
@@ -285,7 +280,7 @@ export default class GraphChart extends Chart {
 				item => item.value
 			)))
 		);
-		console.log("Min: " + min);
+		//console.log("Min: " + min);
 		return min;
 	}
 
@@ -297,9 +292,7 @@ export default class GraphChart extends Chart {
 	}
 
 	mouseOver (d, target) {
-		this.start = performance.now();
 		const circles = this.container.selectAll("circle");
-
 		circles.filter(".year-" + d)
 				.attr("fill-opacity", 0.5)
 				.attr("r", 10);
@@ -311,9 +304,6 @@ export default class GraphChart extends Chart {
 		d3.select(target).transition().duration(100)
 			.style("opacity", 1);
 
-
-		const now = performance.now();
-		console.log("MOUSE OVER TOOK: ", now - this.start);
 		this.props.callbacks.mouseOver(d);
 	}
 
@@ -332,7 +322,6 @@ export default class GraphChart extends Chart {
 	}
 
 	render() {
-		console.log("Graph Chart Render");
 		return (
 			<g className = 'graphcon'
 				id = {'graphcon-' + this.props.level}

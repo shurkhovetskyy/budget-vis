@@ -25,8 +25,6 @@ app.get('/dim-years', function(req, res) {
 });
 
 app.get('/stacks', function(req, res) {
-	console.log("Stacks-all");
-
 	if (err) throw err;
 
 	let data, parent, year, dim, level;
@@ -41,8 +39,6 @@ app.get('/stacks', function(req, res) {
 });
 
 app.get('/data', function(req, res) {
-	var start = new Date().getTime();
-
 	const view = req.query.view;
 	const level = req.query.level;
 	const parent = req.query.parent;
@@ -53,10 +49,6 @@ app.get('/data', function(req, res) {
 
 	if (view == View.TIME)
 		data = utils.overtime(data);
-
-	var end = new Date().getTime();
-	var time = end - start;
-	console.log('Execution time: ' + time);
 
 	let resp = { };
 	resp.data = data;
@@ -82,5 +74,4 @@ app.listen(app.get('port'), function() {
 	  dimYears = utils.getDimYears(utils.getData(cache));
 	  return;
   })
-
 });

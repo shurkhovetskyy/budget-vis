@@ -24,7 +24,6 @@ export function fetchDimYears () {
 	return function (dispatch) {
 		axios.get('/dim-years')
 			.then((resp) => {
-				console.log("Response", resp.data);
 				CONFIG.dimYears = resp.data;
 				dispatch({
 					type: "FETCH_DIM_YEARS"
@@ -71,7 +70,6 @@ export function setAll (params) {
 		checkYear(years[i]);
 		checkSort(sorts[i]);
 
-		console.log("Dims:", params.dims);
 		let actualDims = openDims[i].split('+').map(
 			d => CONFIG.dimensions[parseInt(d)]);
 

@@ -13,7 +13,6 @@ export function Axis ({level}) {
 }
 
 export function Labels ({level}) {
-	console.log("**********LABELS");
 	return (
 		<div id = {'labelsgroup-' + level}
 			className = 'labelsgroup'>

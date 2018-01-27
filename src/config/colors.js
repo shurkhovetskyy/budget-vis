@@ -5,9 +5,14 @@ const colors = ["rgb(39, 127, 150)",
 			//	"rgb(121, 178, 194)"
 			];
 
-			//"rgb(121, 178, 194)" - nice blue ---- rgb(121, 20, 34)
-const colorSchemes = ["rgb(38, 47, 52)", "rgb(21, 28, 32)"];
-const blacks = ["rgb(147, 147, 147)", "rgb(103, 102, 106)", "rgb(195, 195, 195)"];
+const colorSchemes = [	"rgb(38, 47, 52)",
+						"rgb(21, 28, 32)"
+					];
+
+const blacks = [	"rgb(147, 147, 147)",
+					"rgb(103, 102, 106)",
+					"rgb(195, 195, 195)"
+				];
 
 export {
 	colors,

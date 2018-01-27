@@ -39,10 +39,9 @@ export function fetch (dispatch, ls, userAction) {
 	if (ls.view == View.CATS)
 		params.push(year);	// only relevant for categories
 	const query = '/data?' + params.join('&');
-	console.log(query);
+	//console.log(query);
 	axios.get(query)
 		.then((resp) => {
-			console.log("Response", resp.data);
 			dispatch({
 				type: "FETCH_DATA",
 				level: ls.level,

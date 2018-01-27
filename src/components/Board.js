@@ -27,16 +27,15 @@ export default class Board extends React.Component {
 	constructor (props) {
 		super(props);
 		readYears();
-
 	}
 
 	componentDidMount() {
 		window.addEventListener("resize",
 			() => this.props.dispatch(actions.setWidth(calcWidth())));
 
-		const width = calcWidth();
 		this.props.dispatch(actions.fetchDimYears());
 
+		const width = calcWidth();
 		try {
 			this.props.dispatch(actions.setAll(this.props.match.params));
 			this.props.dispatch(actions.setWidth(width));
@@ -56,16 +55,16 @@ export default class Board extends React.Component {
 	}
 
 	render() {
-		var t0 = performance.now();
 		const state = store.getState();
-
-		const res = (
+		return (
 			<div id = "board" >
 				{store.getState().levels.map((level, i) => (
 					<Level {...state.levels[i]}
 						dispatch = {store.dispatch}
-						navigate = {() => navigate(this.props.history,
+						navigate = {() => navigate(
+							this.props.history,
 							state.levels)}
+						history = {this.props.history}
 						key = {i}
 						level = {i}
 						action = {state.action}
@@ -75,10 +74,6 @@ export default class Board extends React.Component {
 				))}
 			</div>
 		);
-		var t1 = performance.now();
-		console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
-
-		return res;
 	}
 }
 

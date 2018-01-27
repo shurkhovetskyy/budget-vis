@@ -16,19 +16,10 @@ import {
 	Sort
 } from '../../config/options';
 
-import {
-	Sign
-} from '../../config/text';
-
-
+import { Sign } from '../../config/text';
+import { val } from '../../utils/val';
 
 import CONFIG from '../../config/settings';
-
-import {
-	setDimYears
-} from './helpers';
-
-import { val } from '../../utils/val';
 
 class Chart extends React.Component {
 
@@ -66,8 +57,6 @@ class Chart extends React.Component {
 		this.zeroAxis = this.zeroAxis || d3.select("#zero-" + this.props.level);
 
 		this.no = this.no || d3.select("#nodata-" + this.props.level);
-		// if (!CONFIG.hasOwnProperty("dimYears"))
-		// 	setDimYears(this.props.data);
 
 		this.updateXScale();
 		this.updateXScaleRange();
@@ -162,7 +151,6 @@ class Chart extends React.Component {
 	};
 
 	updateDimensions () {
-		console.log("UpdateDimensions");
 		this.setAxis(true, true);
 		this.props.openDimensions.forEach (
 			dim => this.renderDimension(dim));
@@ -178,16 +166,12 @@ class Chart extends React.Component {
 			return;
 		}
 
-		console.log("****updateLabels", this.props.level, [...this.xScale.range()]);
-
 		let _this = this,
 			  labels = this.generateLabels();
 		const hi = this.hi;
 	  	const lo = this.lo;
 
-
-
-		// Enforce "on end" to bu executed once.
+		// Enforce "on end" to be executed once.
 		let numTrans = labels.size();
 		labels.transition()
 			// Make sure labels appear quickly when shown
@@ -208,12 +192,9 @@ class Chart extends React.Component {
 					if (--numTrans == 0)
 						this.setListeners.call(labels, this);
 				})
-			;
 			// .style("font-weight", d => {
-			// 	console.log(d.id == this.selection);
 			// 	return (d.id == this.selection ? "bold" : "normal");
 			// }
-
 			;
 	}
 
@@ -286,16 +267,10 @@ class Chart extends React.Component {
 	}
 
 	dataAvailable (dims = null) {
-		// var start = new Date().getTime();
-
 		dims = dims || this.props.openDimensions;
 		const available = dims.map(d =>
 			this.dimAvailable(d)).reduce((a, b) => a || b);
-		console.log(available);
 		this.noData = !available;
-
-		// var elapsed = new Date().getTime() - start;
-		// console.log(elapsed);
 		return available;
 	};
 
@@ -355,7 +330,7 @@ class Chart extends React.Component {
 		if (y)	this.updateYScale();
 
 		this.yAxis.tickSize(-this.axisWidth, 0);
-		console.log("setAxis");
+		//console.log("setAxis");
 		if (fading) {
 			// Hide axis.
 			const invTrans = this.axisCon
@@ -390,7 +365,7 @@ class Chart extends React.Component {
 			.duration(500)
 			.style("opacity", "0.0")
 			.transition("position")
-		//	.duration(1000)
+			//.duration(1000)
 			.attr("y1", this.yScale(0))
 			.attr("y2", this.yScale(0))
 			.attr("x1", 0)

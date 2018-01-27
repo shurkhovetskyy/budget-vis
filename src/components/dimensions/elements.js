@@ -22,7 +22,6 @@ export function ListEntry (props) {
 	const {dim, year, openDimensions, last} = props;
 	const color = getItemColor(props.dim);
 	const id = props.level + '-' + dim;
-	console.log("Entry", dim);
 	return (
 		<div id = {'dim-entry-' + id}
 			onClick = {props.add}

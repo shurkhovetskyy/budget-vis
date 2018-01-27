@@ -28,15 +28,12 @@ const Styles = (function() {
 	};
 
 	// Bar tooltip y.
-	let y = styles.headerHeight + styles.topMargin + styles.topPadding;
-//	y = y - styles.tooltipHeight - styles.arrowHeight;
+	const y = styles.headerHeight + styles.topMargin + styles.topPadding;
 	styles.tooltipY = y;
-
 	styles.axisWidthShift = styles.widthRight +
 							styles.leftMargin +
 							styles.widthControlPanel +
 							styles.axisMarginRight
-//	styles.bottomPadding = styles.labelMargin + styles.labelLength;
 	return styles;
 }) ();
 

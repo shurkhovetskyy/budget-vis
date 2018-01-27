@@ -41,7 +41,6 @@ function getTimeArray (data, mode, dim) {
 	arr = arr.shift()[mode];
 	arr = arr.filter(d => Object.keys(d).includes(dim));
 	arr = arr.shift()[dim];
-	console.log("Arr", arr);
 	return arr;
 }
 
