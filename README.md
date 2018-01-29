@@ -4,9 +4,12 @@
 
 This is a concept interactive visualization of budget data designed as part of [OpenBudgets.eu](https://openbudgets.eu/) project. Built with [React](https://reactjs.org/) view library, [Redux](https://redux.js.org/) state management and [D3](https://d3js.org/).
 
-Live version visualizing budget of Bonn, Germany is [available here](https://budget-bonn.herokuapp.com/).
+Currently supports line chart temporal view and bar chart view for selected year. Click on bars in `Categories` view to explore at lower level.
 
-**GNU GENERAL PUBLIC LICENSE Version 3.**
+Visualizations and controls are coded as React components.
+
+Live version visualizing budget of Bonn, Germany: [https://budget-bonn.herokuapp.com/](https://budget-bonn.herokuapp.com/).
+
 
 ## Running locally
 
@@ -109,3 +112,5 @@ In short, when specifying new data, it must be ensured that its header has the f
 `Sign` - capitalized, can be either `plus` or `minus`. This is in case your data contains both positive and negative values (spending and revenue). If not, set value to `plus` for all rows.
 
 Column order is irrelevant. See both `bonn-data-en.csv` and `bonn-data-de.csv` for examples.
+
+**GNU GENERAL PUBLIC LICENSE Version 3.**
